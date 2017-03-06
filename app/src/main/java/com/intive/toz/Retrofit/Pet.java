@@ -1,7 +1,6 @@
 package com.intive.toz.Retrofit;
-
 /**
- * Created by mmate on 06.03.2017.
+ * Pet model class.
  */
 public class Pet {
 
@@ -13,7 +12,7 @@ public class Pet {
     private String date;
     private String profilePic;
 
-    public String getName() {
+ /*   public String getName() {
         return name;
     }
 
@@ -102,6 +101,6 @@ public class Pet {
     public Pet withProfilePic(String profilePic) {
         this.profilePic = profilePic;
         return this;
-    }
+    }*/
 
 }

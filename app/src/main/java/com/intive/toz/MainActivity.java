@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         petsList = new ArrayList<>();
 
         final PetsApi petsApi = RetroClient.getPetsApiService();
-        Call<PetsList> call = petsApi.getMyJSON();
+        final Call<PetsList> call = petsApi.getMyJSON();
 
         call.enqueue(new Callback<PetsList>() {
             @Override
-            public void onResponse(Call<PetsList> call, Response<PetsList> response) {
+            public void onResponse(final Call<PetsList> call, final Response<PetsList> response) {
                 Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
                     petsList = response.body().getPets();
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PetsList> call, Throwable t) {
+            public void onFailure(final Call<PetsList> call, final Throwable t) {
                 Log.e("RESPONSE", "onFailure: ");
 
             }

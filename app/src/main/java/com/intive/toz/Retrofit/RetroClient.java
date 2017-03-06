@@ -4,12 +4,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by mmate on 06.03.2017.
+ * Base url connection.
  */
-
-public class RetroClient {
+public final class RetroClient {
 
     static final String PETS_URL = "http://private-dbfe1-zwierzakiandroid.apiary-mock.com";
+
+    private RetroClient() {
+
+    }
 
     private static Retrofit getRetrofitInstance() {
 
@@ -19,7 +22,10 @@ public class RetroClient {
                 .build();
     }
 
-    public static PetsApi getPetsApiService(){
+    /**
+     * @return pets Api
+     */
+    public static PetsApi getPetsApiService() {
         return getRetrofitInstance().create(PetsApi.class);
     }
 
