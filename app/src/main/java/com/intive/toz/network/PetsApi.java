@@ -1,4 +1,5 @@
-package com.intive.toz.Retrofit;
+package com.intive.toz.network;
+
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -10,11 +11,12 @@ import retrofit2.http.GET;
 public interface PetsApi {
     /**
      * return json array.
+     *
      * @return /pets.json.
      */
 
     @GET("/pets")
-    Call<PetsList> getMyJSON();
+    Call<PetsList> getJSON();
 
 }
 

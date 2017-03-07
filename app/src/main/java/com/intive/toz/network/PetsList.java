@@ -1,4 +1,6 @@
-package com.intive.toz.Retrofit;
+package com.intive.toz.network;
+
+import com.intive.toz.Pet;
 
 import java.util.ArrayList;
 
@@ -11,13 +13,11 @@ public class PetsList {
 
     /**
      * returns list of pets.
+     *
      * @return ArrayList
      */
     public ArrayList<Pet> getPets() {
         return pets;
     }
 
-   /* public void setPets(ArrayList<Pet> pets) {
-        this.pets = pets;
-    }*/
 }
