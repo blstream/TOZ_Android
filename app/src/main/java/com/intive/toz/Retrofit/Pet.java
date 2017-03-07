@@ -11,8 +11,8 @@ public class Pet {
     private String address;
     private String date;
     private String profilePic;
-
- /*   public String getName() {
+/*
+    public String getName() {
         return name;
     }
 
