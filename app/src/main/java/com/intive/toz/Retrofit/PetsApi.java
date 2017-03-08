@@ -1,5 +1,7 @@
 package com.intive.toz.Retrofit;
 
+import com.intive.toz.financial.FinancialData;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -15,6 +17,9 @@ public interface PetsApi {
 
     @GET("/pets")
     Call<PetsList> getMyJSON();
+
+    @GET("/financial")
+    Call<FinancialData> getFinancialJSON();
 
 }
 
