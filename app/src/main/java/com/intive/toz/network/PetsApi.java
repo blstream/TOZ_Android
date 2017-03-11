@@ -20,9 +20,12 @@ public interface PetsApi {
     @GET("/pets")
     Call<PetsList> getJSON();
 
+    /**
+     * Call to financial data.
+     * @return /financial.json
+     */
     @GET("/financial")
     Call<FinancialData> getFinancialJSON();
-
 }
 
 
