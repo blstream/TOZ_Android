@@ -17,7 +17,7 @@ deploy:
   provider: releases
   api_key: "$OUATH_KEY"
   file_glob: true
-  file: "{$TRAVIS_BUILD_DIR}/app/build/outputs/apk/toz-debug.apk"
+  file: "{$TRAVIS_BUILD_DIR}/app/build/outputs/apk/toz-prod-debug.apk"
   skip_cleanup: true
   on:
     tags: true
