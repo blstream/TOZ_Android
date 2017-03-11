@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.intive.toz.Retrofit.Pet;
-import com.intive.toz.Retrofit.PetsApi;
-import com.intive.toz.Retrofit.PetsList;
-import com.intive.toz.Retrofit.RetroClient;
+import com.intive.toz.network.PetsApi;
+import com.intive.toz.network.PetsList;
+import com.intive.toz.network.ApiClient;
 
 import java.util.ArrayList;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,10 +29,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        /**
+         *
+         * Example of use retrofit.
+         *
+         *
+         * */
         petsList = new ArrayList<>();
 
-        final PetsApi petsApi = RetroClient.getPetsApiService();
-        final Call<PetsList> call = petsApi.getMyJSON();
+        final PetsApi petsApi = ApiClient.getPetsApiService();
+        final Call<PetsList> call = petsApi.getJSON();
 
         call.enqueue(new Callback<PetsList>() {
             @Override
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 }
