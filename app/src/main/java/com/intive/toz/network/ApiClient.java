@@ -11,7 +11,6 @@ public final class ApiClient {
     static final String API_URL = "http://private-dbfe1-zwierzakiandroid.apiary-mock.com";
 
     private ApiClient() {
-
     }
 
     private static Retrofit getRetrofitInstance() {

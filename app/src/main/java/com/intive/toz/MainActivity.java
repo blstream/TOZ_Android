@@ -6,11 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.intive.toz.network.PetsApi;
-import com.intive.toz.network.PetsList;
 import com.intive.toz.network.ApiClient;
 
 import java.util.ArrayList;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         /**
          *
          * Example of use retrofit.
@@ -37,26 +34,29 @@ public class MainActivity extends AppCompatActivity {
          *
          * */
         petsList = new ArrayList<>();
-
         final PetsApi petsApi = ApiClient.getPetsApiService();
-        final Call<PetsList> call = petsApi.getJSON();
+        final Call<ArrayList<Pet>> call = petsApi.getGalleryPetsListCall();
 
-        call.enqueue(new Callback<PetsList>() {
+
+        call.enqueue(new Callback<ArrayList<Pet>>() {
             @Override
-            public void onResponse(final Call<PetsList> call, final Response<PetsList> response) {
+            public void onResponse(final Call<ArrayList<Pet>> call, final Response<ArrayList<Pet>> response) {
                 Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
-                    petsList = response.body().getPets();
+                    petsList = response.body();
+                    for (Pet p : petsList) {
+                        Log.e("Lista ", "imie " + p.getName());
+
+                    }
                 }
             }
 
             @Override
-            public void onFailure(final Call<PetsList> call, final Throwable t) {
+            public void onFailure(final Call<ArrayList<Pet>> call, final Throwable t) {
                 Log.e("RESPONSE", "onFailure: ");
 
             }
         });
-
 
     }
 }

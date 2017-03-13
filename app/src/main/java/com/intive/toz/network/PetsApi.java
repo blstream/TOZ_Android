@@ -1,6 +1,10 @@
 package com.intive.toz.network;
 
 
+import com.intive.toz.Pet;
+
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -16,7 +20,8 @@ public interface PetsApi {
      */
 
     @GET("/pets")
-    Call<PetsList> getJSON();
+    Call<ArrayList<Pet>> getGalleryPetsListCall();
+
 
 }
 
