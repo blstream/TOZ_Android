@@ -13,9 +13,10 @@ public class Pet {
     private String address;
     private String date;
     private String profilePic;
-/**
- * @return name of Pet.
- * */
+
+    /**
+     * @return name of Pet.
+     */
     public String getName() {
         return name;
     }

@@ -9,6 +9,7 @@ import com.intive.toz.network.PetsApi;
 import com.intive.toz.network.ApiClient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +21,7 @@ import retrofit2.Response;
  */
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Pet> petsList;
+    List<Pet> petsList;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -35,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
          * */
         petsList = new ArrayList<>();
         final PetsApi petsApi = ApiClient.getPetsApiService();
-        final Call<ArrayList<Pet>> call = petsApi.getGalleryPetsListCall();
+        final Call<List<Pet>> call = petsApi.getGalleryPetsListCall();
 
 
-        call.enqueue(new Callback<ArrayList<Pet>>() {
+        call.enqueue(new Callback<List<Pet>>() {
             @Override
-            public void onResponse(final Call<ArrayList<Pet>> call, final Response<ArrayList<Pet>> response) {
+            public void onResponse(final Call<List<Pet>> call, final Response<List<Pet>> response) {
                 Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
                     petsList = response.body();
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(final Call<ArrayList<Pet>> call, final Throwable t) {
+            public void onFailure(final Call<List<Pet>> call, final Throwable t) {
                 Log.e("RESPONSE", "onFailure: ");
 
             }
