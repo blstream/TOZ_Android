@@ -4,7 +4,7 @@ import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
 public class NavigationTabsPresenter extends MvpBasePresenter<NavigationTabsView>{
 
-    private int userStatus = 2;
+    private int userStatus = 1;
 
     public void loadNavigationTabs() {
 

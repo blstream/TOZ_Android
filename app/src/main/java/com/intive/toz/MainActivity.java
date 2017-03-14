@@ -3,23 +3,13 @@ package com.intive.toz;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
 import com.intive.toz.common.view.navigationTabs.NavigationTabsFragment;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
 import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
-import com.intive.toz.network.PetsApi;
-import com.intive.toz.network.PetsList;
-import com.intive.toz.network.ApiClient;
 
-import java.util.ArrayList;
-
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +17,6 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements  NavigationTabsView{
 
-    ArrayList<Pet> petsList;
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -41,33 +30,6 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
         initViews();
         getPresenter().loadNavigationTabs();
         getPresenter().loadNavigationTabsIcons();
-
-        /**
-         *
-         * Example of use retrofit.
-         *
-         *
-         * */
-        petsList = new ArrayList<>();
-
-        final PetsApi petsApi = ApiClient.getPetsApiService();
-        final Call<PetsList> call = petsApi.getJSON();
-
-        call.enqueue(new Callback<PetsList>() {
-            @Override
-            public void onResponse(final Call<PetsList> call, final Response<PetsList> response) {
-                Log.i("RESPONSE", "onResponse: ");
-                if (response.isSuccessful()) {
-                    petsList = response.body().getPets();
-                }
-            }
-
-            @Override
-            public void onFailure(final Call<PetsList> call, final Throwable t) {
-                Log.e("RESPONSE", "onFailure: ");
-
-            }
-        });
     }
 
     @NonNull
@@ -114,7 +76,4 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
         tabLayout.getTabAt(2).setIcon(R.mipmap.ic_launcher);
         tabLayout.getTabAt(3).setIcon(R.mipmap.ic_launcher);
     }
-
-
-
 }
