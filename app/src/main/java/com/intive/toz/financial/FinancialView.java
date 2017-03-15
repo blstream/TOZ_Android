@@ -1,6 +1,6 @@
 package com.intive.toz.financial;
 
-import com.hannesdorfmann.mosby.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.MvpView;
 
 /**
  * interface method for presenter.

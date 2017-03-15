@@ -42,7 +42,7 @@ dependencies {
 
     compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
-    compile "com.hannesdorfmann.mosby:mvp:2.0.1"
+    compile 'com.hannesdorfmann.mosby3:mvp:3.0.0'
 
     testCompile "junit:junit:$testVersions.junit"
 

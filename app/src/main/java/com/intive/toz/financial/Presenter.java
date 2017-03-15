@@ -2,9 +2,10 @@ package com.intive.toz.financial;
 
 import android.util.Log;
 
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.intive.toz.network.PetsApi;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.intive.toz.network.ApiClient;
+import com.intive.toz.network.PetsApi;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,7 +14,7 @@ import retrofit2.Response;
 /**
  * mvp presenter for financial Activity.
  */
-public class Presenter extends MvpBasePresenter<FinancialView> {
+public class Presenter extends MvpBasePresenter<FinancialView> implements MvpPresenter<FinancialView> {
 
     PetsApi financialService = ApiClient.getPetsApiService();
     Call call = financialService.getFinancialJSON();

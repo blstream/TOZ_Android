@@ -6,8 +6,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.hannesdorfmann.mosby.mvp.MvpActivity;
+import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.R;
 
 /**
