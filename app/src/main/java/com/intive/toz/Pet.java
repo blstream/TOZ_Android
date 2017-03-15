@@ -21,5 +21,26 @@ public class Pet {
         return name;
     }
 
+    /**
+     * @return description of Pet.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @return date.
+     */
+    public String getDate() {
+        return date;
+    }
+
+    /**
+     * @return url to profile picture.
+     */
+    public String getProfilePic() {
+        return profilePic;
+    }
+
 
 }
