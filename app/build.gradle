@@ -43,10 +43,15 @@ android {
             resValue "string", "app_name", "TOZ - dev"
         }
     }
+    lintOptions {
+        abortOnError = false
+    }
+
 }
 
 def versions = [
-        support: "25.2.0",
+        support : "25.2.0",
+        retrofit: "2.1.0"
 ]
 
 def testVersions = [
@@ -56,6 +61,9 @@ def testVersions = [
 
 dependencies {
     compile "com.android.support:appcompat-v7:$versions.support"
+
+    compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 
     testCompile "junit:junit:$testVersions.junit"
 
