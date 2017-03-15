@@ -3,10 +3,12 @@ package com.intive.toz.news.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * The type News.
  */
-public class News {
+public class News implements Serializable {
     @SerializedName("title")
     @Expose
     private String title;

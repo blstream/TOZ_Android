@@ -1,6 +1,7 @@
 package com.intive.toz.news.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
 import com.intive.toz.news.model.News;
+import com.intive.toz.single_news.SingleNewsActivity;
 
 import java.util.List;
 
@@ -104,7 +106,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**
      * The type News view holder.
      */
-    final class NewsViewHolder extends RecyclerView.ViewHolder {
+    final class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         /**
          * The Title tv.
@@ -138,6 +140,18 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private NewsViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(final View v) {
+            //FIXME: Fix when SingleNewsActivty will be implemented correctly
+            int position = getAdapterPosition();
+
+            News news = newsList.get(position);
+            Intent i = new Intent(v.getContext(), SingleNewsActivity.class);
+            i.putExtra(SingleNewsActivity.NEWS, news);
+            v.getContext().startActivity(i);
         }
     }
 
