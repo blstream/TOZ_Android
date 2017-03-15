@@ -23,11 +23,11 @@ import java.util.List;
  */
 public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresenter> implements PetsListView {
 
-
     private ProgressBar progress;
     private RecyclerView petsRecyclerView;
     private PetsAdapter petsAdapter;
     private List<Pet> petsList = new ArrayList<>();
+    private boolean isLoaded = false;
 
     /**
      *
@@ -48,6 +48,7 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pets_list, container, false);
+        setRetainInstance(true);
         initViews(rootView);
         initPetsList(rootView);
         return rootView;
@@ -56,7 +57,9 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
     @Override
     public void onViewCreated(final View view, final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
-        getPresenter().loadData();
+        if (!isLoaded) {
+            getPresenter().loadData();
+        }
     }
 
     private void initViews(final View rootView) {
@@ -75,6 +78,7 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
         petsList.clear();
         petsList.addAll(loadedPetsList);
         petsAdapter.notifyDataSetChanged();
+        isLoaded = true;
     }
 
     @Override
