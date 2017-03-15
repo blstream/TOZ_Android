@@ -1,12 +1,10 @@
 package com.intive.toz.financial;
 
-import com.hannesdorfmann.mosby3.mvp.MvpView;
-
 /**
  * interface method for presenter.
  */
 
-public interface FinancialView extends MvpView {
+public interface FinancialView {
 
     /**
      * interface method set financial data to textview.

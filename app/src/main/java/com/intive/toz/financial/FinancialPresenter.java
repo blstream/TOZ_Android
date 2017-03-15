@@ -19,19 +19,18 @@ public class FinancialPresenter implements IFinancialPresenter{
         this.view = view;
     }
 
-
     /**
      * make callback from server.
      */
     public void loadFinancialData(PetsApi financialService) {
-        Call call = financialService.getFinancialJSON();
+        view.showProgres();
 
+        Call call = financialService.getFinancialJSON();
         call.enqueue(new Callback<FinancialData>() {
             @Override
             public void onResponse(final Call<FinancialData> call, final Response<FinancialData> response) {
                 Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
-                    view.showProgres();
                     view.setFinancialData(response.body());
                     view.hideProgres();
                 }

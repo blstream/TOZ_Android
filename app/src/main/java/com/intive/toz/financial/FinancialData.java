@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class FinancialData {
+
     @SerializedName("account_number")
     private String accountNumber;
     private String title;

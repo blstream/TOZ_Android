@@ -62,7 +62,6 @@ public class FinancialActivity extends AppCompatActivity implements FinancialVie
 
     @Override
     public void hideProgres() {
-
         progressBar.setVisibility(View.INVISIBLE);
     }
 

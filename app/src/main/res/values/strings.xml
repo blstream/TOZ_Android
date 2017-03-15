@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">TOZ</string>
-    <string name="financial_info_load_error">ERROR in Financial Activity</string>
+    <string name="financial_info_load_error">ERROR while trying to get response financial data from server</string>
 </resources>
