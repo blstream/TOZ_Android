@@ -51,7 +51,9 @@ android {
 
 def versions = [
         support : "25.2.0",
-        retrofit: "2.1.0"
+        retrofit: "2.2.0",
+        butterknife: "8.5.1",
+        mosby: "3.0.0"
 ]
 
 def testVersions = [
@@ -61,9 +63,19 @@ def testVersions = [
 
 dependencies {
     compile "com.android.support:appcompat-v7:$versions.support"
+    compile "com.android.support:recyclerview-v7:$versions.support"
 
     compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+
+    compile "com.jakewharton:butterknife:$versions.butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknife"
+
+    compile "com.hannesdorfmann.mosby3:mvp:$versions.mosby"
+    compile "com.hannesdorfmann.mosby3:viewstate:$versions.mosby"
+    compile "com.hannesdorfmann.mosby3:mvp-lce:$versions.mosby"
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
     testCompile "junit:junit:$testVersions.junit"
 
