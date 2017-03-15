@@ -1,18 +1,20 @@
 package com.intive.toz.financial;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+
 import com.intive.toz.R;
+import com.intive.toz.network.ApiClient;
+import com.intive.toz.network.PetsApi;
 
 /**
  * Activity to display financial support information.
  */
-public class FinancialActivity extends MvpActivity<FinancialView, Presenter> implements FinancialView {
+public class FinancialActivity extends AppCompatActivity implements FinancialView {
 
     private TextView accountNumber;
     private TextView title;
@@ -20,18 +22,18 @@ public class FinancialActivity extends MvpActivity<FinancialView, Presenter> imp
 
     private ProgressBar progressBar;
 
+    public PetsApi financialService;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financial);
         initViews();
-        getPresenter().loadFinancialData();
-    }
 
-    @NonNull
-    @Override
-    public Presenter createPresenter() {
-        return new Presenter();
+        financialService = ApiClient.getPetsApiService();
+
+        FinancialPresenter presenter = new FinancialPresenter(this);
+        presenter.loadFinancialData(financialService);
     }
 
     private void initViews() {
@@ -44,6 +46,7 @@ public class FinancialActivity extends MvpActivity<FinancialView, Presenter> imp
 
     /**
      * set text from response in textview's.
+     *
      * @param financialResponse from json
      */
     public void setFinancialData(final FinancialData financialResponse) {
