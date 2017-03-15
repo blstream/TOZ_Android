@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.intive.toz.Pet;
-import com.intive.toz.homescreen.model.Pets;
 import com.intive.toz.homescreen.view.PetsListView;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
