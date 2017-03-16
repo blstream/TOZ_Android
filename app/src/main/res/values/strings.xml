@@ -1,3 +1,8 @@
 <resources>
+    <string name="error_msg">Wystąpił błąd! Spróbuj ponownie.</string>
+
+    <!--news list-->
+    <string name="addition_date">Data dodania:&#160;</string>
+    <string name="latest_news">Ostatnio dodane</string>
     <string name="financial_info_load_error">Wystąpił błąd podczas pobierania danych finansowych z serwera.</string>
 </resources>
