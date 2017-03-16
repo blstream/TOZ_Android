@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Fragment to display financial data
+ * Fragment to display financial data.
  */
 public class FinancialFragment extends MvpFragment<IFinancial.FinancialView, IFinancial.Presenter> implements IFinancial.FinancialView {
 
@@ -38,13 +38,13 @@ public class FinancialFragment extends MvpFragment<IFinancial.FinancialView, IFi
     public PetsApi financialService;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_financial, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         financialService = ApiClient.getPetsApiService();
@@ -54,6 +54,10 @@ public class FinancialFragment extends MvpFragment<IFinancial.FinancialView, IFi
         presenter.loadFinancialData(financialService);
     }
 
+    /**
+     * set financial data to textviews.
+     * @param financialResponse financial response from server.
+     */
     public void setFinancialData(final FinancialData financialResponse) {
         accountNumber.setText(financialResponse.getAccountNumber());
         title.setText(financialResponse.getTitle());

@@ -18,16 +18,21 @@ public class FinancialPresenter extends MvpBasePresenter<IFinancial.FinancialVie
 
     private final IFinancial.FinancialView view;
 
-    public FinancialPresenter(IFinancial.FinancialView view) {
+    /**
+     * constructor to view.
+     * @param view from fragment.
+     */
+    public FinancialPresenter(final IFinancial.FinancialView view) {
         this.view = view;
     }
 
     /**
      * make callback from server.
+     * @param financialService initialized in fragment.
      */
-    public void loadFinancialData(PetsApi financialService) {
+    public void loadFinancialData(final PetsApi financialService) {
         view.showProgres();
-        Call call = financialService.getFinancialJSON();
+        Call call = financialService.getFinancialInfo();
         call.enqueue(new Callback<FinancialData>() {
             @Override
             public void onResponse(final Call<FinancialData> call, final Response<FinancialData> response) {

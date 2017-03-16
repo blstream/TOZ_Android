@@ -10,15 +10,21 @@ import com.intive.toz.network.PetsApi;
  */
 public interface IFinancial {
 
+    /**
+     * interface to presenter.
+     */
     interface Presenter extends MvpPresenter<FinancialView> {
         /**
-         * interface to get financial information from service.
+         * interface method to get financial information from service.
          *
          * @param financialService
          */
         void loadFinancialData(PetsApi financialService);
     }
 
+    /**
+     * interface to view.
+     */
     interface FinancialView extends MvpView {
         /**
          * interface method set financial data to textview.

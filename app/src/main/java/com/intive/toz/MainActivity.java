@@ -68,8 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * temporary click listener to activity.
+     * @param view to onClick.
+     */
     @OnClick(R.id.btn_tmp_finance)
-    public void showFinance(View view) {
+    public void showFinance(final View view) {
         Intent i = new Intent(this, FinancialActivity.class);
         startActivity(i);
     }
