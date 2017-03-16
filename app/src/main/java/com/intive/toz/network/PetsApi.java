@@ -1,7 +1,9 @@
 package com.intive.toz.network;
 
 
-import com.intive.toz.financial.model.FinancialData;
+import com.intive.toz.Pet;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -9,6 +11,7 @@ import retrofit2.http.GET;
 /**
  * Interface json file.
  */
+
 public interface PetsApi {
     /**
      * return json array.
@@ -17,7 +20,8 @@ public interface PetsApi {
      */
 
     @GET("/pets")
-    Call<PetsList> getJSON();
+    Call<List<Pet>> getGalleryPetsListCall();
+
 
     /**
      * Call to financial data.
