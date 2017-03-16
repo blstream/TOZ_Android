@@ -20,16 +20,16 @@ import retrofit2.Response;
  */
 
 public class PetsListPresenter extends MvpBasePresenter<PetsListView> {
-    //call business logic to get data from server
 
     private PetsApi petsApi;
 
     /**
      *  Sends a request to the server using retrofit. On success invokes a method displaying
      *  loaded data.
+     *
      */
-    public void loadData() {
-        getView().showProgress();
+    public void loadPetsList(final boolean pullToRefresh) {
+        getView().showLoading(pullToRefresh);
         petsApi = ApiClient.getPetsApiService();
         final Call<List<Pet>> call = petsApi.getGalleryPetsListCall();
 
@@ -38,17 +38,15 @@ public class PetsListPresenter extends MvpBasePresenter<PetsListView> {
             public void onResponse(final Call<List<Pet>> call, final Response<List<Pet>> response) {
                 Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
-                    getView().hideProgress();
-                    getView().showPetsList(response.body());
-                } else {
-                    getView().showError();
+                    getView().setData(response.body());
+                    getView().showContent();
                 }
             }
 
             @Override
             public void onFailure(final Call<List<Pet>> call, final Throwable t) {
                 Log.e("RESPONSE", "onFailure: ");
-                getView().showError();
+                getView().showError(t, pullToRefresh);
             }
         });
     }

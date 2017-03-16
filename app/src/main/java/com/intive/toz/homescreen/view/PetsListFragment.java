@@ -2,8 +2,10 @@ package com.intive.toz.homescreen.view;
 
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
 import com.intive.toz.homescreen.presenter.PetsListPresenter;
@@ -25,13 +30,13 @@ import butterknife.Unbinder;
 /**
  *  Fragment containing list of pets with image and short description of each pet.
  */
-public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresenter> implements PetsListView {
-
+public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, List<Pet>,
+        PetsListView, PetsListPresenter> implements PetsListView, SwipeRefreshLayout.OnRefreshListener  {
 
     @BindView(R.id.recycler_view)
     RecyclerView petsRecyclerView;
 
-    @BindView(R.id.progress_bar)
+    @BindView(R.id.loadingView)
     ProgressBar progress;
 
     private Unbinder unbinder;
@@ -55,21 +60,25 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
     }
 
     @Override
+    public LceViewState<List<Pet>, PetsListView> createViewState() {
+        setRetainInstance(true);
+        return new RetainingLceViewState<>();
+    }
+
+    @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pets_list, container, false);
-        unbinder = ButterKnife.bind(this, rootView);
-        setRetainInstance(true);
-        initPetsList();
         return rootView;
     }
 
     @Override
     public void onViewCreated(final View view, final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
-        if (!isLoaded) {
-            getPresenter().loadData();
-        }
+        unbinder = ButterKnife.bind(this, view);
+        contentView.setOnRefreshListener(this);
+        initPetsList();
+        loadData(false);
     }
 
     private void initPetsList() {
@@ -79,31 +88,42 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
     }
 
     @Override
-    public void showPetsList(final List<Pet> loadedPetsList) {
-        petsList.clear();
-        petsList.addAll(loadedPetsList);
+    public void loadData(final boolean pullToRefresh) {
+        presenter.loadPetsList(pullToRefresh);
+    }
+
+    @Override
+    protected String getErrorMessage(final Throwable e, final boolean pullToRefresh) {
+        return e.getMessage();
+    }
+
+    @Override
+    public void setData(final List<Pet> data) {
+        petsAdapter.setPetsList(data);
         petsAdapter.notifyDataSetChanged();
         isLoaded = true;
     }
 
     @Override
-    public void showProgress() {
-        progress.setVisibility(View.VISIBLE);
+    public List<Pet> getData() {
+        return petsAdapter == null ? null : petsAdapter.getPetsList();
     }
 
     @Override
-    public void hideProgress() {
-        progress.setVisibility(View.INVISIBLE);
+    public void onRefresh() {
+        loadData(true);
     }
 
     @Override
-    public void showError() {
-        Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+    public void showContent() {
+        super.showContent();
+        contentView.setRefreshing(false);
     }
 
-    @Override public void onDestroyView() {
+    @Override
+    public void onDestroyView() {
         super.onDestroyView();
+        petsAdapter = null;
         unbinder.unbind();
     }
-
 }

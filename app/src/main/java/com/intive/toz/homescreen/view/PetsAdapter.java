@@ -32,6 +32,19 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         this.petsList = petsList;
     }
 
+
+    public void setPetsList(final List<Pet> petsList) {
+        this.petsList = petsList;
+    }
+
+    /**
+     *
+     * @return list of Pet objects
+     */
+    public List<Pet> getPetsList() {
+        return petsList;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         View view = LayoutInflater.from(parent.getContext())

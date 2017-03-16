@@ -2,6 +2,7 @@ package com.intive.toz.homescreen.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.intive.toz.R;
 
