@@ -1,5 +1,6 @@
 package com.intive.toz.data;
 
+import com.intive.toz.Pet;
 import com.intive.toz.news.model.News;
 
 import java.util.List;
@@ -14,6 +15,13 @@ public interface DataProvider {
      * @param listener the listener
      */
     void fetchNews(ResponseCallback<List<News>> listener);
+
+    /**
+     *  Fetch pets.
+     *
+     * @param listener the listener
+     */
+    void fetchPets(ResponseCallback<List<Pet>> listener);
 
     /**
      * The interface On data received listener.

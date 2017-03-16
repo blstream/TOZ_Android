@@ -1,5 +1,6 @@
 package com.intive.toz.data;
 
+import com.intive.toz.Pet;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
@@ -28,6 +29,23 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<List<News>> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void fetchPets(final ResponseCallback<List<Pet>> listener) {
+        api.getGalleryPetsListCall().enqueue(new Callback<List<Pet>>() {
+            @Override
+            public void onResponse(final Call<List<Pet>> call, final Response<List<Pet>> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<List<Pet>> call, final Throwable t) {
                 listener.onError(t);
             }
         });
