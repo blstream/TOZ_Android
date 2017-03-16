@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
-import com.intive.toz.homescreen.model.DescriptionShortener;
 
 import java.util.List;
 
@@ -21,7 +20,6 @@ import java.util.List;
 public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
 
     private List<Pet> petsList;
-
 
     /**
      *
@@ -42,8 +40,7 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Context context = holder.img.getContext();
         holder.title.setText(petsList.get(position).getName());
-        holder.description.setText(DescriptionShortener.shortenDescription(
-                petsList.get(position).getDescription()));
+        holder.description.setText(petsList.get(position).getDescription());
         holder.date.setText(petsList.get(position).getDate());
         Glide.with(context)
                 .load(petsList.get(position).getProfilePic())
