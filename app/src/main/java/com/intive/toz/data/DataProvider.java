@@ -15,6 +15,12 @@ public interface DataProvider {
      * @param listener the listener
      */
     void fetchNews(ResponseCallback<List<News>> listener);
+
+    /**
+     *  Fetch pets.
+     *
+     * @param listener the listener
+     */
     void fetchPets(ResponseCallback<List<Pet>> listener);
 
     /**
