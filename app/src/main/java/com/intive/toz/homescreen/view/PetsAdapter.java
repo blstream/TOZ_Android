@@ -14,6 +14,9 @@ import com.intive.toz.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  *  Adapter for recycler view containing list of pets.
  */
@@ -54,18 +57,25 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
      *  Class for setting up views in a recycler view.
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView img;
-        public TextView title, description, date;
+
+        @BindView(R.id.pet_img)
+        ImageView img;
+
+        @BindView(R.id.title_pet)
+        TextView title;
+
+        @BindView(R.id.description_pet)
+        TextView description;
+
+        @BindView(R.id.date)
+        TextView date;
 
         /**
          * @param view the root view of a fragment
          */
         public ViewHolder(final View view) {
             super(view);
-            img = (ImageView) view.findViewById(R.id.pet_img);
-            title = (TextView) view.findViewById(R.id.title_pet);
-            description = (TextView) view.findViewById(R.id.description_pet);
-            date = (TextView) view.findViewById(R.id.date);
+            ButterKnife.bind(this, view);
         }
     }
 

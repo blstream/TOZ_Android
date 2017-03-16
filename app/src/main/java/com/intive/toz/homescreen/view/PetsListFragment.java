@@ -18,13 +18,23 @@ import com.intive.toz.homescreen.presenter.PetsListPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  *  Fragment containing list of pets with image and short description of each pet.
  */
 public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresenter> implements PetsListView {
 
-    private ProgressBar progress;
-    private RecyclerView petsRecyclerView;
+
+    @BindView(R.id.recycler_view)
+    RecyclerView petsRecyclerView;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar progress;
+
+    private Unbinder unbinder;
     private PetsAdapter petsAdapter;
     private List<Pet> petsList = new ArrayList<>();
     private boolean isLoaded = false;
@@ -48,9 +58,9 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pets_list, container, false);
+        unbinder = ButterKnife.bind(this, rootView);
         setRetainInstance(true);
-        initViews(rootView);
-        initPetsList(rootView);
+        initPetsList();
         return rootView;
     }
 
@@ -62,12 +72,7 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
         }
     }
 
-    private void initViews(final View rootView) {
-        progress = (ProgressBar) rootView.findViewById(R.id.progress_bar);
-    }
-
-    private void initPetsList(final View rootView) {
-        petsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+    private void initPetsList() {
         petsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         petsAdapter = new PetsAdapter(petsList);
         petsRecyclerView.setAdapter(petsAdapter);
@@ -94,6 +99,11 @@ public class PetsListFragment extends MvpFragment<PetsListView, PetsListPresente
     @Override
     public void showError() {
         Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
 }
