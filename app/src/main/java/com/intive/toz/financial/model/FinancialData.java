@@ -1,4 +1,4 @@
-package com.intive.toz.financial;
+package com.intive.toz.financial.model;
 
 import com.google.gson.annotations.SerializedName;
 

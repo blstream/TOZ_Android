@@ -1,7 +1,7 @@
 package com.intive.toz.network;
 
 
-import com.intive.toz.financial.FinancialData;
+import com.intive.toz.financial.model.FinancialData;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -9,7 +9,6 @@ import retrofit2.http.GET;
 /**
  * Interface json file.
  */
-
 public interface PetsApi {
     /**
      * return json array.

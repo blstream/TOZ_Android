@@ -42,13 +42,17 @@ dependencies {
 
     compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
-    compile 'com.hannesdorfmann.mosby3:mvp:3.0.0'
+
 
     testCompile "junit:junit:$testVersions.junit"
 
     androidTestCompile("com.android.support.test.espresso:espresso-core:$testVersions.espresso") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    compile 'com.hannesdorfmann.mosby3:mvp:3.0.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.android.support:support-v4:25.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
 
 checkstyle {

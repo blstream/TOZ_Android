@@ -1,16 +1,17 @@
 package com.intive.toz;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.intive.toz.financial.view.FinancialActivity;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.network.PetsList;
-import com.intive.toz.network.ApiClient;
 
 import java.util.ArrayList;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+    Intent i = new Intent(this, FinancialActivity.class);
+        startActivity(i);
 
         /**
          *

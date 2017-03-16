@@ -1,7 +1,10 @@
-package com.intive.toz.financial;
+package com.intive.toz.financial.presenter;
 
 import android.util.Log;
 
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.intive.toz.financial.model.FinancialData;
+import com.intive.toz.financial.IFinancial;
 import com.intive.toz.network.PetsApi;
 
 import retrofit2.Call;
@@ -11,11 +14,11 @@ import retrofit2.Response;
 /**
  * mvp presenter for financial Activity.
  */
-public class FinancialPresenter implements IFinancialPresenter{
+public class FinancialPresenter extends MvpBasePresenter<IFinancial.FinancialView> implements IFinancial.Presenter {
 
-    private final FinancialView view;
+    private final IFinancial.FinancialView view;
 
-    public FinancialPresenter(FinancialView view) {
+    public FinancialPresenter(IFinancial.FinancialView view) {
         this.view = view;
     }
 
@@ -24,7 +27,6 @@ public class FinancialPresenter implements IFinancialPresenter{
      */
     public void loadFinancialData(PetsApi financialService) {
         view.showProgres();
-
         Call call = financialService.getFinancialJSON();
         call.enqueue(new Callback<FinancialData>() {
             @Override
