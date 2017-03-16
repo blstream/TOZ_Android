@@ -2,14 +2,18 @@ package com.intive.toz.common.view.navigationTabs;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
+import java.util.List;
+
+/**
+ * Interface View for Navigation Tabs.
+ */
+
 public interface NavigationTabsView extends MvpView {
 
-    void showNavigationTabsForGuest();
+    /**
+     * Send list with Navigate Tabs.
+     * @param tabs list with Navigate Tabs
+     */
 
-    void showNavigationTabsForLoggedInUser();
-
-    void shownTabsIconsForGuest();
-
-    void showTabsIconsForLoggedInUser();
-
+    void showTabs(List<Tab> tabs);
 }

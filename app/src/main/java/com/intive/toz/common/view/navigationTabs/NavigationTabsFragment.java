@@ -9,18 +9,28 @@ import android.widget.TextView;
 
 import com.intive.toz.R;
 
-public class NavigationTabsFragment extends Fragment{
+/**
+ * Fragment for Navigation Tabs.
+ */
+
+public class NavigationTabsFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_layout, container, false);
         TextView tv = (TextView) view.findViewById(R.id.textView);
         tv.setText(getArguments().getString("msg"));
         return view;
     }
 
-    public static NavigationTabsFragment newInstance(String text) {
+    /**
+     * Set message to TextView in Tab's fragment.
+     * @param text Text set to TextView
+     * @return navigationTabsFragment
+     */
+
+    public static NavigationTabsFragment newInstance(final String text) {
 
         NavigationTabsFragment navigationTabsFragment = new NavigationTabsFragment();
         Bundle bundle = new Bundle();

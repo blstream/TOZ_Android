@@ -7,33 +7,48 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Navigation tabs adapter.
+ */
+
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
+    private final List<Fragment> fragmentList = new ArrayList<>();
+    private final List<String> fragmentTitleList = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager manager) {
+    /**
+     * View adapter.
+     * @param manager fragment manager
+     */
+
+    public ViewPagerAdapter(final FragmentManager manager) {
         super(manager);
     }
 
     @Override
-    public Fragment getItem(int position) {
-        return mFragmentList.get(position);
+    public Fragment getItem(final int position) {
+        return fragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return fragmentList.size();
     }
 
-    public void addFragment(Fragment fragment, String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
+    /**
+     * Add fragment.
+     * @param fragment tab fragment
+     * @param title fragment title
+     */
+
+    public void addFragment(final Fragment fragment, final String title) {
+        fragmentList.add(fragment);
+        fragmentTitleList.add(title);
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
+    public CharSequence getPageTitle(final int position) {
+        return fragmentTitleList.get(position);
     }
 }
 
