@@ -1,7 +1,9 @@
 <resources>
-
     <string name="navigation_tab_neews">NEWSY</string>
     <string name="navigation_tab_gallery">GALERIA</string>
     <string name="navigation_tab_schedule">GRAFIK</string>
     <string name="navigation_tab_account">KONTO</string>
+  
+    <string name="addition_date">Data dodania:&#160;</string>
+    <string name="latest_news">Ostatnio dodane</string>
 </resources>

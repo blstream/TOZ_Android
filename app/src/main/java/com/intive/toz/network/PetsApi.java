@@ -2,6 +2,7 @@ package com.intive.toz.network;
 
 
 import com.intive.toz.Pet;
+import com.intive.toz.news.model.News;
 
 import java.util.List;
 
@@ -22,7 +23,13 @@ public interface PetsApi {
     @GET("/pets")
     Call<List<Pet>> getGalleryPetsListCall();
 
-
+    /**
+     * Gets news.
+     *
+     * @return the news
+     */
+    @GET("/news")
+    Call<List<News>> getNews();
 }
 
 

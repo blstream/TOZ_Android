@@ -24,12 +24,14 @@ import android.support.v7.widget.Toolbar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * FIXME Set proper name when implemented.
  * Main app screen.
  */
 public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements  NavigationTabsView {
+
 
 
     List<Pet> petsList;
@@ -42,6 +44,7 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initViews();
         getPresenter().loadNavigationTabs();
 
