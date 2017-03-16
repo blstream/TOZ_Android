@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.hannesdorfmann.mosby.mvp.MvpFragment;
+import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
 import com.intive.toz.homescreen.presenter.PetsListPresenter;

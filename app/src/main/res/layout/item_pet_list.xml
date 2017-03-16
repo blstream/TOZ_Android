@@ -22,6 +22,8 @@
         android:id="@+id/description_pet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
         android:layout_toRightOf="@+id/pet_img"
         android:layout_below="@+id/title_pet"
         android:padding="5dp" />

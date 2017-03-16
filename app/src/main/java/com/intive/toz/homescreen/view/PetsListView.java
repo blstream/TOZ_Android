@@ -1,6 +1,6 @@
 package com.intive.toz.homescreen.view;
 
-import com.hannesdorfmann.mosby.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.Pet;
 
 
