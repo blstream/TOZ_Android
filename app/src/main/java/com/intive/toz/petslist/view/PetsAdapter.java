@@ -1,4 +1,4 @@
-package com.intive.toz.homescreen.view;
+package com.intive.toz.petslist.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +33,11 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
     }
 
 
+    /**
+     *  Setter for pets List.
+     *
+     * @param petsList list of Pet objects
+     */
     public void setPetsList(final List<Pet> petsList) {
         this.petsList = petsList;
     }

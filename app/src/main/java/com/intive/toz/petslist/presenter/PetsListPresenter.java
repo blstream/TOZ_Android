@@ -1,19 +1,14 @@
-package com.intive.toz.homescreen.presenter;
-
-import android.util.Log;
+package com.intive.toz.petslist.presenter;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.Pet;
-import com.intive.toz.homescreen.view.PetsListView;
+import com.intive.toz.petslist.model.DataLoader;
+import com.intive.toz.petslist.model.DataProvider;
+import com.intive.toz.petslist.view.PetsListView;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 
 /**
  *  Presenter for pets list.
@@ -24,29 +19,30 @@ public class PetsListPresenter extends MvpBasePresenter<PetsListView> {
     private PetsApi petsApi;
 
     /**
-     *  Sends a request to the server using retrofit. On success invokes a method displaying
+     *  Sends a request to DataLoader. On success invokes a method displaying
      *  loaded data.
      *
+     *  @param pullToRefresh boolean pullToRefresh
      */
     public void loadPetsList(final boolean pullToRefresh) {
         getView().showLoading(pullToRefresh);
         petsApi = ApiClient.getPetsApiService();
-        final Call<List<Pet>> call = petsApi.getGalleryPetsListCall();
+        DataLoader dataLoader = new DataLoader();
 
-        call.enqueue(new Callback<List<Pet>>() {
+        dataLoader.fetchPets(new DataProvider.ResponseCallback<List<Pet>>() {
             @Override
-            public void onResponse(final Call<List<Pet>> call, final Response<List<Pet>> response) {
-                Log.i("RESPONSE", "onResponse: ");
-                if (response.isSuccessful()) {
-                    getView().setData(response.body());
+            public void onSuccess(final List<Pet> petsList) {
+                if (isViewAttached()) {
+                    getView().setData(petsList);
                     getView().showContent();
                 }
             }
 
             @Override
-            public void onFailure(final Call<List<Pet>> call, final Throwable t) {
-                Log.e("RESPONSE", "onFailure: ");
-                getView().showError(t, pullToRefresh);
+            public void onError(final Throwable e) {
+                if (isViewAttached()) {
+                    getView().showError(e, false);
+                }
             }
         });
     }

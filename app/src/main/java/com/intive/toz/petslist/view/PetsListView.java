@@ -1,4 +1,4 @@
-package com.intive.toz.homescreen.view;
+package com.intive.toz.petslist.view;
 
 import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import com.intive.toz.Pet;

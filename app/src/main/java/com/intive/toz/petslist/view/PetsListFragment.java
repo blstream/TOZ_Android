@@ -1,24 +1,21 @@
-package com.intive.toz.homescreen.view;
+package com.intive.toz.petslist.view;
 
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
-import com.intive.toz.homescreen.presenter.PetsListPresenter;
+import com.intive.toz.petslist.presenter.PetsListPresenter;
 
 import java.util.ArrayList;
 import java.util.List;

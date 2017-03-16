@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.intive.toz.homescreen.view.PetsListFragment">
+    tools:context="com.intive.toz.petslist.view.PetsListFragment">
 
 
     <android.support.v4.widget.SwipeRefreshLayout
