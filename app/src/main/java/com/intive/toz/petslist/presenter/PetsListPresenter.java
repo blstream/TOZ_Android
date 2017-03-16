@@ -2,8 +2,8 @@ package com.intive.toz.petslist.presenter;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.Pet;
-import com.intive.toz.petslist.model.DataLoader;
-import com.intive.toz.petslist.model.DataProvider;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
 import com.intive.toz.petslist.view.PetsListView;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
