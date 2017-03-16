@@ -1,5 +1,3 @@
 <resources>
-    <string name="app_name">TOZ</string>
     <string name="financial_info_load_error">Wystąpił błąd podczas pobierania danych finansowych z serwera.</string>
-
-    </resources>
+</resources>
