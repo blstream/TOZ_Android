@@ -2,6 +2,7 @@ package com.intive.toz.network;
 
 
 import com.intive.toz.Pet;
+import com.intive.toz.financial.model.FinancialData;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface PetsApi {
      * @return /financial.json
      */
     @GET("/financial")
-    Call<FinancialData> getFinancialJSON();
+    Call<FinancialData> getFinancialInfo();
 }
 
 
