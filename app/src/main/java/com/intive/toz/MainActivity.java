@@ -1,8 +1,11 @@
 package com.intive.toz;
 
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+
+import com.intive.toz.financial.view.FinancialActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
