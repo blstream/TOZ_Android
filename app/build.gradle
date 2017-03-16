@@ -63,10 +63,12 @@ def testVersions = [
 
 dependencies {
     compile "com.android.support:appcompat-v7:$versions.support"
+    compile 'com.android.support:design:25.2.0'
     compile "com.android.support:recyclerview-v7:$versions.support"
 
     compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    compile "com.hannesdorfmann.mosby:mvp:2.0.1"
 
     compile "com.jakewharton:butterknife:$versions.butterknife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknife"
