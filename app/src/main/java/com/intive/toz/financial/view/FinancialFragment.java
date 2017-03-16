@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
-import com.intive.toz.financial.IFinancial;
+import com.intive.toz.financial.FinancialMvp;
 import com.intive.toz.financial.model.FinancialData;
 import com.intive.toz.financial.presenter.FinancialPresenter;
 import com.intive.toz.network.ApiClient;
@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * Fragment to display financial data.
  */
-public class FinancialFragment extends MvpFragment<IFinancial.FinancialView, IFinancial.Presenter> implements IFinancial.FinancialView {
+public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, FinancialMvp.Presenter> implements FinancialMvp.FinancialView {
 
     @BindView(R.id.tv_account_number)
     TextView accountNumber;
@@ -31,7 +31,6 @@ public class FinancialFragment extends MvpFragment<IFinancial.FinancialView, IFi
     TextView title;
     @BindView(R.id.tv_transfer_receiver_name)
     TextView transferReceiverName;
-
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
@@ -80,7 +79,7 @@ public class FinancialFragment extends MvpFragment<IFinancial.FinancialView, IFi
     }
 
     @Override
-    public IFinancial.Presenter createPresenter() {
-        return new FinancialPresenter(this);
+    public FinancialMvp.Presenter createPresenter() {
+        return new FinancialPresenter();
     }
 }

@@ -8,7 +8,7 @@ import com.intive.toz.network.PetsApi;
 /**
  * interfaces for Presenter and View.
  */
-public interface IFinancial {
+public interface FinancialMvp {
 
     /**
      * interface to presenter.
