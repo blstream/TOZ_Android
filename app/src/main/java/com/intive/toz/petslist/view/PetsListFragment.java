@@ -39,7 +39,6 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
     private Unbinder unbinder;
     private PetsAdapter petsAdapter;
     private List<Pet> petsList = new ArrayList<>();
-    private boolean isLoaded = false;
 
     /**
      *
@@ -98,7 +97,6 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
     public void setData(final List<Pet> data) {
         petsAdapter.setPetsList(data);
         petsAdapter.notifyDataSetChanged();
-        isLoaded = true;
     }
 
     @Override

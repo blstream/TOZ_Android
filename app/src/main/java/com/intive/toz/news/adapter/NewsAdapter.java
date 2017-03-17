@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
+import com.intive.toz.mock.MockActivity;
 import com.intive.toz.news.model.News;
-import com.intive.toz.single_news.SingleNewsActivity;
 
 import java.util.List;
 
@@ -149,8 +149,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             int position = getAdapterPosition();
 
             News news = newsList.get(position);
-            Intent i = new Intent(v.getContext(), SingleNewsActivity.class);
-            i.putExtra(SingleNewsActivity.NEWS, news);
+            Intent i = new Intent(v.getContext(), MockActivity.class);
+            i.putExtra(MockActivity.NEWS, news);
             v.getContext().startActivity(i);
         }
     }

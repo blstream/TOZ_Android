@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/MyTheme.Base">
+        android:theme="@style/MainTheme.Base">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,8 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".single_news.SingleNewsActivity"/>
-        <activity android:name=".financial.view.FinancialActivity"/>
+        <activity
+            android:name=".mock.MockActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".financial.view.FinancialActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
