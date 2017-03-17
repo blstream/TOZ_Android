@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".single_news.SingleNewsActivity"/>
+        <activity android:name=".financial.view.FinancialActivity"/>
     </application>
 
 </manifest>

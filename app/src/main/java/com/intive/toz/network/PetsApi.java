@@ -3,6 +3,7 @@ package com.intive.toz.network;
 
 import com.intive.toz.Pet;
 import com.intive.toz.news.model.News;
+import com.intive.toz.financial.model.FinancialData;
 
 import java.util.List;
 
@@ -30,6 +31,13 @@ public interface PetsApi {
      */
     @GET("/news")
     Call<List<News>> getNews();
+
+    /**
+     * Call to financial data.
+     * @return /financial.json
+     */
+    @GET("/financial")
+    Call<FinancialData> getFinancialInfo();
 }
 
 
