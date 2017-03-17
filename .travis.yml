@@ -1,18 +1,30 @@
 language: android
 jdk:
 - oraclejdk8
+
 android:
   components:
   - tools
   - platform-tools
-  - tools
-  - build-tools-25.0.2
   - android-25
-  - extra-google-google_play_services
+  - build-tools-25.0.2
   - extra-google-m2repository
   - extra-android-m2repository
+  
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+  - $HOME/.android/build-cache
+  - $HOME/.m2
+
 script:
 - "./gradlew clean build"
+
 deploy:
   provider: releases
   api_key: "$OUATH_KEY"
@@ -21,6 +33,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+    
 env:
   global:
     secure: TtdaDZsiseuy9h92C15h4D+F29G1miBoaLgGNGomVm+s4KGaTnKPtFnV5onUY0KxSkXj9heH13Wp0GvMAzEyWE3j8N59RNoMcer1NVcnWqK7lD4g5KZx2AQ+PUaPSTrc27hNin6HzD9WCH9EJviUsvpWuqk5+Enuy7eLDqGa8CHqByDHvFi81UkSWddMLFLF0lpsMIm9h2Sj1LnoQVNNNaf+gHy6N4qT3+WafV0f+1xL8t4QeYb+KO9k0/oWIggkHoYenCSPL8+BYQz/xxCqf2nm9awFDdyfL9Jl8u4ize8q80hCAa0iWLLGE865a0A5JO7fFQ/3Yaan7BOROg2oP/+SO2ZUuZDb/zHJ/ShIJOGgDIfHrrEs+ZeXhQpYZxvnktrWL7+kRQM8Rbmgjf1Jjd/a/gSHhsYre6oTBggAIz60kHK7vraNzKQ1Ozwg/+EHoMjD+IU2vHb2bAWdjeG87maomTJsq/tqQXfvNiN9NrCO2KwSbnLacC0VzY3G0NO9l39C7mKjA9mT5wguruzoywD6lbJRzwn0KShnXfELBsC1K6GD/FNFYdAzp7s8X50sDOdSG2YdVBHxijuaxD0odhLebHzQLuOkZ0X14vpZCNcDrIoJj2LfOQnAEOpXfcSbVxoy64/UjBMc3k+bbFbBtI30GQIyeSmPsJgwE0VNyhw=
