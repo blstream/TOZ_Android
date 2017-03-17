@@ -40,7 +40,7 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
-            resValue "string", "app_name", "TOZ - dev"
+            resValue "string", "app_name", "TOZ"
         }
     }
     lintOptions {

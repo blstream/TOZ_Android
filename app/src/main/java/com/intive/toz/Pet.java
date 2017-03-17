@@ -1,9 +1,11 @@
 package com.intive.toz;
 
+import java.io.Serializable;
+
 /**
  * Pet model class.
  */
-public class Pet {
+public class Pet implements Serializable {
 
     private String name;
     private String description;

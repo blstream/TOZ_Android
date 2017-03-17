@@ -2,6 +2,8 @@ package com.intive.toz.common.view.navigationTabs;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.R;
+import com.intive.toz.news.view.NewsFragment;
+import com.intive.toz.petslist.view.PetsListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +14,6 @@ import java.util.List;
 
 public class NavigationTabsPresenter extends MvpBasePresenter<NavigationTabsView> {
 
-    private int userStatus = 2;
-
     /**
      * Set title and icon to Navigate Tab object.
      */
@@ -21,15 +21,9 @@ public class NavigationTabsPresenter extends MvpBasePresenter<NavigationTabsView
     public void loadNavigationTabs() {
         List<Tab> tabs = new ArrayList<>();
 
-        if (userStatus == 1) {
-            tabs.add(new Tab(R.string.navigation_tab_neews, R.mipmap.ic_launcher));
-            tabs.add(new Tab(R.string.navigation_tab_gallery, R.mipmap.ic_launcher));
-        } else {
-            tabs.add(new Tab(R.string.navigation_tab_neews, R.mipmap.ic_launcher));
-            tabs.add(new Tab(R.string.navigation_tab_gallery, R.mipmap.ic_launcher));
-            tabs.add(new Tab(R.string.navigation_tab_schedule, R.mipmap.ic_launcher));
-            tabs.add(new Tab(R.string.navigation_tab_account, R.mipmap.ic_launcher));
-        }
+        tabs.add(new Tab(R.string.navigation_tab_news, R.drawable.ic_home_white_24dp, NewsFragment.newInstance()));
+        tabs.add(new Tab(R.string.navigation_tab_gallery, R.drawable.ic_pets_white_24dp, new PetsListFragment()));
+
         getView().showTabs(tabs);
     }
 

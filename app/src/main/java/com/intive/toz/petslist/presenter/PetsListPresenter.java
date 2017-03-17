@@ -5,8 +5,6 @@ import com.intive.toz.Pet;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 import com.intive.toz.petslist.view.PetsListView;
-import com.intive.toz.network.ApiClient;
-import com.intive.toz.network.PetsApi;
 
 import java.util.List;
 
@@ -16,8 +14,6 @@ import java.util.List;
 
 public class PetsListPresenter extends MvpBasePresenter<PetsListView> {
 
-    private PetsApi petsApi;
-
     /**
      *  Sends a request to DataLoader. On success invokes a method displaying
      *  loaded data.
@@ -26,7 +22,6 @@ public class PetsListPresenter extends MvpBasePresenter<PetsListView> {
      */
     public void loadPetsList(final boolean pullToRefresh) {
         getView().showLoading(pullToRefresh);
-        petsApi = ApiClient.getPetsApiService();
         DataLoader dataLoader = new DataLoader();
 
         dataLoader.fetchPets(new DataProvider.ResponseCallback<List<Pet>>() {

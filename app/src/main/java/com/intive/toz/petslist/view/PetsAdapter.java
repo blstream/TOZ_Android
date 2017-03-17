@@ -1,6 +1,7 @@
 package com.intive.toz.petslist.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
+import com.intive.toz.mock.MockActivity;
 
 import java.util.List;
 
@@ -18,14 +20,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- *  Adapter for recycler view containing list of pets.
+ * Adapter for recycler view containing list of pets.
  */
 public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
 
     private List<Pet> petsList;
 
     /**
-     *
      * @param petsList List of pets
      */
     public PetsAdapter(final List<Pet> petsList) {
@@ -34,7 +35,7 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
 
 
     /**
-     *  Setter for pets List.
+     * Setter for pets List.
      *
      * @param petsList list of Pet objects
      */
@@ -43,7 +44,6 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
     }
 
     /**
-     *
      * @return list of Pet objects
      */
     public List<Pet> getPetsList() {
@@ -72,21 +72,21 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
 
 
     /**
-     *  Class for setting up views in a recycler view.
+     * Class for setting up views in a recycler view.
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.pet_img)
-        ImageView img;
-
-        @BindView(R.id.title_pet)
+        @BindView(R.id.title_tv)
         TextView title;
 
-        @BindView(R.id.description_pet)
+        @BindView(R.id.description_tv)
         TextView description;
 
-        @BindView(R.id.date)
+        @BindView(R.id.date_tv)
         TextView date;
+
+        @BindView(R.id.news_iv)
+        ImageView img;
 
         /**
          * @param view the root view of a fragment
@@ -94,6 +94,18 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         public ViewHolder(final View view) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(final View view) {
+            //FIXME: Fix when MockActivity will be implemented correctly
+            int position = getAdapterPosition();
+
+            Pet pet = petsList.get(position);
+            Intent i = new Intent(view.getContext(), MockActivity.class);
+            i.putExtra(MockActivity.PET, pet);
+            view.getContext().startActivity(i);
         }
     }
 
