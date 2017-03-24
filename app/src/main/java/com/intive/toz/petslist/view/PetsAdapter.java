@@ -61,10 +61,10 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Context context = holder.img.getContext();
         holder.title.setText(petsList.get(position).getName());
-        holder.description.setText(petsList.get(position).getDescription());
-        holder.date.setText(petsList.get(position).getDate());
+        holder.type.setText(petsList.get(position).getType());
+
         Glide.with(context)
-                .load(petsList.get(position).getProfilePic())
+                .load(R.drawable.ic_pets_white_24dp)
                 .placeholder(R.color.colorAccent)
                 .error(R.color.colorPrimaryDark)
                 .into(holder.img);
@@ -79,11 +79,8 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         @BindView(R.id.title_tv)
         TextView title;
 
-        @BindView(R.id.description_tv)
-        TextView description;
-
-        @BindView(R.id.date_tv)
-        TextView date;
+        @BindView(R.id.animal_type_tv)
+        TextView type;
 
         @BindView(R.id.news_iv)
         ImageView img;

@@ -33,6 +33,12 @@ public class MockActivity extends AppCompatActivity {
     TextView titleTv;
 
     /**
+     * The Type tv.
+     */
+    @BindView(R.id.animal_type_tv)
+    TextView typeTv;
+
+    /**
      * The Description tv.
      */
     @BindView(R.id.description_tv)
@@ -81,10 +87,10 @@ public class MockActivity extends AppCompatActivity {
 
     private void setPetFields() {
         titleTv.setText(pet.getName());
+        typeTv.setText(pet.getType());
         descriptionTv.setText(pet.getDescription());
-        dateTv.setText(pet.getDate());
         Glide.with(this)
-                .load(pet.getProfilePic())
+                .load(R.drawable.ic_pets_white_24dp)
                 .centerCrop()
                 .placeholder(R.color.colorAccent)
                 .error(R.color.colorAccent)

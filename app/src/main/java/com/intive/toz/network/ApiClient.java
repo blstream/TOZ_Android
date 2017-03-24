@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public final class ApiClient {
 
-    static final String API_URL = "http://private-dbfe1-zwierzakiandroid.apiary-mock.com";
+    static final String API_URL = "http://dev.patronage2017.intive-projects.com";
 
     private ApiClient() {
     }
