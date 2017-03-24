@@ -30,26 +30,44 @@ public class Pet implements Serializable {
         return description;
     }
 
+    /**
+     * @return address of Pet.
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * @return id of Pet.
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @return sex of Pet.
+     */
     public String getSex() {
         return sex;
     }
 
+    /**
+     * @return type of Pet.
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * @return date created record of Pet.
+     */
     public long getCreated() {
         return created;
     }
 
+    /**
+     * @return data last modified record of Pet.
+     */
     public long getLastModified() {
         return lastModified;
     }
