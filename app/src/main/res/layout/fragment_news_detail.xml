@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_horizontal_margin">
 
     <TextView
         android:id="@+id/title_detail_news"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="essa"/>
+        android:textStyle="bold"
+        android:textSize="@dimen/title_big_text"
+        android:layout_margin="@dimen/view_small_margin"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/detail_news_iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/view_small_margin"
+        android:layout_below="@+id/title_detail_news"/>
+
+    <TextView
+        android:id="@+id/detail_news_description_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_small_margin"
+        android:textSize="@dimen/list_small_text"
+        android:layout_below="@+id/detail_news_iv"/>
+
+    <TextView
+        android:id="@+id/detail_news_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/list_small_text"
+        android:layout_margin="@dimen/view_small_margin"
+        android:layout_below="@+id/detail_news_description_tv"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
+</ScrollView>

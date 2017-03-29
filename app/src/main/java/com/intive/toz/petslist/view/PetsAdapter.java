@@ -1,7 +1,6 @@
 package com.intive.toz.petslist.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
-import com.intive.toz.mock.MockActivity;
 
 import java.util.List;
 
@@ -99,13 +97,12 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
 
         @Override
         public void onClick(final View view) {
-            //FIXME: Fix when MockActivity will be implemented correctly
-            int position = getAdapterPosition();
-
+            //FIXME: Fix when DetailPetActivity will be implemented correctly
+            /* int position = getAdapterPosition();
             Pet pet = petsList.get(position);
-            Intent i = new Intent(view.getContext(), MockActivity.class);
-            i.putExtra(MockActivity.PET, pet);
-            view.getContext().startActivity(i);
+            Intent i = new Intent(view.getContext(), DetailPetActivity.class);
+            i.putExtra(DetailPetActivity.PET, pet);
+            view.getContext().startActivity(i);*/
         }
     }
 

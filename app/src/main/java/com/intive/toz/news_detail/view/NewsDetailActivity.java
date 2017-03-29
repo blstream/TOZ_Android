@@ -1,18 +1,16 @@
-package com.intive.toz.news_detail;
+package com.intive.toz.news_detail.view;
 
 
 import android.support.v4.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.intive.toz.R;
 
 /**
- * Created by K on 2017-03-29.
+ *  Activity containing fragment with news detail object.
  */
 
 public class NewsDetailActivity extends AppCompatActivity {
