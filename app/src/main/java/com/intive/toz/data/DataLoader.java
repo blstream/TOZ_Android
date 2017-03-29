@@ -50,4 +50,20 @@ public class DataLoader implements DataProvider {
             }
         });
     }
+
+    @Override
+    public void fetchDetailNews(final ResponseCallback<News> listener, final String id) {
+        api.getDetailNews(id).enqueue(new Callback<News>() {
+            @Override
+            public void onResponse(final Call<News> call, final Response<News> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+            @Override
+            public void onFailure(final Call<News> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
 }

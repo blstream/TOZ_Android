@@ -9,110 +9,133 @@ import java.io.Serializable;
  * The type News.
  */
 public class News implements Serializable {
+    @SerializedName("id")
+    @Expose
+    private String id;
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("short_description")
+    @SerializedName("contents")
     @Expose
-    private String shortDescription;
-    @SerializedName("description")
+    private String contents;
+    @SerializedName("type")
     @Expose
-    private String description;
-    @SerializedName("date")
+    private String type;
+    @SerializedName("photoUrl")
     @Expose
-    private String date;
-    @SerializedName("image")
+    private String photoUrl;
+    @SerializedName("created")
     @Expose
-    private String image;
+    private Long created;
+    @SerializedName("lastModified")
+    @Expose
+    private Long lastModified;
+    @SerializedName("published")
+    @Expose
+    private Long published;
 
     /**
-     * Gets title.
-     *
-     * @return the title
+     *  Gets Id.
+     * @return id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     *  Sets Id.
+     * @param id id
+     */
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    /**
+     *  Gets Title.
+     * @return title
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * Sets title.
-     *
-     * @param title the title
+     * Sets Title.
+     * @param title title
      */
     public void setTitle(final String title) {
         this.title = title;
     }
 
     /**
-     * Gets short description.
-     *
-     * @return the short description
+     * Gets content.
+     * @return content
      */
-    public String getShortDescription() {
-        return shortDescription;
+    public String getContents() {
+        return contents;
     }
 
     /**
-     * Sets short description.
-     *
-     * @param shortDescription the short description
+     * Sets content.
+     * @param contents content
      */
-    public void setShortDescription(final String shortDescription) {
-        this.shortDescription = shortDescription;
+    public void setContents(final String contents) {
+        this.contents = contents;
     }
 
     /**
-     * Gets description.
-     *
-     * @return the description
+     * Gets type.
+     * @return type
      */
-    public String getDescription() {
-        return description;
+    public String getType() {
+        return type;
     }
 
     /**
-     * Sets description.
-     *
-     * @param description the description
+     * Sets type.
+     * @param type type
      */
-    public void setDescription(final String description) {
-        this.description = description;
+    public void setType(final String type) {
+        this.type = type;
     }
 
     /**
-     * Gets date.
-     *
-     * @return the date
+     * Gets PhotoUrl.
+     * @return photoUrl
      */
-    public String getDate() {
-        return date;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
     /**
-     * Sets date.
-     *
-     * @param date the date
+     * Sets PhotoUrl.
+     * @param photoUrl photoUrl
      */
-    public void setDate(final String date) {
-        this.date = date;
+    public void setPhotoUrl(final String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     /**
-     * Gets image.
-     *
-     * @return the image
+     *  Gets date of creation.
+     * @return created
      */
-    public String getImage() {
-        return image;
+    public Long getCreated() {
+        return created;
     }
 
     /**
-     * Sets image.
-     *
-     * @param image the image
+     * Gets date of last modification.
+     * @return lastModified
      */
-    public void setImage(final String image) {
-        this.image = image;
+    public Long getLastModified() {
+        return lastModified;
+    }
+
+    /**
+     * Gets date of publishion.
+     * @return published
+     */
+    public Long getPublished() {
+        return published;
     }
 
 }
