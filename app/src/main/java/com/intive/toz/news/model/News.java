@@ -26,116 +26,92 @@ public class News implements Serializable {
     private String photoUrl;
     @SerializedName("created")
     @Expose
-    private Long created;
+    private long created;
     @SerializedName("lastModified")
     @Expose
-    private Long lastModified;
+    private long lastModified;
     @SerializedName("published")
     @Expose
-    private Long published;
+    private long published;
 
     /**
-     *  Gets Id.
-     * @return id
+     * Gets id.
+     *
+     * @return the id
      */
     public String getId() {
         return id;
     }
 
     /**
-     *  Sets Id.
-     * @param id id
-     */
-    public void setId(final String id) {
-        this.id = id;
-    }
-
-    /**
-     *  Gets Title.
-     * @return title
+     * Gets title.
+     *
+     * @return the title
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * Sets Title.
-     * @param title title
+     * Sets title.
+     *
+     * @param title the title
      */
     public void setTitle(final String title) {
         this.title = title;
     }
 
     /**
-     * Gets content.
-     * @return content
+     * Gets contents.
+     *
+     * @return the contents
      */
     public String getContents() {
         return contents;
     }
 
     /**
-     * Sets content.
-     * @param contents content
-     */
-    public void setContents(final String contents) {
-        this.contents = contents;
-    }
-
-    /**
      * Gets type.
-     * @return type
+     *
+     * @return the type
      */
     public String getType() {
         return type;
     }
 
     /**
-     * Sets type.
-     * @param type type
-     */
-    public void setType(final String type) {
-        this.type = type;
-    }
-
-    /**
-     * Gets PhotoUrl.
-     * @return photoUrl
+     * Gets photoUrl.
+     *
+     * @return the photoUrl
      */
     public String getPhotoUrl() {
         return photoUrl;
     }
 
     /**
-     * Sets PhotoUrl.
-     * @param photoUrl photoUrl
+     * Gets created.
+     *
+     * @return the created
      */
-    public void setPhotoUrl(final String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
-    /**
-     *  Gets date of creation.
-     * @return created
-     */
-    public Long getCreated() {
+    public long getCreated() {
         return created;
     }
 
     /**
-     * Gets date of last modification.
-     * @return lastModified
+     * Gets lastModified.
+     *
+     * @return the lastModified
      */
-    public Long getLastModified() {
+    public long getLastModified() {
         return lastModified;
     }
 
     /**
-     * Gets date of publishion.
-     * @return published
+     * Gets published.
+     *
+     * @return the published
      */
-    public Long getPublished() {
+    public long getPublished() {
         return published;
     }
-
 }

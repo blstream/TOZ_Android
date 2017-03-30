@@ -7,14 +7,15 @@ import java.io.Serializable;
  */
 public class Pet implements Serializable {
 
+    private String id;
     private String name;
-    private String description;
     private String type;
-    private String gender;
-    private String email;
+    private String sex;
+    private String description;
     private String address;
-    private String date;
-    private String profilePic;
+    private long created;
+    private long lastModified;
+    private String imageUrl;
 
     /**
      * @return name of Pet.
@@ -31,18 +32,51 @@ public class Pet implements Serializable {
     }
 
     /**
-     * @return date.
+     * @return address of Pet.
      */
-    public String getDate() {
-        return date;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * @return url to profile picture.
+     * @return id of Pet.
      */
-    public String getProfilePic() {
-        return profilePic;
+    public String getId() {
+        return id;
     }
 
+    /**
+     * @return sex of Pet.
+     */
+    public String getSex() {
+        return sex;
+    }
 
+    /**
+     * @return type of Pet.
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @return date created record of Pet.
+     */
+    public long getCreated() {
+        return created;
+    }
+
+    /**
+     * @return date modified record of Pet.
+     */
+    public long getLastModified() {
+        return lastModified;
+    }
+
+    /**
+     * @return imageUrl record of Pet.
+     */
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }
