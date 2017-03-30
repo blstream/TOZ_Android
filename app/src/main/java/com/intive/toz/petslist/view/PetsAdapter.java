@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
-import com.intive.toz.mock.MockActivity;
+import com.intive.toz.petDetails.PetDetailsActivity;
 
 import java.util.List;
 
@@ -96,13 +96,12 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
 
         @Override
         public void onClick(final View view) {
-            //FIXME: Fix when MockActivity will be implemented correctly
             int position = getAdapterPosition();
 
-            Pet pet = petsList.get(position);
-            Intent i = new Intent(view.getContext(), MockActivity.class);
-            i.putExtra(MockActivity.PET, pet);
-            view.getContext().startActivity(i);
+            String pet = petsList.get(position).getId();
+            Intent intent = new Intent(view.getContext(), PetDetailsActivity.class);
+            intent.putExtra("petKey", pet);
+            view.getContext().startActivity(intent);
         }
     }
 

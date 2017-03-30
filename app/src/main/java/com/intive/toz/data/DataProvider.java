@@ -24,6 +24,14 @@ public interface DataProvider {
     void fetchPets(ResponseCallback<List<Pet>> listener);
 
     /**
+     * Fetch pet.
+     *
+     * @param petID  pet id
+     * @param listener listener
+     */
+    void fetchPetDetails(String petID, ResponseCallback<Pet> listener);
+
+    /**
      * The interface On data received listener.
      *
      * @param <T> the type parameter
