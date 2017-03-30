@@ -23,6 +23,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/animal_type_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/view_small_margin"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/description_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
