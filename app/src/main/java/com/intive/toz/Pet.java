@@ -14,6 +14,8 @@ public class Pet implements Serializable {
     private String description;
     private String address;
     private long created;
+    private long lastModified;
+    private String imageUrl;
 
     /**
      * @return name of Pet.
@@ -62,5 +64,19 @@ public class Pet implements Serializable {
      */
     public long getCreated() {
         return created;
+    }
+
+    /**
+     * @return date modified record of Pet.
+     */
+    public long getLastModified() {
+        return lastModified;
+    }
+
+    /**
+     * @return imageUrl record of Pet.
+     */
+    public String getImageUrl() {
+        return imageUrl;
     }
 }
