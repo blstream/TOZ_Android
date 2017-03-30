@@ -14,7 +14,6 @@ public class Pet implements Serializable {
     private String description;
     private String address;
     private long created;
-    private long lastModified;
 
     /**
      * @return name of Pet.
@@ -63,12 +62,5 @@ public class Pet implements Serializable {
      */
     public long getCreated() {
         return created;
-    }
-
-    /**
-     * @return data last modified record of Pet.
-     */
-    public long getLastModified() {
-        return lastModified;
     }
 }

@@ -75,10 +75,10 @@ public class MockActivity extends AppCompatActivity {
 
     private void setNewsFields() {
         titleTv.setText(news.getTitle());
-        descriptionTv.setText(news.getDescription());
-        dateTv.setText(news.getDate());
+        descriptionTv.setText(news.getContents());
+        dateTv.setText(Long.toString(news.getCreated()));
         Glide.with(this)
-                .load(news.getImage())
+                .load(news.getPhotoUrl())
                 .centerCrop()
                 .placeholder(R.color.colorAccent)
                 .error(R.color.colorAccent)
