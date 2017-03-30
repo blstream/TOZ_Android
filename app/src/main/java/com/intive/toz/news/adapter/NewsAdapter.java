@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
-import com.intive.toz.mock.MockActivity;
 import com.intive.toz.news.model.News;
+import com.intive.toz.news_detail.view.NewsDetailActivity;
 
 import java.util.List;
 
@@ -56,11 +56,11 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
 
-        if (viewType == TYPE_HEADER) {
+        /*if (viewType == TYPE_HEADER) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.news_header, parent, false);
             return new NewsHeaderViewHolder(view);
-        }
+        }*/
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.news_row, parent, false);
@@ -73,13 +73,12 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             NewsViewHolder h = (NewsViewHolder) holder;
             h.titleTv.setText(newsList.get(position).getTitle());
             h.contentsTv.setText(newsList.get(position).getContents());
-            h.dateCreatedTv.setText(Long.toString(newsList.get(position).getCreated()));
             Context context = h.newsIv.getContext();
             Glide.with(context)
                     .load(newsList.get(position).getPhotoUrl())
                     .centerCrop()
                     .placeholder(R.color.colorAccent)
-                    .error(R.color.colorAccent)
+                    .error(R.color.colorPrimary)
                     .into(h.newsIv);
         }
     }
@@ -121,12 +120,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView contentsTv;
 
         /**
-         * The Date tv.
-         */
-        @BindView(R.id.date_created_tv)
-        TextView dateCreatedTv;
-
-        /**
          * The News iv.
          */
         @BindView(R.id.news_iv)
@@ -147,10 +140,9 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public void onClick(final View v) {
             //FIXME: Fix when SingleNewsActivty will be implemented correctly
             int position = getAdapterPosition();
-
-            News news = newsList.get(position);
-            Intent i = new Intent(v.getContext(), MockActivity.class);
-            i.putExtra(MockActivity.NEWS, news);
+            String id = newsList.get(position).getId();
+            Intent i = new Intent(v.getContext(), NewsDetailActivity.class);
+            i.putExtra(NewsDetailActivity.ID, id);
             v.getContext().startActivity(i);
         }
     }
