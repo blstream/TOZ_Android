@@ -9,6 +9,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
  * Interface json file.
@@ -23,6 +24,15 @@ public interface PetsApi {
 
     @GET("/pets")
     Call<List<Pet>> getGalleryPetsListCall();
+
+    /**
+     * Get pet.
+     *
+     * @param id pet id
+     * @return pet details
+     */
+    @GET("/pets/{id}")
+    Call<Pet> getPetDetailsCall(@Path("id") String id);
 
     /**
      * Gets news.

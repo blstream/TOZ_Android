@@ -1,7 +1,6 @@
 package com.intive.toz.news.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
-import com.intive.toz.mock.MockActivity;
 import com.intive.toz.news.model.News;
 
 import java.util.List;
@@ -148,10 +146,10 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //FIXME: Fix when SingleNewsActivty will be implemented correctly
             int position = getAdapterPosition();
 
-            News news = newsList.get(position);
+           /* News news = newsList.get(position);
             Intent i = new Intent(v.getContext(), MockActivity.class);
             i.putExtra(MockActivity.NEWS, news);
-            v.getContext().startActivity(i);
+            v.getContext().startActivity(i);*/
         }
     }
 
