@@ -6,7 +6,7 @@ import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 
 /**
- * Created by MIE on 27-Mar-17.
+ * Presenter for Pet Details.
  */
 
 public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
