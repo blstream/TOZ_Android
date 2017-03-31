@@ -1,7 +1,7 @@
 package com.intive.toz.network;
 
 
-import com.intive.toz.Pet;
+import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.news.model.News;
 import com.intive.toz.financial.model.FinancialData;
 

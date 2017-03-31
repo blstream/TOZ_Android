@@ -1,7 +1,7 @@
 package com.intive.toz.petDetails;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
-import com.intive.toz.Pet;
+import com.intive.toz.petslist.model.Pet;
 
 /**
  *  pets list interface used to communicate with pets list fragment and presenter.

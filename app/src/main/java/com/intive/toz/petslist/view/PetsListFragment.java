@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
-import com.intive.toz.Pet;
+import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
 import com.intive.toz.petslist.presenter.PetsListPresenter;
 

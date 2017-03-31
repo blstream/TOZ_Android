@@ -1,4 +1,4 @@
-package com.intive.toz;
+package com.intive.toz.petslist.model;
 
 import java.io.Serializable;
 
@@ -9,12 +9,22 @@ public class Pet implements Serializable {
 
     private String id;
     private String name;
+
+
     private String type;
     private String sex;
     private String description;
     private String address;
     private long created;
     private long lastModified;
+
+    /**
+     * @return imgUrl of Pet.
+     */
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     private String imageUrl;
 
     /**
@@ -23,7 +33,12 @@ public class Pet implements Serializable {
     public String getName() {
         return name;
     }
-
+    /**
+     * @return type of Pet.
+     */
+    public String getType() {
+        return type;
+    }
     /**
      * @return description of Pet.
      */
@@ -52,31 +67,4 @@ public class Pet implements Serializable {
         return sex;
     }
 
-    /**
-     * @return type of Pet.
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * @return date created record of Pet.
-     */
-    public long getCreated() {
-        return created;
-    }
-
-    /**
-     * @return date modified record of Pet.
-     */
-    public long getLastModified() {
-        return lastModified;
-    }
-
-    /**
-     * @return imageUrl record of Pet.
-     */
-    public String getImageUrl() {
-        return imageUrl;
-    }
 }

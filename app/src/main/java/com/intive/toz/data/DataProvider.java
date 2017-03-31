@@ -1,6 +1,6 @@
 package com.intive.toz.data;
 
-import com.intive.toz.Pet;
+import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.news.model.News;
 
 import java.util.List;
