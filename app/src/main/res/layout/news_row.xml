@@ -38,7 +38,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/description_tv"
+            android:id="@+id/contents_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -58,7 +58,7 @@
                 android:textSize="@dimen/list_small_text" />
 
             <TextView
-                android:id="@+id/date_tv"
+                android:id="@+id/date_created_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/list_small_text" />

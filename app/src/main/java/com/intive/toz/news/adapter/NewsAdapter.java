@@ -70,11 +70,11 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder instanceof NewsViewHolder) {
             NewsViewHolder h = (NewsViewHolder) holder;
             h.titleTv.setText(newsList.get(position).getTitle());
-            h.descriptionTv.setText(newsList.get(position).getShortDescription());
-            h.dateTv.setText(newsList.get(position).getDate());
+            h.contentsTv.setText(newsList.get(position).getContents());
+            h.dateCreatedTv.setText(Long.toString(newsList.get(position).getCreated()));
             Context context = h.newsIv.getContext();
             Glide.with(context)
-                    .load(newsList.get(position).getImage())
+                    .load(newsList.get(position).getPhotoUrl())
                     .centerCrop()
                     .placeholder(R.color.colorAccent)
                     .error(R.color.colorAccent)
@@ -115,14 +115,14 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         /**
          * The Description tv.
          */
-        @BindView(R.id.description_tv)
-        TextView descriptionTv;
+        @BindView(R.id.contents_tv)
+        TextView contentsTv;
 
         /**
          * The Date tv.
          */
-        @BindView(R.id.date_tv)
-        TextView dateTv;
+        @BindView(R.id.date_created_tv)
+        TextView dateCreatedTv;
 
         /**
          * The News iv.

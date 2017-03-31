@@ -64,7 +64,8 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         holder.type.setText(petsList.get(position).getType());
 
         Glide.with(context)
-                .load(R.drawable.ic_pets_white_24dp)
+                .load(petsList.get(position).getImageUrl())
+                .centerCrop()
                 .placeholder(R.color.colorAccent)
                 .error(R.color.colorPrimaryDark)
                 .into(holder.img);
