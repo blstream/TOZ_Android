@@ -89,14 +89,14 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     }
 
     @Override
-    public void showDetailsPet(final Pet pet) {
+    public void showPetDetails(final Pet pet, final String petCreatedDate) {
         nameTv.setText(pet.getName());
         typeTv.setText(pet.getType());
-       // dateTv.setText(pet.getDate());
+        dateTv.setText(petCreatedDate);
         sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
         Glide.with(this)
-                .load(R.drawable.ic_pets_white_24dp)
+                .load(pet.getImageUrl())
                 .centerCrop()
                 .placeholder(R.color.colorAccent)
                 .error(R.color.colorAccent)
