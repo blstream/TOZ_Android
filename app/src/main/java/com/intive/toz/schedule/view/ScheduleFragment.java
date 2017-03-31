@@ -57,13 +57,6 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-    }
-
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
         configCalendar();
     }
 
