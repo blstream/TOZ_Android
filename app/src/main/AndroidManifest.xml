@@ -18,14 +18,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mock.MockActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".news_detail.view.NewsDetailActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".financial.view.FinancialActivity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".petDetails.PetDetailsActivity"
+            android:theme="@style/AppTheme"/>
+
     </application>
 
 </manifest>

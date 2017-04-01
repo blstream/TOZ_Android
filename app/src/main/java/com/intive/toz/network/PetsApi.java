@@ -26,6 +26,15 @@ public interface PetsApi {
     Call<List<Pet>> getGalleryPetsListCall();
 
     /**
+     * Get pet.
+     *
+     * @param id pet id
+     * @return pet details
+     */
+    @GET("/pets/{id}")
+    Call<Pet> getPetDetailsCall(@Path("id") String id);
+
+    /**
      * Gets news.
      *
      * @return the news

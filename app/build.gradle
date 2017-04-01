@@ -50,10 +50,10 @@ android {
 }
 
 def versions = [
-        support : "25.2.0",
-        retrofit: "2.2.0",
+        support    : "25.3.1",
+        retrofit   : "2.2.0",
         butterknife: "8.5.1",
-        mosby: "3.0.0"
+        mosby      : "3.0.0"
 ]
 
 def testVersions = [
@@ -64,7 +64,8 @@ def testVersions = [
 dependencies {
     compile "com.android.support:appcompat-v7:$versions.support"
     compile "com.android.support:recyclerview-v7:$versions.support"
-    compile 'com.android.support:design:25.2.0'
+    compile "com.android.support:design:$versions.support"
+    compile "com.android.support:support-v4:$versions.support"
 
     compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
@@ -76,13 +77,14 @@ dependencies {
     compile "com.hannesdorfmann.mosby3:viewstate:$versions.mosby"
     compile "com.hannesdorfmann.mosby3:mvp-lce:$versions.mosby"
 
-    compile 'com.github.bumptech.glide:glide:3.7.0'
 
     testCompile "junit:junit:$testVersions.junit"
 
     androidTestCompile("com.android.support.test.espresso:espresso-core:$testVersions.espresso") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 
 checkstyle {
