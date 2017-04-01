@@ -60,10 +60,10 @@ public class NewsDetailFragment extends MvpFragment<NewsDetailView, NewsDetailPr
     }
 
     @Override
-    public void showDetailNews(final News news) {
+    public void showDetailNews(final News news, final String creationDate) {
         title.setText(news.getTitle());
         description.setText(news.getContents());
-        date.setText("" + news.getCreated());
+        date.setText(creationDate);
         Glide.with(getActivity())
                 .load(news.getPhotoUrl())
                 .placeholder(R.color.colorAccent)

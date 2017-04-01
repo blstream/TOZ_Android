@@ -6,11 +6,18 @@ import com.intive.toz.data.DataProvider;
 import com.intive.toz.news.model.News;
 import com.intive.toz.news_detail.view.NewsDetailView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 /**
  *  Presenter for NewsDetail.
  */
 public class NewsDetailPresenter extends MvpBasePresenter<NewsDetailView> {
+
+    private DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    private Calendar calendar = Calendar.getInstance();
 
     /**
      *  Load all details of given news object.
@@ -24,7 +31,7 @@ public class NewsDetailPresenter extends MvpBasePresenter<NewsDetailView> {
             public void onSuccess(final News news) {
                 if (isViewAttached()) {
                     getView().hideProgress();
-                    getView().showDetailNews(news);
+                    getView().showDetailNews(news, convertToDate(news.getCreated()));
                 }
             }
             @Override
@@ -34,5 +41,15 @@ public class NewsDetailPresenter extends MvpBasePresenter<NewsDetailView> {
                 }
             }
         }, id);
+    }
+
+    /**
+     * Convert date.
+     * @param dateInMilliseconds date in miliseconds
+     * @return date in dd/MM/yyyy format
+     */
+    public String convertToDate(final long dateInMilliseconds) {
+        calendar.setTimeInMillis(dateInMilliseconds);
+        return formatter.format(calendar.getTime());
     }
 }

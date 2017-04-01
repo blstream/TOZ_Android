@@ -66,4 +66,21 @@ public class DataLoader implements DataProvider {
             }
         });
     }
+
+    @Override
+    public void fetchPetDetails(final String petID, final ResponseCallback<Pet> listener) {
+        api.getPetDetailsCall(petID).enqueue(new Callback<Pet>() {
+            @Override
+            public void onResponse(final Call<Pet> call, final Response<Pet> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Pet> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
 }

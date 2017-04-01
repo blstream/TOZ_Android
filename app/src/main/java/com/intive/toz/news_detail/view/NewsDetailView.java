@@ -12,8 +12,9 @@ public interface NewsDetailView extends MvpView {
     /**
      * Shows detail news.
      * @param news news
+     * @param date formatted date of creation
      */
-    void showDetailNews(final News news);
+    void showDetailNews(final News news, final String date);
 
     /**
      * Shows progressBar.

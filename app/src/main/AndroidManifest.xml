@@ -23,6 +23,9 @@
         <activity
             android:name=".petDetails.PetDetailsActivity"
             android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".news_detail.view.NewsDetailActivity"
+            android:theme="@style/AppTheme"/>
 
     </application>
 
