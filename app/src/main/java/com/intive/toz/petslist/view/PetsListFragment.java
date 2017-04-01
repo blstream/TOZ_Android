@@ -117,7 +117,7 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
     public void onRefresh() {
         networkState = new NetworkState(getActivity());
         if (hasLoadedSuccessfullyBefore && !networkState.isOnline()) {
-            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh) ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh), Toast.LENGTH_SHORT).show();
             swipeRefreshLayout.setRefreshing(false);
         } else {
             loadData(true);

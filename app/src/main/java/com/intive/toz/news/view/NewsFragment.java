@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +90,7 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     public void onRefresh() {
         networkState = new NetworkState(getActivity());
         if (hasLoadedSuccessfullyBefore && !networkState.isOnline()) {
-            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh) ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh), Toast.LENGTH_SHORT).show();
             swipeRefreshLayout.setRefreshing(false);
         } else {
             loadData(true);

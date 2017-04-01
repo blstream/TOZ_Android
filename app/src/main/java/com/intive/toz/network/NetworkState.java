@@ -3,7 +3,6 @@ package com.intive.toz.network;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 /**
  * Class for checking whether device is connected to internet.
@@ -17,13 +16,13 @@ public class NetworkState {
      * Constructor.
      * @param context context
      */
-    public NetworkState(Context context) {
+    public NetworkState(final Context context) {
         this.context = context;
     }
 
     /**
      *  Method checking wheter device is connected to internet.
-     * @return
+     * @return true - when connected, false - when disconnected from Internet
      */
     public boolean isOnline() {
         ConnectivityManager cm =
