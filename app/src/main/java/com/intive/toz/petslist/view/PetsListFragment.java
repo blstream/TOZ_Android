@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
+import com.intive.toz.network.NetworkState;
 import com.intive.toz.petslist.presenter.PetsListPresenter;
 
 import java.util.ArrayList;
@@ -30,15 +32,20 @@ import butterknife.Unbinder;
 public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, List<Pet>,
         PetsListView, PetsListPresenter> implements PetsListView, SwipeRefreshLayout.OnRefreshListener  {
 
-    @BindView(R.id.recycler_view)
+    @BindView(R.id.contentView)
     RecyclerView petsRecyclerView;
 
     @BindView(R.id.loadingView)
     ProgressBar progress;
 
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private Unbinder unbinder;
     private PetsAdapter petsAdapter;
     private List<Pet> petsList = new ArrayList<>();
+    private boolean hasLoadedSuccessfullyBefore = false;
+    private NetworkState networkState;
 
     /**
      *
@@ -72,7 +79,7 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
     public void onViewCreated(final View view, final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
-        contentView.setOnRefreshListener(this);
+        swipeRefreshLayout.setOnRefreshListener(this);
         initPetsList();
         loadData(false);
     }
@@ -90,11 +97,13 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
 
     @Override
     protected String getErrorMessage(final Throwable e, final boolean pullToRefresh) {
-        return e.getMessage();
+        swipeRefreshLayout.setRefreshing(pullToRefresh);
+        return getString(R.string.connection_error);
     }
 
     @Override
     public void setData(final List<Pet> data) {
+        hasLoadedSuccessfullyBefore = true;
         petsAdapter.setPetsList(data);
         petsAdapter.notifyDataSetChanged();
     }
@@ -106,13 +115,20 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-        loadData(true);
+        networkState = new NetworkState(getActivity());
+        if (hasLoadedSuccessfullyBefore && !networkState.isOnline()) {
+            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh) ,Toast.LENGTH_SHORT).show();
+            swipeRefreshLayout.setRefreshing(false);
+        } else {
+            loadData(true);
+        }
+
     }
 
     @Override
     public void showContent() {
         super.showContent();
-        contentView.setRefreshing(false);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

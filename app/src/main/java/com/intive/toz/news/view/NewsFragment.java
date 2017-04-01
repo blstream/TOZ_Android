@@ -6,14 +6,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.intive.toz.R;
+import com.intive.toz.network.NetworkState;
 import com.intive.toz.news.NewsMvp;
 import com.intive.toz.news.adapter.NewsAdapter;
 import com.intive.toz.news.model.News;
@@ -34,11 +37,16 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     /**
      * The Recycler view.
      */
-    @BindView(R.id.recyclerView)
+    @BindView(R.id.contentView)
     RecyclerView recyclerView;
+
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private Unbinder unbinder;
     private NewsAdapter adapter;
+    private NetworkState networkState;
+    private boolean hasLoadedSuccessfullyBefore = false;
 
     /**
      * New instance news fragment.
@@ -60,8 +68,7 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     public void onViewCreated(final View view, @Nullable final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
-        contentView.setOnRefreshListener(this);
-
+        swipeRefreshLayout.setOnRefreshListener(this);
         adapter = new NewsAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -82,13 +89,22 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
 
     @Override
     public void onRefresh() {
-        loadData(true);
+        networkState = new NetworkState(getActivity());
+        if (hasLoadedSuccessfullyBefore && !networkState.isOnline()) {
+            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh) ,Toast.LENGTH_SHORT).show();
+            swipeRefreshLayout.setRefreshing(false);
+        } else {
+            loadData(true);
+        }
+
     }
 
     @Override
     protected String getErrorMessage(final Throwable e, final boolean pullToRefresh) {
-        return e.getMessage();
+        swipeRefreshLayout.setRefreshing(pullToRefresh);
+        return getString(R.string.connection_error);
     }
+
 
     @Override
     @NonNull
@@ -98,6 +114,7 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
 
     @Override
     public void setData(final List<News> data) {
+        hasLoadedSuccessfullyBefore = true;
         adapter.setNewsList(data);
         adapter.notifyDataSetChanged();
     }
@@ -110,7 +127,7 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     @Override
     public void showContent() {
         super.showContent();
-        contentView.setRefreshing(false);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
