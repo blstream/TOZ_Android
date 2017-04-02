@@ -4,10 +4,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.Pet;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import com.intive.toz.data.DateFormatter;
 
 /**
  * Presenter for Pet Details.
@@ -15,8 +12,7 @@ import java.util.Calendar;
 
 public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
 
-    private DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-    private Calendar calendar = Calendar.getInstance();
+    DateFormatter dateFormatter = new DateFormatter();
 
     /**
      *  Load pet details.
@@ -31,8 +27,7 @@ public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
             public void onSuccess(final Pet pet) {
                 if (isViewAttached()) {
                     getView().hideProgress();
-                    getView().showPetDetails(pet, convertToDate(pet.getCreated()));
-
+                    getView().showPetDetails(pet, dateFormatter.convertToDate(pet.getCreated()));
                 }
             }
 
@@ -43,15 +38,5 @@ public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
                 }
             }
         });
-    }
-
-    /**
-     * Convert date.
-     * @param dateInMilliseconds date in miliseconds
-     * @return date in dd/MM/yyyy format
-     */
-    public String convertToDate(final long dateInMilliseconds) {
-        calendar.setTimeInMillis(dateInMilliseconds);
-        return formatter.format(calendar.getTime());
     }
 }
