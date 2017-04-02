@@ -48,6 +48,15 @@ public interface PetsApi {
      */
     @GET("/financial")
     Call<FinancialData> getFinancialInfo();
+
+    /**
+     *  Get one object of detailed news by Id.
+     *
+     *  @return /news/{id} json
+     *  @param id id
+     */
+    @GET("/news/{id}")
+    Call<News> getDetailNews(@Path("id") String id);
 }
 
 
