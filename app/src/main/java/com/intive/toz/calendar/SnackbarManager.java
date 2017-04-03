@@ -19,7 +19,7 @@ public final class SnackbarManager {
      * return snackbar on activity.
      *
      * @return snackbar
-     * @param activity
+     * @param  activity
      * @param text
      */
     public static Snackbar getSnackbar(final Activity activity, final String text) {

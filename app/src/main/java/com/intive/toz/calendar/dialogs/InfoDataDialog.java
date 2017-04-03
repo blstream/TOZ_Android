@@ -1,5 +1,8 @@
 package com.intive.toz.calendar.dialogs;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -20,6 +23,9 @@ import butterknife.OnClick;
  */
 
 public class InfoDataDialog extends DialogFragment {
+
+
+
 
 
     private String title;
@@ -78,6 +84,9 @@ public class InfoDataDialog extends DialogFragment {
     void backToCalendar() {
         dismiss();
     }
+
+
+
 
 
 }

@@ -5,7 +5,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView;
 import java.util.List;
 
 /**
- * Interface View for Navigation Tabs.
+ * Interface ButtonsView for Navigation Tabs.
  */
 
 public interface NavigationTabsView extends MvpView {

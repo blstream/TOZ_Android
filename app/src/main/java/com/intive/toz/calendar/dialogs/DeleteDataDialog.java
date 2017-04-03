@@ -32,6 +32,7 @@ public class DeleteDataDialog extends DialogFragment {
     Button backButton;
     @BindView(R.id.dialog_btn2)
     Button deleteButton;
+
     private String title;
     private String date;
     private String userName;

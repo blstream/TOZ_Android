@@ -2,7 +2,6 @@ package com.intive.toz.calendar.dialogs;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.intive.toz.R;
-import com.intive.toz.calendar.CalendarMvp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,17 +19,12 @@ import butterknife.OnClick;
  * Created by mmate on 29.03.2017.
  */
 
-public class SaveDataDialog extends DialogFragment {
+public class SaveDataDialog extends DialogFragment implements OnDialogResultListener {
 
 
     String title;
     String date;
-
-    public boolean isSave() {
-        return save;
-    }
-
-    public boolean save = false;
+    private boolean isSaved = false;
 
 
     public void setTitle(String title) {
@@ -51,8 +44,7 @@ public class SaveDataDialog extends DialogFragment {
     @BindView(R.id.dialog_btn1)
     Button cancelBtn;
     @BindView(R.id.dialog_btn2)
-    Button saveBtn;
-
+    public Button saveBtn;
 
     public static SaveDataDialog newInstance() {
         return new SaveDataDialog();
@@ -69,13 +61,14 @@ public class SaveDataDialog extends DialogFragment {
 
     
     @OnClick(R.id.dialog_btn2)
-    void saveDate() {
-       save = true;
+    public void saveDate() {
+        isSaved = true;
         dismiss();
+        onPositiveResult();
     }
 
     @OnClick(R.id.dialog_btn1)
-    void cancelSaveDate() {
+   public void cancelSaveDate() {
         dismiss();
     }
 
@@ -90,4 +83,8 @@ public class SaveDataDialog extends DialogFragment {
     }
 
 
+    @Override
+    public boolean onPositiveResult() {
+        return isSaved;
+    }
 }

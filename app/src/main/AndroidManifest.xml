@@ -12,10 +12,10 @@
         android:theme="@style/MainTheme.Base">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".financial.view.FinancialActivity"
@@ -23,6 +23,14 @@
         <activity
             android:name=".petDetails.PetDetailsActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".calendar.view.CalendarActivity">
+            <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+
+        </activity>
 
     </application>
 

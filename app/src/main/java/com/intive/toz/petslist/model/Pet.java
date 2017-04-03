@@ -9,8 +9,6 @@ public class Pet implements Serializable {
 
     private String id;
     private String name;
-
-
     private String type;
     private String sex;
     private String description;
@@ -33,12 +31,14 @@ public class Pet implements Serializable {
     public String getName() {
         return name;
     }
+
     /**
      * @return type of Pet.
      */
     public String getType() {
         return type;
     }
+
     /**
      * @return description of Pet.
      */

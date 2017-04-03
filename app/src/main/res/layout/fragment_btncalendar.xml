@@ -2,101 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
-
-    <TextView
+     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:text="rano" />
 
-    <TableLayout
+    <GridView
+        android:id="@+id/morning_buttons_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:stretchColumns="*">
-
-        <TableRow>
-
-
-            <include
-                android:id="@+id/ranoBtn1"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/ranoBtn2"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/ranoBtn3"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/ranoBtn4"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/ranoBtn5"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/ranoBtn6"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/ranoBtn7"
-                layout="@layout/calendar_button" />
-
-        </TableRow>
-
-    </TableLayout>
+        android:gravity="center"
+        android:numColumns="7"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="popołudnie" />
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="popołudniu" />
 
-    <TableLayout
+    <GridView
+        android:id="@+id/afternoon_buttons_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:stretchColumns="*">
+        android:gravity="center"
+        android:numColumns="7"
+        />
 
-        <TableRow>
-
-            <include
-                android:id="@+id/popoludniuBtn1"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/popoludniuBtn2"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/popoludniuBtn3"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/popoludniuBtn4"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/popoludniuBtn5"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/popoludniuBtn6"
-                layout="@layout/calendar_button" />
-
-            <include
-                android:id="@+id/popoludniuBtn7"
-                layout="@layout/calendar_button" />
-
-        </TableRow>
-
-    </TableLayout>
 </LinearLayout>

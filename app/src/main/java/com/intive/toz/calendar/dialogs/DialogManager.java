@@ -1,6 +1,7 @@
 package com.intive.toz.calendar.dialogs;
 
-import android.widget.Button;
+
+import android.view.View;
 
 /**
  * class to create type of dialogs.
@@ -19,11 +20,12 @@ public final class DialogManager {
      *
      * @return infodialog
      */
-    public static InfoDataDialog infoDialog() {
+    public static InfoDataDialog infoDialog(final String title, final String date, final String name) {
         InfoDataDialog dialog = InfoDataDialog.newInstance();
-        dialog.setTitle("Rano");
-        dialog.setDate("Czwartek, 9marca ");
-        dialog.setUserName("Magdalena Męczywora");
+        dialog.setTitle(title);
+        dialog.setDate(date);
+        dialog.setUserName(name);
+
         return dialog;
     }
 
@@ -33,11 +35,11 @@ public final class DialogManager {
      * @return savedialog
      */
 
-    public static SaveDataDialog saveDialog() {
+    public static SaveDataDialog saveDialog(final String title, final String date) {
         SaveDataDialog dialog = SaveDataDialog.newInstance();
-        dialog.setDate("");
-        dialog.setTitle("");
-        return SaveDataDialog.newInstance();
+        dialog.setTitle(title);
+        dialog.setDate(date);
+        return dialog;
     }
 
     /**
@@ -45,15 +47,13 @@ public final class DialogManager {
      *
      * @return deletedialog
      */
-    public static DeleteDataDialog deleteDialog() {
+    public static DeleteDataDialog deleteDialog(final String title, final String date, final String name) {
         DeleteDataDialog dialog = DeleteDataDialog.newInstance();
-        dialog.setDate("");
-        dialog.setUserName("");
-        dialog.setTitle("");
-        return DeleteDataDialog.newInstance();
+        dialog.setDate(date);
+        dialog.setUserName(name);
+        dialog.setTitle(title);
+        return dialog;
     }
-
-
 
 
 }

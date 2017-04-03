@@ -6,45 +6,52 @@ import android.view.View;
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 
+import java.util.List;
+
 
 /**
- * interface for Presenter and View.
+ * interface for Presenter and ButtonsView.
  */
 
-public interface CalendarMvp {
+public interface ButtonsMvp {
 
     /**
      * interface to presenter.
      */
-    interface Presenter extends MvpPresenter<CalendarView> {
+    interface Presenter extends MvpPresenter<ButtonsView> {
         /**
          * set calendar buttons state.
          */
 
         void loadData();
 
+
         /**
-         * check calendar button state.
-         * @param view
+         * check calendar buttons state.
          */
 
-        void checkButtonState(View view);
+
+        void checkButton(int position, View view, boolean isMorning);
+
     }
 
     /**
      * interface to view.
      */
-    interface CalendarView extends MvpView {
+    interface ButtonsView extends MvpView {
 
         /**
          * set state of callendar buttons.
-         * @param arrayState
+         *
+         * @param afternoon data afternoon
+         * @param morning   data morning
          */
-        void setCalendarButtons(boolean[] arrayState);
 
+        void setButtons(List<Integer> afternoon, List<Integer> morning);
 
         /**
-         *show dialog.
+         * show dialog.
+         *
          * @param dialog
          */
         void showDialog(DialogFragment dialog);
@@ -52,12 +59,14 @@ public interface CalendarMvp {
         /**
          * set button state.
          *
-         * @param id
+         * @param view view
+         * @param name set name
          */
-        void setButton(final View view, final String name);
+        void setButton(final android.view.View view, final String name);
 
         /**
-         *hide dialog.
+         * hide dialog.
+         *
          * @param dialog
          */
         void hideDialog(DialogFragment dialog);

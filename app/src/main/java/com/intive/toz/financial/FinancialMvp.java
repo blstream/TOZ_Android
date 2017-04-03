@@ -6,7 +6,7 @@ import com.intive.toz.financial.model.FinancialData;
 import com.intive.toz.network.PetsApi;
 
 /**
- * interfaces for Presenter and View.
+ * interfaces for Presenter and ButtonsView.
  */
 public interface FinancialMvp {
 
