@@ -7,9 +7,10 @@
         android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_pets_black_error48dp"
+        android:drawablePadding="@dimen/activity_vertical_margin"
         android:layout_gravity="center"
         android:gravity="center"
-        android:padding="16dp"
-        android:text="@string/error_msg" />
+        android:padding="16dp" />
 
 </merge>

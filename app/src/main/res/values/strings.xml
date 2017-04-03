@@ -10,6 +10,10 @@
     <string name="navigation_tab_gallery">GALERIA</string>
     <string name="navigation_tab_schedule">GRAFIK</string>
 
+    <!--errors-->
     <string name="financial_info_load_error">Wystąpił błąd podczas pobierania danych finansowych z serwera.</string>
+    <string name="connection_error">Brak połączenia. Przeciągnij by odświeżyć.</string>
+    <string name="connection_error_on_refresh">Nie udało się odświeżyć. Spróbuj ponownie.</string>
+
     <string name="help_msg">CHCĘ POMÓC TOZ!</string>
 </resources>
