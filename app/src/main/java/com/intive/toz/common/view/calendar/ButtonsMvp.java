@@ -1,11 +1,11 @@
-package com.intive.toz.calendar;
+package com.intive.toz.common.view.calendar;
 
 import android.support.v4.app.DialogFragment;
-import android.view.View;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,19 +19,27 @@ public interface ButtonsMvp {
      * interface to presenter.
      */
     interface Presenter extends MvpPresenter<ButtonsView> {
+
         /**
          * set calendar buttons state.
          */
-
         void loadData();
 
 
         /**
-         * check calendar buttons state.
+         * check calendar date state.
+         *
+         * @param position the position
+         * @param day
          */
+        void checkDate(int position, Date day);
 
-
-        void checkButton(int position, View view, boolean isMorning);
+        /**
+         * set calendar date state.
+         *
+         * @param position the position
+         */
+        void setDate(int position, boolean save, boolean delete);
 
     }
 
@@ -46,8 +54,8 @@ public interface ButtonsMvp {
          * @param afternoon data afternoon
          * @param morning   data morning
          */
-
         void setButtons(List<Integer> afternoon, List<Integer> morning);
+
 
         /**
          * show dialog.
@@ -56,32 +64,12 @@ public interface ButtonsMvp {
          */
         void showDialog(DialogFragment dialog);
 
-        /**
-         * set button state.
-         *
-         * @param view view
-         * @param name set name
-         */
-        void setButton(final android.view.View view, final String name);
-
-        /**
-         * hide dialog.
-         *
-         * @param dialog
-         */
-        void hideDialog(DialogFragment dialog);
 
         /**
          * show snackbar in calendar activity.
          */
-
         void showSnackbar();
 
-        /**
-         * hide snackbar in calendar activity.
-         */
-
-        void hideSnackbar();
 
     }
 

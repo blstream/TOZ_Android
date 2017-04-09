@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+import com.intive.toz.common.view.calendar.dialogs.DialogSelectedListener;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
@@ -25,7 +27,7 @@ import butterknife.OnClick;
  * FIXME Set proper name when implemented.
  * Main app screen.
  */
-public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements NavigationTabsView {
+public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements NavigationTabsView, DialogSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -84,5 +86,15 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
         for (int i = 0; i < tabs.size(); i++) {
             tabLayout.getTabAt(i).setIcon(tabs.get(i).getTabIcon());
         }
+    }
+
+    @Override
+    public void onSaveDateSelected(final int position) {
+        Log.e("MAin activity", "onSaveDateSelected: " + position);
+    }
+
+    @Override
+    public void onDeleteDateSelected(final int position) {
+        Log.e("Main Activity", "onDeleteDateSelected: " + position);
     }
 }

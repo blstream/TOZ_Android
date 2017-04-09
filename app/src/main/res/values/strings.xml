@@ -14,4 +14,10 @@
     <string name="help_msg">CHCĘ POMÓC TOZ!</string>
     <string name="calendar_info_saved_data">Termin został pomyślnie zapisany.</string>
     <string name="navigation_tab_calendar">KALENADARZ</string>
+    <string name="calendar_info_save_dialog">Czy na pewno chcesz się zapisać na ten termin?</string>
+    <string name="calendar_save_dialog_cancel_button">ANULUJ</string>
+    <string name="calendar_save_dialog_save_button">ZAPISZ</string>
+    <string name="calendar_delete_dialog_delete_button">USUŃ</string>
+    <string name="calendar_delete_dialog_cancel_button">POWRÓT</string>
+    <string name="calendar_info_dialog_cancel_button">POWRÓT</string>
 </resources>

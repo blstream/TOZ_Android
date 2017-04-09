@@ -1,4 +1,4 @@
-package com.intive.toz.calendar;
+package com.intive.toz.common.view.calendar;
 
 import android.app.Activity;
 import android.support.design.widget.Snackbar;
@@ -8,10 +8,10 @@ import android.widget.TextView;
  * class to create Snackbar.
  */
 
-public final class SnackbarManager {
+public final class SnackbarFactory {
 
 
-    private SnackbarManager() {
+    private SnackbarFactory() {
 
     }
 
@@ -19,8 +19,8 @@ public final class SnackbarManager {
      * return snackbar on activity.
      *
      * @return snackbar
-     * @param  activity
-     * @param text
+     * @param  activity the activity
+     * @param text the text
      */
     public static Snackbar getSnackbar(final Activity activity, final String text) {
         Snackbar snackbar = Snackbar.make(activity.findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG);

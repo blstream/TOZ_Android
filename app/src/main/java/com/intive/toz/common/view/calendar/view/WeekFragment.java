@@ -2,14 +2,24 @@ package com.intive.toz.common.view.calendar.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
+
+import android.support.v4.app.FragmentManager;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
+import com.intive.toz.common.view.calendar.ButtonsMvp;
+import com.intive.toz.common.view.calendar.SnackbarFactory;
+import com.intive.toz.common.view.calendar.adapter.ButtonsAdapter;
+
+
+import com.intive.toz.common.view.calendar.presenter.ButtonsPresenter;
 import com.intive.toz.common.view.calendar.adapter.WeekAdapter;
 
 import java.util.ArrayList;
@@ -19,12 +29,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import butterknife.Unbinder;
 
 /**
  * The type Week fragment.
  */
-public class WeekFragment extends Fragment {
+public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp.Presenter> implements ButtonsMvp.ButtonsView {
 
     /**
      * The constant FIRST.
@@ -44,9 +55,18 @@ public class WeekFragment extends Fragment {
      */
     @BindView(R.id.week_view)
     GridView gridView;
+    @BindView(R.id.afternoon_buttons_view)
+    GridView gridViewAfternoon;
+    @BindView(R.id.morning_buttons_view)
+    GridView gridViewMorning;
 
     private Unbinder unbinder;
     private int week;
+    private Snackbar snackbar;
+    private FragmentManager fragmentManager;
+    private ButtonsAdapter adapterMorning;
+    private ButtonsAdapter adapterAfternoon;
+
 
     /**
      * New instance week fragment.
@@ -80,6 +100,7 @@ public class WeekFragment extends Fragment {
         unbinder.unbind();
     }
 
+
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
@@ -87,6 +108,8 @@ public class WeekFragment extends Fragment {
         List<Date> dates = getWeek(week);
         WeekAdapter adapter = new WeekAdapter(getContext(), dates);
         gridView.setAdapter(adapter);
+        presenter.loadData();
+        fragmentManager = getFragmentManager();
     }
 
     /**
@@ -134,5 +157,64 @@ public class WeekFragment extends Fragment {
         }
         return dates;
     }
+
+    /**
+     * Check afternoon button date state.
+     *
+     *@param position the position
+     */
+    @OnItemClick(R.id.afternoon_buttons_view)
+    public void checkStateAfternoon(final int position) {
+        List<Date> dates = getWeek(week);
+        Date day = dates.get(position);
+        final int morningButtons = 7;
+        presenter.checkDate(position + morningButtons, day);
+    }
+
+    /**
+     * Check morning button date state.
+     *
+     *@param position the position
+     */
+    @OnItemClick(R.id.morning_buttons_view)
+    public void checkStateMorning(final int position) {
+        List<Date> dates = getWeek(week);
+        Date day = dates.get(position);
+        presenter.checkDate(position, day);
+    }
+
+    @Override
+    public ButtonsMvp.Presenter createPresenter() {
+        return new ButtonsPresenter();
+    }
+
+    @Override
+    public void setButtons(final List<Integer> afternoon, final List<Integer> morning) {
+
+
+        adapterMorning = new ButtonsAdapter(getContext(), morning);
+        adapterAfternoon = new ButtonsAdapter(getContext(), afternoon);
+
+        adapterAfternoon.notifyDataSetChanged();
+        adapterMorning.notifyDataSetChanged();
+
+        gridViewAfternoon.setAdapter(adapterAfternoon);
+        gridViewMorning.setAdapter(adapterMorning);
+
+
+    }
+
+
+    @Override
+    public void showDialog(final DialogFragment dialog) {
+        dialog.show(fragmentManager, "Dialog");
+    }
+
+    @Override
+    public void showSnackbar() {
+        snackbar = SnackbarFactory.getSnackbar(getActivity(), "Termin został pomyślnie zapisany");
+        snackbar.show();
+    }
+
 
 }
