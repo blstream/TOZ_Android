@@ -18,6 +18,4 @@
         android:textColor="@color/whiteText"
         android:maxLength="2"/>
 
-
-
 </FrameLayout>
