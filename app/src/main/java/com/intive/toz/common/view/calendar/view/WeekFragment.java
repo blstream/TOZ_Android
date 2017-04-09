@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 
 import android.support.v4.app.FragmentManager;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -161,7 +162,7 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
     /**
      * Check afternoon button date state.
      *
-     *@param position the position
+     * @param position the position
      */
     @OnItemClick(R.id.afternoon_buttons_view)
     public void checkStateAfternoon(final int position) {
@@ -174,7 +175,7 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
     /**
      * Check morning button date state.
      *
-     *@param position the position
+     * @param position the position
      */
     @OnItemClick(R.id.morning_buttons_view)
     public void checkStateMorning(final int position) {
@@ -216,5 +217,15 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
         snackbar.show();
     }
 
-
+    /**
+     * Set date.
+     *
+     * @param position the position
+     * @param save the save
+     * @param delete the delete
+     */
+    public void setDate(final int position, final boolean save, final boolean delete) {
+        Log.e("WEEKFRAGMENT", "setDate: " + position);
+        presenter.setDate(position, save, delete);
+    }
 }

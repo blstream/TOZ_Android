@@ -66,5 +66,4 @@ public class CalendarAdapter extends FragmentPagerAdapter {
     public List<Date> getWeek(final int position) {
         return ((WeekFragment) getItem(position)).getWeek(position);
     }
-
 }

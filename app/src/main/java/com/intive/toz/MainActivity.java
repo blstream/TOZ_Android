@@ -1,9 +1,11 @@
 package com.intive.toz;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,11 +13,13 @@ import android.view.View;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.common.view.calendar.dialogs.DialogSelectedListener;
+import com.intive.toz.common.view.calendar.view.WeekFragment;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
 import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
 import com.intive.toz.financial.view.FinancialActivity;
+
 
 import java.util.List;
 
@@ -24,7 +28,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * FIXME Set proper name when implemented.
  * Main app screen.
  */
 public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements NavigationTabsView, DialogSelectedListener {
@@ -90,11 +93,13 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
 
     @Override
     public void onSaveDateSelected(final int position) {
-        Log.e("MAin activity", "onSaveDateSelected: " + position);
+        Log.e("MAINACTIVITY", "onSaveDateSelected: " + position);
+        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(position, true, false);
     }
 
     @Override
     public void onDeleteDateSelected(final int position) {
-        Log.e("Main Activity", "onDeleteDateSelected: " + position);
+        Log.e("MAINACTIVITY", "onDeleteDateSelected: " + position);
+        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(position, false, true);
     }
 }
