@@ -109,6 +109,8 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
         List<Date> dates = getWeek(week);
         WeekAdapter adapter = new WeekAdapter(getContext(), dates);
         gridView.setAdapter(adapter);
+        adapterMorning = new ButtonsAdapter(getContext(), null);
+        adapterAfternoon = new ButtonsAdapter(getContext(), null);
         presenter.loadData();
         fragmentManager = getFragmentManager();
     }
@@ -192,19 +194,16 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
     @Override
     public void setButtons(final List<Integer> afternoon, final List<Integer> morning) {
 
-
-        adapterMorning = new ButtonsAdapter(getContext(), morning);
-        adapterAfternoon = new ButtonsAdapter(getContext(), afternoon);
-
-        adapterAfternoon.notifyDataSetChanged();
-        adapterMorning.notifyDataSetChanged();
+        adapterMorning.clear();
+        adapterAfternoon.clear();
+        adapterMorning.setButtons(morning);
+        adapterAfternoon.setButtons(afternoon);
 
         gridViewAfternoon.setAdapter(adapterAfternoon);
         gridViewMorning.setAdapter(adapterMorning);
 
 
     }
-
 
     @Override
     public void showDialog(final DialogFragment dialog) {

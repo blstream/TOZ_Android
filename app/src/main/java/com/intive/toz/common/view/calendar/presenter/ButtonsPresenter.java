@@ -28,6 +28,8 @@ public class ButtonsPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> i
         for (int p : stateButtons) {
             Log.e("BUTTONS TABLE", "before set " + p);
         }
+        afternoon.clear();
+        morning.clear();
         for (int i = 0; i < stateButtons.size() / 2; i++) {
             morning.add(stateButtons.get(i));
         }
@@ -58,17 +60,12 @@ public class ButtonsPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> i
 
     @Override
     public void setDate(final int position, final boolean save, final boolean delete) {
-        Log.e("BUTTONPRESENTER", "setDate: " + position);
-
         if (save) {
             stateButtons.set(position, 2);
             getView().showSnackbar();
         }
         if (delete) {
             stateButtons.set(position, 0);
-        }
-        for (int p : stateButtons) {
-            Log.e("BUTTONS TABLE", "before load " + p);
         }
         loadData();
     }

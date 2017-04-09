@@ -33,7 +33,6 @@ public class ButtonsAdapter extends BaseAdapter {
     TextView textView;
 
     private Context context;
-
     private List<Integer> buttons;
 
     /**
@@ -90,5 +89,20 @@ public class ButtonsAdapter extends BaseAdapter {
         }
 
         return view;
+    }
+
+    /**
+     * Clear buttons state.
+     */
+    public void clear() {
+        this.buttons = null;
+    }
+
+    /**
+     * Set buttons state.
+     * @param buttons the buttons
+     */
+    public void setButtons(final List<Integer> buttons) {
+        this.buttons = buttons;
     }
 }
