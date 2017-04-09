@@ -19,6 +19,7 @@ import java.util.List;
 
 public class ButtonsPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> implements ButtonsMvp.Presenter {
 
+
     List<Integer> stateButtons = new ArrayList<>(Arrays.asList(new Integer[]{1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1}));
     List<Integer> morning = new ArrayList<>();
     List<Integer> afternoon = new ArrayList<>();
