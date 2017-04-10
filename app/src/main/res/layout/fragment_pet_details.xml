@@ -2,56 +2,180 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.intive.toz.petDetails.PetDetailsFragment">
-
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+    tools:context="com.intive.toz.petDetails.details_fragment.PetDetailsFragment">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/activity_horizontal_margin">
 
-            <TextView
-                android:id="@+id/name_pet_details"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TextView
-                android:id="@+id/type_pet_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name_pet_details"/>
-
-            <TextView
-                android:id="@+id/sex_pet_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/type_pet_details" />
-
-            <TextView
-                android:id="@+id/date_pet_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/sex_pet_details"/>
-
             <ImageView
                 android:id="@+id/image_pet_details"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_margin="@dimen/view_small_margin"
-                android:layout_below="@id/date_pet_details"/>
+                android:layout_margin="@dimen/view_small_margin" />
+
+            <LinearLayout
+                android:layout_below="@id/image_pet_details"
+                android:id="@+id/name_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pets_black_eror48dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/name_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="name" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/separator1"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_below="@+id/name_row"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#ff9703" />
+
+            <LinearLayout
+                android:id="@+id/type_sex_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/separator1">
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pets_black_eror48dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/type_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="name" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pets_black_eror48dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/sex_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Płeć" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/separator2"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_below="@+id/type_sex_row"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#ff9703" />
+
+            <LinearLayout
+                android:layout_below="@+id/separator2"
+                android:id="@+id/date_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pets_black_eror48dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/date_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="name" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/separator3"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_below="@+id/date_row"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#ff9703" />
 
             <TextView
                 android:id="@+id/description_pet_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/image_pet_details"/>
+                android:layout_below="@id/separator3" />
 
             <ProgressBar
                 android:id="@+id/progress_bar_pet_details"
@@ -60,6 +184,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:visibility="gone" />
+
         </RelativeLayout>
-    </ScrollView>
 </FrameLayout>

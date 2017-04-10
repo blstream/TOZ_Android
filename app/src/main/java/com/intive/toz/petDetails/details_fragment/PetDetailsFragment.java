@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails;
+package com.intive.toz.petDetails.details_fragment;
 
 
 import android.os.Bundle;

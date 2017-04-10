@@ -16,4 +16,7 @@
     <string name="connection_error_on_refresh">Nie udało się odświeżyć. Spróbuj ponownie.</string>
 
     <string name="help_msg">CHCĘ POMÓC TOZ!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

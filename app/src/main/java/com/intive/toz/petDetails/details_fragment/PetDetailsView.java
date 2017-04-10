@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails;
+package com.intive.toz.petDetails.details_fragment;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.Pet;
