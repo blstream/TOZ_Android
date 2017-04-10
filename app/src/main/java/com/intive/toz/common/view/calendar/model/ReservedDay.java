@@ -14,7 +14,7 @@ public class ReservedDay {
     /**
      * Base constructor.
      */
-    public ReservedDay() {
+    ReservedDay() {
         this.userNameMorning = "XX";
         this.userNameAfternoon = "XX";
         this.stateMorning = 0;
@@ -90,7 +90,7 @@ public class ReservedDay {
      *
      * @param date the date
      */
-    public void setDate(final String date) {
+    void setDate(final String date) {
         this.date = date;
     }
 

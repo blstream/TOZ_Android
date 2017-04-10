@@ -8,28 +8,28 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by mmate on 09.04.2017.
+ * Created reserved day list.
  */
 
 public final class ReservedDayList {
 
     public static List<ReservedDay> stateBtn = new ArrayList<>();
-    public static boolean fillArray;
+    private static boolean fillArray;
 
     /**
      * The constant FIRST_WEEK.
      */
-    public static final int FIRST_WEEK = 7;
+    private static final int FIRST_WEEK = 7;
 
     /**
      * The constant SECOND_WEEK.
      */
-    public static final int SECOND_WEEK = 14;
+    private static final int SECOND_WEEK = 14;
 
     /**
      * The constant THIRD_WEEK.
      */
-    public static final int THIRD_WEEK = 21;
+    private static final int THIRD_WEEK = 21;
 
     /**
      * Base constructor.

@@ -237,7 +237,4 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
         snackbar.show();
     }
 
-
-
-
 }

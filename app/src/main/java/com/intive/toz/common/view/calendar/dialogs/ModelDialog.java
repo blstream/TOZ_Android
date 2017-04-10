@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by mmate on 29.03.2017.
+ * Created the model dialog.
  */
 
 public class ModelDialog extends DialogFragment {
@@ -38,9 +38,9 @@ public class ModelDialog extends DialogFragment {
     private String date;
     private String userName;
 
-    private String dateToPass;
+   /* private String dateToPass;
     private boolean isMorning;
-    private int week;
+    private int week;*/
 
 
     /**
@@ -67,9 +67,9 @@ public class ModelDialog extends DialogFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         state = getArguments().getInt("DIALOG");
-        dateToPass = getArguments().getString("DATE");
+        /*dateToPass = getArguments().getString("DATE");
         week = getArguments().getInt("WEEK");
-        isMorning = getArguments().getBoolean("MORNING");
+        isMorning = getArguments().getBoolean("MORNING");*/
     }
 
 

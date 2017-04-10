@@ -86,7 +86,7 @@ public class ButtonsAdapter extends BaseAdapter {
                 break;
             case 2:
                 button.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
-                textView.setText("JA");
+                textView.setText(R.string.user_calendar_button_name);
                 break;
             default:
                 button.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.whiteText), PorterDuff.Mode.MULTIPLY);

@@ -2,7 +2,6 @@ package com.intive.toz.common.view.calendar.presenter;
 
 import android.text.format.DateFormat;
 import android.util.Log;
-
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.common.view.calendar.ButtonsMvp;
 import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
@@ -36,6 +35,7 @@ public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> impl
 
         ReservedDay reservedDay = getDateObjectReserved(day);
 
+        assert reservedDay != null;
         int resoult = isMorning ? reservedDay.getStateMorning() : reservedDay.getStateAfternoon();
         String name = isMorning ? reservedDay.getUserNameMorning() : reservedDay.getUserNameAfternoon();
         switch (resoult) {
@@ -86,10 +86,10 @@ public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> impl
      * @param day the day
      * @return string date
      */
-    public String getDate(final Date day) {
-        String date = DateFormat.format("dd", day).toString()
+    private String getDate(final Date day) {
+
+        return  DateFormat.format("dd", day).toString()
                 + DateFormat.format("MM", day).toString()
                 + DateFormat.format("yy", day).toString();
-        return date;
     }
 }

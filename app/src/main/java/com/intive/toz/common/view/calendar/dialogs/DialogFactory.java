@@ -66,7 +66,7 @@ public final class DialogFactory {
      *
      * @return date title
      */
-    public static String getTitleDate() {
+    private static String getTitleDate() {
         return DateFormat.format("EEEEE", day).toString()
                 + DateFormat.format("EEEE", day).toString().substring(1) + ", "
                 + DateFormat.format("d", day).toString() + " "
@@ -80,11 +80,10 @@ public final class DialogFactory {
      * @param day the day
      * @return date string
      */
-    public static String getDate(final Date day) {
-        String date = DateFormat.format("dd", day).toString()
+    private static String getDate(final Date day) {
+        return DateFormat.format("dd", day).toString()
                 + DateFormat.format("MM", day).toString()
                 + DateFormat.format("yy", day).toString();
-        return date;
     }
 
     /**
