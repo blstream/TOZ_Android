@@ -33,24 +33,32 @@ public class ModelDialog extends DialogFragment {
     @BindView(R.id.dialog_btn2)
     Button actionButton;
 
-    private int position;
+
     private int state;
     private String title;
     private String date;
     private String userName;
     private DialogSelectedListener mCallback;
+    private String dateToPass;
+    private boolean isMorning;
+    private int week;
+
 
     /**
      * New instance dialog fragment.
      *
-     * @param state    the state
-     * @param position the position
+     * @param state     the state
+     * @param date      the date
+     * @param week      the week
+     * @param isMorning the is Morning
      * @return the dialog fragment
      */
-    public static ModelDialog newInstance(final int state, final int position) {
+    public static ModelDialog newInstance(final int state, final String date, final int week, final boolean isMorning) {
         Bundle arguments = new Bundle();
         arguments.putInt("DIALOG", state);
-        arguments.putInt("POSITION", position);
+        arguments.putString("DATE", date);
+        arguments.putBoolean("MORNING", isMorning);
+        arguments.putInt("WEEK", week);
         ModelDialog dialogFragment = new ModelDialog();
         dialogFragment.setArguments(arguments);
         return dialogFragment;
@@ -60,7 +68,9 @@ public class ModelDialog extends DialogFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         state = getArguments().getInt("DIALOG");
-        position = getArguments().getInt("POSITION");
+        dateToPass = getArguments().getString("DATE");
+        week = getArguments().getInt("WEEK");
+        isMorning = getArguments().getBoolean("MORNING");
     }
 
 
@@ -121,9 +131,9 @@ public class ModelDialog extends DialogFragment {
     public void action() {
 
         if (state == 2) {
-            mCallback.onDeleteDateSelected(position);
+            mCallback.onDeleteDateSelected(dateToPass, week, isMorning);
         } else {
-            mCallback.onSaveDateSelected(position);
+            mCallback.onSaveDateSelected(dateToPass, week, isMorning);
         }
         dismiss();
     }

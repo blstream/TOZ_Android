@@ -9,14 +9,18 @@ public interface DialogSelectedListener {
     /**
      * Get dialog choice.
      *
-     * @param position the position
+     * @param isMorning the is morning
+     * @param week      the week
+     * @param date      the date
      */
-    void onSaveDateSelected(int position);
+    void onSaveDateSelected(String date, int week, boolean isMorning);
 
     /**
      * Get dialog choice.
      *
-     * @param position the position
+     * @param isMorning the is morning
+     * @param week      the week
+     * @param date      the date
      */
-    void onDeleteDateSelected(int position);
+    void onDeleteDateSelected(String date, int week, boolean isMorning);
 }

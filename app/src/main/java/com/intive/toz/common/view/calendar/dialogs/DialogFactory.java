@@ -12,6 +12,8 @@ public final class DialogFactory {
 
     public static Date day;
     public static int position;
+    public static boolean isMorning;
+    public static int week;
 
     /**
      * class constructor.
@@ -26,7 +28,7 @@ public final class DialogFactory {
      * @return dialog
      */
     public static ModelDialog infoDialog(final String name) {
-        ModelDialog dialog = ModelDialog.newInstance(1, position);
+        ModelDialog dialog = ModelDialog.newInstance(1, getDate(day), week, isMorning);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
@@ -40,7 +42,7 @@ public final class DialogFactory {
      * @return dialog
      */
     public static ModelDialog deleteDialog(final String name) {
-        ModelDialog dialog = ModelDialog.newInstance(2, position);
+        ModelDialog dialog = ModelDialog.newInstance(2, getDate(day), week, isMorning);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
@@ -53,7 +55,7 @@ public final class DialogFactory {
      * @return dialog
      */
     public static ModelDialog saveDialog() {
-        ModelDialog dialog = ModelDialog.newInstance(0, position);
+        ModelDialog dialog = ModelDialog.newInstance(0, getDate(day), week, isMorning);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         return dialog;
@@ -65,8 +67,24 @@ public final class DialogFactory {
      * @return date title
      */
     public static String getTitleDate() {
-        return DateFormat.format("EEEEE", day).toString() + DateFormat.format("EEEE", day).toString().substring(1)
-                + ", " + DateFormat.format("d", day).toString() + " " + DateFormat.format("MMMM", day).toString();
+        return DateFormat.format("EEEEE", day).toString()
+                + DateFormat.format("EEEE", day).toString().substring(1) + ", "
+                + DateFormat.format("d", day).toString() + " "
+                + DateFormat.format("MMMM", day).toString();
+    }
+
+
+    /**
+     * Get date.
+     *
+     * @param day the day
+     * @return date string
+     */
+    public static String getDate(final Date day) {
+        String date = DateFormat.format("dd", day).toString()
+                + DateFormat.format("MM", day).toString()
+                + DateFormat.format("yy", day).toString();
+        return date;
     }
 
     /**
@@ -75,8 +93,8 @@ public final class DialogFactory {
      * @return title
      */
     public static String getTitle() {
-        final int morningButtons = 7;
-        if (position < morningButtons) {
+
+        if (isMorning) {
             return "Rano";
         } else {
             return "Popołudnie";

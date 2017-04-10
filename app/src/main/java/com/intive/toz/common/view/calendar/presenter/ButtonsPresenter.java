@@ -1,17 +1,16 @@
 package com.intive.toz.common.view.calendar.presenter;
 
-
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.common.view.calendar.ButtonsMvp;
 import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
+import com.intive.toz.common.view.calendar.model.ReservedDay;
+import com.intive.toz.common.view.calendar.model.ReservedDayList;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
+
 
 /**
  * mvp presenter for calendar activity.
@@ -20,38 +19,31 @@ import java.util.List;
 public class ButtonsPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> implements ButtonsMvp.Presenter {
 
 
-    List<Integer> stateButtons = new ArrayList<>(Arrays.asList(new Integer[]{1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1}));
-    List<Integer> morning = new ArrayList<>();
-    List<Integer> afternoon = new ArrayList<>();
-
     @Override
-    public void loadData() {
-        for (int p : stateButtons) {
-            Log.e("BUTTONS TABLE", "before set " + p);
-        }
-        afternoon.clear();
-        morning.clear();
-        for (int i = 0; i < stateButtons.size() / 2; i++) {
-            morning.add(stateButtons.get(i));
-        }
-        for (int i = stateButtons.size() / 2; i < stateButtons.size(); i++) {
-            afternoon.add(stateButtons.get(i));
-        }
-        getView().setButtons(afternoon, morning);
+    public void loadData(final int week) {
+
+        getView().setButtons(ReservedDayList.newInstance(week));
     }
 
 
     @Override
-    public void checkDate(final int position, final Date day) {
+    public void checkDate(final int position, final Date day, final int week, final boolean isMorning) {
 
         DialogFactory.day = day;
         DialogFactory.position = position;
-        switch (stateButtons.get(position)) {
+        DialogFactory.isMorning = isMorning;
+        DialogFactory.week = week;
+
+        ReservedDay reservedDay = getDateObjectReserved(day);
+
+        int resoult = isMorning ? reservedDay.getStateMorning() : reservedDay.getStateAfternoon();
+        String name = isMorning ? reservedDay.getUserNameMorning() : reservedDay.getUserNameAfternoon();
+        switch (resoult) {
             case 1:
-                getView().showDialog(DialogFactory.infoDialog("Ktoś Inny"));
+                getView().showDialog(DialogFactory.infoDialog(name));
                 break;
             case 2:
-                getView().showDialog(DialogFactory.deleteDialog("JA"));
+                getView().showDialog(DialogFactory.deleteDialog(name));
                 break;
             default:
                 getView().showDialog(DialogFactory.saveDialog());
@@ -59,15 +51,45 @@ public class ButtonsPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> i
         }
     }
 
+    private ReservedDay getDateObjectReserved(final Date day) {
+        String date = getDate(day);
+        for (ReservedDay p : ReservedDayList.stateBtn) {
+            if (p.getDate().equals(date)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     @Override
-    public void setDate(final int position, final boolean save, final boolean delete) {
-        if (save) {
-            stateButtons.set(position, 2);
+    public void setDate(final String date, final int week, final boolean isSaved, final boolean isMorning) {
+        int value = isSaved ? 2 : 0;
+        for (ReservedDay p : ReservedDayList.stateBtn) {
+            if (p.getDate().equals(date)) {
+                if (isMorning) {
+                    p.setStateMorning(value);
+                } else {
+                    p.setStateAfternoon(value);
+                }
+            }
+        }
+        if (isSaved) {
             getView().showSnackbar();
         }
-        if (delete) {
-            stateButtons.set(position, 0);
-        }
-        loadData();
+        loadData(week);
+        Log.e("BUTTONSPRESENTER", "ZAPISUJE");
+    }
+
+    /**
+     * Get date.
+     *
+     * @param day the day
+     * @return string date
+     */
+    public String getDate(final Date day) {
+        String date = DateFormat.format("dd", day).toString()
+                + DateFormat.format("MM", day).toString()
+                + DateFormat.format("yy", day).toString();
+        return date;
     }
 }

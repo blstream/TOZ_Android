@@ -8,7 +8,6 @@ import android.support.design.widget.TabLayout;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
@@ -92,14 +91,12 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
     }
 
     @Override
-    public void onSaveDateSelected(final int position) {
-        Log.e("MAINACTIVITY", "onSaveDateSelected: " + position);
-        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(position, true, false);
+    public void onSaveDateSelected(final String date, final int week, final boolean isMorning) {
+        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(date, week, true, isMorning);
     }
 
     @Override
-    public void onDeleteDateSelected(final int position) {
-        Log.e("MAINACTIVITY", "onDeleteDateSelected: " + position);
-        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(position, false, true);
+    public void onDeleteDateSelected(final String date, final int week, final boolean isMorning) {
+        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(date, week, false, isMorning);
     }
 }

@@ -4,6 +4,7 @@ import android.support.v4.app.DialogFragment;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.intive.toz.common.view.calendar.model.ReservedDay;
 
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public interface ButtonsMvp {
         /**
          * set calendar buttons state.
          */
-        void loadData();
+        void loadData(int week);
 
 
         /**
@@ -32,14 +33,14 @@ public interface ButtonsMvp {
          * @param position the position
          * @param day
          */
-        void checkDate(int position, Date day);
+        void checkDate(int position, Date day, int week, boolean isMorning);
 
         /**
          * set calendar date state.
          *
-         * @param position the position
+         * @param date the date
          */
-        void setDate(int position, boolean save, boolean delete);
+        void setDate(String date, int week, boolean isSaved, boolean isMorning);
 
     }
 
@@ -48,13 +49,14 @@ public interface ButtonsMvp {
      */
     interface ButtonsView extends MvpView {
 
+
         /**
          * set state of callendar buttons.
          *
-         * @param afternoon data afternoon
-         * @param morning   data morning
+         * @param reservedDays the reserved days
          */
-        void setButtons(List<Integer> afternoon, List<Integer> morning);
+
+        void setButtons(List<ReservedDay> reservedDays);
 
 
         /**

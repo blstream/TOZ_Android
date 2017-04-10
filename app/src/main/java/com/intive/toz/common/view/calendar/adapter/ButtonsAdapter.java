@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.intive.toz.R;
+import com.intive.toz.common.view.calendar.model.ReservedDay;
 
 import java.util.List;
 
@@ -22,7 +23,6 @@ import butterknife.ButterKnife;
  * The type Buttons adapter.
  */
 public class ButtonsAdapter extends BaseAdapter {
-
     /**
      * The Button calendar.
      */
@@ -33,17 +33,20 @@ public class ButtonsAdapter extends BaseAdapter {
     TextView textView;
 
     private Context context;
-    private List<Integer> buttons;
+    private List<ReservedDay> buttons;
+    private final boolean isMorning;
 
     /**
      * Instantiates a new Buttons adapter.
      *
      * @param context the context
      * @param buttons the buttons
+     * @param isMorning the is morning
      */
-    public ButtonsAdapter(final Context context, final List<Integer> buttons) {
+    public ButtonsAdapter(final Context context, final List<ReservedDay> buttons, final boolean isMorning) {
         this.context = context;
         this.buttons = buttons;
+        this.isMorning = isMorning;
     }
 
     @Override
@@ -73,10 +76,13 @@ public class ButtonsAdapter extends BaseAdapter {
         }
 
 
-        switch ((int) getItem(position)) {
+        ReservedDay d = (ReservedDay) getItem(position);
+        int state = isMorning ? d.getStateMorning() : d.getStateAfternoon();
+        String name = isMorning ? d.getUserNameMorning() : d.getUserNameAfternoon();
+        switch (state) {
             case 1:
                 button.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
-                textView.setText("ZZ");
+                textView.setText(name);
                 break;
             case 2:
                 button.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
@@ -100,9 +106,10 @@ public class ButtonsAdapter extends BaseAdapter {
 
     /**
      * Set buttons state.
+     *
      * @param buttons the buttons
      */
-    public void setButtons(final List<Integer> buttons) {
+    public void setButtons(final List<ReservedDay> buttons) {
         this.buttons = buttons;
     }
 }
