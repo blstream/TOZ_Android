@@ -21,7 +21,7 @@ import com.intive.toz.common.view.calendar.adapter.ButtonsAdapter;
 
 import com.intive.toz.common.view.calendar.model.ReservedDay;
 import com.intive.toz.common.view.calendar.model.ReservedDayList;
-import com.intive.toz.common.view.calendar.presenter.ButtonsPresenter;
+import com.intive.toz.common.view.calendar.presenter.WeekPresenter;
 import com.intive.toz.common.view.calendar.adapter.WeekAdapter;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ import butterknife.Unbinder;
 /**
  * The type Week fragment.
  */
-public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp.Presenter> implements ButtonsMvp.ButtonsView {
+public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp.Presenter> implements ButtonsMvp.ButtonsView{
 
     /**
      * The constant FIRST.
@@ -84,6 +84,7 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
         Bundle arguments = new Bundle();
         arguments.putInt(WEEK, week);
         WeekFragment weekFragment = new WeekFragment();
+
         weekFragment.setArguments(arguments);
         return weekFragment;
     }
@@ -210,7 +211,7 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
 
     @Override
     public ButtonsMvp.Presenter createPresenter() {
-        return new ButtonsPresenter();
+        return new WeekPresenter();
     }
 
     @Override
@@ -236,16 +237,7 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
         snackbar.show();
     }
 
-    /**
-     * Set date.
-     *
-     * @param date      the date
-     * @param week      the week
-     * @param isSaved   the is save
-     * @param isMorning the is morning
-     */
-    public void setDate(final String date, final int week, final boolean isSaved, final boolean isMorning) {
 
-        presenter.setDate(date, week, isSaved, isMorning);
-    }
+
+
 }

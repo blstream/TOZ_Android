@@ -16,7 +16,7 @@ import java.util.Date;
  * mvp presenter for calendar activity.
  */
 
-public class ButtonsPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> implements ButtonsMvp.Presenter {
+public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> implements ButtonsMvp.Presenter {
 
 
     @Override

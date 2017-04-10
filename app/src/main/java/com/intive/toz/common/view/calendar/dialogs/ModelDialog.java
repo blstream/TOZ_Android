@@ -38,7 +38,7 @@ public class ModelDialog extends DialogFragment {
     private String title;
     private String date;
     private String userName;
-    private DialogSelectedListener mCallback;
+
     private String dateToPass;
     private boolean isMorning;
     private int week;
@@ -74,18 +74,7 @@ public class ModelDialog extends DialogFragment {
     }
 
 
-    @Override
-    public void onAttach(final Context context) {
-        super.onAttach(context);
 
-        try {
-            mCallback = (DialogSelectedListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement DialogSelectedListener");
-        }
-
-    }
 
 
     @Nullable
@@ -131,9 +120,9 @@ public class ModelDialog extends DialogFragment {
     public void action() {
 
         if (state == 2) {
-            mCallback.onDeleteDateSelected(dateToPass, week, isMorning);
+
         } else {
-            mCallback.onSaveDateSelected(dateToPass, week, isMorning);
+
         }
         dismiss();
     }

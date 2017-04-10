@@ -90,7 +90,7 @@ public final class ReservedDayList {
             for (ReservedDay r : stateBtn) {
                 Random random = new Random();
                 int rand1 = random.nextInt(2);
-                int rand2 = random.nextInt(2);
+                int rand2 = random.nextInt(3);
                 r.setStateAfternoon(rand1);
                 r.setStateMorning(rand2);
             }

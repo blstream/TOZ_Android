@@ -11,8 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
-import com.intive.toz.common.view.calendar.dialogs.DialogSelectedListener;
-import com.intive.toz.common.view.calendar.view.WeekFragment;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
@@ -29,7 +27,7 @@ import butterknife.OnClick;
 /**
  * Main app screen.
  */
-public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements NavigationTabsView, DialogSelectedListener {
+public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements NavigationTabsView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -90,13 +88,5 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
         }
     }
 
-    @Override
-    public void onSaveDateSelected(final String date, final int week, final boolean isMorning) {
-        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(date, week, true, isMorning);
-    }
 
-    @Override
-    public void onDeleteDateSelected(final String date, final int week, final boolean isMorning) {
-        ((WeekFragment) getSupportFragmentManager().findFragmentById(R.id.view_pager)).setDate(date, week, false, isMorning);
-    }
 }
