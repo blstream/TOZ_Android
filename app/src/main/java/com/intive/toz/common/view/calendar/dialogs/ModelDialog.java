@@ -1,6 +1,5 @@
 package com.intive.toz.common.view.calendar.dialogs;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -74,9 +73,6 @@ public class ModelDialog extends DialogFragment {
     }
 
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, final Bundle savedInstanceState) {
@@ -119,11 +115,10 @@ public class ModelDialog extends DialogFragment {
     @OnClick(R.id.dialog_btn2)
     public void action() {
 
-        if (state == 2) {
-
+       /* if (state == 2) {
         } else {
-
         }
+       */
         dismiss();
     }
 

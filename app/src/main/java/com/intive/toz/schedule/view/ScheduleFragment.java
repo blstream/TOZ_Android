@@ -101,8 +101,8 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
 
     @Override
     public void configCalendar() {
-          pagerAdapter = new CalendarAdapter(getFragmentManager());
-        // pagerAdapter = new CalendarAdapter(getChildFragmentManager());
+
+        pagerAdapter = new CalendarAdapter(getChildFragmentManager());
         calendarVp.setAdapter(pagerAdapter);
         calendarVp.setCurrentItem(1);
         calendarVp.setCanSwipe(false);

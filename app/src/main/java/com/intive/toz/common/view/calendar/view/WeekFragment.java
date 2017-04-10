@@ -37,7 +37,7 @@ import butterknife.Unbinder;
 /**
  * The type Week fragment.
  */
-public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp.Presenter> implements ButtonsMvp.ButtonsView{
+public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp.Presenter> implements ButtonsMvp.ButtonsView {
 
     /**
      * The constant FIRST.
