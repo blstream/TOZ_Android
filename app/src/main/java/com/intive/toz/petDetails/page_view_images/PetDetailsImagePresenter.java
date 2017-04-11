@@ -1,19 +1,15 @@
-package com.intive.toz.petDetails.page_view_fragments;
+package com.intive.toz.petDetails.page_view_images;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.Pet;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
-import com.intive.toz.data.DateFormatter;
-import com.intive.toz.petDetails.details_fragment.PetDetailsView;
 
 /**
  * Presenter for Pet Details.
  */
 
-public class PetDetailsImagePresenter extends MvpBasePresenter<PetDetailsView> {
-
-    DateFormatter dateFormatter = new DateFormatter();
+public class PetDetailsImagePresenter extends MvpBasePresenter<PetDetailsImageView> {
 
     /**
      *  Load pet details.
@@ -28,7 +24,7 @@ public class PetDetailsImagePresenter extends MvpBasePresenter<PetDetailsView> {
             public void onSuccess(final Pet pet) {
                 if (isViewAttached()) {
                     getView().hideProgress();
-                    getView().showPetDetails(pet, dateFormatter.convertToDate(pet.getCreated()));
+                    getView().showPetDetails(pet);
                 }
             }
 

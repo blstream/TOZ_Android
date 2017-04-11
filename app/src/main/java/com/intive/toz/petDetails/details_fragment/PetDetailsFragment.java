@@ -6,11 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
@@ -36,9 +34,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     @BindView(R.id.date_pet_details)
     TextView dateTv;
-
-    @BindView(R.id.image_pet_details)
-    ImageView image;
 
     @BindView(R.id.description_pet_details)
     TextView descriptionTv;
@@ -95,13 +90,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         dateTv.setText(petCreatedDate);
         sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
-        Glide.with(this)
-                .load(pet.getImageUrl())
-                .centerCrop()
-                .placeholder(R.color.colorAccent)
-                .error(R.color.colorAccent)
-                .into(image);
-
     }
 
     @Override

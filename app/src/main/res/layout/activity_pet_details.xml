@@ -7,10 +7,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager_images_gallery"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"></android.support.v4.view.ViewPager>
+            android:layout_height="wrap_content">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_images_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></android.support.v4.view.ViewPager>
+
+            <ImageButton
+                android:id="@+id/left_nav"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical|left"
+                android:src="@drawable/ic_home_white_24dp" />
+
+            <ImageButton
+                android:id="@+id/right_nav"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical|right"
+                android:src="@drawable/ic_home_white_24dp" />
+
+        </FrameLayout>
+        
+
 
         <fragment
             android:id="@+id/detail_pets_fragment"

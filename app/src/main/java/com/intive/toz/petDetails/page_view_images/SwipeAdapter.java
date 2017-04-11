@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails.page_view_fragments;
+package com.intive.toz.petDetails.page_view_images;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +14,7 @@ import com.intive.toz.Pet;
 public class SwipeAdapter extends FragmentStatePagerAdapter {
 
     Pet pet;
+    String idAnimal;
 
     public SwipeAdapter(FragmentManager fm) {
         super(fm);
@@ -24,16 +25,23 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = new PetImagesFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("count", position + 1);
+        bundle.putString("idAnimal", idAnimal);
+
         fragment.setArguments(bundle);
+
         return fragment;
     }
 
-//    public void setData(final Pet pet) {
-//        this.pet = pet;
-//    }
+    public void setData(final Pet pet) {
+        this.pet = pet;
+    }
+
+    public void setAnimalId(String idAnimal) {
+        this.idAnimal = idAnimal;
+    }
 
     @Override
     public int getCount() {
-        return 5;
+        return 10;
     }
 }
