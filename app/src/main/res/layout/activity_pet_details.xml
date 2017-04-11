@@ -18,17 +18,21 @@
 
             <ImageButton
                 android:id="@+id/left_nav"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
                 android:layout_gravity="center_vertical|left"
-                android:src="@drawable/arrow_left" />
+                android:layout_marginLeft="@dimen/arrow_margin_left_right"
+                android:src="@drawable/arrow_left_nav"
+                android:background="#00000000"/>
 
             <ImageButton
                 android:id="@+id/right_nav"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
                 android:layout_gravity="center_vertical|right"
-                android:src="@drawable/arrow_right" />
+                android:layout_marginRight="@dimen/arrow_margin_left_right"
+                android:src="@drawable/arrow_right_nav"
+                android:background="#00000000" />
 
         </FrameLayout>
 

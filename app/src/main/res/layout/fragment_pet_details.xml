@@ -20,15 +20,16 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/icon_left_right_margin"
+                android:layout_marginRight="@dimen/icon_left_right_margin"
                 android:src="@drawable/ic_pets_black_eror48dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/distance_left_right_text"
+                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
@@ -39,7 +40,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/pet_detail_name" />
+                    android:text="@string/pet_detail_name"
+                    android:textColor="@color/greyLight" />
             </LinearLayout>
 
         </LinearLayout>
@@ -49,9 +51,9 @@
             android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:layout_below="@+id/name_row"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/separator" />
+            android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+            android:layout_marginTop="@dimen/separator_margin_bottom_top"
+            android:background="@color/greyLight" />
 
         <LinearLayout
             android:id="@+id/type_sex_row"
@@ -63,15 +65,16 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/icon_left_right_margin"
+                android:layout_marginRight="@dimen/icon_left_right_margin"
                 android:src="@drawable/ic_pets_black_eror48dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/distance_left_right_text"
+                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
@@ -82,21 +85,23 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/pet_detail_type" />
+                    android:text="@string/pet_detail_type"
+                    android:textColor="@color/greyLight" />
             </LinearLayout>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/icon_left_right_margin"
+                android:layout_marginRight="@dimen/icon_left_right_margin"
                 android:src="@drawable/ic_pets_black_eror48dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/distance_left_right_text"
+                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
@@ -107,7 +112,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/pet_detail_sex" />
+                    android:text="@string/pet_detail_sex"
+                    android:textColor="@color/greyLight" />
             </LinearLayout>
 
         </LinearLayout>
@@ -117,9 +123,9 @@
             android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:layout_below="@+id/type_sex_row"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/separator" />
+            android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+            android:layout_marginTop="@dimen/separator_margin_bottom_top"
+            android:background="@color/greyLight" />
 
         <LinearLayout
             android:id="@+id/date_row"
@@ -131,15 +137,16 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/icon_left_right_margin"
+                android:layout_marginRight="@dimen/icon_left_right_margin"
                 android:src="@drawable/ic_pets_black_eror48dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/distance_left_right_text"
+                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
@@ -150,7 +157,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/pet_detail_date_add" />
+                    android:text="@string/pet_detail_date_add"
+                    android:textColor="@color/greyLight" />
             </LinearLayout>
 
         </LinearLayout>
@@ -160,23 +168,30 @@
             android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:layout_below="@+id/date_row"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/separator" />
+            android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+            android:layout_marginTop="@dimen/separator_margin_bottom_top"
+            android:background="@color/greyLight" />
 
-        <TextView
-            android:id="@+id/description_pet_details"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/separator3" />
+            android:layout_below="@id/separator3"
+            android:layout_marginLeft="@dimen/layout_margin_left">
 
-        <ProgressBar
-            android:id="@+id/progress_bar_pet_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/description_pet_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/separator3" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_pet_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+        </LinearLayout>
 
     </RelativeLayout>
 </FrameLayout>

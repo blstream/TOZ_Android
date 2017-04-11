@@ -65,8 +65,8 @@ public class PetImagesFragment extends MvpFragment<PetDetailsImageView, PetDetai
         Glide.with(this)
                 .load(pet.getAddress())
                 .centerCrop()
-                .placeholder(R.color.colorPrimary)
-                .error(R.color.colorAccent)
+                .placeholder(R.drawable.ic_pets_black_error48dp)
+                .error(R.color.greyLight)
                 .into(image);
     }
 

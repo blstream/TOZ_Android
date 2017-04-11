@@ -7,4 +7,14 @@
     <dimen name="medium_text">14sp</dimen>
     <dimen name="calendar_margin">12dp</dimen>
     <dimen name="financial_button_height">50dp</dimen>
+
+    <!-- pet details. -->
+    <dimen name="icon_left_right_margin">10dp</dimen>
+    <dimen name="distance_left_right_text">10dp</dimen>
+    <dimen name="layout_margin_left">10dp</dimen>
+    <dimen name="separator_margin_bottom_top">10dp</dimen>
+    <dimen name="arrow_margin_left_right">10dp</dimen>
+    <dimen name="image_nr_margin_bottom">10dp</dimen>
+    <dimen name="arrow_size">20dp</dimen>
+
 </resources>
