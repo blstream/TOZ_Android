@@ -17,6 +17,9 @@
 
     <string name="help_msg">CHCĘ POMÓC TOZ!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--pet galerry details-->
+    <string name="pet_detail_name">Imię</string>
+    <string name="pet_detail_type">Typ</string>
+    <string name="pet_detail_sex">Płeć</string>
+    <string name="pet_detail_date_add">Data dodania</string>
 </resources>

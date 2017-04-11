@@ -6,4 +6,5 @@
 
     <color name="windowBackground">#FFFFFF</color>
     <color name="whiteText">#FFFFFF</color>
+    <color name="separator">#CFCFD0</color>
 </resources>
