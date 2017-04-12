@@ -9,13 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.intive.toz.R;
-import com.intive.toz.network.NetworkState;
 import com.intive.toz.news.NewsMvp;
 import com.intive.toz.news.adapter.NewsAdapter;
 import com.intive.toz.news.model.News;
@@ -44,8 +42,6 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
 
     private Unbinder unbinder;
     private NewsAdapter adapter;
-    private NetworkState networkState;
-    private boolean hasLoadedSuccessfullyBefore = false;
 
     /**
      * New instance news fragment.
@@ -88,14 +84,8 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
 
     @Override
     public void onRefresh() {
-        networkState = new NetworkState(getActivity());
-        if (hasLoadedSuccessfullyBefore && !networkState.isOnline()) {
-            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh), Toast.LENGTH_SHORT).show();
-            swipeRefreshLayout.setRefreshing(false);
-        } else {
-            loadData(true);
-        }
-
+        swipeRefreshLayout.setRefreshing(true);
+        loadData(true);
     }
 
     @Override
@@ -113,7 +103,6 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
 
     @Override
     public void setData(final List<News> data) {
-        hasLoadedSuccessfullyBefore = true;
         adapter.setNewsList(data);
         adapter.notifyDataSetChanged();
     }
