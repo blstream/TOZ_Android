@@ -69,6 +69,7 @@ dependencies {
 
     compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
     compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 
     compile "com.jakewharton:butterknife:$versions.butterknife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknife"

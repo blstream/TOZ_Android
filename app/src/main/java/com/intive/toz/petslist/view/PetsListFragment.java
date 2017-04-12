@@ -9,14 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.intive.toz.Pet;
 import com.intive.toz.R;
-import com.intive.toz.network.NetworkState;
 import com.intive.toz.petslist.presenter.PetsListPresenter;
 
 import java.util.ArrayList;
@@ -44,8 +42,6 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
     private Unbinder unbinder;
     private PetsAdapter petsAdapter;
     private List<Pet> petsList = new ArrayList<>();
-    private boolean hasLoadedSuccessfullyBefore = false;
-    private NetworkState networkState;
 
     /**
      *
@@ -103,7 +99,6 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
 
     @Override
     public void setData(final List<Pet> data) {
-        hasLoadedSuccessfullyBefore = true;
         petsAdapter.setPetsList(data);
         petsAdapter.notifyDataSetChanged();
     }
@@ -115,14 +110,8 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-        networkState = new NetworkState(getActivity());
-        if (hasLoadedSuccessfullyBefore && !networkState.isOnline()) {
-            Toast.makeText(getActivity(), getString(R.string.connection_error_on_refresh), Toast.LENGTH_SHORT).show();
-            swipeRefreshLayout.setRefreshing(false);
-        } else {
-            loadData(true);
-        }
-
+        swipeRefreshLayout.setRefreshing(true);
+        loadData(true);
     }
 
     @Override
