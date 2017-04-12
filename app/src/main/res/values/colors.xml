@@ -6,4 +6,7 @@
 
     <color name="windowBackground">#FFFFFF</color>
     <color name="whiteText">#FFFFFF</color>
+
+    <color name="hintColorEditText">#808080</color>
+    <color name="errorColor">#FF0000</color>
 </resources>
