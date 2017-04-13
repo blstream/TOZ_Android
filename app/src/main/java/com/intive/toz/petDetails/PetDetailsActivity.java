@@ -3,6 +3,7 @@ package com.intive.toz.petDetails;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -50,5 +51,22 @@ public class PetDetailsActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
             }
         });
+
+        String messageName = getIntent().getStringExtra("petName");
+
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        ab.setTitle(messageName);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }

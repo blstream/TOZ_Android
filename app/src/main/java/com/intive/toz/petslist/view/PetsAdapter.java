@@ -100,8 +100,10 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
             int position = getAdapterPosition();
 
             String pet = petsList.get(position).getId();
+            String name = petsList.get(position).getName();
             Intent intent = new Intent(view.getContext(), PetDetailsActivity.class);
             intent.putExtra("petKey", pet);
+            intent.putExtra("petName", name);
             view.getContext().startActivity(intent);
         }
     }
