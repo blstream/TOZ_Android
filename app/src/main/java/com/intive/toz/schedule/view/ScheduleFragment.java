@@ -66,11 +66,7 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
         unbinder.unbind();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        titleTv.setText(pagerAdapter.getTitle(calendarVp.getCurrentItem()));
-    }
+ 
 
     @Override
     public ScheduleMvp.Presenter createPresenter() {
