@@ -26,6 +26,7 @@ public class NavigationTabsPresenter extends MvpBasePresenter<NavigationTabsView
         tabs.add(new Tab(R.string.navigation_tab_gallery, R.drawable.ic_pets_white_24dp, new PetsListFragment()));
         tabs.add(new Tab(R.string.navigation_tab_schedule, R.drawable.ic_today_white_24dp, ScheduleFragment.newInstance()));
 
+
         getView().showTabs(tabs);
     }
 

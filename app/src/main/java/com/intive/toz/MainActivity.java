@@ -1,5 +1,6 @@
 package com.intive.toz;
 
+
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
 import com.intive.toz.financial.view.FinancialActivity;
 import com.intive.toz.network.NetworkStateReceiver;
 
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -26,7 +29,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * FIXME Set proper name when implemented.
  * Main app screen.
  */
 public class MainActivity
@@ -112,6 +114,7 @@ public class MainActivity
         }
     }
 
+
     @Override
     public void networkAvailable() {
         snackbar.dismiss();
@@ -121,4 +124,5 @@ public class MainActivity
     public void networkUnavailable() {
         snackbar.show();
     }
+
 }
