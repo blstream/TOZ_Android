@@ -8,7 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public final class ApiClient {
 
-    static final String API_URL = "http://dev.patronage2017.intive-projects.com";
+//    static final String API_URL = "http://dev.patronage2017.intive-projects.com";
+    static final String API_URL = "https://intense-badlands-80645.herokuapp.com";
 
     private ApiClient() {
     }

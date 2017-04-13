@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/icon_left_right_margin"
                 android:layout_marginRight="@dimen/icon_left_right_margin"
-                android:src="@drawable/ic_pets_black_eror48dp" />
+                android:id="@+id/iv_pet_type" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
