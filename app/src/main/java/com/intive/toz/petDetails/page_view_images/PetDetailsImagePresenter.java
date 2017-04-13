@@ -9,13 +9,13 @@ import com.intive.toz.data.DataProvider;
  * Presenter for Pet Details.
  */
 
-public class PetDetailsImagePresenter extends MvpBasePresenter<PetDetailsImageView> {
+class PetDetailsImagePresenter extends MvpBasePresenter<PetDetailsImageView> {
 
     /**
      *  Load pet details.
      * @param petID pet id
      */
-    public void loadPetsDetails(final String petID) {
+    void loadPetsDetails(final String petID) {
         getView().showProgress();
         DataLoader dataLoader = new DataLoader();
 

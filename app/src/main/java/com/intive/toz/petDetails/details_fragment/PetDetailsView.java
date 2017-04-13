@@ -7,7 +7,7 @@ import com.intive.toz.Pet;
  *  pets list interface used to communicate with pets list fragment and presenter.
  */
 
-public interface PetDetailsView extends MvpView {
+interface PetDetailsView extends MvpView {
 
     /**
      * Show pet details.

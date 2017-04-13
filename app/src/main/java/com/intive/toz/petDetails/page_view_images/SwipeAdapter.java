@@ -5,43 +5,44 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.intive.toz.Pet;
-
 /**
- * Created by Krzysiek on 2017-04-09.
+ * Adaper to contains fragment - images.
  */
-
 public class SwipeAdapter extends FragmentStatePagerAdapter {
 
-    Pet pet;
-    String idAnimal;
+    private static final int NR_IMAGES = 10;
+    private String idPet;
 
-    public SwipeAdapter(FragmentManager fm) {
+    /**
+     * constructor SwipeAdapter.
+     * @param fm fragmentManager to change fragment in adapter.
+     */
+    public SwipeAdapter(final FragmentManager fm) {
         super(fm);
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(final int position) {
         Fragment fragment = new PetImagesFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("count", position + 1);
-        bundle.putString("idAnimal", idAnimal);
+        bundle.putString("idPet", idPet);
 
         fragment.setArguments(bundle);
 
         return fragment;
     }
 
-    public void setData(final Pet pet) {
-        this.pet = pet;
-    }
-
-    public void setAnimalId(String idAnimal) {
-        this.idAnimal = idAnimal;
+    /**
+     * method to send Id from Activity to Adapter.
+     * @param idPet contain id selected pet.
+     */
+    public void setPetId(final String idPet) {
+        this.idPet = idPet;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return NR_IMAGES;
     }
 }

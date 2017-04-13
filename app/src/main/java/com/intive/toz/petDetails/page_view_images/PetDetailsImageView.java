@@ -7,12 +7,11 @@ import com.intive.toz.Pet;
  *  pets list interface used to communicate with pets list fragment and presenter.
  */
 
-public interface PetDetailsImageView extends MvpView {
+interface PetDetailsImageView extends MvpView {
 
     /**
      * Show pet details.
      * @param pet pet object
-     * @param petCreatedDate pet created date
      */
     void showPetDetails(final Pet pet);
 

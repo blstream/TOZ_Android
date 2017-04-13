@@ -10,15 +10,15 @@ import com.intive.toz.data.DateFormatter;
  * Presenter for Pet Details.
  */
 
-public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
+class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
 
-    DateFormatter dateFormatter = new DateFormatter();
+    private DateFormatter dateFormatter = new DateFormatter();
 
     /**
      *  Load pet details.
      * @param petID pet id
      */
-    public void loadPetsDetails(final String petID) {
+    void loadPetsDetails(final String petID) {
         getView().showProgress();
         DataLoader dataLoader = new DataLoader();
 

@@ -1,6 +1,7 @@
 package com.intive.toz.petDetails.page_view_images;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+/**
+ * Fragment to display selected pet images with navigation.
+ */
 public class PetImagesFragment extends MvpFragment<PetDetailsImageView, PetDetailsImagePresenter>
         implements PetDetailsImageView {
 
@@ -31,37 +35,41 @@ public class PetImagesFragment extends MvpFragment<PetDetailsImageView, PetDetai
 
     private Unbinder unbinder;
 
+    /**
+     * empty constructor PetImagesFragment.
+     */
     public PetImagesFragment() {
         // Required empty public constructor
     }
 
+    @NonNull
     @Override
     public PetDetailsImagePresenter createPresenter() {
         return new PetDetailsImagePresenter();
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_pet_images, container, false);
 
         Bundle bundle = getArguments();
         message = Integer.toString(bundle.getInt("count"));
-        id = bundle.getString("idAnimal");
+        id = bundle.getString("idPet");
 
         return view;
     }
 
     @Override
-    public void showPetDetails(Pet pet) {
-        tvPage.setText(message + "/10");
+    public void showPetDetails(final Pet pet) {
+        tvPage.setText(String.format("%s/10", message));
         Glide.with(this)
                 .load(pet.getAddress())
                 .centerCrop()
@@ -81,7 +89,7 @@ public class PetImagesFragment extends MvpFragment<PetDetailsImageView, PetDetai
     }
 
     @Override
-    public void showError(Throwable e) {
+    public void showError(final Throwable e) {
 
     }
 
