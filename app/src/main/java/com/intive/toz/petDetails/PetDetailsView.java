@@ -12,8 +12,9 @@ public interface PetDetailsView extends MvpView {
     /**
      * Show pet details.
      * @param pet pet object
+     * @param petCreatedDate pet created date
      */
-    void showDetailsPet(final Pet pet);
+    void showPetDetails(final Pet pet, String petCreatedDate);
 
     /**
      * Show progress bar.

@@ -30,11 +30,14 @@ import butterknife.Unbinder;
 public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, List<Pet>,
         PetsListView, PetsListPresenter> implements PetsListView, SwipeRefreshLayout.OnRefreshListener  {
 
-    @BindView(R.id.recycler_view)
+    @BindView(R.id.contentView)
     RecyclerView petsRecyclerView;
 
     @BindView(R.id.loadingView)
     ProgressBar progress;
+
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private Unbinder unbinder;
     private PetsAdapter petsAdapter;
@@ -72,7 +75,7 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
     public void onViewCreated(final View view, final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
-        contentView.setOnRefreshListener(this);
+        swipeRefreshLayout.setOnRefreshListener(this);
         initPetsList();
         loadData(false);
     }
@@ -90,7 +93,8 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
 
     @Override
     protected String getErrorMessage(final Throwable e, final boolean pullToRefresh) {
-        return e.getMessage();
+        swipeRefreshLayout.setRefreshing(pullToRefresh);
+        return getString(R.string.connection_error);
     }
 
     @Override
@@ -106,13 +110,14 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
         loadData(true);
     }
 
     @Override
     public void showContent() {
         super.showContent();
-        contentView.setRefreshing(false);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

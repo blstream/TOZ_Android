@@ -2,8 +2,11 @@ package com.intive.toz;
 
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 
 import android.support.v4.view.ViewPager;
@@ -16,6 +19,7 @@ import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
 import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
 import com.intive.toz.financial.view.FinancialActivity;
+import com.intive.toz.network.NetworkStateReceiver;
 
 
 import java.util.List;
@@ -27,7 +31,9 @@ import butterknife.OnClick;
 /**
  * Main app screen.
  */
-public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabsPresenter> implements NavigationTabsView {
+public class MainActivity
+        extends MvpActivity<NavigationTabsView, NavigationTabsPresenter>
+        implements NavigationTabsView, NetworkStateReceiver.NetworkStateListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -38,7 +44,12 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
+    @BindView(R.id.root_view)
+    View rootView;
+
     private ViewPagerAdapter adapter;
+    private NetworkStateReceiver networkStateReceiver;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -46,7 +57,21 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initViews();
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
         getPresenter().loadNavigationTabs();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(networkStateReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(networkStateReceiver);
     }
 
     /**
@@ -72,6 +97,7 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
         setSupportActionBar(toolbar);
         tabLayout.setupWithViewPager(viewPager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        snackbar = Snackbar.make(rootView, getResources().getString(R.string.connection_problem), Snackbar.LENGTH_INDEFINITE);
     }
 
 
@@ -88,5 +114,15 @@ public class MainActivity extends MvpActivity<NavigationTabsView, NavigationTabs
         }
     }
 
+
+    @Override
+    public void networkAvailable() {
+        snackbar.dismiss();
+    }
+
+    @Override
+    public void networkUnavailable() {
+        snackbar.show();
+    }
 
 }

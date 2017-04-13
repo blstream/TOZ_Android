@@ -24,6 +24,14 @@ public interface DataProvider {
     void fetchPets(ResponseCallback<List<Pet>> listener);
 
     /**
+     *  Fetch just one object of News.
+     *
+     * @param listener the listener
+     * @param id id
+     */
+    void fetchDetailNews(ResponseCallback<News> listener, String id);
+
+    /**
      * Fetch pet.
      *
      * @param petID  pet id

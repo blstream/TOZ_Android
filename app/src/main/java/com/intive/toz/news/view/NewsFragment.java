@@ -34,8 +34,11 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     /**
      * The Recycler view.
      */
-    @BindView(R.id.recyclerView)
+    @BindView(R.id.contentView)
     RecyclerView recyclerView;
+
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private Unbinder unbinder;
     private NewsAdapter adapter;
@@ -60,8 +63,7 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     public void onViewCreated(final View view, @Nullable final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
-        contentView.setOnRefreshListener(this);
-
+        swipeRefreshLayout.setOnRefreshListener(this);
         adapter = new NewsAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -82,13 +84,16 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
 
     @Override
     public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
         loadData(true);
     }
 
     @Override
     protected String getErrorMessage(final Throwable e, final boolean pullToRefresh) {
-        return e.getMessage();
+        swipeRefreshLayout.setRefreshing(pullToRefresh);
+        return getString(R.string.connection_error);
     }
+
 
     @Override
     @NonNull
@@ -110,7 +115,7 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     @Override
     public void showContent() {
         super.showContent();
-        contentView.setRefreshing(false);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

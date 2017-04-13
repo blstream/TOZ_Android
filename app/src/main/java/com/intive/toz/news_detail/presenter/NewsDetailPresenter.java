@@ -1,42 +1,42 @@
-package com.intive.toz.petDetails;
+package com.intive.toz.news_detail.presenter;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 import com.intive.toz.data.DateFormatter;
+import com.intive.toz.news.model.News;
+import com.intive.toz.news_detail.view.NewsDetailView;
+
+
 
 /**
- * Presenter for Pet Details.
+ *  Presenter for NewsDetail.
  */
-
-public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
+public class NewsDetailPresenter extends MvpBasePresenter<NewsDetailView> {
 
     DateFormatter dateFormatter = new DateFormatter();
 
     /**
-     *  Load pet details.
-     * @param petID pet id
+     *  Load all details of given news object.
+     * @param id id of news object
      */
-    public void loadPetsDetails(final String petID) {
+    public void loadDetailNews(final String id) {
         getView().showProgress();
         DataLoader dataLoader = new DataLoader();
-
-        dataLoader.fetchPetDetails(petID, new DataProvider.ResponseCallback<Pet>() {
+        dataLoader.fetchDetailNews(new DataProvider.ResponseCallback<News>() {
             @Override
-            public void onSuccess(final Pet pet) {
+            public void onSuccess(final News news) {
                 if (isViewAttached()) {
                     getView().hideProgress();
-                    getView().showPetDetails(pet, dateFormatter.convertToDate(pet.getCreated()));
+                    getView().showDetailNews(news, dateFormatter.convertToDate(news.getCreated()));
                 }
             }
-
             @Override
             public void onError(final Throwable e) {
                 if (isViewAttached()) {
                     getView().showError(e);
                 }
             }
-        });
+        }, id);
     }
 }
