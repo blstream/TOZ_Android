@@ -66,8 +66,6 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
         unbinder.unbind();
     }
 
- 
-
     @Override
     public ScheduleMvp.Presenter createPresenter() {
         return new SchedulePresenter();
