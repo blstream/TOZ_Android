@@ -6,9 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.intive.toz.common.view.calendar.view.WeekFragment;
 
-import java.util.Date;
-import java.util.List;
-
 /**
  * The type Calendar adapter.
  */
@@ -16,7 +13,7 @@ public class CalendarAdapter extends FragmentPagerAdapter {
     /**
      * The constant WEEKS.
      */
-    public static final int WEEKS = 3;
+    private static final int WEEKS = 3;
 
     /**
      * Instantiates a new Calendar adapter.
@@ -56,14 +53,5 @@ public class CalendarAdapter extends FragmentPagerAdapter {
         return ((WeekFragment) getItem(position)).getTitle(position);
     }
 
-    /**
-     * Gets week.
-     *
-     * @param position the position
-     * @return the week
-     */
-    public List<Date> getWeek(final int position) {
-        return ((WeekFragment) getItem(position)).getWeek(position);
-    }
 
 }

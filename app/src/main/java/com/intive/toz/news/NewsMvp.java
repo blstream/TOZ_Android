@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface NewsMvp {
     /**
-     * The interface View.
+     * The interface ButtonsView.
      */
     interface View extends MvpLceView<List<News>> {
     }
