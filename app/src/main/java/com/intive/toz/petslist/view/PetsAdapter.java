@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.intive.toz.Pet;
+import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
 import com.intive.toz.petDetails.PetDetailsActivity;
 

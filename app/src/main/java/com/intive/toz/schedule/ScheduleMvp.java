@@ -8,7 +8,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView;
  */
 public interface ScheduleMvp {
     /**
-     * The interface View.
+     * The interface ButtonsView.
      */
     interface View extends MvpView {
         /**
