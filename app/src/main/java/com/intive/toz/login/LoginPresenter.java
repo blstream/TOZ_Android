@@ -9,10 +9,13 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
 public class LoginPresenter extends MvpBasePresenter<LoginView> {
 
+
     AuthValidator validator = new AuthValidator();
+
     /**
-     *  Validate user login and password.
-     * @param login login
+     * Validate user login and password.
+     *
+     * @param login    login
      * @param password password
      */
     public void validateUser(final String login, final String password) {
@@ -30,6 +33,7 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
         }
         if (validator.isAllValid()) {
             //successful validation
+            Session.logIn();
             getView().onLoginSuccessful();
         }
         getView().hideProgress();

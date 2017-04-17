@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- *  LoginActivity.
+ * LoginActivity.
  */
 public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implements LoginView {
 
@@ -54,6 +54,7 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
 
     /**
      * Create LoginPresenter.
+     *
      * @return presenter
      */
     public LoginPresenter createPresenter() {
@@ -63,12 +64,15 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Session.isLogged()) {
+            onLoginSuccessful();
+        }
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
     }
 
     /**
-     *  Validate user when login button clicked.
+     * Validate user when login button clicked.
      */
     @OnClick(R.id.button_login)
     public void onLoginButtonClick() {
@@ -137,7 +141,6 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
 
 
 }
