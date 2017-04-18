@@ -67,12 +67,6 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        titleTv.setText(pagerAdapter.getTitle(calendarVp.getCurrentItem()));
-    }
-
-    @Override
     public ScheduleMvp.Presenter createPresenter() {
         return new SchedulePresenter();
     }
@@ -100,7 +94,14 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        titleTv.setText(pagerAdapter.getTitle(calendarVp.getCurrentItem()));
+    }
+
+    @Override
     public void configCalendar() {
+
         pagerAdapter = new CalendarAdapter(getChildFragmentManager());
         calendarVp.setAdapter(pagerAdapter);
         calendarVp.setCurrentItem(1);

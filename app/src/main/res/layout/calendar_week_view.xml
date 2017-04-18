@@ -10,4 +10,33 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:numColumns="7" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="rano" />
+
+    <GridView
+        android:id="@+id/morning_buttons_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:numColumns="7" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="popołudniu" />
+
+    <GridView
+        android:id="@+id/afternoon_buttons_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:numColumns="7" />
+
 </LinearLayout>

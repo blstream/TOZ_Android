@@ -1,7 +1,7 @@
 package com.intive.toz.petDetails.page_view_images;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.intive.toz.Pet;
+import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 
