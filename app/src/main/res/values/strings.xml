@@ -35,4 +35,10 @@
     <string name="calendar_delete_dialog_cancel_button">POWRÓT</string>
     <string name="calendar_info_dialog_cancel_button">POWRÓT</string>
     <string name="user_calendar_button_name">JA</string>
+
+    <!--pet galerry details-->
+    <string name="pet_detail_name">Imię</string>
+    <string name="pet_detail_type">Typ</string>
+    <string name="pet_detail_sex">Płeć</string>
+    <string name="pet_detail_date_add">Data dodania</string>
 </resources>
