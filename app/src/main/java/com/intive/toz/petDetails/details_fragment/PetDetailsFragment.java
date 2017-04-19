@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails;
+package com.intive.toz.petDetails.details_fragment;
 
 
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
@@ -37,8 +36,8 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @BindView(R.id.date_pet_details)
     TextView dateTv;
 
-    @BindView(R.id.image_pet_details)
-    ImageView image;
+    @BindView(R.id.iv_pet_type)
+    ImageView typeIv;
 
     @BindView(R.id.description_pet_details)
     TextView descriptionTv;
@@ -81,7 +80,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         unbinder = ButterKnife.bind(this, view);
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -95,13 +93,14 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         dateTv.setText(petCreatedDate);
         sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
-        Glide.with(this)
-                .load(pet.getImageUrl())
-                .centerCrop()
-                .placeholder(R.color.colorAccent)
-                .error(R.color.colorAccent)
-                .into(image);
 
+        if (pet.getType().contains("DOG")) {
+            typeIv.setImageResource(R.drawable.ic_pets_black_eror48dp);
+        } else if (pet.getType().contains("CAT")) {
+            typeIv.setImageResource(R.drawable.ic_cat);
+        } else {
+            typeIv.setImageResource(R.drawable.ic_pets_black_eror48dp);
+        }
     }
 
     @Override

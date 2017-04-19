@@ -1,11 +1,47 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        android:name="com.intive.toz.petDetails.PetDetailsFragment"
-        android:id="@+id/detail_pets_fragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</android.support.design.widget.CoordinatorLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_images_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <ImageButton
+                android:id="@+id/left_nav"
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
+                android:layout_gravity="center_vertical|left"
+                android:layout_marginLeft="@dimen/arrow_margin_left_right"
+                android:src="@drawable/arrow_left_nav"
+                android:background="#00000000"/>
+
+            <ImageButton
+                android:id="@+id/right_nav"
+                android:layout_width="@dimen/arrow_size"
+                android:layout_height="@dimen/arrow_size"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="@dimen/arrow_margin_left_right"
+                android:src="@drawable/arrow_right_nav"
+                android:background="#00000000" />
+
+        </FrameLayout>
+
+        <fragment
+            android:id="@+id/detail_pets_fragment"
+            android:name="com.intive.toz.petDetails.details_fragment.PetDetailsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</ScrollView>

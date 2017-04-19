@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails;
+package com.intive.toz.petDetails.page_view_images;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.petslist.model.Pet;
@@ -7,14 +7,13 @@ import com.intive.toz.petslist.model.Pet;
  *  pets list interface used to communicate with pets list fragment and presenter.
  */
 
-public interface PetDetailsView extends MvpView {
+interface PetDetailsImageView extends MvpView {
 
     /**
      * Show pet details.
      * @param pet pet object
-     * @param petCreatedDate pet created date
      */
-    void showPetDetails(final Pet pet, String petCreatedDate);
+    void showPetDetails(final Pet pet);
 
     /**
      * Show progress bar.
