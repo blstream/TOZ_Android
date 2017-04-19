@@ -19,6 +19,7 @@ import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
 import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
 import com.intive.toz.financial.view.FinancialActivity;
+import com.intive.toz.login.Session;
 import com.intive.toz.network.NetworkStateReceiver;
 
 
@@ -125,4 +126,10 @@ public class MainActivity
         snackbar.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Session.logOut();
+    }
 }

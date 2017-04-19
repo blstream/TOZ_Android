@@ -5,6 +5,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.intive.toz.login.Session;
+
 /**
  * The type Toz application.
  */
@@ -15,6 +17,7 @@ public class TozApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        Session.session(getApplicationContext());
     }
 
     /**
