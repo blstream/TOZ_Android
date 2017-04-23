@@ -17,6 +17,13 @@ public class Pet implements Serializable {
     private long lastModified;
 
     /**
+     * @return created date Pet.
+     */
+    public long getCreated() {
+        return created;
+    }
+
+    /**
      * @return imgUrl of Pet.
      */
     public String getImageUrl() {
