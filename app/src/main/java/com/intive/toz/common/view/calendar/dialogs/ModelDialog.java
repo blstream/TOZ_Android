@@ -1,12 +1,16 @@
 package com.intive.toz.common.view.calendar.dialogs;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.intive.toz.R;
@@ -21,43 +25,37 @@ import butterknife.OnClick;
 
 public class ModelDialog extends DialogFragment {
 
+    private static final double WINDOW_WIDTH = 0.80;
+
     @BindView(R.id.data_dialog)
     TextView dataDialog;
+
     @BindView(R.id.title_dialog)
     TextView titleDialog;
+
     @BindView(R.id.description_dialog)
     TextView descriptionDialog;
-    @BindView(R.id.dialog_btn1)
-    Button cancelButton;
-    @BindView(R.id.dialog_btn2)
-    Button actionButton;
 
+    @BindView(R.id.dialog_btn1)
+    TextView cancelButton;
+
+    @BindView(R.id.dialog_btn2)
+    TextView actionButton;
 
     private int state;
     private String title;
     private String date;
     private String userName;
 
-   /* private String dateToPass;
-    private boolean isMorning;
-    private int week;*/
-
-
     /**
      * New instance dialog fragment.
      *
      * @param state     the state
-     * @param date      the date
-     * @param week      the week
-     * @param isMorning the is Morning
      * @return the dialog fragment
      */
-    public static ModelDialog newInstance(final int state, final String date, final int week, final boolean isMorning) {
+    public static ModelDialog newInstance(final int state) {
         Bundle arguments = new Bundle();
         arguments.putInt("DIALOG", state);
-        arguments.putString("DATE", date);
-        arguments.putBoolean("MORNING", isMorning);
-        arguments.putInt("WEEK", week);
         ModelDialog dialogFragment = new ModelDialog();
         dialogFragment.setArguments(arguments);
         return dialogFragment;
@@ -67,11 +65,27 @@ public class ModelDialog extends DialogFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         state = getArguments().getInt("DIALOG");
-        /*dateToPass = getArguments().getString("DATE");
-        week = getArguments().getInt("WEEK");
-        isMorning = getArguments().getBoolean("MORNING");*/
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Window window = getDialog().getWindow();
+        Point size = new Point();
+
+        Display display;
+        if (window != null) {
+            display = window.getWindowManager().getDefaultDisplay();
+            display.getSize(size);
+
+            int width = size.x;
+
+            window.setLayout((int) (width * WINDOW_WIDTH), WindowManager.LayoutParams.WRAP_CONTENT);
+            window.setGravity(Gravity.CENTER);
+        }
+
+    }
 
     @Nullable
     @Override
@@ -114,11 +128,6 @@ public class ModelDialog extends DialogFragment {
      */
     @OnClick(R.id.dialog_btn2)
     public void action() {
-
-       /* if (state == 2) {
-        } else {
-        }
-       */
         dismiss();
     }
 
@@ -150,19 +159,12 @@ public class ModelDialog extends DialogFragment {
                 cancelButton.setText(R.string.calendar_delete_dialog_cancel_button);
                 break;
             default:
-
                 titleDialog.setText(title);
                 dataDialog.setText(date);
                 descriptionDialog.setText(R.string.calendar_info_save_dialog);
                 cancelButton.setText(R.string.calendar_save_dialog_cancel_button);
                 actionButton.setText(R.string.calendar_save_dialog_save_button);
                 break;
-
-
         }
-
-
     }
-
-
 }

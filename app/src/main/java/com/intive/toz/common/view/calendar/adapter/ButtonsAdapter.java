@@ -1,18 +1,14 @@
 package com.intive.toz.common.view.calendar.adapter;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.intive.toz.R;
 import com.intive.toz.common.view.calendar.model.ReservedDay;
+import com.intive.toz.common.view.circular_text_view.CircularTextView;
 
 import java.util.List;
 
@@ -26,11 +22,9 @@ public class ButtonsAdapter extends BaseAdapter {
     /**
      * The Button calendar.
      */
-    @BindView(R.id.roundButton)
-    ImageView button;
 
     @BindView(R.id.textRoundButton)
-    TextView textView;
+    CircularTextView textView;
 
     private Context context;
     private List<ReservedDay> buttons;
@@ -79,18 +73,20 @@ public class ButtonsAdapter extends BaseAdapter {
         ReservedDay d = (ReservedDay) getItem(position);
         int state = isMorning ? d.getStateMorning() : d.getStateAfternoon();
         String name = isMorning ? d.getUserNameMorning() : d.getUserNameAfternoon();
+        textView.setStrokeColor(R.color.black);
+        textView.setStrokeWidth(1);
         switch (state) {
             case 1:
-                button.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
+                textView.setSolidColor(R.color.busy);
                 textView.setText(name);
                 break;
             case 2:
-                button.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.colorPrimaryDark), PorterDuff.Mode.MULTIPLY);
+                textView.setSolidColor(R.color.my);
                 textView.setText(R.string.user_calendar_button_name);
                 break;
             default:
-                button.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.whiteText), PorterDuff.Mode.MULTIPLY);
-                textView.setText("");
+                textView.setSolidColor(R.color.free);
+                textView.setText("  ");
                 break;
         }
 

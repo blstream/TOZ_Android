@@ -28,7 +28,7 @@ public final class DialogFactory {
      * @return dialog
      */
     public static ModelDialog infoDialog(final String name) {
-        ModelDialog dialog = ModelDialog.newInstance(1, getDate(day), week, isMorning);
+        ModelDialog dialog = ModelDialog.newInstance(1);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
@@ -42,7 +42,7 @@ public final class DialogFactory {
      * @return dialog
      */
     public static ModelDialog deleteDialog(final String name) {
-        ModelDialog dialog = ModelDialog.newInstance(2, getDate(day), week, isMorning);
+        ModelDialog dialog = ModelDialog.newInstance(2);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
@@ -55,7 +55,7 @@ public final class DialogFactory {
      * @return dialog
      */
     public static ModelDialog saveDialog() {
-        ModelDialog dialog = ModelDialog.newInstance(0, getDate(day), week, isMorning);
+        ModelDialog dialog = ModelDialog.newInstance(0);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         return dialog;
