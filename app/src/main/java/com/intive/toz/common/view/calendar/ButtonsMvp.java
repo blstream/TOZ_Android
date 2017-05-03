@@ -31,16 +31,9 @@ public interface ButtonsMvp {
          * check calendar date state.
          *
          * @param position the position
-         * @param day
+         * @param day the day
          */
         void checkDate(int position, Date day, int week, boolean isMorning);
-
-        /**
-         * set calendar date state.
-         *
-         * @param date the date
-         */
-        void setDate(String date, int week, boolean isSaved, boolean isMorning);
 
     }
 
@@ -62,7 +55,7 @@ public interface ButtonsMvp {
         /**
          * show dialog.
          *
-         * @param dialog
+         * @param dialog the dialog
          */
         void showDialog(DialogFragment dialog);
 

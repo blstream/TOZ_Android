@@ -4,21 +4,21 @@ package com.intive.toz.login;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
 /**
- * Created by K on 2017-04-03.
+ * Class login presenter.
  */
 
-public class LoginPresenter extends MvpBasePresenter<LoginView> {
+class LoginPresenter extends MvpBasePresenter<LoginView> {
 
 
-    AuthValidator validator = new AuthValidator();
+    private AuthValidator validator = new AuthValidator();
 
     /**
-     * Validate user login and password.
+     * ValidateForm user login and password.
      *
      * @param login    login
      * @param password password
      */
-    public void validateUser(final String login, final String password) {
+    void validateUser(final String login, final String password) {
         getView().hideErrorViews();
         getView().showProgress();
         if (login.isEmpty()) {

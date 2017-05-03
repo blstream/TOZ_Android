@@ -1,6 +1,7 @@
 package com.intive.toz.login;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.MainActivity;
 import com.intive.toz.R;
+import com.intive.toz.form.FormActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,14 +51,15 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
-    private String login = null;
-    private String password = null;
+    @BindView(R.id.button_form_info)
+    Button formInfo;
 
     /**
      * Create LoginPresenter.
      *
      * @return presenter
      */
+    @NonNull
     public LoginPresenter createPresenter() {
         return new LoginPresenter();
     }
@@ -72,12 +75,12 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     }
 
     /**
-     * Validate user when login button clicked.
+     * ValidateForm user when login button clicked.
      */
     @OnClick(R.id.button_login)
     public void onLoginButtonClick() {
-        login = usernameInput.getText().toString();
-        password = passwordInput.getText().toString();
+        String login = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
         presenter.validateUser(login, password);
     }
 
@@ -139,6 +142,15 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @OnClick(R.id.button_bypass_login)
     public void onBypassLoginButtonClicked() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Start form information activity.
+     */
+    @OnClick(R.id.button_form_info)
+    public void onFormInfoActivity() {
+        Intent intent = new Intent(this, FormActivity.class);
         startActivity(intent);
     }
 
