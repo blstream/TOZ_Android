@@ -35,8 +35,9 @@ public final class Session {
 
     /**
      * Set session log in.
+     * @param jwt to keep login jwt in preferences.
      */
-    public static void logIn(String jwt) {
+    public static void logIn(final String jwt) {
         editor.putBoolean("loggedState", true);
         editor.putString("jwt", jwt);
         editor.commit();

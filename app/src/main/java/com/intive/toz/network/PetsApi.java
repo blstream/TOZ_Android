@@ -1,7 +1,7 @@
 package com.intive.toz.network;
 
 
-import com.intive.toz.info.model.info;
+import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.news.model.News;
@@ -52,7 +52,7 @@ public interface PetsApi {
      * @return /financial.json
      */
     @GET("/organization/info")
-    Call<info> getFinancialInfo();
+    Call<Info> getFinancialInfo();
 
     /**
      * Get one object of detailed news by Id.

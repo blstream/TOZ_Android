@@ -2,7 +2,7 @@ package com.intive.toz.info;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
-import com.intive.toz.info.model.info;
+import com.intive.toz.info.model.Info;
 import com.intive.toz.network.PetsApi;
 
 /**
@@ -31,7 +31,7 @@ public interface FinancialMvp {
          *
          * @param financial object class FinancialData
          */
-        void setFinancialData(info financial);
+        void setFinancialData(Info financial);
 
         /**
          * show progress bar in financial activity.

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
 import com.intive.toz.info.FinancialMvp;
-import com.intive.toz.info.model.info;
+import com.intive.toz.info.model.Info;
 import com.intive.toz.info.presenter.FinancialPresenter;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
@@ -59,7 +59,7 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
      * set financial data to textviews.
      * @param financialResponse financial response from server.
      */
-    public void setFinancialData(final info financialResponse) {
+    public void setFinancialData(final Info financialResponse) {
         accountNumber.setText(financialResponse.getBankAccount().getNumber());
         name.setText(financialResponse.getName());
         cityCode.setText(financialResponse.getAddress().getPostCode()

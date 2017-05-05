@@ -1,29 +1,51 @@
 package com.intive.toz.info.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Model information about TOZ with nested objects.
  */
 
-public class info {
+public class Info {
 
+    @SerializedName("name")
     private String name;
-    private bankAccount bankAccount;
-    private contact contact;
-    private address address;
+    @SerializedName("bankAccount")
+    private BankAccount bankAccount;
+    @SerializedName("contact")
+    private Contact contact;
+    @SerializedName("address")
+    private Address adres;
 
+    /**
+     * getter name department.
+     * @return name.
+     */
     public String getName() {
         return name;
     }
 
-    public com.intive.toz.info.model.address getAddress() {
-        return address;
+    /**
+     * getter object address.
+     * @return address object.
+     */
+    public Address getAddress() {
+        return adres;
     }
 
-    public com.intive.toz.info.model.bankAccount getBankAccount() {
+    /**
+     * getter object address.
+     * @return address object.
+     */
+    public BankAccount getBankAccount() {
         return bankAccount;
     }
 
-    public com.intive.toz.info.model.contact getContact() {
+    /**
+     * getter object contact.
+     * @return contact object.
+     */
+    public Contact getContact() {
         return contact;
     }
 }

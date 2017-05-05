@@ -1,12 +1,16 @@
 package com.intive.toz.login.model;
 
 /**
- * Created by Krzysiek on 2017-05-05.
+ * model jwt token from login response.
  */
 
 public class Jwt {
     String jwt;
 
+    /**
+     * getter jwt.
+     * @return jwt.
+     */
     public String getJwt() {
         return jwt;
     }
