@@ -5,7 +5,7 @@ package com.intive.toz.login.model;
  */
 
 public class Jwt {
-    String jwt;
+    private String jwt;
 
     /**
      * getter jwt.
