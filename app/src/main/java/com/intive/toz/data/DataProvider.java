@@ -1,10 +1,9 @@
 package com.intive.toz.data;
 
+import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -43,11 +42,11 @@ public interface DataProvider {
     void fetchPetDetails(String petID, ResponseCallback<Pet> listener);
 
     /**
-     * Checking login account on server and response with jwt.
+     * Checking login account on server and response with Jwt.
      * @param listener object response from server.
      * @param loginObj object contain email and password.
      */
-    void fetchResponseLogin(ResponseLoginCallback<JSONObject> listener, Login loginObj);
+    void fetchResponseLogin(ResponseLoginCallback<Jwt> listener, Login loginObj);
 
     /**
      * The interface On data received listener.

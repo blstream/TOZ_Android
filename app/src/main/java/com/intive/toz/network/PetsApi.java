@@ -1,12 +1,11 @@
 package com.intive.toz.network;
 
 
-import com.intive.toz.financial.model.FinancialData;
+import com.intive.toz.info.model.info;
+import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -52,8 +51,8 @@ public interface PetsApi {
      *
      * @return /financial.json
      */
-    @GET("/financial")
-    Call<FinancialData> getFinancialInfo();
+    @GET("/organization/info")
+    Call<info> getFinancialInfo();
 
     /**
      * Get one object of detailed news by Id.
@@ -70,7 +69,7 @@ public interface PetsApi {
      * @return response body from server in JSON format.
      */
     @POST("/tokens/acquire")
-    Call<JSONObject> login(@Body Login loginObj);
+    Call<Jwt> login(@Body Login loginObj);
 }
 
 

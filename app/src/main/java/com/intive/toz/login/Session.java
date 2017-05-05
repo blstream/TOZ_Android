@@ -36,8 +36,9 @@ public final class Session {
     /**
      * Set session log in.
      */
-    public static void logIn() {
+    public static void logIn(String jwt) {
         editor.putBoolean("loggedState", true);
+        editor.putString("jwt", jwt);
         editor.commit();
     }
 
@@ -46,7 +47,15 @@ public final class Session {
      */
     public static void logOut() {
         editor.putBoolean("loggedState", false);
+        editor.putString("jwt", "");
         editor.commit();
     }
 
+    /**
+     * get jwt from session.
+     * @return String jwt.
+     */
+    public static String getJwt() {
+        return preferences.getString("jwt", "");
+    }
 }

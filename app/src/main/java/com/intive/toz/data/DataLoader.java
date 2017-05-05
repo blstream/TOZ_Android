@@ -1,13 +1,12 @@
 package com.intive.toz.data;
 
 import com.intive.toz.R;
+import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -95,10 +94,10 @@ public class DataLoader implements DataProvider {
     }
 
     @Override
-    public void fetchResponseLogin(final ResponseLoginCallback<JSONObject> listener, final Login loginObj) {
-        api.login(loginObj).enqueue(new Callback<JSONObject>() {
+    public void fetchResponseLogin(final ResponseLoginCallback<Jwt> listener, final Login loginObj) {
+        api.login(loginObj).enqueue(new Callback<Jwt>() {
             @Override
-            public void onResponse(final Call<JSONObject> call, final Response<JSONObject> response) {
+            public void onResponse(final Call<Jwt> call, final Response<Jwt> response) {
                 if (response.isSuccessful()) { // 201
                     listener.onSuccess(response.body());
                 } else if (response.code() == ERROR_CODE_VALIDATION) {
@@ -120,7 +119,7 @@ public class DataLoader implements DataProvider {
             }
 
             @Override
-            public void onFailure(final Call<JSONObject> call, final Throwable t) {
+            public void onFailure(final Call<Jwt> call, final Throwable t) {
                 listener.onError(t);
             }
         });

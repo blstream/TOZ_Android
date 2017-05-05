@@ -4,9 +4,8 @@ package com.intive.toz.login;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
+import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
-
-import org.json.JSONObject;
 
 /**
  * class to get input data from screen and send them to server.
@@ -47,16 +46,18 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
 
     /**
      * method to checking response from server according to sending login and password.
+     *
      * @param loginObj object which contain email and password from input screen.
      */
     private void validateFromServer(final Login loginObj) {
         DataLoader dataLoader = new DataLoader();
 
-        dataLoader.fetchResponseLogin(new DataProvider.ResponseLoginCallback<JSONObject>() {
+        dataLoader.fetchResponseLogin(new DataProvider.ResponseLoginCallback<Jwt>() {
             @Override
-            public void onSuccess(final JSONObject jsonObjectLoginResponse) {
+            public void onSuccess(final Jwt response) {
                 if (isViewAttached()) {
-                    Session.logIn();
+                    String jwt = response.getJwt();
+                    Session.logIn(jwt);
                     getView().onLoginSuccessful();
                 }
             }
