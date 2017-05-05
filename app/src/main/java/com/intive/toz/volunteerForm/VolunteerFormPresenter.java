@@ -1,4 +1,4 @@
-package com.intive.toz.form;
+package com.intive.toz.volunteerForm;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
@@ -6,9 +6,9 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 /**
  * Presenter Form class.
  */
-class FormPresenter extends MvpBasePresenter<FormMvp.FormView> implements FormMvp.Presenter {
+class VolunteerFormPresenter extends MvpBasePresenter<VolunteerFormMvp.FormView> implements VolunteerFormMvp.Presenter {
 
-    private ValidateForm validateForm = new ValidateForm();
+    private ValidateVolunteerForm validateForm = new ValidateVolunteerForm();
 
     @Override
     public boolean validate(final String name, final String surname, final String phone, final String email) {

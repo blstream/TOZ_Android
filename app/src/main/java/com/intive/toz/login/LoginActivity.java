@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.MainActivity;
 import com.intive.toz.R;
-import com.intive.toz.form.FormActivity;
+import com.intive.toz.volunteerForm.VolunteerFormActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -150,7 +150,7 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
      */
     @OnClick(R.id.button_form_info)
     public void onFormInfoActivity() {
-        Intent intent = new Intent(this, FormActivity.class);
+        Intent intent = new Intent(this, VolunteerFormActivity.class);
         startActivity(intent);
     }
 

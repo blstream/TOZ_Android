@@ -1,4 +1,4 @@
-package com.intive.toz.form;
+package com.intive.toz.volunteerForm;
 
 import android.util.Patterns;
 
@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * Class for Validate form.
  */
-class ValidateForm {
+class ValidateVolunteerForm {
     private Pattern pattern;
     private Matcher matcher;
     private static final  String NAME_PATTERN = "^[ [a-zA-Z][żźćńółęąśŻŹĆĄŚĘŁÓŃ]?]{1,35}$";
@@ -19,7 +19,7 @@ class ValidateForm {
     /**
      * Class constructor.
      */
-    ValidateForm() {
+    ValidateVolunteerForm() {
     }
 
     /**

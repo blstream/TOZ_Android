@@ -1,4 +1,4 @@
-package com.intive.toz.form;
+package com.intive.toz.volunteerForm;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
@@ -7,7 +7,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView;
 /**
  * Interface for Form MVP.
  */
-interface FormMvp {
+interface VolunteerFormMvp {
 
     /**
      * Interface for presenter.

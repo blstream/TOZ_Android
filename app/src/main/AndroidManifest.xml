@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".form.FormActivity"
+            android:name=".volunteerForm.VolunteerFormActivity"
             android:theme="@style/MainTheme.Base">
         </activity>
     </application>

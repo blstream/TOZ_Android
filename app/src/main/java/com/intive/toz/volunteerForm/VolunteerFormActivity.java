@@ -1,4 +1,4 @@
-package com.intive.toz.form;
+package com.intive.toz.volunteerForm;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import butterknife.OnClick;
 /**
  * Form Activity class.
  */
-public class FormActivity extends MvpActivity<FormMvp.FormView, FormMvp.Presenter> implements FormMvp.FormView {
+public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView, VolunteerFormMvp.Presenter> implements VolunteerFormMvp.FormView {
 
 
     @BindView(R.id.name)
@@ -50,14 +50,14 @@ public class FormActivity extends MvpActivity<FormMvp.FormView, FormMvp.Presente
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form);
+        setContentView(R.layout.activity_volunteer_form);
         ButterKnife.bind(this);
     }
 
     @NonNull
     @Override
-    public FormMvp.Presenter createPresenter() {
-        return new FormPresenter();
+    public VolunteerFormMvp.Presenter createPresenter() {
+        return new VolunteerFormPresenter();
     }
 
 
@@ -98,7 +98,7 @@ public class FormActivity extends MvpActivity<FormMvp.FormView, FormMvp.Presente
     @Override
     public void showSaveInfo() {
         final int delayTime = 2000;
-        AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(VolunteerFormActivity.this);
         builder.setMessage("Zgłoszenie zostało wysłane")
                 .setCancelable(false);
         final AlertDialog alert = builder.create();
@@ -117,27 +117,27 @@ public class FormActivity extends MvpActivity<FormMvp.FormView, FormMvp.Presente
     @Override
     public void setErrorName(final boolean isEmpty) {
         if (isEmpty) {
-            name.setError("Pole wymagane");
+            name.setError(getString(R.string.form_error_empty_field));
         } else {
-            name.setError("Niepoprawne dane");
+            name.setError(getString(R.string.form_error_incorrect_data));
         }
     }
 
     @Override
     public void setErrorSurname(final boolean isEmpty) {
         if (isEmpty) {
-            surname.setError("Pole wymagane");
+            surname.setError(getString(R.string.form_error_empty_field));
         } else {
-            surname.setError("Niepoprawne dane");
+            surname.setError(getString(R.string.form_error_incorrect_data));
         }
     }
 
     @Override
     public void setErrorPhone(final boolean isEmpty) {
         if (isEmpty) {
-            phoneNumber.setError("Pole wymagane");
+            phoneNumber.setError(getString(R.string.form_error_empty_field));
         } else {
-            phoneNumber.setError("Niepoprawne dane");
+            phoneNumber.setError(getString(R.string.form_error_incorrect_data));
         }
 
     }
@@ -145,9 +145,9 @@ public class FormActivity extends MvpActivity<FormMvp.FormView, FormMvp.Presente
     @Override
     public void setErrorEmail(final boolean isEmpty) {
         if (isEmpty) {
-            email.setError("Pole wymagane");
+            email.setError(getString(R.string.form_error_empty_field));
         } else {
-            email.setError("Niepoprawne dane");
+            email.setError(getString(R.string.form_error_incorrect_data));
         }
     }
 
