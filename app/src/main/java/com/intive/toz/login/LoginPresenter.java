@@ -72,6 +72,7 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
                     Session.logIn(jwt, scopes[0].toString());
 
                     getView().onLoginSuccessful();
+
                 }
             }
 
