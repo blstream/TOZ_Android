@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Model contact with us.
+ * Model Contact with us.
  */
 
-public class contact implements Serializable{
+public class Contact implements Serializable {
     @SerializedName("email")
     private String email;
     @SerializedName("phone")
@@ -19,7 +19,7 @@ public class contact implements Serializable{
     private String website;
 
     /**
-     * getter email, part object info.
+     * getter email, part object Info.
      * @return email.
      */
     public String getEmail() {
@@ -27,7 +27,7 @@ public class contact implements Serializable{
     }
 
     /**
-     * getter fax, part object info.
+     * getter fax, part object Info.
      * @return fax.
      */
     public int getFax() {
@@ -35,7 +35,7 @@ public class contact implements Serializable{
     }
 
     /**
-     * getter phone, part object info.
+     * getter phone, part object Info.
      * @return phone.
      */
     public int getPhone() {
@@ -43,7 +43,7 @@ public class contact implements Serializable{
     }
 
     /**
-     * getter website, part object info.
+     * getter website, part object Info.
      * @return website.
      */
     public String getWebsite() {

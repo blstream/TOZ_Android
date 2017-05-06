@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Model bank account information. part info.
+ * Model bank account information. part Info.
  */
 
-public class bankAccount implements Serializable{
+public class BankAccount implements Serializable {
     @SerializedName("number")
     private String number;
     @SerializedName("bankName")
     private String bankName;
 
     /**
-     * getter bank name, part object info.
+     * getter bank name, part object Info.
      * @return bank name.
      */
     public String getBankName() {
@@ -23,7 +23,7 @@ public class bankAccount implements Serializable{
     }
 
     /**
-     * getter bank number, part object info.
+     * getter bank number, part object Info.
      * @return bank number.
      */
     public String getNumber() {

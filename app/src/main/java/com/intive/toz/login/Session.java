@@ -35,9 +35,11 @@ public final class Session {
 
     /**
      * Set session log in.
-     * @param jwt to keep login jwt in preferences.
+     * @param jwt to keep token in preferences.
+     * @param scope to keep who is logged in preferences.
      */
-    public static void logIn(final String jwt, String scope) {
+
+    public static void logIn(final String jwt, final String scope) {
         editor.putBoolean("loggedState", true);
         editor.putString("jwt", jwt);
         editor.putString("scope", scope);

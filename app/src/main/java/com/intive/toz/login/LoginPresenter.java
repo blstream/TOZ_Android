@@ -61,13 +61,13 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
                 if (isViewAttached()) {
                     String jwt = response.getJwt();
 
-                    JWT Obj = new JWT(jwt);
+                    JWT objectJwt = new JWT(jwt);
 
-                    String sub = Obj.getSubject();
-                    String email = Obj.getClaim("email").asString();
-                    String[] scopes = Obj.getClaim("scopes").asArray(String.class);
-                    Date iat = Obj.getIssuedAt();
-                    Date exp = Obj.getExpiresAt();
+                    String sub = objectJwt.getSubject();
+                    String email = objectJwt.getClaim("email").asString();
+                    String[] scopes = objectJwt.getClaim("scopes").asArray(String.class);
+                    Date iat = objectJwt.getIssuedAt();
+                    Date exp = objectJwt.getExpiresAt();
 
                     Session.logIn(jwt, scopes[0].toString());
 

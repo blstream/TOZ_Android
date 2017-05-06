@@ -51,7 +51,7 @@ public interface PetsApi {
      *
      * @return /financial.json
      */
-    @GET("/organization/info")
+    @GET("/organization/Info")
     Call<Info> getFinancialInfo();
 
     /**

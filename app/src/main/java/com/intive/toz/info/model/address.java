@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Model address.
+ * Model Address.
  */
 
-public class address implements Serializable{
+public class Address implements Serializable {
     @SerializedName("postCode")
     private String postCode;
     @SerializedName("city")
@@ -23,15 +23,15 @@ public class address implements Serializable{
     private int apartmentNumber;
 
     /**
-     * getter address, part object info.
-     * @return address.
+     * getter Address, part object Info.
+     * @return Address.
      */
     public String getPostCode() {
         return postCode;
     }
 
     /**
-     * getter nr apartment, part object info.
+     * getter nr apartment, part object Info.
      * @return apartment.
      */
     public int getApartmentNumber() {
@@ -39,7 +39,7 @@ public class address implements Serializable{
     }
 
     /**
-     * getter city, part object info.
+     * getter city, part object Info.
      * @return city.
      */
     public String getCity() {
@@ -47,7 +47,7 @@ public class address implements Serializable{
     }
 
     /**
-     * getter country, part object info.
+     * getter country, part object Info.
      * @return country.
      */
     public String getCountry() {
@@ -55,7 +55,7 @@ public class address implements Serializable{
     }
 
     /**
-     * getter house number, part object info.
+     * getter house number, part object Info.
      * @return house number.
      */
     public int getHouseNumber() {
@@ -63,7 +63,7 @@ public class address implements Serializable{
     }
 
     /**
-     * getter Street, part object info.
+     * getter Street, part object Info.
      * @return street.
      */
     public String getStreet() {
