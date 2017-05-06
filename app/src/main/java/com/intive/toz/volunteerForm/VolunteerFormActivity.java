@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import android.support.design.widget.TextInputEditText;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -25,16 +27,16 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
 
 
     @BindView(R.id.name)
-    EditText name;
+    TextInputEditText name;
 
     @BindView(R.id.surname)
-    EditText surname;
+    TextInputEditText surname;
 
     @BindView(R.id.email)
     EditText email;
 
     @BindView(R.id.phoneNumber)
-    EditText phoneNumber;
+    TextInputEditText phoneNumber;
 
 
     @BindView(R.id.radioVolunteer)
@@ -52,6 +54,7 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_form);
         ButterKnife.bind(this);
+        phoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
 
     @NonNull
@@ -83,7 +86,6 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
             presenter.sendData(userData, volunteer.isChecked());
 
         }
-
 
     }
 

@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 class ValidateVolunteerForm {
     private Pattern pattern;
     private Matcher matcher;
-    private static final  String NAME_PATTERN = "^[ [a-zA-Z][żźćńółęąśŻŹĆĄŚĘŁÓŃ]?]{1,35}$";
-    private static final  String EMAIL_PATTERN = "^[[0-9][_.-]]?$";
-    private static final  String PHONE_PATTERN = "^[0-9]{9,11}$";
+    private static final String NAME_PATTERN = "^[ [a-zA-Z][żźćńółęąśŻŹĆĄŚĘŁÓŃ]?]{1,35}$";
+    private static final String EMAIL_PATTERN_FIRST_CHARACTER = "^[[0-9][_.-]]?$";
+    private static final String PHONE_PATTERN = "^[0-9]{9,11}$";
 
     /**
      * Class constructor.
@@ -42,7 +42,7 @@ class ValidateVolunteerForm {
      */
     boolean email(final String email) {
         if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            pattern = Pattern.compile(EMAIL_PATTERN);
+            pattern = Pattern.compile(EMAIL_PATTERN_FIRST_CHARACTER);
             matcher = pattern.matcher(email.substring(0, 1));
             return !matcher.matches();
         } else {
@@ -53,10 +53,11 @@ class ValidateVolunteerForm {
     /**
      * Function to validate phone number.
      *
-     * @param number is number
+     * @param phoneNumber is number
      * @return state of validate
      */
-    boolean phoneNumber(final String number) {
+    boolean phoneNumber(final String phoneNumber) {
+        String number = phoneNumber.replaceAll("\\s", "");
         pattern = Pattern.compile(PHONE_PATTERN);
         matcher = pattern.matcher(number);
         return matcher.matches();

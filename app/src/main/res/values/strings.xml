@@ -46,7 +46,7 @@
     <string name="pet_detail_date_add">Data dodania</string>
 
     <!--form for volunteer-->
-    <string name="title_activity_form">Zgłoszenie</string>
+    <string name="title_activity_volunteer_form">Zgłoszenie</string>
     <string name="action_settings">Settings</string>
     <string name="form_user_name">Imię</string>
     <string name="form_user_surname">Nazwisko</string>
