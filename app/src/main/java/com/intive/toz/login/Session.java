@@ -37,9 +37,10 @@ public final class Session {
      * Set session log in.
      * @param jwt to keep login jwt in preferences.
      */
-    public static void logIn(final String jwt) {
+    public static void logIn(final String jwt, String scope) {
         editor.putBoolean("loggedState", true);
         editor.putString("jwt", jwt);
+        editor.putString("scope", scope);
         editor.commit();
     }
 
@@ -49,6 +50,7 @@ public final class Session {
     public static void logOut() {
         editor.putBoolean("loggedState", false);
         editor.putString("jwt", "");
+        editor.putString("scope", "");
         editor.commit();
     }
 
@@ -58,5 +60,13 @@ public final class Session {
      */
     public static String getJwt() {
         return preferences.getString("jwt", "");
+    }
+
+    /**
+     * get subject user login.
+     * @return subject.
+     */
+    public static String getScope() {
+        return preferences.getString("scope", "");
     }
 }

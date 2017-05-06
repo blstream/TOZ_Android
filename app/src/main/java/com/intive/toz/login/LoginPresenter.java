@@ -1,11 +1,14 @@
 package com.intive.toz.login;
 
 
+import com.auth0.android.jwt.JWT;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
+
+import java.util.Date;
 
 /**
  * class to get input data from screen and send them to server.
@@ -57,7 +60,17 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
             public void onSuccess(final Jwt response) {
                 if (isViewAttached()) {
                     String jwt = response.getJwt();
-                    Session.logIn(jwt);
+
+                    JWT Obj = new JWT(jwt);
+
+                    String sub = Obj.getSubject();
+                    String email = Obj.getClaim("email").asString();
+                    String[] scopes = Obj.getClaim("scopes").asArray(String.class);
+                    Date iat = Obj.getIssuedAt();
+                    Date exp = Obj.getExpiresAt();
+
+                    Session.logIn(jwt, scopes[0].toString());
+
                     getView().onLoginSuccessful();
                 }
             }
