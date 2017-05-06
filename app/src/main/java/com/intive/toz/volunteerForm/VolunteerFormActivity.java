@@ -33,7 +33,7 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
     TextInputEditText surname;
 
     @BindView(R.id.email)
-    EditText email;
+    TextInputEditText email;
 
     @BindView(R.id.phoneNumber)
     TextInputEditText phoneNumber;
