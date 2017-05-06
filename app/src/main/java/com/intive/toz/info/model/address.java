@@ -2,11 +2,13 @@ package com.intive.toz.info.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Model Address.
  */
 
-public class Address {
+public class Address implements Serializable{
     @SerializedName("postCode")
     private String postCode;
     @SerializedName("city")

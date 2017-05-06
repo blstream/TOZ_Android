@@ -22,7 +22,7 @@ public class FinancialPresenter extends MvpBasePresenter<FinancialMvp.FinancialV
      */
     public void loadFinancialData(final PetsApi financialService) {
         getView().showProgres();
-        Call call = financialService.getFinancialInfo();
+        Call<Info> call = financialService.getFinancialInfo();
         call.enqueue(new Callback<Info>() {
             @Override
             public void onResponse(final Call<Info> call, final Response<Info> response) {

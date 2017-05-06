@@ -2,11 +2,13 @@ package com.intive.toz.info.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Model information about TOZ with nested objects.
  */
 
-public class Info {
+public class Info implements Serializable{
 
     @SerializedName("name")
     private String name;

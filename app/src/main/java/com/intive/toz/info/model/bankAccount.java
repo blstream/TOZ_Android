@@ -2,11 +2,13 @@ package com.intive.toz.info.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Model bank account information. part Info.
  */
 
-public class BankAccount {
+public class BankAccount implements Serializable{
     @SerializedName("number")
     private String number;
     @SerializedName("bankName")

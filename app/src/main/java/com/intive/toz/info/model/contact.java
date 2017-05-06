@@ -2,11 +2,13 @@ package com.intive.toz.info.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Model Contact with us.
  */
 
-public class Contact {
+public class Contact implements Serializable{
     @SerializedName("email")
     private String email;
     @SerializedName("phone")
