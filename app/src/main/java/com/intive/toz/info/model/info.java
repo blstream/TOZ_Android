@@ -16,11 +16,11 @@ public class Info implements Serializable {
     private BankAccount bankAccount;
     @SerializedName("contact")
     private Contact contact;
-    @SerializedName("Address")
+    @SerializedName("address")
     private Address adres;
 
     /**
-     * getter name department.
+     * getter name institution.
      * @return name.
      */
     public String getName() {
