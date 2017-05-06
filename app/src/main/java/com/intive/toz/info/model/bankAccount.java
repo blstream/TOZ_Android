@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Model bank account information. part Info.
+ * Model bank account information. part info.
  */
 
-public class BankAccount implements Serializable{
+public class bankAccount implements Serializable{
     @SerializedName("number")
     private String number;
     @SerializedName("bankName")

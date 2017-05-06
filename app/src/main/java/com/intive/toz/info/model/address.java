@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Model Address.
+ * Model address.
  */
 
-public class Address implements Serializable{
+public class address implements Serializable{
     @SerializedName("postCode")
     private String postCode;
     @SerializedName("city")

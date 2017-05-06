@@ -8,16 +8,16 @@ import java.io.Serializable;
  * Model information about TOZ with nested objects.
  */
 
-public class Info implements Serializable{
+public class info implements Serializable{
 
     @SerializedName("name")
     private String name;
     @SerializedName("bankAccount")
-    private BankAccount bankAccount;
+    private com.intive.toz.info.model.bankAccount bankAccount;
     @SerializedName("contact")
-    private Contact contact;
+    private com.intive.toz.info.model.contact contact;
     @SerializedName("address")
-    private Address adres;
+    private address adres;
 
     /**
      * getter name department.
@@ -31,7 +31,7 @@ public class Info implements Serializable{
      * getter object address.
      * @return address object.
      */
-    public Address getAddress() {
+    public address getAddress() {
         return adres;
     }
 
@@ -39,7 +39,7 @@ public class Info implements Serializable{
      * getter object address.
      * @return address object.
      */
-    public BankAccount getBankAccount() {
+    public com.intive.toz.info.model.bankAccount getBankAccount() {
         return bankAccount;
     }
 
@@ -47,7 +47,7 @@ public class Info implements Serializable{
      * getter object contact.
      * @return contact object.
      */
-    public Contact getContact() {
+    public com.intive.toz.info.model.contact getContact() {
         return contact;
     }
 }

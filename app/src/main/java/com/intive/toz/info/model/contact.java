@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Model Contact with us.
+ * Model contact with us.
  */
 
-public class Contact implements Serializable{
+public class contact implements Serializable{
     @SerializedName("email")
     private String email;
     @SerializedName("phone")
