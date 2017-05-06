@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
