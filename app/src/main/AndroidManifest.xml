@@ -12,12 +12,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MainTheme.Base">
-        <activity android:name=".login.LoginActivity" android:windowSoftInputMode="adjustResize" android:theme="@style/AppTheme">
+        <activity
+            android:name=".login.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".financial.view.FinancialActivity"
@@ -28,10 +31,7 @@
         <activity
             android:name=".news_detail.view.NewsDetailActivity"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
