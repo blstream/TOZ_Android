@@ -115,4 +115,11 @@
         android:layout_height="wrap_content"
         android:text="@string/button_bypass_login"/>
 
+    <Button
+        android:id="@+id/button_test_acc"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="szybkie dane test konta"/>
+
 </LinearLayout>

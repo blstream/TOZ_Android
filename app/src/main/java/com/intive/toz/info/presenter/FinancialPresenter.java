@@ -1,10 +1,10 @@
-package com.intive.toz.financial.presenter;
+package com.intive.toz.info.presenter;
 
 import android.util.Log;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.intive.toz.financial.model.FinancialData;
-import com.intive.toz.financial.FinancialMvp;
+import com.intive.toz.info.FinancialMvp;
+import com.intive.toz.info.model.Info;
 import com.intive.toz.network.PetsApi;
 
 import retrofit2.Call;
@@ -22,10 +22,10 @@ public class FinancialPresenter extends MvpBasePresenter<FinancialMvp.FinancialV
      */
     public void loadFinancialData(final PetsApi financialService) {
         getView().showProgres();
-        Call call = financialService.getFinancialInfo();
-        call.enqueue(new Callback<FinancialData>() {
+        Call<Info> call = financialService.getFinancialInfo();
+        call.enqueue(new Callback<Info>() {
             @Override
-            public void onResponse(final Call<FinancialData> call, final Response<FinancialData> response) {
+            public void onResponse(final Call<Info> call, final Response<Info> response) {
                 Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
                     getView().setFinancialData(response.body());
@@ -34,7 +34,7 @@ public class FinancialPresenter extends MvpBasePresenter<FinancialMvp.FinancialV
             }
 
             @Override
-            public void onFailure(final Call<FinancialData> call, final Throwable t) {
+            public void onFailure(final Call<Info> call, final Throwable t) {
                 getView().hideProgres();
                 getView().showError();
                 Log.e("RESPONSE", "onFailure: ");
