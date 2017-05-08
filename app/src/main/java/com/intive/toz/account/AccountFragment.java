@@ -1,6 +1,7 @@
 package com.intive.toz.account;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -44,9 +45,10 @@ public class AccountFragment extends Fragment {
     }
 
     @OnClick(R.id.change_password_btn)
-    private void onChangePasswordClicked () {
-        ChangePasswordFragment changePasswordFragment = ChangePasswordFragment.newInstance();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, firstFragment).commit();
+    public void onChangePasswordClicked () {
+        Intent intent = new Intent(this.getActivity(), ChangePasswordActivity.class);
+        startActivity(intent);
+
+
     }
 }

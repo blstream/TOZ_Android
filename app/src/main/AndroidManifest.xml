@@ -31,7 +31,10 @@
         <activity
             android:name=".news_detail.view.NewsDetailActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".account.ChangePasswordActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

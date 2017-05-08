@@ -51,7 +51,10 @@
 
     <!--account-->
     <string name="change_password">Zmień hasło</string>
+    <string name="old_password_hint">Stare hasło</string>
+    <string name="new_password_hint">Nowe hasło</string>
+    <string name="repeat_new_password_hint">Powtórz nowe hasło</string>
+    <string name="confirm_change_password">ok</string>
+    <string name="cancel_change_password">anuluj</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
