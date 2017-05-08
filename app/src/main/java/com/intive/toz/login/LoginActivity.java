@@ -1,8 +1,10 @@
 package com.intive.toz.login;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.MainActivity;
 import com.intive.toz.R;
+import com.intive.toz.common.view.calendar.SnackbarFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,17 +49,23 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @BindView(R.id.button_bypass_login)
     Button bypassLoginButton;
 
+    @BindView(R.id.button_test_acc)
+    Button testAccLoginButton;
+
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
     private String login = null;
     private String password = null;
 
+    private Snackbar snackbar;
+
     /**
      * Create LoginPresenter.
      *
      * @return presenter
      */
+    @NonNull
     public LoginPresenter createPresenter() {
         return new LoginPresenter();
     }
@@ -142,5 +151,30 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         startActivity(intent);
     }
 
+    /**
+     * Temporary button to fast testing corrected input data.
+     */
+    @OnClick(R.id.button_test_acc)
+    public void onTestAccLoginButtonClicked() {
+        usernameInput.setText("VOLUNTEER_user0.email@gmail.com"); // for test
+        passwordInput.setText("VOLUNTEER_name_0"); // for test
+    }
 
+    /**
+     *  Snackbar to show forbidden and other error code in successfull response.
+     */
+    @Override
+    public void showErrorGeneral(final int codeString) {
+        snackbar = SnackbarFactory.getSnackbar(this, getString(codeString));
+        snackbar.show();
+    }
+
+    /**
+     * Snackbar to show failure request from server.
+     */
+    @Override
+    public void showError() {
+        snackbar = SnackbarFactory.getSnackbar(this, getString(R.string.auth_error_response));
+        snackbar.show();
+    }
 }

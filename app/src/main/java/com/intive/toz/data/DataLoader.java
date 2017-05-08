@@ -1,9 +1,12 @@
 package com.intive.toz.data;
 
-import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.R;
+import com.intive.toz.login.model.Jwt;
+import com.intive.toz.login.model.Login;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petslist.model.Pet;
 
 import java.util.List;
 
@@ -16,6 +19,11 @@ import retrofit2.Response;
  */
 public class DataLoader implements DataProvider {
     private final PetsApi api = ApiClient.getPetsApiService();
+
+    private static final int ERROR_CODE_VALIDATION = 400;
+    private static final int ERROR_CODE_INCORRECRT_USER_OR_PASSWORD = 401;
+    private static final int ERROR_CODE_FORBIDDEN = 403;
+    private static final int ERROR_CODE_NOT_FOUND = 404;
 
     @Override
     public void fetchNews(final ResponseCallback<List<News>> listener) {
@@ -60,6 +68,7 @@ public class DataLoader implements DataProvider {
                     listener.onSuccess(response.body());
                 }
             }
+
             @Override
             public void onFailure(final Call<News> call, final Throwable t) {
                 listener.onError(t);
@@ -79,6 +88,38 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<Pet> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void fetchResponseLogin(final ResponseLoginCallback<Jwt> listener, final Login loginObj) {
+        api.login(loginObj).enqueue(new Callback<Jwt>() {
+            @Override
+            public void onResponse(final Call<Jwt> call, final Response<Jwt> response) {
+                if (response.isSuccessful()) { // 201
+                    listener.onSuccess(response.body());
+                } else if (response.code() == ERROR_CODE_VALIDATION) {
+                    // Validation error
+                    listener.onErrorCode(R.string.auth_error_validation);
+                } else if (response.code() == ERROR_CODE_INCORRECRT_USER_OR_PASSWORD) {
+                    // Incorrect user or password - bad password
+                    listener.onErrorPassword();
+                } else if (response.code() == ERROR_CODE_FORBIDDEN) {
+                    // Forbidden
+                    listener.onErrorCode(R.string.auth_forbidden);
+                } else if (response.code() == ERROR_CODE_NOT_FOUND) {
+                    // Not found - bad login
+                    listener.onErrorLogin();
+                } else {
+                    // Handle other responses
+                    listener.onErrorCode(R.string.auth_error_response);
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Jwt> call, final Throwable t) {
                 listener.onError(t);
             }
         });
