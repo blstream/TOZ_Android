@@ -47,4 +47,8 @@
     <string name="pet_detail_type">Typ</string>
     <string name="pet_detail_sex">Płeć</string>
     <string name="pet_detail_date_add">Data dodania</string>
+
+    <!--kind of help-->
+    <string name="charity_payment">Wesprzyj TOZ finansowo</string>
+    <string name="volunteer">Zostań wolontariuszem TOZ</string>
 </resources>
