@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -95,6 +95,7 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         String login = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
         presenter.validateUser(login, password);
+
     }
 
     @Override
@@ -168,7 +169,7 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         startActivity(intent);
     }
 
-
+    /**
      * Temporary button to fast testing corrected input data.
      */
     @OnClick(R.id.button_test_acc)
@@ -176,6 +177,7 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         usernameInput.setText("VOLUNTEER_user0.email@gmail.com"); // for test
         passwordInput.setText("VOLUNTEER_name_0"); // for test
     }
+
 
     /**
      *  Snackbar to show forbidden and other error code in successfull response.

@@ -13,8 +13,6 @@ import java.util.Date;
 /**
  * class to get input data from screen and send them to server.
  */
-class LoginPresenter extends MvpBasePresenter<LoginView> {
-
 
 class LoginPresenter extends MvpBasePresenter<LoginView> {
 
