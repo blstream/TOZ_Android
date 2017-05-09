@@ -40,7 +40,8 @@
             android:layout_alignParentLeft="true"
             android:text="@string/auth_username_error"
             android:textColor="@color/errorColor"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            tools:ignore="RtlHardcoded" />
 
         <ImageView
             android:id="@+id/auth_username_icon_error"
@@ -49,7 +50,8 @@
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_report_problem_black_24dp"
             android:tint="@color/errorColor"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -82,7 +84,8 @@
             android:layout_alignParentLeft="true"
             android:text="@string/auth_password_error"
             android:textColor="@color/errorColor"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            tools:ignore="RtlHardcoded" />
 
         <ImageView
             android:id="@+id/auth_password_icon_error"
@@ -91,7 +94,8 @@
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_report_problem_black_24dp"
             android:tint="@color/errorColor"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -109,11 +113,17 @@
         android:text="@string/button_login_msg"/>
 
     <Button
-        android:id="@+id/button_bypass_login"
+    android:id="@+id/button_bypass_login"
+    android:textAllCaps="false"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/button_bypass_login"/>
+    <Button
+        android:id="@+id/button_form_info"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_bypass_login"/>
+        android:text="@string/form_button_reporting_to_volunteer"/>
 
     <Button
         android:id="@+id/button_test_acc"

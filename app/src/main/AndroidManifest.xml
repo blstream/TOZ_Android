@@ -12,12 +12,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MainTheme.Base">
-        <activity android:name=".login.LoginActivity" android:windowSoftInputMode="adjustResize" android:theme="@style/AppTheme">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".info.view.FinancialActivity"
@@ -28,10 +32,12 @@
         <activity
             android:name=".news_detail.view.NewsDetailActivity"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".volunteerForm.VolunteerFormActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_volunteer_form"
+            />
     </application>
 
 </manifest>
