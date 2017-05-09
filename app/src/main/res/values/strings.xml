@@ -24,6 +24,9 @@
     <string name="auth_username_error">Niepoprawny login</string>
     <string name="auth_empty_error">Puste pole</string>
     <string name="auth_password_error">Niepoprawne hasło</string>
+    <string name="auth_forbidden">Dostęp zabroniony.</string>
+    <string name="auth_error_response">Błąd odpowiedzi z serwera.</string>
+    <string name="auth_error_validation">Niepoprawnie wprowadzono login lub hasło</string>
 
     <string name="help_msg">CHCĘ POMÓC TOZ!</string>
     <!--snackbar-->

@@ -125,4 +125,11 @@
         android:layout_height="wrap_content"
         android:text="@string/form_button_reporting_to_volunteer"/>
 
+    <Button
+        android:id="@+id/button_test_acc"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="szybkie dane test konta"/>
+
 </LinearLayout>
