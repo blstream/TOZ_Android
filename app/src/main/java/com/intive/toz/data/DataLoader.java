@@ -126,17 +126,17 @@ public class DataLoader implements DataProvider {
     }
 
     @Override
-    public void fetchSchedule(final ResponseCallback<List<Schedule>> listener, final String from, final String to) {
-        api.getSchedule(from, to).enqueue(new Callback<List<Schedule>>() {
+    public void fetchSchedule(final ResponseCallback<Schedule> listener, final String from, final String to) {
+        api.getSchedule(from, to).enqueue(new Callback<Schedule>() {
             @Override
-            public void onResponse(final Call<List<Schedule>> call, final Response<List<Schedule>> response) {
+            public void onResponse(final Call<Schedule> call, final Response<Schedule> response) {
                 if (response.isSuccessful()) {
                     listener.onSuccess(response.body());
                 }
             }
 
             @Override
-            public void onFailure(final Call<List<Schedule>> call, final Throwable t) {
+            public void onFailure(final Call<Schedule> call, final Throwable t) {
                 listener.onError(t);
             }
         });

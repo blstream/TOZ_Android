@@ -1,6 +1,7 @@
 package com.intive.toz.common.view.calendar.presenter;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.common.view.calendar.WeekMvp;
@@ -16,7 +17,7 @@ import java.util.Date;
  * mvp presenter for calendar activity.
  */
 
-public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> implements WeekMvp.Presenter, DataProvider.ResponseCallback<List<Schedule>> {
+public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> implements WeekMvp.Presenter, DataProvider.ResponseCallback<Schedule> {
 
     @Override
     public void loadData(final int week) {
@@ -32,22 +33,17 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
         DialogFactory.isMorning = isMorning;
         DialogFactory.week = week;
 
-        ReservedDay reservedDay = getDateObjectReserved(day);
-
-        assert reservedDay != null;
-        int resoult = isMorning ? reservedDay.getStateMorning() : reservedDay.getStateAfternoon();
-        String name = isMorning ? reservedDay.getUserNameMorning() : reservedDay.getUserNameAfternoon();
-        switch (resoult) {
-            case 1:
-                getView().showDialog(DialogFactory.infoDialog(name));
-                break;
-            case 2:
-                getView().showDialog(DialogFactory.deleteDialog(name));
-                break;
-            default:
-                getView().showDialog(DialogFactory.saveDialog());
-                break;
-        }*/
+//        switch (resoult) {
+//            case 1:
+//                getView().showDialog(DialogFactory.infoDialog(name));
+//                break;
+//            case 2:
+//                getView().showDialog(DialogFactory.deleteDialog(name));
+//                break;
+//            default:
+//                getView().showDialog(DialogFactory.saveDialog());
+//                break;
+//        }
     }
 
     @Override
@@ -78,12 +74,13 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
     }
 
     @Override
-    public void onSuccess(final List<Schedule> response) {
+    public void onSuccess(final Schedule response) {
         //getView().setButtons(response.getReservations());
+        Log.d("TAG", String.valueOf(response.getConfigs().get(0).getDayOfWeek()));
     }
 
     @Override
     public void onError(final Throwable e) {
-
+        Log.d("TAG", e.getLocalizedMessage());
     }
 }

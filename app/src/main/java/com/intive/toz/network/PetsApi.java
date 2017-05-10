@@ -6,7 +6,6 @@ import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
-import com.intive.toz.financial.model.FinancialData;
 import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
@@ -16,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Interface json file.
@@ -80,7 +80,7 @@ public interface PetsApi {
      * @return the schedule
      */
     @GET("/schedule")
-    Call<List<Schedule>> getSchedule(@Path("from") String from, @Path("to") String to);
+    Call<Schedule> getSchedule(@Query("from") String from, @Query("to") String to);
 }
 
 

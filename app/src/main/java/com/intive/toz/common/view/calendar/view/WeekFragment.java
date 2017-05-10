@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-
 import android.support.v4.app.FragmentManager;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -14,12 +13,11 @@ import android.widget.GridView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
-import com.intive.toz.common.view.calendar.WeekMvp;
 import com.intive.toz.common.view.calendar.SnackbarFactory;
+import com.intive.toz.common.view.calendar.WeekMvp;
 import com.intive.toz.common.view.calendar.adapter.ButtonsAdapter;
-
-import com.intive.toz.common.view.calendar.presenter.WeekPresenter;
 import com.intive.toz.common.view.calendar.adapter.WeekAdapter;
+import com.intive.toz.common.view.calendar.presenter.WeekPresenter;
 import com.intive.toz.schedule.model.Reservation;
 
 import java.util.ArrayList;
@@ -109,12 +107,16 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
     public void onViewCreated(final View view, @Nullable final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
+
         List<Date> dates = getWeek(week);
         WeekAdapter adapter = new WeekAdapter(getContext(), dates);
+
         gridView.setAdapter(adapter);
         adapterMorning = new ButtonsAdapter(getContext(), true);
         adapterAfternoon = new ButtonsAdapter(getContext(), false);
-        presenter.loadData(week);
+
+        presenter.fetchSchedule(DateFormat.format("yyyy-MM-dd", getWeek(week).get(FIRST)).toString(),
+                DateFormat.format("yyyy-MM-dd", getWeek(week).get(LAST)).toString());
         fragmentManager = getFragmentManager();
     }
 

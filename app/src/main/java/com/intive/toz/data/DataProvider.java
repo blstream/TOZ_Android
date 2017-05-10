@@ -56,7 +56,7 @@ public interface DataProvider {
      * @param from     the from
      * @param to       the to
      */
-    void fetchSchedule(ResponseCallback<List<Schedule>> listener, String from, String to);
+    void fetchSchedule(ResponseCallback<Schedule> listener, String from, String to);
 
     /**
      * The interface On data received listener.
