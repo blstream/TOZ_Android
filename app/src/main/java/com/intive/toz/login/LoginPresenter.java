@@ -13,12 +13,13 @@ import java.util.Date;
 /**
  * class to get input data from screen and send them to server.
  */
+
 class LoginPresenter extends MvpBasePresenter<LoginView> {
 
     private AuthValidator validator = new AuthValidator();
 
     /**
-     * Validate user login and password.
+     * ValidateForm user login and password.
      *
      * @param login    login
      * @param password password

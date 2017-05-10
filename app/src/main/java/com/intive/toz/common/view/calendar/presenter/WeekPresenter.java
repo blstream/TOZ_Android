@@ -1,7 +1,6 @@
 package com.intive.toz.common.view.calendar.presenter;
 
 import android.text.format.DateFormat;
-import android.util.Log;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.common.view.calendar.ButtonsMvp;
 import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
@@ -61,24 +60,6 @@ public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> impl
         return null;
     }
 
-    @Override
-    public void setDate(final String date, final int week, final boolean isSaved, final boolean isMorning) {
-        int value = isSaved ? 2 : 0;
-        for (ReservedDay p : ReservedDayList.stateBtn) {
-            if (p.getDate().equals(date)) {
-                if (isMorning) {
-                    p.setStateMorning(value);
-                } else {
-                    p.setStateAfternoon(value);
-                }
-            }
-        }
-        if (isSaved) {
-            getView().showSnackbar();
-        }
-        loadData(week);
-        Log.e("BUTTONSPRESENTER", "ZAPISUJE");
-    }
 
     /**
      * Get date.
