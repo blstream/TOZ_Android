@@ -48,4 +48,32 @@
     <string name="pet_detail_type">Typ</string>
     <string name="pet_detail_sex">Płeć</string>
     <string name="pet_detail_date_add">Data dodania</string>
+
+    <!--form for volunteer-->
+    <string name="title_activity_volunteer_form">Zgłoszenie</string>
+    <string name="action_settings">Settings</string>
+    <string name="form_user_name">Imię</string>
+    <string name="form_user_surname">Nazwisko</string>
+    <string name="form_user_phone_number">Numer Telefonu</string>
+    <string name="form_user_email">Email</string>
+    <string name="form_I_want_be_volunteer">Chcę zostać wolonatariuszem.</string>
+    <string name="form_I_want_be_volunteer_home">Chcę zostać domem tymczasowym.</string>
+    <string name="form_cancel_button">Anuluj</string>
+    <string name="form_send_button">Wyślij</string>
+    <string name="form_button_reporting_to_volunteer">Zgłoszenie na wolonatariusza</string>
+    <string name="form_error_empty_field">Pole wymagane</string>
+    <string name="form_error_incorrect_data">Niepoprawne dane</string>
+
+    <!--account-->
+    <string name="title_activity_change_password">Zmiana hasła</string>
+    <string name="change_password">Zmień hasło</string>
+    <string name="old_password_hint">Stare hasło</string>
+    <string name="new_password_hint">Nowe hasło</string>
+    <string name="repeat_new_password_hint">Powtórz nowe hasło</string>
+    <string name="confirm_change_password">ok</string>
+    <string name="cancel_change_password">anuluj</string>
+    <string name="empty_field_error">Pole wymagane</string>
+    <string name="different_new_passwords_error">Wprowadzone hasła są różne</string>
+    <string name="wrong_password_error">Niepoprawne hasło</string>
+    <string name="too_long_password_error">Hasło powinno zawierać max 35 znaków</string>
 </resources>

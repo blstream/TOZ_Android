@@ -3,6 +3,7 @@ package com.intive.toz.account;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
@@ -41,6 +42,8 @@ public class ChangePasswordActivity extends MvpActivity<ChangePasswordMVP.Change
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         ButterKnife.bind(this);
     }
 
@@ -91,5 +94,13 @@ public class ChangePasswordActivity extends MvpActivity<ChangePasswordMVP.Change
     @Override
     public void showTooLongPasswordError() {
         newPassword.setError(getString(R.string.too_long_password_error));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

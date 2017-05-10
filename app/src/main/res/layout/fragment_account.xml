@@ -11,6 +11,8 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/whiteText"
         android:text="@string/change_password" />
 
 </RelativeLayout>
