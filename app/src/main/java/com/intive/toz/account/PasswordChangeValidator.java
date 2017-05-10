@@ -8,8 +8,10 @@ import java.util.Objects;
 
 class PasswordChangeValidator {
 
+    private static final int MAX_LENGTH = 35;
+
     boolean isLengthOfPasswordValid(final String password) {
-        return password.length() > 0 && password.length() <= 35;
+        return password.length() > 0 && password.length() <= MAX_LENGTH;
     }
 
     /**
@@ -18,7 +20,7 @@ class PasswordChangeValidator {
      * @param repeatNewPassword  repeated new password
      * @return true if both passwords are different.
      */
-    boolean areNewPasswordsDifferent (final String newPassword, final String repeatNewPassword) {
+    boolean areNewPasswordsDifferent(final String newPassword, final String repeatNewPassword) {
         return !Objects.equals(newPassword, repeatNewPassword);
     }
 

@@ -13,7 +13,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
+/**
+ * Acitivity for changing password formular.
+ */
 public class ChangePasswordActivity extends MvpActivity<ChangePasswordMVP.ChangePasswordView,
         ChangePasswordPresenter> implements ChangePasswordMVP.ChangePasswordView {
 
@@ -39,7 +41,7 @@ public class ChangePasswordActivity extends MvpActivity<ChangePasswordMVP.Change
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -47,6 +49,9 @@ public class ChangePasswordActivity extends MvpActivity<ChangePasswordMVP.Change
         ButterKnife.bind(this);
     }
 
+    /**
+     * Validate input passwords on button clicked.
+     */
     @OnClick(R.id.confirm_change_password)
     public void onChangePasswordClicked() {
         presenter.validatePassword(oldPassword.getText().toString(),
@@ -54,6 +59,9 @@ public class ChangePasswordActivity extends MvpActivity<ChangePasswordMVP.Change
                                     repeatNewPassword.getText().toString());
     }
 
+    /**
+     * Go back to account tab when cancel button clicked.
+     */
     @OnClick(R.id.cancel_change_password)
     public void onCancelButtonClicked() {
         finish();

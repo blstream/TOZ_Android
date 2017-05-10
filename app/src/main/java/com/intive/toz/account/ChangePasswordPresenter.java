@@ -7,7 +7,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
  * Presenter for ChangePasswordActivity.
  */
 
-public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.ChangePasswordView>{
+public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.ChangePasswordView> {
 
     private boolean allInputsCorrect;
     PasswordChangeValidator validator = new PasswordChangeValidator();
@@ -20,9 +20,9 @@ public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.
         checkLengthOfPassword(newPassword);
         validateOldPassword(oldPassword);
         assertOldDifferentThanNew(oldPassword, newPassword);
-        if(allInputsCorrect) {
-            //TODO makeRequestToChangePassword - requires backend
-        }
+        //TODO makeRequestToChangePassword - requires backend
+       /* if (allInputsCorrect) {
+        }*/
     }
 
     void checkForEmptyFields(final String oldPassword, final String newPassword,
@@ -42,11 +42,12 @@ public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.
     }
 
     void assertNewPasswordEqualsRepeatedNewPassword(final String newPassword, final String repeatedNewPassword) {
-        if (!newPassword.isEmpty() && !repeatedNewPassword.isEmpty() &&
-                validator.areNewPasswordsDifferent(newPassword, repeatedNewPassword)) {
+        if (!newPassword.isEmpty()
+                && !repeatedNewPassword.isEmpty()
+                && validator.areNewPasswordsDifferent(newPassword, repeatedNewPassword)) {
             allInputsCorrect = false;
             getView().showDifferentNewPasswordsError();
-        } else if (!newPassword.isEmpty() && !repeatedNewPassword.isEmpty()){
+        } else if (!newPassword.isEmpty() && !repeatedNewPassword.isEmpty()) {
             getView().hideDifferentNewPasswordsError();
         }
     }

@@ -27,13 +27,17 @@ public class AccountFragment extends Fragment {
 
     private Unbinder unbinder;
 
+    /**
+     * Create new Instance of AccountFragment.
+     * @return new Instance of AccountFragment.
+     */
     public static AccountFragment newInstance() {
         return new AccountFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
@@ -44,8 +48,12 @@ public class AccountFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
     }
 
+
+    /**
+     * Start Activity on changePassword button clicked.
+     */
     @OnClick(R.id.change_password_btn)
-    public void onChangePasswordClicked () {
+    public void onChangePasswordClicked() {
         Intent intent = new Intent(this.getActivity(), ChangePasswordActivity.class);
         startActivity(intent);
     }
