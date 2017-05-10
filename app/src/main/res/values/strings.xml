@@ -56,5 +56,9 @@
     <string name="repeat_new_password_hint">Powtórz nowe hasło</string>
     <string name="confirm_change_password">ok</string>
     <string name="cancel_change_password">anuluj</string>
+    <string name="empty_field_error">Pole wymagane</string>
+    <string name="different_new_passwords_error">Wprowadzone hasła są różne</string>
+    <string name="wrong_password_error">Niepoprawne hasło</string>
+    <string name="too_long_password_error">Hasło powinno zawierać max 35 znaków</string>
 
 </resources>

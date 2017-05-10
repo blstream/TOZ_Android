@@ -48,7 +48,5 @@ public class AccountFragment extends Fragment {
     public void onChangePasswordClicked () {
         Intent intent = new Intent(this.getActivity(), ChangePasswordActivity.class);
         startActivity(intent);
-
-
     }
 }
