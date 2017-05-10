@@ -4,6 +4,7 @@ import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
@@ -79,6 +80,23 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<Pet> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void fetchSchedule(final ResponseCallback<List<Schedule>> listener, final String from, final String to) {
+        api.getSchedule(from, to).enqueue(new Callback<List<Schedule>>() {
+            @Override
+            public void onResponse(final Call<List<Schedule>> call, final Response<List<Schedule>> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<List<Schedule>> call, final Throwable t) {
                 listener.onError(t);
             }
         });

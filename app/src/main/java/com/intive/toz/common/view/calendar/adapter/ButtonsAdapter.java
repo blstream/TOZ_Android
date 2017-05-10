@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.intive.toz.R;
-import com.intive.toz.common.view.calendar.model.ReservedDay;
 import com.intive.toz.common.view.circular_text_view.CircularTextView;
+import com.intive.toz.schedule.model.Reservation;
 
 import java.util.List;
 
@@ -27,19 +27,17 @@ public class ButtonsAdapter extends BaseAdapter {
     CircularTextView textView;
 
     private Context context;
-    private List<ReservedDay> buttons;
+    private List<Reservation> buttons;
     private final boolean isMorning;
 
     /**
      * Instantiates a new Buttons adapter.
      *
      * @param context the context
-     * @param buttons the buttons
      * @param isMorning the is morning
      */
-    public ButtonsAdapter(final Context context, final List<ReservedDay> buttons, final boolean isMorning) {
+    public ButtonsAdapter(final Context context, final boolean isMorning) {
         this.context = context;
-        this.buttons = buttons;
         this.isMorning = isMorning;
     }
 
@@ -69,26 +67,22 @@ public class ButtonsAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
 
-
-        ReservedDay d = (ReservedDay) getItem(position);
-        int state = isMorning ? d.getStateMorning() : d.getStateAfternoon();
-        String name = isMorning ? d.getUserNameMorning() : d.getUserNameAfternoon();
         textView.setStrokeColor(R.color.black);
         textView.setStrokeWidth(1);
-        switch (state) {
-            case 1:
-                textView.setSolidColor(R.color.busy);
-                textView.setText(name);
-                break;
-            case 2:
-                textView.setSolidColor(R.color.my);
-                textView.setText(R.string.user_calendar_button_name);
-                break;
-            default:
-                textView.setSolidColor(R.color.free);
-                textView.setText("  ");
-                break;
-        }
+//        switch (state) {
+//            case 1:
+//                textView.setSolidColor(R.color.busy);
+//                textView.setText(name);
+//                break;
+//            case 2:
+//                textView.setSolidColor(R.color.my);
+//                textView.setText(R.string.user_calendar_button_name);
+//                break;
+//            default:
+//                textView.setSolidColor(R.color.free);
+//                textView.setText("  ");
+//                break;
+//        }
 
         return view;
     }
@@ -105,7 +99,7 @@ public class ButtonsAdapter extends BaseAdapter {
      *
      * @param buttons the buttons
      */
-    public void setButtons(final List<ReservedDay> buttons) {
+    public void setButtons(final List<Reservation> buttons) {
         this.buttons = buttons;
     }
 }

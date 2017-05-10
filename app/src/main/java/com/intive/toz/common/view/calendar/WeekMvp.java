@@ -4,7 +4,7 @@ import android.support.v4.app.DialogFragment;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
-import com.intive.toz.common.view.calendar.model.ReservedDay;
+import com.intive.toz.schedule.model.Reservation;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  * interface for Presenter and ButtonsView.
  */
 
-public interface ButtonsMvp {
+public interface WeekMvp {
 
     /**
      * interface to presenter.
@@ -42,6 +42,8 @@ public interface ButtonsMvp {
          */
         void setDate(String date, int week, boolean isSaved, boolean isMorning);
 
+        void fetchSchedule(String from, String to);
+
     }
 
     /**
@@ -56,7 +58,7 @@ public interface ButtonsMvp {
          * @param reservedDays the reserved days
          */
 
-        void setButtons(List<ReservedDay> reservedDays);
+        void setButtons(List<Reservation> reservedDays);
 
 
         /**

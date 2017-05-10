@@ -14,15 +14,13 @@ import android.widget.GridView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
-import com.intive.toz.common.view.calendar.ButtonsMvp;
+import com.intive.toz.common.view.calendar.WeekMvp;
 import com.intive.toz.common.view.calendar.SnackbarFactory;
 import com.intive.toz.common.view.calendar.adapter.ButtonsAdapter;
 
-
-import com.intive.toz.common.view.calendar.model.ReservedDay;
-import com.intive.toz.common.view.calendar.model.ReservedDayList;
 import com.intive.toz.common.view.calendar.presenter.WeekPresenter;
 import com.intive.toz.common.view.calendar.adapter.WeekAdapter;
+import com.intive.toz.schedule.model.Reservation;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,7 +35,7 @@ import butterknife.Unbinder;
 /**
  * The type Week fragment.
  */
-public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp.Presenter> implements ButtonsMvp.ButtonsView {
+public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Presenter> implements WeekMvp.ButtonsView {
 
     /**
      * The constant FIRST.
@@ -114,29 +112,10 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
         List<Date> dates = getWeek(week);
         WeekAdapter adapter = new WeekAdapter(getContext(), dates);
         gridView.setAdapter(adapter);
-        setDateArray();
-        List<ReservedDay> reservedDays = getReservedDays(week);
-        adapterMorning = new ButtonsAdapter(getContext(), reservedDays, true);
-        adapterAfternoon = new ButtonsAdapter(getContext(), reservedDays, false);
+        adapterMorning = new ButtonsAdapter(getContext(), true);
+        adapterAfternoon = new ButtonsAdapter(getContext(), false);
         presenter.loadData(week);
         fragmentManager = getFragmentManager();
-    }
-
-    private List<ReservedDay> getReservedDays(final int week) {
-        return ReservedDayList.newInstance(week);
-    }
-
-    /**
-     * Set date array.
-     */
-    public void setDateArray() {
-        List<Date> dates = new ArrayList<>();
-        for (int i = 0; i < WEEKS; i++) {
-            for (Date d : getWeek(i)) {
-                dates.add(d);
-            }
-        }
-        ReservedDayList.setDateButtons(dates);
     }
 
     /**
@@ -210,12 +189,12 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
     }
 
     @Override
-    public ButtonsMvp.Presenter createPresenter() {
+    public WeekMvp.Presenter createPresenter() {
         return new WeekPresenter();
     }
 
     @Override
-    public void setButtons(final List<ReservedDay> reservedDayList) {
+    public void setButtons(final List<Reservation> reservedDayList) {
         adapterMorning.clear();
         adapterAfternoon.clear();
 

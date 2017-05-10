@@ -1,27 +1,27 @@
 package com.intive.toz.common.view.calendar.presenter;
 
 import android.text.format.DateFormat;
-import android.util.Log;
+
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.intive.toz.common.view.calendar.ButtonsMvp;
+import com.intive.toz.common.view.calendar.WeekMvp;
 import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
-import com.intive.toz.common.view.calendar.model.ReservedDay;
-import com.intive.toz.common.view.calendar.model.ReservedDayList;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
  * mvp presenter for calendar activity.
  */
 
-public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> implements ButtonsMvp.Presenter {
-
+public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> implements WeekMvp.Presenter, DataProvider.ResponseCallback<List<Schedule>> {
 
     @Override
     public void loadData(final int week) {
 
-        getView().setButtons(ReservedDayList.newInstance(week));
     }
 
 
@@ -33,12 +33,7 @@ public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> impl
         DialogFactory.isMorning = isMorning;
         DialogFactory.week = week;
 
-        ReservedDay reservedDay = getDateObjectReserved(day);
-
-        assert reservedDay != null;
-        int resoult = isMorning ? reservedDay.getStateMorning() : reservedDay.getStateAfternoon();
-        String name = isMorning ? reservedDay.getUserNameMorning() : reservedDay.getUserNameAfternoon();
-        switch (resoult) {
+        /*switch (result) {
             case 1:
                 getView().showDialog(DialogFactory.infoDialog(name));
                 break;
@@ -48,36 +43,22 @@ public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> impl
             default:
                 getView().showDialog(DialogFactory.saveDialog());
                 break;
-        }
-    }
-
-    private ReservedDay getDateObjectReserved(final Date day) {
-        String date = getDate(day);
-        for (ReservedDay p : ReservedDayList.stateBtn) {
-            if (p.getDate().equals(date)) {
-                return p;
-            }
-        }
-        return null;
+        }*/
     }
 
     @Override
     public void setDate(final String date, final int week, final boolean isSaved, final boolean isMorning) {
-        int value = isSaved ? 2 : 0;
-        for (ReservedDay p : ReservedDayList.stateBtn) {
-            if (p.getDate().equals(date)) {
-                if (isMorning) {
-                    p.setStateMorning(value);
-                } else {
-                    p.setStateAfternoon(value);
-                }
-            }
-        }
+
         if (isSaved) {
             getView().showSnackbar();
         }
         loadData(week);
-        Log.e("BUTTONSPRESENTER", "ZAPISUJE");
+    }
+
+    @Override
+    public void fetchSchedule(final String from, final String to) {
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.fetchSchedule(this, from, to);
     }
 
     /**
@@ -87,9 +68,18 @@ public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> impl
      * @return string date
      */
     private String getDate(final Date day) {
-
-        return  DateFormat.format("dd", day).toString()
+        return DateFormat.format("dd", day).toString()
                 + DateFormat.format("MM", day).toString()
                 + DateFormat.format("yy", day).toString();
+    }
+
+    @Override
+    public void onSuccess(final List<Schedule> response) {
+        //getView().setButtons(response.getReservations());
+    }
+
+    @Override
+    public void onError(final Throwable e) {
+
     }
 }
