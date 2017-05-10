@@ -10,7 +10,6 @@ import com.intive.toz.data.DataProvider;
 import com.intive.toz.schedule.model.Schedule;
 
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -33,7 +32,12 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
         DialogFactory.isMorning = isMorning;
         DialogFactory.week = week;
 
-        /*switch (result) {
+        ReservedDay reservedDay = getDateObjectReserved(day);
+
+        assert reservedDay != null;
+        int resoult = isMorning ? reservedDay.getStateMorning() : reservedDay.getStateAfternoon();
+        String name = isMorning ? reservedDay.getUserNameMorning() : reservedDay.getUserNameAfternoon();
+        switch (resoult) {
             case 1:
                 getView().showDialog(DialogFactory.infoDialog(name));
                 break;

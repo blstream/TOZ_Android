@@ -54,7 +54,7 @@ public class Pet implements Serializable {
     }
 
     /**
-     * @return address of Pet.
+     * @return Address of Pet.
      */
     public String getAddress() {
         return address;

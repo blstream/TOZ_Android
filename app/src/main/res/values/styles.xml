@@ -20,4 +20,8 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="MainTheme.Base.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="MainTheme.Base.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

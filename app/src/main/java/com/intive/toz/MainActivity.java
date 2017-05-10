@@ -18,7 +18,7 @@ import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
 import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
-import com.intive.toz.financial.view.FinancialActivity;
+import com.intive.toz.info.view.FinancialActivity;
 import com.intive.toz.login.Session;
 import com.intive.toz.network.NetworkStateReceiver;
 

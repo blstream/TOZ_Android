@@ -6,7 +6,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView;
  * Interface for communicating in login screen.
  */
 
-public interface LoginView extends MvpView {
+interface LoginView extends MvpView {
 
     /**
      * Shows error when password view is empty.
@@ -48,4 +48,15 @@ public interface LoginView extends MvpView {
      * On successfull login go to mainactivity.
      */
     void onLoginSuccessful();
+
+    /**
+     * show error according to response code.
+     * @param code returns from request.
+     */
+    void showErrorGeneral(int code);
+
+    /**
+     * show failure request login to server.
+     */
+    void showError();
 }

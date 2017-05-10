@@ -1,4 +1,4 @@
-package com.intive.toz.financial.view;
+package com.intive.toz.info.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
-import com.intive.toz.financial.FinancialMvp;
-import com.intive.toz.financial.model.FinancialData;
-import com.intive.toz.financial.presenter.FinancialPresenter;
+import com.intive.toz.info.FinancialMvp;
+import com.intive.toz.info.model.Info;
+import com.intive.toz.info.presenter.FinancialPresenter;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 
@@ -27,10 +27,12 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
 
     @BindView(R.id.tv_account_number)
     TextView accountNumber;
-    @BindView(R.id.tv_title)
-    TextView title;
-    @BindView(R.id.tv_transfer_receiver_name)
-    TextView transferReceiverName;
+    @BindView(R.id.tv_name)
+    TextView name;
+    @BindView(R.id.tv_city_code)
+    TextView cityCode;
+    @BindView(R.id.tv_street)
+    TextView street;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
@@ -57,10 +59,13 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
      * set financial data to textviews.
      * @param financialResponse financial response from server.
      */
-    public void setFinancialData(final FinancialData financialResponse) {
-        accountNumber.setText(financialResponse.getAccountNumber());
-        title.setText(financialResponse.getTitle());
-        transferReceiverName.setText(financialResponse.getTransferReceiverName());
+    public void setFinancialData(final Info financialResponse) {
+        accountNumber.setText(financialResponse.getBankAccount().getNumber());
+        name.setText(financialResponse.getName());
+        cityCode.setText(financialResponse.getAddress().getPostCode()
+                         + " " + financialResponse.getAddress().getCity());
+        street.setText("ul. " + financialResponse.getAddress().getStreet());
+
     }
 
     @Override
