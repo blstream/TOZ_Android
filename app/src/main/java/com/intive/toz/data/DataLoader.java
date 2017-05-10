@@ -24,10 +24,11 @@ public class DataLoader implements DataProvider {
     private static final int ERROR_CODE_INCORRECRT_USER_OR_PASSWORD = 401;
     private static final int ERROR_CODE_FORBIDDEN = 403;
     private static final int ERROR_CODE_NOT_FOUND = 404;
+    private static final String NEWS_TYPE_RELEASED = "RELEASED";
 
     @Override
     public void fetchNews(final ResponseCallback<List<News>> listener) {
-        api.getNews().enqueue(new Callback<List<News>>() {
+        api.getNews(NEWS_TYPE_RELEASED).enqueue(new Callback<List<News>>() {
             @Override
             public void onResponse(final Call<List<News>> call, final Response<List<News>> response) {
                 if (response.isSuccessful()) {

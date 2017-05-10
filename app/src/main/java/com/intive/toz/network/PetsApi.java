@@ -14,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Interface json file.
@@ -44,7 +45,7 @@ public interface PetsApi {
      * @return the news
      */
     @GET("/news")
-    Call<List<News>> getNews();
+    Call<List<News>> getNews(@Query("type") String type);
 
     /**
      * Call to financial data.
