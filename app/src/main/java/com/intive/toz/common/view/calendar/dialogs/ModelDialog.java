@@ -77,6 +77,7 @@ public class ModelDialog extends DialogFragment {
     private String startDate;
     private String endDate;
     private Date day;
+    private OnReservationChangeListener listener;
 
     /**
      * New instance dialog fragment.
@@ -182,6 +183,15 @@ public class ModelDialog extends DialogFragment {
     }
 
     /**
+     * Sets listener.
+     *
+     * @param listener the listener
+     */
+    public void setListener(final OnReservationChangeListener listener) {
+        this.listener = listener;
+    }
+
+    /**
      * Set action of action button.
      */
     @OnClick(R.id.dialog_btn2)
@@ -211,6 +221,7 @@ public class ModelDialog extends DialogFragment {
             public void onSuccess(final Reservation response) {
                 progressBar.setVisibility(View.VISIBLE);
                 dismiss();
+                listener.onSuccess();
             }
 
             @Override

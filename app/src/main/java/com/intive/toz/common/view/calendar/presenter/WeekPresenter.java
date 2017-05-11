@@ -5,6 +5,7 @@ import android.text.format.DateFormat;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.common.view.calendar.WeekMvp;
 import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
+import com.intive.toz.common.view.calendar.dialogs.OnReservationChangeListener;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 import com.intive.toz.schedule.model.Config;
@@ -19,7 +20,8 @@ import java.util.List;
 /**
  * mvp presenter for calendar activity.
  */
-public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> implements WeekMvp.Presenter, DataProvider.ResponseCallback<Schedule> {
+public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
+        implements WeekMvp.Presenter, DataProvider.ResponseCallback<Schedule>, OnReservationChangeListener {
 
     private Schedule schedule;
 
@@ -75,7 +77,7 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
                 break;
             default:
                 if (day.after(new Date())) {
-                    getView().showDialog(DialogFactory.saveDialog(startDate, endDate));
+                    getView().showDialog(DialogFactory.saveDialog(startDate, endDate, this));
                 }
                 break;
         }
@@ -119,5 +121,11 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
     @Override
     public void onError(final Throwable e) {
 
+    }
+
+    @Override
+    public void onSuccess() {
+        getView().showSnackbar();
+        getView().refreshSchedule();
     }
 }

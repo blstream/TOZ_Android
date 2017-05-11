@@ -12,7 +12,6 @@ import java.util.Date;
 /**
  * interface for Presenter and ButtonsView.
  */
-
 public interface WeekMvp {
 
     /**
@@ -22,6 +21,8 @@ public interface WeekMvp {
 
         /**
          * set calendar buttons state.
+         *
+         * @param week the week
          */
         void loadData(int week);
 
@@ -29,18 +30,29 @@ public interface WeekMvp {
         /**
          * check calendar date state.
          *
-         * @param position the position
-         * @param day
+         * @param position  the position
+         * @param day       the day
+         * @param week      the week
+         * @param isMorning the is morning
          */
         void checkDate(int position, Date day, int week, boolean isMorning);
 
         /**
          * set calendar date state.
          *
-         * @param date the date
+         * @param date      the date
+         * @param week      the week
+         * @param isSaved   the is saved
+         * @param isMorning the is morning
          */
         void setDate(String date, int week, boolean isSaved, boolean isMorning);
 
+        /**
+         * Fetch schedule.
+         *
+         * @param from the from
+         * @param to   the to
+         */
         void fetchSchedule(String from, String to);
 
     }
@@ -51,13 +63,24 @@ public interface WeekMvp {
     interface ButtonsView extends MvpView {
 
 
+        /**
+         * Sets schedule.
+         *
+         * @param schedule the schedule
+         */
         void setSchedule(Schedule schedule);
+
+
+        /**
+         * Refresh schedule.
+         */
+        void refreshSchedule();
 
 
         /**
          * show dialog.
          *
-         * @param dialog
+         * @param dialog the dialog
          */
         void showDialog(DialogFragment dialog);
 

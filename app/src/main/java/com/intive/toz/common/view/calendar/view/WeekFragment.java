@@ -219,6 +219,13 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
     }
 
     @Override
+    public void refreshSchedule() {
+        progressBar.setVisibility(View.VISIBLE);
+        presenter.fetchSchedule(DateFormat.format("yyyy-MM-dd", getWeek(week).get(FIRST)).toString(),
+                DateFormat.format("yyyy-MM-dd", getWeek(week).get(LAST)).toString());
+    }
+
+    @Override
     public void showDialog(final DialogFragment dialog) {
         dialog.show(fragmentManager, "Dialog");
     }

@@ -68,15 +68,17 @@ public final class DialogFactory {
      *
      * @param startDate the start date
      * @param endDate   the end date
+     * @param listener  the listener
      * @return dialog model dialog
      */
-    public static ModelDialog saveDialog(final String startDate, final String endDate) {
+    public static ModelDialog saveDialog(final String startDate, final String endDate, final OnReservationChangeListener listener) {
         ModelDialog dialog = ModelDialog.newInstance(0);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setStartDate(startDate);
         dialog.setEndDate(endDate);
         dialog.setDay(day);
+        dialog.setListener(listener);
         return dialog;
     }
 
