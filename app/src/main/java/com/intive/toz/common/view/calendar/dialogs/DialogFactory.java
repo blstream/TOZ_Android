@@ -10,9 +10,21 @@ import java.util.Date;
  */
 public final class DialogFactory {
 
+    /**
+     * The constant day.
+     */
     public static Date day;
+    /**
+     * The constant position.
+     */
     public static int position;
+    /**
+     * The constant isMorning.
+     */
     public static boolean isMorning;
+    /**
+     * The constant week.
+     */
     public static int week;
 
     /**
@@ -25,13 +37,14 @@ public final class DialogFactory {
      * New instance information dialog fragment.
      *
      * @param name the name
-     * @return dialog
+     * @return dialog model dialog
      */
     public static ModelDialog infoDialog(final String name) {
         ModelDialog dialog = ModelDialog.newInstance(1);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
+        dialog.setDay(day);
         return dialog;
     }
 
@@ -39,25 +52,31 @@ public final class DialogFactory {
      * New instance delete dialog fragment.
      *
      * @param name the name
-     * @return dialog
+     * @return dialog model dialog
      */
     public static ModelDialog deleteDialog(final String name) {
         ModelDialog dialog = ModelDialog.newInstance(2);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
+        dialog.setDay(day);
         return dialog;
     }
 
     /**
      * New instance save dialog fragment.
      *
-     * @return dialog
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @return dialog model dialog
      */
-    public static ModelDialog saveDialog() {
+    public static ModelDialog saveDialog(final String startDate, final String endDate) {
         ModelDialog dialog = ModelDialog.newInstance(0);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
+        dialog.setStartDate(startDate);
+        dialog.setEndDate(endDate);
+        dialog.setDay(day);
         return dialog;
     }
 
@@ -89,7 +108,7 @@ public final class DialogFactory {
     /**
      * Title dialog fragment.
      *
-     * @return title
+     * @return title title
      */
     public static String getTitle() {
 

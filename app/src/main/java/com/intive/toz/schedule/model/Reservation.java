@@ -31,11 +31,10 @@ public class Reservation {
     private String ownerSurname;
     @SerializedName("created")
     @Expose
-    private Integer created;
+    private Long created;
     @SerializedName("lastModified")
     @Expose
-    private Integer lastModified;
-    private int state;
+    private Long lastModified;
 
     /**
      * Gets id.
@@ -168,7 +167,7 @@ public class Reservation {
      *
      * @return the created
      */
-    public Integer getCreated() {
+    public Long getCreated() {
         return created;
     }
 
@@ -177,7 +176,7 @@ public class Reservation {
      *
      * @param created the created
      */
-    public void setCreated(final Integer created) {
+    public void setCreated(final Long created) {
         this.created = created;
     }
 
@@ -186,7 +185,7 @@ public class Reservation {
      *
      * @return the last modified
      */
-    public Integer getLastModified() {
+    public Long getLastModified() {
         return lastModified;
     }
 
@@ -195,25 +194,8 @@ public class Reservation {
      *
      * @param lastModified the last modified
      */
-    public void setLastModified(final Integer lastModified) {
+    public void setLastModified(final Long lastModified) {
         this.lastModified = lastModified;
     }
 
-    /**
-     * Gets state.
-     *
-     * @return the state
-     */
-    public int getState() {
-        return state;
-    }
-
-    /**
-     * Sets state.
-     *
-     * @param state the state
-     */
-    public void setState(final int state) {
-        this.state = state;
-    }
 }

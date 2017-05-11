@@ -68,6 +68,9 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
     @BindView(R.id.morning_buttons_view)
     GridView gridViewMorning;
 
+    @BindView(R.id.progress_bar)
+    View progressBar;
+
     private Unbinder unbinder;
     private int week;
     private Snackbar snackbar;
@@ -211,6 +214,8 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
 
         gridViewAfternoon.setAdapter(adapterAfternoon);
         gridViewMorning.setAdapter(adapterMorning);
+
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

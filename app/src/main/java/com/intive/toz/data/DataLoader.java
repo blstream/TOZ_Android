@@ -7,6 +7,8 @@ import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
@@ -69,6 +71,7 @@ public class DataLoader implements DataProvider {
                     listener.onSuccess(response.body());
                 }
             }
+
             @Override
             public void onFailure(final Call<News> call, final Throwable t) {
                 listener.onError(t);
@@ -137,6 +140,23 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<Schedule> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void reserve(final ResponseCallback<Reservation> listener, final Reserve reserve) {
+        api.reservation(reserve).enqueue(new Callback<Reservation>() {
+            @Override
+            public void onResponse(final Call<Reservation> call, final Response<Reservation> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Reservation> call, final Throwable t) {
                 listener.onError(t);
             }
         });

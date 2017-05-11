@@ -58,6 +58,14 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
             }
         }
 
+        String startDate = isMorning
+                ? configs.get(position).getPeriods().get(0).getPeriodStart()
+                : configs.get(position).getPeriods().get(1).getPeriodStart();
+
+        String endDate = isMorning
+                ? configs.get(position).getPeriods().get(0).getPeriodEnd()
+                : configs.get(position).getPeriods().get(1).getPeriodEnd();
+
         switch (result) {
             case 1:
                 getView().showDialog(DialogFactory.infoDialog(reservation.getOwnerName()));
@@ -66,7 +74,9 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
                 getView().showDialog(DialogFactory.deleteDialog(reservation.getOwnerName()));
                 break;
             default:
-                getView().showDialog(DialogFactory.saveDialog());
+                if (day.after(new Date())) {
+                    getView().showDialog(DialogFactory.saveDialog(startDate, endDate));
+                }
                 break;
         }
     }
@@ -100,21 +110,10 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView> impleme
 
     @Override
     public void onSuccess(final Schedule response) {
-        List<Reservation> reservations = new ArrayList<>();
-        Reservation first = new Reservation();
-        first.setStartTime("08:00");
-        first.setDate("2017-05-10");
-        first.setOwnerName("Bartosz Kozajda");
-
-        Reservation second = new Reservation();
-        second.setStartTime("12:00");
-        second.setDate("2017-05-18");
-        second.setOwnerName("Maria Nowak");
-        reservations.add(second);
-        reservations.add(first);
-        response.setReservations(reservations);
-        schedule = response;
-        getView().setSchedule(response);
+        if (response != null) {
+            schedule = response;
+            getView().setSchedule(response);
+        }
     }
 
     @Override

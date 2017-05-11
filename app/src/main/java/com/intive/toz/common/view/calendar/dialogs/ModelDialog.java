@@ -4,6 +4,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.format.DateFormat;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,8 +13,15 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.intive.toz.R;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
+import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Reserve;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,35 +30,58 @@ import butterknife.OnClick;
 /**
  * Created the model dialog.
  */
-
 public class ModelDialog extends DialogFragment {
 
     private static final double WINDOW_WIDTH = 0.80;
 
+    /**
+     * The Data dialog.
+     */
     @BindView(R.id.data_dialog)
     TextView dataDialog;
 
+    /**
+     * The Title dialog.
+     */
     @BindView(R.id.title_dialog)
     TextView titleDialog;
 
+    /**
+     * The Description dialog.
+     */
     @BindView(R.id.description_dialog)
     TextView descriptionDialog;
 
+    /**
+     * The Cancel button.
+     */
     @BindView(R.id.dialog_btn1)
     TextView cancelButton;
 
+    /**
+     * The Action button.
+     */
     @BindView(R.id.dialog_btn2)
     TextView actionButton;
+
+    /**
+     * The Progress bar.
+     */
+    @BindView(R.id.content)
+    View progressBar;
 
     private int state;
     private String title;
     private String date;
     private String userName;
+    private String startDate;
+    private String endDate;
+    private Date day;
 
     /**
      * New instance dialog fragment.
      *
-     * @param state     the state
+     * @param state the state
      * @return the dialog fragment
      */
     public static ModelDialog newInstance(final int state) {
@@ -124,11 +155,38 @@ public class ModelDialog extends DialogFragment {
     }
 
     /**
+     * Sets start date.
+     *
+     * @param startDate the start date
+     */
+    public void setStartDate(final String startDate) {
+        this.startDate = startDate;
+    }
+
+    /**
+     * Sets end date.
+     *
+     * @param endDate the end date
+     */
+    public void setEndDate(final String endDate) {
+        this.endDate = endDate;
+    }
+
+    /**
+     * Sets day.
+     *
+     * @param day the day
+     */
+    public void setDay(final Date day) {
+        this.day = day;
+    }
+
+    /**
      * Set action of action button.
      */
     @OnClick(R.id.dialog_btn2)
     public void action() {
-        dismiss();
+        reserve();
     }
 
     /**
@@ -137,6 +195,30 @@ public class ModelDialog extends DialogFragment {
     @OnClick(R.id.dialog_btn1)
     public void cancel() {
         dismiss();
+    }
+
+    private void reserve() {
+        progressBar.setVisibility(View.INVISIBLE);
+        DataLoader dataLoader = new DataLoader();
+        Reserve reserve = new Reserve();
+        reserve.setDate(DateFormat.format("yyyy-MM-dd", day).toString());
+        reserve.setStartTime(startDate);
+        reserve.setEndTime(endDate);
+        reserve.setOwnerId("56ee9cd9-f4a0-4809-a66e-ad094bb1f61e");
+        reserve.setModificationMessage("");
+        dataLoader.reserve(new DataProvider.ResponseCallback<Reservation>() {
+            @Override
+            public void onSuccess(final Reservation response) {
+                progressBar.setVisibility(View.VISIBLE);
+                dismiss();
+            }
+
+            @Override
+            public void onError(final Throwable e) {
+                progressBar.setVisibility(View.VISIBLE);
+                Toast.makeText(getContext(), getResources().getString(R.string.default_error), Toast.LENGTH_SHORT).show();
+            }
+        }, reserve);
     }
 
     /**
