@@ -1,8 +1,5 @@
 package com.intive.toz.login;
 
-
-import android.util.Log;
-
 import com.auth0.android.jwt.JWT;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.data.DataLoader;
@@ -63,7 +60,6 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
             public void onSuccess(final Jwt response) {
                 if (isViewAttached()) {
                     String jwt = response.getJwt();
-                    Log.d("essa", "" + jwt);
 
                     JWT objectJwt = new JWT(jwt);
 
