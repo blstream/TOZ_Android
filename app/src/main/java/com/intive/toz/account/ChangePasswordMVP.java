@@ -17,7 +17,15 @@ public interface ChangePasswordMVP {
         void showEmptyRepeatedNewPasswordError();
         void showDifferentNewPasswordsError();
         void hideDifferentNewPasswordsError();
-        void showWrongPasswordError();
+        void hideOldPasswordError();
+        void hideNewPasswordError();
+        void hideRepeatedNewPasswordError();
+        void showWrongOldPasswordError();
+        void showWrongNewPasswordError();
         void showTooLongPasswordError();
+        void showError();
+        void showErrorCode(int errorMessage);
+        void showSuccessfulPasswordChange();
+
     }
 }

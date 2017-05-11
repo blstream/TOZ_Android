@@ -64,6 +64,10 @@ public final class Session {
         return preferences.getString("jwt", "");
     }
 
+    public static String getJwtWithBearerPrefix() {
+        return "Bearer " + preferences.getString("jwt", "");
+    }
+
     /**
      * get subject user login.
      * @return subject.

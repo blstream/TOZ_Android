@@ -11,7 +11,7 @@ class PasswordChangeValidator {
     private static final int MAX_LENGTH = 35;
 
     boolean isLengthOfPasswordValid(final String password) {
-        return password.length() > 0 && password.length() <= MAX_LENGTH;
+        return password.length() <= MAX_LENGTH;
     }
 
     /**
@@ -25,23 +25,12 @@ class PasswordChangeValidator {
     }
 
     /**
-     * Checks if old password given is really user's old(current) password.
-     * @param oldPassword users' old password
-     * @return true if old password given is user's old(current) password.
-     */
-    boolean validateOldPassword(final String oldPassword) {
-        //TODO requires backend to check old password
-        return true;
-    }
-
-    /**
-     * Checks if new password is different than old.
+     * Checks if new password is equal to old one.
      * @param oldPassword user's old(current) password.
      * @param newPassword user's new password
-     * @return true if new password is different.
+     * @return true if new password is equal to old one.
      */
-    boolean isNewPasswordDifferentThanOld(final String oldPassword, final String newPassword) {
-        //TODO requires backend to check old password
-        return true;
+    boolean assertNewPasswordEqualsOld(final String oldPassword, final String newPassword) {
+        return Objects.equals(oldPassword, newPassword);
     }
 }

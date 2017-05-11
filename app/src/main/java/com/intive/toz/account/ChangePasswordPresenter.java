@@ -1,6 +1,10 @@
 package com.intive.toz.account;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.intive.toz.account.model.ResponseMessage;
+import com.intive.toz.account.model.UserPassword;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
 
 
 /**
@@ -11,6 +15,7 @@ public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.
 
     private boolean allInputsCorrect;
     PasswordChangeValidator validator = new PasswordChangeValidator();
+    DataLoader dataLoader = new DataLoader();
 
     void validatePassword(final String oldPassword, final String newPassword,
                           final String repeatedNewPassword) {
@@ -18,11 +23,37 @@ public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.
         checkForEmptyFields(oldPassword, newPassword, repeatedNewPassword);
         assertNewPasswordEqualsRepeatedNewPassword(newPassword, repeatedNewPassword);
         checkLengthOfPassword(newPassword);
-        validateOldPassword(oldPassword);
-        assertOldDifferentThanNew(oldPassword, newPassword);
-        //TODO makeRequestToChangePassword - requires backend
-       /* if (allInputsCorrect) {
-        }*/
+        if (allInputsCorrect) {
+            UserPassword userPassword = new UserPassword();
+            userPassword.setOldPassword(oldPassword);
+            userPassword.setNewPassword(newPassword);
+            dataLoader.requestPasswordChange(new DataProvider.ResponseChangePasswordCallback<ResponseMessage>() {
+                @Override
+                public void onSuccess(final ResponseMessage response) {
+                    getView().showSuccessfulPasswordChange();
+                }
+
+                @Override
+                public void onError(final Throwable e) {
+                    getView().showError();
+                }
+
+                @Override
+                public void onWrongPassword() {
+                    if (validator.assertNewPasswordEqualsOld(oldPassword, newPassword)) {
+                        getView().showWrongNewPasswordError();
+                    } else {
+                        getView().showWrongOldPasswordError();
+                    }
+
+                }
+
+                @Override
+                public void onErrorCode(final int errorMessage) {
+                    getView().showErrorCode(errorMessage);
+                }
+            }, userPassword);
+        }
     }
 
     void checkForEmptyFields(final String oldPassword, final String newPassword,
@@ -30,14 +61,20 @@ public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.
         if (oldPassword.isEmpty()) {
             getView().showEmptyOldPasswordError();
             allInputsCorrect = false;
+        } else {
+            getView().hideOldPasswordError();
         }
         if (newPassword.isEmpty()) {
             getView().showEmptyNewPasswordError();
             allInputsCorrect = false;
+        } else {
+            getView().hideNewPasswordError();
         }
         if (repeatedNewPassword.isEmpty()) {
             getView().showEmptyRepeatedNewPasswordError();
             allInputsCorrect = false;
+        } else {
+            getView().hideRepeatedNewPasswordError();
         }
     }
 
@@ -49,20 +86,6 @@ public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.
             getView().showDifferentNewPasswordsError();
         } else if (!newPassword.isEmpty() && !repeatedNewPassword.isEmpty()) {
             getView().hideDifferentNewPasswordsError();
-        }
-    }
-
-    void validateOldPassword(final String oldPassword) {
-        if (!oldPassword.isEmpty() && !validator.validateOldPassword(oldPassword)) {
-            allInputsCorrect = false;
-            getView().showWrongPasswordError();
-        }
-    }
-
-    void assertOldDifferentThanNew(final String oldPassword, final String newPassword) {
-        if (!newPassword.isEmpty() && !validator.isNewPasswordDifferentThanOld(oldPassword, newPassword)) {
-            allInputsCorrect = false;
-            getView().showWrongPasswordError();
         }
     }
 

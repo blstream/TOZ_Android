@@ -16,6 +16,10 @@
     <string name="financial_info_load_error">Wystąpił błąd podczas pobierania danych finansowych z serwera.</string>
     <string name="connection_error">Brak połączenia. Przeciągnij by odświeżyć.</string>
     <string name="connection_error_on_refresh">Nie udało się odświeżyć. Spróbuj ponownie.</string>
+    <string name="error_not_found">ERROR 404 NOT FOUND</string>
+    <string name="error_unauthorized">ERROR 401 UNAUTHORIZED</string>
+    <string name="error_forbidden">ERROR 403 FORBIDDEN</string>
+    <string name="error_response">Brak połączenia. Spróbuj ponownie.</string>
 
     <!--login-->
     <string name="username_hint">Login</string>
@@ -71,9 +75,10 @@
     <string name="new_password_hint">Nowe hasło</string>
     <string name="repeat_new_password_hint">Powtórz nowe hasło</string>
     <string name="confirm_change_password">ok</string>
-    <string name="cancel_change_password">anuluj</string>
+    <string name="cancel_change_password">powrót</string>
     <string name="empty_field_error">Pole wymagane</string>
     <string name="different_new_passwords_error">Wprowadzone hasła są różne</string>
     <string name="wrong_password_error">Niepoprawne hasło</string>
     <string name="too_long_password_error">Hasło powinno zawierać max 35 znaków</string>
+    <string name="successful_password_change">Hasło zostało zmienione pomyślnie.</string>
 </resources>
