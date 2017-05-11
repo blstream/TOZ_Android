@@ -40,12 +40,19 @@ public interface PetsApi {
     Call<Pet> getPetDetailsCall(@Path("id") String id);
 
     /**
-     * Gets news.
+     * Gets only released news (for volunteers and guests.
      *
-     * @return the news
+     * @return the released news
      */
     @GET("/news")
-    Call<List<News>> getNews(@Query("type") String type);
+    Call<List<News>> getReleasedNews(@Query("type") String type);
+
+    /**
+     * Gets all news (released, unreleased, archived) (applicable for admins and superadmins).
+     * @return all news
+     */
+    @GET("/news")
+    Call<List<News>> getAllNews();
 
     /**
      * Call to financial data.

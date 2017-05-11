@@ -27,8 +27,25 @@ public class DataLoader implements DataProvider {
     private static final String NEWS_TYPE_RELEASED = "RELEASED";
 
     @Override
-    public void fetchNews(final ResponseCallback<List<News>> listener) {
-        api.getNews(NEWS_TYPE_RELEASED).enqueue(new Callback<List<News>>() {
+    public void fetchReleasedNews(final ResponseCallback<List<News>> listener) {
+        api.getReleasedNews(NEWS_TYPE_RELEASED).enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(final Call<List<News>> call, final Response<List<News>> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<List<News>> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void fetchAllNews(final ResponseCallback<List<News>> listener) {
+        api.getAllNews().enqueue(new Callback<List<News>>() {
             @Override
             public void onResponse(final Call<List<News>> call, final Response<List<News>> response) {
                 if (response.isSuccessful()) {
