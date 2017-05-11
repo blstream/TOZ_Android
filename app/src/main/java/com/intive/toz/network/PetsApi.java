@@ -41,7 +41,7 @@ public interface PetsApi {
 
     /**
      * Gets only released news (for volunteers and guests.
-     *
+     * @param type type of news (e.g. RELEASED)
      * @return the released news
      */
     @GET("/news")
