@@ -17,7 +17,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Interface json file.
@@ -78,6 +77,7 @@ public interface PetsApi {
     /**
      * Make request to change password.
      * @param userPassword contains old and new password.
+     * @param jwtToken contains jwtToken.
      * @return response body from server (successful change or errors).
      */
     @POST("users/passwords")

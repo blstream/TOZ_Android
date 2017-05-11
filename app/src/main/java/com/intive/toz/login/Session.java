@@ -64,6 +64,10 @@ public final class Session {
         return preferences.getString("jwt", "");
     }
 
+    /**
+     * get jwt with Bearer prefix - used for authorization in calls.
+     * @return String "Bearer " + jwt
+     */
     public static String getJwtWithBearerPrefix() {
         return "Bearer " + preferences.getString("jwt", "");
     }
