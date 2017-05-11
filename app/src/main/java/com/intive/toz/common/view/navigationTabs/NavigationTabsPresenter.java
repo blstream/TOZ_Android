@@ -30,7 +30,7 @@ public class NavigationTabsPresenter extends MvpBasePresenter<NavigationTabsView
 
         if (Session.isLogged() && (Session.getScope().contains("VOLUNTEER"))) {
             tabs.add(new Tab(R.string.navigation_tab_schedule, R.drawable.ic_today_white_24dp, ScheduleFragment.newInstance()));
-            tabs.add(new Tab(R.string.navigation_tab_account, R.drawable.ic_today_white_24dp, AccountFragment.newInstance()));
+            tabs.add(new Tab(R.string.navigation_tab_account, R.drawable.ic_person_white_24dp, AccountFragment.newInstance()));
         }
 
         getView().showTabs(tabs);
