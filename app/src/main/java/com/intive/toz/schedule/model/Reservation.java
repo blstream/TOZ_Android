@@ -35,6 +35,7 @@ public class Reservation {
     @SerializedName("lastModified")
     @Expose
     private Integer lastModified;
+    private int state;
 
     /**
      * Gets id.
@@ -198,4 +199,21 @@ public class Reservation {
         this.lastModified = lastModified;
     }
 
+    /**
+     * Gets state.
+     *
+     * @return the state
+     */
+    public int getState() {
+        return state;
+    }
+
+    /**
+     * Sets state.
+     *
+     * @param state the state
+     */
+    public void setState(final int state) {
+        this.state = state;
+    }
 }

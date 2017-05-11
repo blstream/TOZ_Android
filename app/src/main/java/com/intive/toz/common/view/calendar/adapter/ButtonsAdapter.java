@@ -1,6 +1,7 @@
 package com.intive.toz.common.view.calendar.adapter;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,15 @@ import android.widget.BaseAdapter;
 
 import com.intive.toz.R;
 import com.intive.toz.common.view.circular_text_view.CircularTextView;
+import com.intive.toz.schedule.model.Config;
 import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Schedule;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,28 +34,31 @@ public class ButtonsAdapter extends BaseAdapter {
     CircularTextView textView;
 
     private Context context;
-    private List<Reservation> buttons;
-    private final boolean isMorning;
+    private Schedule schedule;
+    private List<Date> dates;
+    private boolean isMorning;
 
     /**
      * Instantiates a new Buttons adapter.
      *
-     * @param context the context
+     * @param context   the context
+     * @param dates     the dates
      * @param isMorning the is morning
      */
-    public ButtonsAdapter(final Context context, final boolean isMorning) {
+    public ButtonsAdapter(final Context context, final List<Date> dates, final boolean isMorning) {
         this.context = context;
+        this.dates = dates;
         this.isMorning = isMorning;
     }
 
     @Override
     public int getCount() {
-        return buttons == null ? 0 : buttons.size();
+        return dates == null ? 0 : dates.size();
     }
 
     @Override
     public Object getItem(final int position) {
-        return buttons.get(position);
+        return schedule.getReservations().get(position);
     }
 
     @Override
@@ -69,37 +79,59 @@ public class ButtonsAdapter extends BaseAdapter {
 
         textView.setStrokeColor(R.color.black);
         textView.setStrokeWidth(1);
-//        switch (state) {
-//            case 1:
-//                textView.setSolidColor(R.color.busy);
-//                textView.setText(name);
-//                break;
-//            case 2:
-//                textView.setSolidColor(R.color.my);
-//                textView.setText(R.string.user_calendar_button_name);
-//                break;
-//            default:
-//                textView.setSolidColor(R.color.free);
-//                textView.setText("  ");
-//                break;
-//        }
+        textView.setSolidColor(R.color.free);
+        textView.setText("  ");
+
+        String currentDate = DateFormat.format("yyyy-MM-dd", dates.get(position)).toString();
+
+        List<Reservation> reservations = schedule.getReservations();
+        List<Config> configs = schedule.getConfigs();
+
+        if (reservations == null) {
+            reservations = new ArrayList<>();
+        }
+
+        for (Reservation r : reservations) {
+            if (r.getDate().equals(currentDate)) {
+                if (isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(0).getPeriodStart())) {
+                    textView.setSolidColor(R.color.busy);
+                    textView.setText(getInitials(r.getOwnerName()));
+                } else if (!isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(1).getPeriodStart())) {
+                    textView.setSolidColor(R.color.busy);
+                    textView.setText(getInitials(r.getOwnerName()));
+                }
+
+                //textView.setSolidColor(R.color.my);
+                //textView.setText(R.string.user_calendar_button_name);
+            }
+        }
 
         return view;
+    }
+
+    private String getInitials(final String name) {
+        Pattern p = Pattern.compile("((^| )[A-Za-z])");
+        Matcher m = p.matcher(name);
+        String initials = "";
+        while (m.find()) {
+            initials += m.group().trim();
+        }
+        return initials;
     }
 
     /**
      * Clear buttons state.
      */
     public void clear() {
-        this.buttons = null;
+        this.schedule = null;
     }
 
     /**
-     * Set buttons state.
+     * Sets schedule.
      *
-     * @param buttons the buttons
+     * @param schedule the schedule
      */
-    public void setButtons(final List<Reservation> buttons) {
-        this.buttons = buttons;
+    public void setSchedule(final Schedule schedule) {
+        this.schedule = schedule;
     }
 }

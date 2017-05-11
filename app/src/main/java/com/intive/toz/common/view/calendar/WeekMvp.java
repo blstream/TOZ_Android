@@ -4,10 +4,9 @@ import android.support.v4.app.DialogFragment;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
-import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -52,13 +51,7 @@ public interface WeekMvp {
     interface ButtonsView extends MvpView {
 
 
-        /**
-         * set state of callendar buttons.
-         *
-         * @param reservedDays the reserved days
-         */
-
-        void setButtons(List<Reservation> reservedDays);
+        void setSchedule(Schedule schedule);
 
 
         /**

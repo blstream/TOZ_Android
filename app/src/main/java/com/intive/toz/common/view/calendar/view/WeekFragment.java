@@ -18,7 +18,7 @@ import com.intive.toz.common.view.calendar.WeekMvp;
 import com.intive.toz.common.view.calendar.adapter.ButtonsAdapter;
 import com.intive.toz.common.view.calendar.adapter.WeekAdapter;
 import com.intive.toz.common.view.calendar.presenter.WeekPresenter;
-import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,8 +57,14 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
      */
     @BindView(R.id.week_view)
     GridView gridView;
+    /**
+     * The Grid view afternoon.
+     */
     @BindView(R.id.afternoon_buttons_view)
     GridView gridViewAfternoon;
+    /**
+     * The Grid view morning.
+     */
     @BindView(R.id.morning_buttons_view)
     GridView gridViewMorning;
 
@@ -112,8 +118,8 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
         WeekAdapter adapter = new WeekAdapter(getContext(), dates);
 
         gridView.setAdapter(adapter);
-        adapterMorning = new ButtonsAdapter(getContext(), true);
-        adapterAfternoon = new ButtonsAdapter(getContext(), false);
+        adapterMorning = new ButtonsAdapter(getContext(), dates, true);
+        adapterAfternoon = new ButtonsAdapter(getContext(), dates, false);
 
         presenter.fetchSchedule(DateFormat.format("yyyy-MM-dd", getWeek(week).get(FIRST)).toString(),
                 DateFormat.format("yyyy-MM-dd", getWeek(week).get(LAST)).toString());
@@ -196,12 +202,12 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
     }
 
     @Override
-    public void setButtons(final List<Reservation> reservedDayList) {
+    public void setSchedule(final Schedule schedule) {
         adapterMorning.clear();
         adapterAfternoon.clear();
 
-        adapterMorning.setButtons(reservedDayList);
-        adapterAfternoon.setButtons(reservedDayList);
+        adapterMorning.setSchedule(schedule);
+        adapterAfternoon.setSchedule(schedule);
 
         gridViewAfternoon.setAdapter(adapterAfternoon);
         gridViewMorning.setAdapter(adapterMorning);
