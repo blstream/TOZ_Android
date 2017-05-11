@@ -94,19 +94,6 @@ public final class DialogFactory {
                 + DateFormat.format("MMMM", day).toString();
     }
 
-
-    /**
-     * Get date.
-     *
-     * @param day the day
-     * @return date string
-     */
-    private static String getDate(final Date day) {
-        return DateFormat.format("dd", day).toString()
-                + DateFormat.format("MM", day).toString()
-                + DateFormat.format("yy", day).toString();
-    }
-
     /**
      * Title dialog fragment.
      *

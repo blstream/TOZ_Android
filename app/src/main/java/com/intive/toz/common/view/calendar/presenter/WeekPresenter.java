@@ -26,12 +26,6 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
     private Schedule schedule;
 
     @Override
-    public void loadData(final int week) {
-
-    }
-
-
-    @Override
     public void checkDate(final int position, final Date day, final int week, final boolean isMorning) {
 
         DialogFactory.day = day;
@@ -84,30 +78,9 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
     }
 
     @Override
-    public void setDate(final String date, final int week, final boolean isSaved, final boolean isMorning) {
-
-        if (isSaved) {
-            getView().showSnackbar();
-        }
-        loadData(week);
-    }
-
-    @Override
     public void fetchSchedule(final String from, final String to) {
         DataLoader dataLoader = new DataLoader();
         dataLoader.fetchSchedule(this, from, to);
-    }
-
-    /**
-     * Get date.
-     *
-     * @param day the day
-     * @return string date
-     */
-    private String getDate(final Date day) {
-        return DateFormat.format("dd", day).toString()
-                + DateFormat.format("MM", day).toString()
-                + DateFormat.format("yy", day).toString();
     }
 
     @Override

@@ -20,14 +20,6 @@ public interface WeekMvp {
     interface Presenter extends MvpPresenter<ButtonsView> {
 
         /**
-         * set calendar buttons state.
-         *
-         * @param week the week
-         */
-        void loadData(int week);
-
-
-        /**
          * check calendar date state.
          *
          * @param position  the position
@@ -36,16 +28,6 @@ public interface WeekMvp {
          * @param isMorning the is morning
          */
         void checkDate(int position, Date day, int week, boolean isMorning);
-
-        /**
-         * set calendar date state.
-         *
-         * @param date      the date
-         * @param week      the week
-         * @param isSaved   the is saved
-         * @param isMorning the is morning
-         */
-        void setDate(String date, int week, boolean isSaved, boolean isMorning);
 
         /**
          * Fetch schedule.
