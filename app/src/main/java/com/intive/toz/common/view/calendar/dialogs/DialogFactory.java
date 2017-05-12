@@ -54,12 +54,14 @@ public final class DialogFactory {
      * @param name the name
      * @return dialog model dialog
      */
-    public static ModelDialog deleteDialog(final String name) {
+    public static ModelDialog deleteDialog(final String name, final String id, final OnReservationChangeListener listener) {
         ModelDialog dialog = ModelDialog.newInstance(2);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
         dialog.setDay(day);
+        dialog.setId(id);
+        dialog.setListener(listener);
         return dialog;
     }
 

@@ -5,8 +5,11 @@ package com.intive.toz.common.view.calendar.dialogs;
  */
 public interface OnReservationChangeListener {
 
+
     /**
-     * On success.
+     * On changed.
+     *
+     * @param messageId the message id
      */
-    void onSuccess();
+    void onChanged(int messageId);
 }

@@ -8,6 +8,7 @@ import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
 import com.intive.toz.common.view.calendar.dialogs.OnReservationChangeListener;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
+import com.intive.toz.login.Session;
 import com.intive.toz.schedule.model.Config;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Schedule;
@@ -47,9 +48,15 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
                 if (isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(0).getPeriodStart())) {
                     reservation = r;
                     result = 1;
+                    if(r.getOwnerId().equals(Session.getUserId())) {
+                        result = 2;
+                    }
                 } else if (!isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(1).getPeriodStart())) {
                     reservation = r;
                     result = 1;
+                    if(r.getOwnerId().equals(Session.getUserId())) {
+                        result = 2;
+                    }
                 }
             }
         }
@@ -67,10 +74,10 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
                 getView().showDialog(DialogFactory.infoDialog(reservation.getOwnerName()));
                 break;
             case 2:
-                getView().showDialog(DialogFactory.deleteDialog(reservation.getOwnerName()));
+                getView().showDialog(DialogFactory.deleteDialog(reservation.getOwnerName(), reservation.getId(), this));
                 break;
             default:
-                if (day.after(new Date())) {
+                if (day.after(new Date()) || day.equals(new Date())) {
                     getView().showDialog(DialogFactory.saveDialog(startDate, endDate, this));
                 }
                 break;
@@ -97,8 +104,8 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
     }
 
     @Override
-    public void onSuccess() {
-        getView().showSnackbar();
+    public void onChanged(final int messageId) {
+        getView().showSnackbar(messageId);
         getView().refreshSchedule();
     }
 }

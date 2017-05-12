@@ -69,8 +69,10 @@ public interface WeekMvp {
 
         /**
          * show snackbar in calendar activity.
+         *
+         * @param messageId the message id
          */
-        void showSnackbar();
+        void showSnackbar(int messageId);
 
 
     }

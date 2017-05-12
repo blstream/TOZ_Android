@@ -42,6 +42,8 @@
     <string name="calendar_delete_dialog_cancel_button">POWRÓT</string>
     <string name="calendar_info_dialog_cancel_button">POWRÓT</string>
     <string name="user_calendar_button_name">JA</string>
+    <string name="reservation_done">Termin został pomyślnie zapisany</string>
+    <string name="reservation_removed">Termin został pomyślnie usunięty</string>
 
     <!--pet galerry details-->
     <string name="pet_detail_name">Imię</string>

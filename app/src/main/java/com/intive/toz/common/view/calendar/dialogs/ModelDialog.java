@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.intive.toz.R;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
+import com.intive.toz.login.Session;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 
@@ -26,6 +27,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 
 /**
  * Created the model dialog.
@@ -76,6 +78,7 @@ public class ModelDialog extends DialogFragment {
     private String userName;
     private String startDate;
     private String endDate;
+    private String id;
     private Date day;
     private OnReservationChangeListener listener;
 
@@ -192,11 +195,24 @@ public class ModelDialog extends DialogFragment {
     }
 
     /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    /**
      * Set action of action button.
      */
     @OnClick(R.id.dialog_btn2)
     public void action() {
-        reserve();
+        if (state == 2) {
+            removeReservation();
+        } else {
+            reserve();
+        }
     }
 
     /**
@@ -214,14 +230,14 @@ public class ModelDialog extends DialogFragment {
         reserve.setDate(DateFormat.format("yyyy-MM-dd", day).toString());
         reserve.setStartTime(startDate);
         reserve.setEndTime(endDate);
-        reserve.setOwnerId("56ee9cd9-f4a0-4809-a66e-ad094bb1f61e");
+        reserve.setOwnerId(Session.getUserId());
         reserve.setModificationMessage("");
         dataLoader.reserve(new DataProvider.ResponseCallback<Reservation>() {
             @Override
             public void onSuccess(final Reservation response) {
                 progressBar.setVisibility(View.VISIBLE);
                 dismiss();
-                listener.onSuccess();
+                listener.onChanged(R.string.reservation_done);
             }
 
             @Override
@@ -230,6 +246,25 @@ public class ModelDialog extends DialogFragment {
                 Toast.makeText(getContext(), getResources().getString(R.string.default_error), Toast.LENGTH_SHORT).show();
             }
         }, reserve);
+    }
+
+    private void removeReservation() {
+        progressBar.setVisibility(View.INVISIBLE);
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.removeReservation(new DataProvider.ResponseCallback<ResponseBody>() {
+            @Override
+            public void onSuccess(ResponseBody response) {
+                progressBar.setVisibility(View.VISIBLE);
+                dismiss();
+                listener.onChanged(R.string.reservation_removed);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                progressBar.setVisibility(View.VISIBLE);
+                Toast.makeText(getContext(), getResources().getString(R.string.default_error), Toast.LENGTH_SHORT).show();
+            }
+        }, id);
     }
 
     /**

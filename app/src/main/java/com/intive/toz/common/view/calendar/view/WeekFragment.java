@@ -231,8 +231,8 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
     }
 
     @Override
-    public void showSnackbar() {
-        snackbar = SnackbarFactory.getSnackbar(getActivity(), "Termin został pomyślnie zapisany");
+    public void showSnackbar(final int messageId) {
+        snackbar = SnackbarFactory.getSnackbar(getActivity(), getResources().getString(messageId));
         snackbar.show();
     }
 

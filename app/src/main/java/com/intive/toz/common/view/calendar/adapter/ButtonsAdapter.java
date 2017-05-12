@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 
 import com.intive.toz.R;
 import com.intive.toz.common.view.circular_text_view.CircularTextView;
+import com.intive.toz.login.Session;
 import com.intive.toz.schedule.model.Config;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Schedule;
@@ -96,13 +97,18 @@ public class ButtonsAdapter extends BaseAdapter {
                 if (isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(0).getPeriodStart())) {
                     textView.setSolidColor(R.color.busy);
                     textView.setText(getInitials(r.getOwnerName()));
+                    if (r.getOwnerId().equals(Session.getUserId())) {
+                        textView.setSolidColor(R.color.my);
+                        textView.setText(R.string.user_calendar_button_name);
+                    }
                 } else if (!isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(1).getPeriodStart())) {
                     textView.setSolidColor(R.color.busy);
                     textView.setText(getInitials(r.getOwnerName()));
+                    if (r.getOwnerId().equals(Session.getUserId())) {
+                        textView.setSolidColor(R.color.my);
+                        textView.setText(R.string.user_calendar_button_name);
+                    }
                 }
-
-                //textView.setSolidColor(R.color.my);
-                //textView.setText(R.string.user_calendar_button_name);
             }
         }
 

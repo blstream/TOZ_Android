@@ -10,6 +10,8 @@ import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
+
 /**
  * The interface Data provider.
  */
@@ -69,6 +71,14 @@ public interface DataProvider {
      */
     void reserve(ResponseCallback<Reservation> listener,
                  Reserve reserve);
+
+    /**
+     * Remove reservation.
+     *
+     * @param listener the listener
+     * @param id       the id
+     */
+    void removeReservation(ResponseCallback<ResponseBody> listener, String id);
 
     /**
      * The interface On data received listener.
