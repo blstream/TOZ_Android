@@ -28,7 +28,7 @@ public class NewsPresenter extends MvpBasePresenter<NewsMvp.View> implements New
         getView().showLoading(pullToRefresh);
         DataLoader dataLoader = new DataLoader();
 
-        dataLoader.fetchNews(new DataProvider.ResponseCallback<List<News>>() {
+        dataLoader.fetchReleasedNews(new DataProvider.ResponseCallback<List<News>>() {
             @Override
             public void onSuccess(final List<News> news) {
                 if (isViewAttached()) {

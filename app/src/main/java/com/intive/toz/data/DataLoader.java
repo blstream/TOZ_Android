@@ -1,6 +1,10 @@
 package com.intive.toz.data;
 
 import com.intive.toz.R;
+import com.intive.toz.account.model.ResponseMessage;
+import com.intive.toz.account.model.UserPassword;
+import com.intive.toz.login.Session;
+import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.network.ApiClient;
@@ -25,13 +29,34 @@ public class DataLoader implements DataProvider {
     private final PetsApi api = ApiClient.getPetsApiService();
 
     private static final int ERROR_CODE_VALIDATION = 400;
+    private static final int ERROR_CODE_WRONG_PASSWORD = 400;
     private static final int ERROR_CODE_INCORRECRT_USER_OR_PASSWORD = 401;
+    private static final int ERROR_CODE_UNATHORIZED = 401;
     private static final int ERROR_CODE_FORBIDDEN = 403;
     private static final int ERROR_CODE_NOT_FOUND = 404;
+    private static final String NEWS_TYPE_RELEASED = "RELEASED";
+
 
     @Override
-    public void fetchNews(final ResponseCallback<List<News>> listener) {
-        api.getNews().enqueue(new Callback<List<News>>() {
+    public void fetchReleasedNews(final ResponseCallback<List<News>> listener) {
+        api.getReleasedNews(NEWS_TYPE_RELEASED).enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(final Call<List<News>> call, final Response<List<News>> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<List<News>> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void fetchAllNews(final ResponseCallback<List<News>> listener) {
+        api.getAllNews().enqueue(new Callback<List<News>>() {
             @Override
             public void onResponse(final Call<List<News>> call, final Response<List<News>> response) {
                 if (response.isSuccessful()) {
@@ -175,6 +200,31 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<ResponseBody> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void requestPasswordChange(final ResponseChangePasswordCallback<ResponseMessage> listener, final UserPassword userPassword) {
+        api.changePassword(userPassword, Session.getJwtWithBearerPrefix()).enqueue(new Callback<ResponseMessage>() {
+            @Override
+            public void onResponse(final Call<ResponseMessage> call, final Response<ResponseMessage> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else if (response.code() == ERROR_CODE_WRONG_PASSWORD) {
+                    listener.onWrongPassword();
+                } else if (response.code() == ERROR_CODE_UNATHORIZED) {
+                    listener.onErrorCode(R.string.error_unauthorized);
+                } else if (response.code() == ERROR_CODE_FORBIDDEN) {
+                    listener.onErrorCode(R.string.error_forbidden);
+                } else if (response.code() == ERROR_CODE_NOT_FOUND) {
+                    listener.onErrorCode(R.string.error_not_found);
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<ResponseMessage> call, final Throwable t) {
                 listener.onError(t);
             }
         });
