@@ -2,8 +2,8 @@ package com.intive.toz.network;
 
 
 import com.intive.toz.info.model.Info;
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
+import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.schedule.model.Reservation;
@@ -73,7 +73,7 @@ public interface PetsApi {
      * @return response body from server in JSON format.
      */
     @POST("/tokens/acquire")
-    Call<Jwt> login(@Body Login loginObj);
+    Call<User> login(@Body Login loginObj);
 
     /**
      * Gets schedule.

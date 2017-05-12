@@ -1,7 +1,7 @@
 package com.intive.toz.data;
 
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
+import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.schedule.model.Reservation;
@@ -50,7 +50,7 @@ public interface DataProvider {
      * @param listener object response from server.
      * @param loginObj object contain email and password.
      */
-    void fetchResponseLogin(ResponseLoginCallback<Jwt> listener, Login loginObj);
+    void fetchResponseLogin(ResponseLoginCallback<User> listener, Login loginObj);
 
     /**
      * Fetch schedule.

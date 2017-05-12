@@ -1,8 +1,8 @@
 package com.intive.toz.data;
 
 import com.intive.toz.R;
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
+import com.intive.toz.login.model.User;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
@@ -97,10 +97,10 @@ public class DataLoader implements DataProvider {
     }
 
     @Override
-    public void fetchResponseLogin(final ResponseLoginCallback<Jwt> listener, final Login loginObj) {
-        api.login(loginObj).enqueue(new Callback<Jwt>() {
+    public void fetchResponseLogin(final ResponseLoginCallback<User> listener, final Login loginObj) {
+        api.login(loginObj).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(final Call<Jwt> call, final Response<Jwt> response) {
+            public void onResponse(final Call<User> call, final Response<User> response) {
                 if (response.isSuccessful()) { // 201
                     listener.onSuccess(response.body());
                 } else if (response.code() == ERROR_CODE_VALIDATION) {
@@ -122,7 +122,7 @@ public class DataLoader implements DataProvider {
             }
 
             @Override
-            public void onFailure(final Call<Jwt> call, final Throwable t) {
+            public void onFailure(final Call<User> call, final Throwable t) {
                 listener.onError(t);
             }
         });
