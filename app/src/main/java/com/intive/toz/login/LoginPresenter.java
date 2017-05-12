@@ -1,6 +1,5 @@
 package com.intive.toz.login;
 
-
 import com.auth0.android.jwt.JWT;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.data.DataLoader;

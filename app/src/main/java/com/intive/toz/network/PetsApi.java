@@ -1,6 +1,8 @@
 package com.intive.toz.network;
 
 
+import com.intive.toz.account.model.ResponseMessage;
+import com.intive.toz.account.model.UserPassword;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
@@ -12,6 +14,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -78,6 +81,16 @@ public interface PetsApi {
      */
     @POST("/tokens/acquire")
     Call<Jwt> login(@Body Login loginObj);
+
+    /**
+     * Make request to change password.
+     * @param userPassword contains old and new password.
+     * @param jwtToken contains jwtToken.
+     * @return response body from server (successful change or errors).
+     */
+    @POST("users/passwords")
+    Call<ResponseMessage> changePassword(@Body UserPassword userPassword,
+                                         @Header("Authorization") String jwtToken);
 }
 
 
