@@ -14,11 +14,18 @@ import java.util.List;
  */
 public interface DataProvider {
     /**
-     * Fetch news.
+     * Fetch only released news.
      *
      * @param listener the listener
      */
-    void fetchNews(ResponseCallback<List<News>> listener);
+    void fetchReleasedNews(ResponseCallback<List<News>> listener);
+
+    /**
+     * Fetch all news.
+     *
+     * @param listener the listener
+     */
+    void fetchAllNews(ResponseCallback<List<News>> listener);
 
     /**
      * Fetch pets.

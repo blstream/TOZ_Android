@@ -17,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Interface json file.
@@ -42,12 +43,19 @@ public interface PetsApi {
     Call<Pet> getPetDetailsCall(@Path("id") String id);
 
     /**
-     * Gets news.
-     *
-     * @return the news
+     * Gets only released news (for volunteers and guests.
+     * @param type type of news (e.g. RELEASED)
+     * @return the released news
      */
     @GET("/news")
-    Call<List<News>> getNews();
+    Call<List<News>> getReleasedNews(@Query("type") String type);
+
+    /**
+     * Gets all news (released, unreleased, archived) (applicable for admins and superadmins).
+     * @return all news
+     */
+    @GET("/news")
+    Call<List<News>> getAllNews();
 
     /**
      * Call to financial data.
