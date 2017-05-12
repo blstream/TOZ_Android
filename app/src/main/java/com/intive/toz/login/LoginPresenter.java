@@ -1,13 +1,11 @@
 package com.intive.toz.login;
 
-import com.auth0.android.jwt.JWT;
+
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
-
-import java.util.Date;
+import com.intive.toz.login.model.User;
 
 /**
  * class to get input data from screen and send them to server.
@@ -37,8 +35,6 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
             getView().showPasswordError();
         }
         if (validator.isAllValid()) {
-            //successful validation
-
             Login loginObj = new Login();
             loginObj.setEmail(login);
             loginObj.setPassword(password);
@@ -55,21 +51,11 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
     private void validateFromServer(final Login loginObj) {
         DataLoader dataLoader = new DataLoader();
 
-        dataLoader.fetchResponseLogin(new DataProvider.ResponseLoginCallback<Jwt>() {
+        dataLoader.fetchResponseLogin(new DataProvider.ResponseLoginCallback<User>() {
             @Override
-            public void onSuccess(final Jwt response) {
+            public void onSuccess(final User response) {
                 if (isViewAttached()) {
-                    String jwt = response.getJwt();
-
-                    JWT objectJwt = new JWT(jwt);
-
-                    String sub = objectJwt.getSubject();
-                    String email = objectJwt.getClaim("email").asString();
-                    String[] scopes = objectJwt.getClaim("scopes").asArray(String.class);
-                    Date iat = objectJwt.getIssuedAt();
-                    Date exp = objectJwt.getExpiresAt();
-
-                    Session.logIn(jwt, scopes[0].toString());
+                    Session.logIn(response.getJwt(), response.getUserId(), response.getRoles().get(0));
 
                     getView().onLoginSuccessful();
 

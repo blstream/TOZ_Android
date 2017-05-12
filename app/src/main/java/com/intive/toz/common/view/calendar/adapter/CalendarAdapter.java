@@ -26,16 +26,7 @@ public class CalendarAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(final int position) {
-        switch (position) {
-            case 0:
-                return WeekFragment.newInstance(0);
-            case 1:
-                return WeekFragment.newInstance(1);
-            case 2:
-                return WeekFragment.newInstance(2);
-            default:
-                return null;
-        }
+        return WeekFragment.newInstance(position);
     }
 
     @Override

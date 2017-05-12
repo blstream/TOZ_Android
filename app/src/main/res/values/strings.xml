@@ -16,6 +16,7 @@
     <string name="financial_info_load_error">Wystąpił błąd podczas pobierania danych finansowych z serwera.</string>
     <string name="connection_error">Brak połączenia. Przeciągnij by odświeżyć.</string>
     <string name="connection_error_on_refresh">Nie udało się odświeżyć. Spróbuj ponownie.</string>
+    <string name="default_error">Wystąpił błąd. Spróbuj ponownie</string>
     <string name="error_not_found">ERROR 404 NOT FOUND</string>
     <string name="error_unauthorized">ERROR 401 UNAUTHORIZED</string>
     <string name="error_forbidden">ERROR 403 FORBIDDEN</string>
@@ -46,6 +47,8 @@
     <string name="calendar_delete_dialog_cancel_button">POWRÓT</string>
     <string name="calendar_info_dialog_cancel_button">POWRÓT</string>
     <string name="user_calendar_button_name">JA</string>
+    <string name="reservation_done">Termin został pomyślnie zapisany</string>
+    <string name="reservation_removed">Termin został pomyślnie usunięty</string>
 
     <!--pet galerry details-->
     <string name="pet_detail_name">Imię</string>

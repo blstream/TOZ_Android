@@ -3,16 +3,19 @@ package com.intive.toz.data;
 import com.intive.toz.R;
 import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
-import com.intive.toz.login.Session;
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
+import com.intive.toz.login.model.User;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Reserve;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -118,10 +121,10 @@ public class DataLoader implements DataProvider {
     }
 
     @Override
-    public void fetchResponseLogin(final ResponseLoginCallback<Jwt> listener, final Login loginObj) {
-        api.login(loginObj).enqueue(new Callback<Jwt>() {
+    public void fetchResponseLogin(final ResponseLoginCallback<User> listener, final Login loginObj) {
+        api.login(loginObj).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(final Call<Jwt> call, final Response<Jwt> response) {
+            public void onResponse(final Call<User> call, final Response<User> response) {
                 if (response.isSuccessful()) { // 201
                     listener.onSuccess(response.body());
                 } else if (response.code() == ERROR_CODE_VALIDATION) {
@@ -143,7 +146,58 @@ public class DataLoader implements DataProvider {
             }
 
             @Override
-            public void onFailure(final Call<Jwt> call, final Throwable t) {
+            public void onFailure(final Call<User> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void fetchSchedule(final ResponseCallback<Schedule> listener, final String from, final String to) {
+        api.getSchedule(from, to).enqueue(new Callback<Schedule>() {
+            @Override
+            public void onResponse(final Call<Schedule> call, final Response<Schedule> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Schedule> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void reserve(final ResponseCallback<Reservation> listener, final Reserve reserve) {
+        api.reservation(reserve).enqueue(new Callback<Reservation>() {
+            @Override
+            public void onResponse(final Call<Reservation> call, final Response<Reservation> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Reservation> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void removeReservation(final ResponseCallback<ResponseBody> listener, final String id) {
+        api.removeReservation(id).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(final Call<ResponseBody> call, final Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<ResponseBody> call, final Throwable t) {
                 listener.onError(t);
             }
         });
@@ -151,7 +205,7 @@ public class DataLoader implements DataProvider {
 
     @Override
     public void requestPasswordChange(final ResponseChangePasswordCallback<ResponseMessage> listener, final UserPassword userPassword) {
-        api.changePassword(userPassword, Session.getJwtWithBearerPrefix()).enqueue(new Callback<ResponseMessage>() {
+        api.changePassword(userPassword).enqueue(new Callback<ResponseMessage>() {
             @Override
             public void onResponse(final Call<ResponseMessage> call, final Response<ResponseMessage> response) {
                 if (response.isSuccessful()) {

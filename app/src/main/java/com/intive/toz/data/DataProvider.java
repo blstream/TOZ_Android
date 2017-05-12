@@ -2,12 +2,17 @@ package com.intive.toz.data;
 
 import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
+import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Reserve;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
+
+import okhttp3.ResponseBody;
 
 /**
  * The interface Data provider.
@@ -52,10 +57,37 @@ public interface DataProvider {
 
     /**
      * Checking login account on server and response with Jwt.
+     *
      * @param listener object response from server.
      * @param loginObj object contain email and password.
      */
-    void fetchResponseLogin(ResponseLoginCallback<Jwt> listener, Login loginObj);
+    void fetchResponseLogin(ResponseLoginCallback<User> listener, Login loginObj);
+
+    /**
+     * Fetch schedule.
+     *
+     * @param listener the listener
+     * @param from     the from
+     * @param to       the to
+     */
+    void fetchSchedule(ResponseCallback<Schedule> listener, String from, String to);
+
+    /**
+     * Reserve.
+     *
+     * @param listener the listener
+     * @param reserve  the reserve
+     */
+    void reserve(ResponseCallback<Reservation> listener,
+                 Reserve reserve);
+
+    /**
+     * Remove reservation.
+     *
+     * @param listener the listener
+     * @param id       the id
+     */
+    void removeReservation(ResponseCallback<ResponseBody> listener, String id);
 
     /**
      * Making request to server to change password.
@@ -87,6 +119,7 @@ public interface DataProvider {
 
     /**
      * The interfaca for listener to login.
+     *
      * @param <T> the type parameter
      */
     interface ResponseLoginCallback<T> {
@@ -106,6 +139,7 @@ public interface DataProvider {
 
         /**
          * successfull attempt to login but response with specific error code.
+         *
          * @param codeMessage HTTP Status Code
          */
         void onErrorCode(int codeMessage);

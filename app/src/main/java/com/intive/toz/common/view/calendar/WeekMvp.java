@@ -4,17 +4,15 @@ import android.support.v4.app.DialogFragment;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
-import com.intive.toz.common.view.calendar.model.ReservedDay;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.Date;
-import java.util.List;
 
 
 /**
  * interface for Presenter and ButtonsView.
  */
-
-public interface ButtonsMvp {
+public interface WeekMvp {
 
     /**
      * interface to presenter.
@@ -22,18 +20,22 @@ public interface ButtonsMvp {
     interface Presenter extends MvpPresenter<ButtonsView> {
 
         /**
-         * set calendar buttons state.
-         */
-        void loadData(int week);
-
-
-        /**
          * check calendar date state.
          *
-         * @param position the position
-         * @param day the day
+         * @param position  the position
+         * @param day       the day
+         * @param week      the week
+         * @param isMorning the is morning
          */
         void checkDate(int position, Date day, int week, boolean isMorning);
+
+        /**
+         * Fetch schedule.
+         *
+         * @param from the from
+         * @param to   the to
+         */
+        void fetchSchedule(String from, String to);
 
     }
 
@@ -44,12 +46,17 @@ public interface ButtonsMvp {
 
 
         /**
-         * set state of callendar buttons.
+         * Sets schedule.
          *
-         * @param reservedDays the reserved days
+         * @param schedule the schedule
          */
+        void setSchedule(Schedule schedule);
 
-        void setButtons(List<ReservedDay> reservedDays);
+
+        /**
+         * Refresh schedule.
+         */
+        void refreshSchedule();
 
 
         /**
@@ -62,8 +69,10 @@ public interface ButtonsMvp {
 
         /**
          * show snackbar in calendar activity.
+         *
+         * @param messageId the message id
          */
-        void showSnackbar();
+        void showSnackbar(int messageId);
 
 
     }

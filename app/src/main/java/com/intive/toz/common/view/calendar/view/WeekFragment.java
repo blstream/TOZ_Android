@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-
 import android.support.v4.app.FragmentManager;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -14,15 +13,12 @@ import android.widget.GridView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
-import com.intive.toz.common.view.calendar.ButtonsMvp;
 import com.intive.toz.common.view.calendar.SnackbarFactory;
+import com.intive.toz.common.view.calendar.WeekMvp;
 import com.intive.toz.common.view.calendar.adapter.ButtonsAdapter;
-
-
-import com.intive.toz.common.view.calendar.model.ReservedDay;
-import com.intive.toz.common.view.calendar.model.ReservedDayList;
-import com.intive.toz.common.view.calendar.presenter.WeekPresenter;
 import com.intive.toz.common.view.calendar.adapter.WeekAdapter;
+import com.intive.toz.common.view.calendar.presenter.WeekPresenter;
+import com.intive.toz.schedule.model.Schedule;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,7 +33,7 @@ import butterknife.Unbinder;
 /**
  * The type Week fragment.
  */
-public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp.Presenter> implements ButtonsMvp.ButtonsView {
+public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Presenter> implements WeekMvp.ButtonsView {
 
     /**
      * The constant FIRST.
@@ -61,10 +57,19 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
      */
     @BindView(R.id.week_view)
     GridView gridView;
+    /**
+     * The Grid view afternoon.
+     */
     @BindView(R.id.afternoon_buttons_view)
     GridView gridViewAfternoon;
+    /**
+     * The Grid view morning.
+     */
     @BindView(R.id.morning_buttons_view)
     GridView gridViewMorning;
+
+    @BindView(R.id.progress_bar)
+    View progressBar;
 
     private Unbinder unbinder;
     private int week;
@@ -111,32 +116,17 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
     public void onViewCreated(final View view, @Nullable final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
+
         List<Date> dates = getWeek(week);
         WeekAdapter adapter = new WeekAdapter(getContext(), dates);
+
         gridView.setAdapter(adapter);
-        setDateArray();
-        List<ReservedDay> reservedDays = getReservedDays(week);
-        adapterMorning = new ButtonsAdapter(getContext(), reservedDays, true);
-        adapterAfternoon = new ButtonsAdapter(getContext(), reservedDays, false);
-        presenter.loadData(week);
+        adapterMorning = new ButtonsAdapter(getContext(), dates, true);
+        adapterAfternoon = new ButtonsAdapter(getContext(), dates, false);
+
+        presenter.fetchSchedule(DateFormat.format("yyyy-MM-dd", getWeek(week).get(FIRST)).toString(),
+                DateFormat.format("yyyy-MM-dd", getWeek(week).get(LAST)).toString());
         fragmentManager = getFragmentManager();
-    }
-
-    private List<ReservedDay> getReservedDays(final int week) {
-        return ReservedDayList.newInstance(week);
-    }
-
-    /**
-     * Set date array.
-     */
-    public void setDateArray() {
-        List<Date> dates = new ArrayList<>();
-        for (int i = 0; i < WEEKS; i++) {
-            for (Date d : getWeek(i)) {
-                dates.add(d);
-            }
-        }
-        ReservedDayList.setDateButtons(dates);
     }
 
     /**
@@ -210,20 +200,29 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
     }
 
     @Override
-    public ButtonsMvp.Presenter createPresenter() {
+    public WeekMvp.Presenter createPresenter() {
         return new WeekPresenter();
     }
 
     @Override
-    public void setButtons(final List<ReservedDay> reservedDayList) {
+    public void setSchedule(final Schedule schedule) {
         adapterMorning.clear();
         adapterAfternoon.clear();
 
-        adapterMorning.setButtons(reservedDayList);
-        adapterAfternoon.setButtons(reservedDayList);
+        adapterMorning.setSchedule(schedule);
+        adapterAfternoon.setSchedule(schedule);
 
         gridViewAfternoon.setAdapter(adapterAfternoon);
         gridViewMorning.setAdapter(adapterMorning);
+
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void refreshSchedule() {
+        progressBar.setVisibility(View.VISIBLE);
+        presenter.fetchSchedule(DateFormat.format("yyyy-MM-dd", getWeek(week).get(FIRST)).toString(),
+                DateFormat.format("yyyy-MM-dd", getWeek(week).get(LAST)).toString());
     }
 
     @Override
@@ -232,8 +231,8 @@ public class WeekFragment extends MvpFragment<ButtonsMvp.ButtonsView, ButtonsMvp
     }
 
     @Override
-    public void showSnackbar() {
-        snackbar = SnackbarFactory.getSnackbar(getActivity(), "Termin został pomyślnie zapisany");
+    public void showSnackbar(final int messageId) {
+        snackbar = SnackbarFactory.getSnackbar(getActivity(), getResources().getString(messageId));
         snackbar.show();
     }
 
