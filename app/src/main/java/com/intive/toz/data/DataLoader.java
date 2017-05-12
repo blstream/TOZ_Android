@@ -3,8 +3,6 @@ package com.intive.toz.data;
 import com.intive.toz.R;
 import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
-import com.intive.toz.login.Session;
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.network.ApiClient;
@@ -207,7 +205,7 @@ public class DataLoader implements DataProvider {
 
     @Override
     public void requestPasswordChange(final ResponseChangePasswordCallback<ResponseMessage> listener, final UserPassword userPassword) {
-        api.changePassword(userPassword, Session.getJwtWithBearerPrefix()).enqueue(new Callback<ResponseMessage>() {
+        api.changePassword(userPassword).enqueue(new Callback<ResponseMessage>() {
             @Override
             public void onResponse(final Call<ResponseMessage> call, final Response<ResponseMessage> response) {
                 if (response.isSuccessful()) {

@@ -2,7 +2,6 @@ package com.intive.toz.data;
 
 import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
-import com.intive.toz.login.model.Jwt;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
