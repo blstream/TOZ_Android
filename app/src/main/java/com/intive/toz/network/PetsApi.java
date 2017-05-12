@@ -96,6 +96,12 @@ public interface PetsApi {
     @POST("/schedule")
     Call<Reservation> reservation(@Body Reserve reserve);
 
+    /**
+     * Remove reservation call.
+     *
+     * @param id the id
+     * @return the call
+     */
     @DELETE("/schedule/{id}")
     Call<ResponseBody> removeReservation(@Path("id") String id);
 }

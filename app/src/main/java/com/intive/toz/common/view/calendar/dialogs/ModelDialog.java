@@ -253,14 +253,14 @@ public class ModelDialog extends DialogFragment {
         DataLoader dataLoader = new DataLoader();
         dataLoader.removeReservation(new DataProvider.ResponseCallback<ResponseBody>() {
             @Override
-            public void onSuccess(ResponseBody response) {
+            public void onSuccess(final ResponseBody response) {
                 progressBar.setVisibility(View.VISIBLE);
                 dismiss();
                 listener.onChanged(R.string.reservation_removed);
             }
 
             @Override
-            public void onError(Throwable e) {
+            public void onError(final Throwable e) {
                 progressBar.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), getResources().getString(R.string.default_error), Toast.LENGTH_SHORT).show();
             }

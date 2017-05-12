@@ -51,7 +51,9 @@ public final class DialogFactory {
     /**
      * New instance delete dialog fragment.
      *
-     * @param name the name
+     * @param name     the name
+     * @param id       the id
+     * @param listener the listener
      * @return dialog model dialog
      */
     public static ModelDialog deleteDialog(final String name, final String id, final OnReservationChangeListener listener) {

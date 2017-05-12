@@ -48,13 +48,13 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
                 if (isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(0).getPeriodStart())) {
                     reservation = r;
                     result = 1;
-                    if(r.getOwnerId().equals(Session.getUserId())) {
+                    if (r.getOwnerId().equals(Session.getUserId())) {
                         result = 2;
                     }
                 } else if (!isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(1).getPeriodStart())) {
                     reservation = r;
                     result = 1;
-                    if(r.getOwnerId().equals(Session.getUserId())) {
+                    if (r.getOwnerId().equals(Session.getUserId())) {
                         result = 2;
                     }
                 }
