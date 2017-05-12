@@ -34,6 +34,10 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity" />
         <activity
+            android:name=".account.ChangePasswordActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_change_password"/>
+        <activity
             android:name=".volunteerForm.VolunteerFormActivity"
             android:theme="@style/AppTheme"
             android:label="@string/title_activity_volunteer_form"
