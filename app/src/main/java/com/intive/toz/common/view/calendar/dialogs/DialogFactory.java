@@ -10,9 +10,21 @@ import java.util.Date;
  */
 public final class DialogFactory {
 
+    /**
+     * The constant day.
+     */
     public static Date day;
+    /**
+     * The constant position.
+     */
     public static int position;
+    /**
+     * The constant isMorning.
+     */
     public static boolean isMorning;
+    /**
+     * The constant week.
+     */
     public static int week;
 
     /**
@@ -25,39 +37,52 @@ public final class DialogFactory {
      * New instance information dialog fragment.
      *
      * @param name the name
-     * @return dialog
+     * @return dialog model dialog
      */
     public static ModelDialog infoDialog(final String name) {
-        ModelDialog dialog = ModelDialog.newInstance(1, getDate(day), week, isMorning);
+        ModelDialog dialog = ModelDialog.newInstance(1);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
+        dialog.setDay(day);
         return dialog;
     }
 
     /**
      * New instance delete dialog fragment.
      *
-     * @param name the name
-     * @return dialog
+     * @param name     the name
+     * @param id       the id
+     * @param listener the listener
+     * @return dialog model dialog
      */
-    public static ModelDialog deleteDialog(final String name) {
-        ModelDialog dialog = ModelDialog.newInstance(2, getDate(day), week, isMorning);
+    public static ModelDialog deleteDialog(final String name, final String id, final OnReservationChangeListener listener) {
+        ModelDialog dialog = ModelDialog.newInstance(2);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
         dialog.setUserName(name);
+        dialog.setDay(day);
+        dialog.setId(id);
+        dialog.setListener(listener);
         return dialog;
     }
 
     /**
      * New instance save dialog fragment.
      *
-     * @return dialog
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @param listener  the listener
+     * @return dialog model dialog
      */
-    public static ModelDialog saveDialog() {
-        ModelDialog dialog = ModelDialog.newInstance(0, getDate(day), week, isMorning);
+    public static ModelDialog saveDialog(final String startDate, final String endDate, final OnReservationChangeListener listener) {
+        ModelDialog dialog = ModelDialog.newInstance(0);
         dialog.setTitle(DialogFactory.getTitle());
         dialog.setDate(DialogFactory.getTitleDate());
+        dialog.setStartDate(startDate);
+        dialog.setEndDate(endDate);
+        dialog.setDay(day);
+        dialog.setListener(listener);
         return dialog;
     }
 
@@ -73,23 +98,10 @@ public final class DialogFactory {
                 + DateFormat.format("MMMM", day).toString();
     }
 
-
-    /**
-     * Get date.
-     *
-     * @param day the day
-     * @return date string
-     */
-    private static String getDate(final Date day) {
-        return DateFormat.format("dd", day).toString()
-                + DateFormat.format("MM", day).toString()
-                + DateFormat.format("yy", day).toString();
-    }
-
     /**
      * Title dialog fragment.
      *
-     * @return title
+     * @return title title
      */
     public static String getTitle() {
 

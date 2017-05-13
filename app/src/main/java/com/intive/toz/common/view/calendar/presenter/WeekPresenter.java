@@ -1,29 +1,30 @@
 package com.intive.toz.common.view.calendar.presenter;
 
 import android.text.format.DateFormat;
-import android.util.Log;
-import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.intive.toz.common.view.calendar.ButtonsMvp;
-import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
-import com.intive.toz.common.view.calendar.model.ReservedDay;
-import com.intive.toz.common.view.calendar.model.ReservedDayList;
 
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.intive.toz.common.view.calendar.WeekMvp;
+import com.intive.toz.common.view.calendar.dialogs.DialogFactory;
+import com.intive.toz.common.view.calendar.dialogs.OnReservationChangeListener;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
+import com.intive.toz.login.Session;
+import com.intive.toz.schedule.model.Config;
+import com.intive.toz.schedule.model.Reservation;
+import com.intive.toz.schedule.model.Schedule;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
  * mvp presenter for calendar activity.
  */
+public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
+        implements WeekMvp.Presenter, DataProvider.ResponseCallback<Schedule>, OnReservationChangeListener {
 
-public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> implements ButtonsMvp.Presenter {
-
-
-    @Override
-    public void loadData(final int week) {
-
-        getView().setButtons(ReservedDayList.newInstance(week));
-    }
-
+    private Schedule schedule;
 
     @Override
     public void checkDate(final int position, final Date day, final int week, final boolean isMorning) {
@@ -33,63 +34,78 @@ public class WeekPresenter extends MvpBasePresenter<ButtonsMvp.ButtonsView> impl
         DialogFactory.isMorning = isMorning;
         DialogFactory.week = week;
 
-        ReservedDay reservedDay = getDateObjectReserved(day);
-
-        assert reservedDay != null;
-        int resoult = isMorning ? reservedDay.getStateMorning() : reservedDay.getStateAfternoon();
-        String name = isMorning ? reservedDay.getUserNameMorning() : reservedDay.getUserNameAfternoon();
-        switch (resoult) {
-            case 1:
-                getView().showDialog(DialogFactory.infoDialog(name));
-                break;
-            case 2:
-                getView().showDialog(DialogFactory.deleteDialog(name));
-                break;
-            default:
-                getView().showDialog(DialogFactory.saveDialog());
-                break;
+        List<Reservation> reservations = schedule.getReservations();
+        List<Config> configs = schedule.getConfigs();
+        String currentDate = DateFormat.format("yyyy-MM-dd", day).toString();
+        if (reservations == null) {
+            reservations = new ArrayList<>();
         }
-    }
 
-    private ReservedDay getDateObjectReserved(final Date day) {
-        String date = getDate(day);
-        for (ReservedDay p : ReservedDayList.stateBtn) {
-            if (p.getDate().equals(date)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void setDate(final String date, final int week, final boolean isSaved, final boolean isMorning) {
-        int value = isSaved ? 2 : 0;
-        for (ReservedDay p : ReservedDayList.stateBtn) {
-            if (p.getDate().equals(date)) {
-                if (isMorning) {
-                    p.setStateMorning(value);
-                } else {
-                    p.setStateAfternoon(value);
+        int result = 0;
+        Reservation reservation = null;
+        for (Reservation r : reservations) {
+            if (r.getDate().equals(currentDate)) {
+                if (isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(0).getPeriodStart())) {
+                    reservation = r;
+                    result = 1;
+                    if (r.getOwnerId().equals(Session.getUserId())) {
+                        result = 2;
+                    }
+                } else if (!isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(1).getPeriodStart())) {
+                    reservation = r;
+                    result = 1;
+                    if (r.getOwnerId().equals(Session.getUserId())) {
+                        result = 2;
+                    }
                 }
             }
         }
-        if (isSaved) {
-            getView().showSnackbar();
+
+        String startDate = isMorning
+                ? configs.get(position).getPeriods().get(0).getPeriodStart()
+                : configs.get(position).getPeriods().get(1).getPeriodStart();
+
+        String endDate = isMorning
+                ? configs.get(position).getPeriods().get(0).getPeriodEnd()
+                : configs.get(position).getPeriods().get(1).getPeriodEnd();
+
+        switch (result) {
+            case 1:
+                getView().showDialog(DialogFactory.infoDialog(reservation.getOwnerName()));
+                break;
+            case 2:
+                getView().showDialog(DialogFactory.deleteDialog(reservation.getOwnerName(), reservation.getId(), this));
+                break;
+            default:
+                if (day.after(new Date()) || day.equals(new Date())) {
+                    getView().showDialog(DialogFactory.saveDialog(startDate, endDate, this));
+                }
+                break;
         }
-        loadData(week);
-        Log.e("BUTTONSPRESENTER", "ZAPISUJE");
     }
 
-    /**
-     * Get date.
-     *
-     * @param day the day
-     * @return string date
-     */
-    private String getDate(final Date day) {
+    @Override
+    public void fetchSchedule(final String from, final String to) {
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.fetchSchedule(this, from, to);
+    }
 
-        return  DateFormat.format("dd", day).toString()
-                + DateFormat.format("MM", day).toString()
-                + DateFormat.format("yy", day).toString();
+    @Override
+    public void onSuccess(final Schedule response) {
+        if (response != null) {
+            schedule = response;
+            getView().setSchedule(response);
+        }
+    }
+
+    @Override
+    public void onError(final Throwable e) {
+
+    }
+
+    @Override
+    public void onChanged(final int messageId) {
+        getView().showSnackbar(messageId);
+        getView().refreshSchedule();
     }
 }

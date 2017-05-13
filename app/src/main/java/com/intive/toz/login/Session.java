@@ -23,6 +23,7 @@ public final class Session {
         preferences = context.getSharedPreferences("com.intive.toz", Context.MODE_PRIVATE);
         editor = preferences.edit();
     }
+
     /**
      * Return session state.
      *
@@ -35,14 +36,16 @@ public final class Session {
 
     /**
      * Set session log in.
-     * @param jwt to keep token in preferences.
-     * @param scope to keep who is logged in preferences.
+     *
+     * @param jwt    to keep token in preferences.
+     * @param userId the user id
+     * @param role   the role
      */
-
-    public static void logIn(final String jwt, final String scope) {
+    public static void logIn(final String jwt, final String userId, final String role) {
         editor.putBoolean("loggedState", true);
         editor.putString("jwt", jwt);
-        editor.putString("scope", scope);
+        editor.putString("userId", userId);
+        editor.putString("role", role);
         editor.commit();
     }
 
@@ -53,11 +56,14 @@ public final class Session {
         editor.putBoolean("loggedState", false);
         editor.putString("jwt", "");
         editor.putString("scope", "");
+        editor.putString("userId", "");
+        editor.putString("role", "");
         editor.commit();
     }
 
     /**
      * get jwt from session.
+     *
      * @return String jwt.
      */
     public static String getJwt() {
@@ -65,10 +71,20 @@ public final class Session {
     }
 
     /**
-     * get subject user login.
-     * @return subject.
+     * Gets user id.
+     *
+     * @return the user id
      */
-    public static String getScope() {
-        return preferences.getString("scope", "");
+    public static String getUserId() {
+        return preferences.getString("userId", "");
+    }
+
+    /**
+     * Gets role.
+     *
+     * @return the role
+     */
+    public static String getRole() {
+        return preferences.getString("role", "");
     }
 }
