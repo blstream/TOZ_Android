@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
 
@@ -69,13 +70,13 @@ public class PetImagesFragment extends MvpFragment<PetDetailsImageView, PetDetai
 
     @Override
     public void showPetDetails(final Pet pet) {
-        tvPage.setText(String.format("%s/10", message));
         Glide.with(this)
-                .load(pet.getAddress())
+                .load(ApiClient.API_URL + "/" + pet.getImageUrl())
                 .centerCrop()
                 .placeholder(R.drawable.ic_pets_black_error48dp)
                 .error(R.color.greyLight)
                 .into(image);
+        tvPage.setText(String.format("%s/10", message));
     }
 
     @Override

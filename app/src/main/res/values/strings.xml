@@ -57,6 +57,8 @@
     <string name="pet_detail_type">Typ</string>
     <string name="pet_detail_sex">Płeć</string>
     <string name="pet_detail_date_add">Data dodania</string>
+    <string name="pet_detail_action_bar_title">Galeria</string>
+    <string name="pet_detail_button">Pomóż temu zwierzakowi</string>
 
     <!--form for volunteer-->
     <string name="title_activity_volunteer_form">Zgłoszenie</string>

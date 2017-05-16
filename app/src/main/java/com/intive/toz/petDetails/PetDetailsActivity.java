@@ -60,11 +60,9 @@ public class PetDetailsActivity extends AppCompatActivity {
             }
         });
 
-        String messageName = getIntent().getStringExtra("petName");
-
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         if (ab != null) {
-            ab.setTitle(messageName);
+            ab.setTitle(R.string.pet_detail_action_bar_title);
         }
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

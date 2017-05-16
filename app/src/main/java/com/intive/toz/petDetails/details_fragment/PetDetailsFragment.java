@@ -6,13 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
-import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
+import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,9 +34,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     @BindView(R.id.date_pet_details)
     TextView dateTv;
-
-    @BindView(R.id.iv_pet_type)
-    ImageView typeIv;
 
     @BindView(R.id.description_pet_details)
     TextView descriptionTv;
@@ -93,14 +89,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         dateTv.setText(petCreatedDate);
         sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
-
-        if (pet.getType().contains("DOG")) {
-            typeIv.setImageResource(R.drawable.ic_pets_black_eror48dp);
-        } else if (pet.getType().contains("CAT")) {
-            typeIv.setImageResource(R.drawable.ic_cat);
-        } else {
-            typeIv.setImageResource(R.drawable.ic_pets_black_eror48dp);
-        }
     }
 
     @Override
@@ -110,7 +98,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
