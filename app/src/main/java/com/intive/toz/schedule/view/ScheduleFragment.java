@@ -2,6 +2,7 @@ package com.intive.toz.schedule.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * The type Schedule fragment.
@@ -34,6 +36,12 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
      */
     @BindView(R.id.title_tv)
     TextView titleTv;
+
+    @BindView(R.id.previous_btn)
+    CircleImageView previous;
+
+    @BindView(R.id.next_btn)
+    CircleImageView next;
 
     private Unbinder unbinder;
     private CalendarAdapter pagerAdapter;
@@ -82,10 +90,12 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
         switch (v.getId()) {
             case R.id.previous_btn:
                 calendarVp.setCurrentItem(item - 1, true);
+                setupArrowButtons(item - 1);
                 titleTv.setText(pagerAdapter.getTitle(calendarVp.getCurrentItem()));
                 break;
             case R.id.next_btn:
                 calendarVp.setCurrentItem(item + 1, true);
+                setupArrowButtons(item + 1);
                 titleTv.setText(pagerAdapter.getTitle(calendarVp.getCurrentItem()));
                 break;
             default:
@@ -97,14 +107,33 @@ public class ScheduleFragment extends MvpFragment<ScheduleMvp.View, ScheduleMvp.
     public void onResume() {
         super.onResume();
         titleTv.setText(pagerAdapter.getTitle(calendarVp.getCurrentItem()));
+        setupArrowButtons(calendarVp.getCurrentItem());
     }
 
     @Override
     public void configCalendar() {
-
         pagerAdapter = new CalendarAdapter(getChildFragmentManager());
         calendarVp.setAdapter(pagerAdapter);
         calendarVp.setCurrentItem(1);
         calendarVp.setCanSwipe(false);
+    }
+
+    private void setupArrowButtons(final int position) {
+        if (position == 1) {
+            previous.setFillColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+            previous.setColorFilter(ContextCompat.getColor(getContext(), R.color.whiteText));
+            next.setFillColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+            next.setColorFilter(ContextCompat.getColor(getContext(), R.color.whiteText));
+        } else if (position == 0) {
+            previous.setFillColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+            previous.setColorFilter(ContextCompat.getColor(getContext(), R.color.inactive_arrow_color));
+            next.setFillColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+            next.setColorFilter(ContextCompat.getColor(getContext(), R.color.whiteText));
+        } else {
+            next.setFillColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
+            next.setColorFilter(ContextCompat.getColor(getContext(), R.color.inactive_arrow_color));
+            previous.setFillColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+            previous.setColorFilter(ContextCompat.getColor(getContext(), R.color.whiteText));
+        }
     }
 }

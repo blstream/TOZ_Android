@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#4CD374</color>
+    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorAccent">#FF8900</color>
 
     <color name="windowBackground">#FFFFFF</color>
     <color name="whiteText">#FFFFFF</color>
@@ -16,7 +16,11 @@
     
     <!--date buttons colors-->
     <color name="free">#FFFFFF</color>
-    <color name="busy">#BDBDBD</color>
-    <color name="my">#757575</color>
+    <color name="busy">#4CD374</color>
+    <color name="my">#FF8900</color>
+
+    <color name="week_background">#9EE7B4</color>
+    <color name="week_text_color">#3E8B55</color>
+    <color name="inactive_arrow_color">#9E9E9E</color>
 
 </resources>

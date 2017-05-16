@@ -49,6 +49,8 @@
     <string name="user_calendar_button_name">JA</string>
     <string name="reservation_done">Termin został pomyślnie zapisany</string>
     <string name="reservation_removed">Termin został pomyślnie usunięty</string>
+    <string name="afternoon">popołudnie</string>
+    <string name="morning">rano</string>
 
     <!--pet galerry details-->
     <string name="pet_detail_name">Imię</string>

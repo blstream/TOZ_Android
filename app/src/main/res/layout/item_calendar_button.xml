@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/list_small_text"
+        android:textColor="@color/whiteText"
         android:gravity="center"
         android:padding="8dp"/>
 
