@@ -1,7 +1,5 @@
 package com.intive.toz.network;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.intive.toz.TozApplication;
 import com.intive.toz.login.Session;
@@ -117,10 +115,9 @@ public final class ApiClient {
         return new Interceptor() {
             @Override
             public Response intercept(final Chain chain) throws IOException {
-                Log.d("TAG", Session.getJwt());
                 if (Session.isLogged()) {
                     final long time = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
-                    if (time < Session.getExpirationDate()) {
+                    if (time > Session.getExpirationDate()) {
                         Request refresh = refreshTokenRequestBuilder();
                         OkHttpClient client = new OkHttpClient();
                         client.newCall(refresh).enqueue(new Callback() {
@@ -139,7 +136,6 @@ public final class ApiClient {
 
                         await().atMost(MAX_DELAY, TimeUnit.SECONDS).until(flag());
                         if (flag) {
-                            Log.d("TAG1", Session.getJwt());
                             Request request = chain.request();
                             request = request.newBuilder()
                                     .addHeader("Authorization", "Bearer " + Session.getJwt())
@@ -150,7 +146,6 @@ public final class ApiClient {
                         }
                     }
                 }
-                Log.d("TAG2", Session.getJwt());
                 Request request = chain.request();
                 request = request.newBuilder()
                         .addHeader("Authorization", "Bearer " + Session.getJwt())
@@ -166,8 +161,8 @@ public final class ApiClient {
         JSONObject json = new JSONObject();
 
         try {
-            json.put("email", "VOLUNTEER_user2.email@gmail.com");
-            json.put("password", "VOLUNTEER_name_2");
+            json.put("email", Session.getEmail());
+            json.put("password", Session.getPassword());
         } catch (JSONException e) {
             e.printStackTrace();
         }

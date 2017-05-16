@@ -3,6 +3,8 @@ package com.intive.toz.login;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.orhanobut.hawk.Hawk;
+
 
 /**
  * Class session.
@@ -10,6 +12,9 @@ import android.content.SharedPreferences;
 public final class Session {
     private static SharedPreferences preferences;
     private static SharedPreferences.Editor editor;
+
+    private static final String PASSWORD_KEY = "password";
+    private static final String EMAIL_KEY = "email";
 
     private Session() {
     }
@@ -22,6 +27,7 @@ public final class Session {
     public static void session(final Context context) {
         preferences = context.getSharedPreferences("com.intive.toz", Context.MODE_PRIVATE);
         editor = preferences.edit();
+        Hawk.init(context).build();
     }
 
     /**
@@ -52,6 +58,17 @@ public final class Session {
     }
 
     /**
+     * Store credentials.
+     *
+     * @param email    the email
+     * @param password the password
+     */
+    public static void storeCredentials(final String email, final String password) {
+        Hawk.put(EMAIL_KEY, email);
+        Hawk.put(PASSWORD_KEY, password);
+    }
+
+    /**
      * Set session log out.
      */
     public static void logOut() {
@@ -62,6 +79,7 @@ public final class Session {
         editor.putString("role", "");
         editor.putLong("expirationDate", 0);
         editor.commit();
+        Hawk.deleteAll();
     }
 
     /**
@@ -98,5 +116,23 @@ public final class Session {
      */
     public static Long getExpirationDate() {
         return preferences.getLong("expirationDate", 0);
+    }
+
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
+    public static String getPassword() {
+        return Hawk.get(PASSWORD_KEY);
+    }
+
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
+    public static String getEmail() {
+        return Hawk.get(EMAIL_KEY);
     }
 }
