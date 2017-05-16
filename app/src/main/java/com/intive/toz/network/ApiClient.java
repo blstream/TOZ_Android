@@ -115,6 +115,7 @@ public final class ApiClient {
         return new Interceptor() {
             @Override
             public Response intercept(final Chain chain) throws IOException {
+                Request request = chain.request();
                 if (Session.isLogged()) {
                     final long time = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
                     if (time > Session.getExpirationDate()) {
@@ -123,20 +124,24 @@ public final class ApiClient {
                         client.newCall(refresh).enqueue(new Callback() {
                             @Override
                             public void onFailure(final Call call, final IOException e) {
+                                TozApplication.getInstance().onTokenRefreshError();
                             }
 
                             @Override
                             public void onResponse(final Call call, final Response response) throws IOException {
-                                Gson gson = new Gson();
-                                User user = gson.fromJson(response.body().charStream(), User.class);
-                                Session.logIn(user.getJwt(), user.getUserId(), user.getRoles().get(0), user.getExpirationDateSeconds());
-                                flag = true;
+                                if (response.isSuccessful()) {
+                                    Gson gson = new Gson();
+                                    User user = gson.fromJson(response.body().charStream(), User.class);
+                                    Session.logIn(user.getJwt(), user.getUserId(), user.getRoles().get(0), user.getExpirationDateSeconds());
+                                    flag = true;
+                                } else {
+                                    TozApplication.getInstance().onTokenRefreshError();
+                                }
                             }
                         });
 
                         await().atMost(MAX_DELAY, TimeUnit.SECONDS).until(flag());
                         if (flag) {
-                            Request request = chain.request();
                             request = request.newBuilder()
                                     .addHeader("Authorization", "Bearer " + Session.getJwt())
                                     .addHeader("Content-Type", "application/json")
@@ -145,13 +150,12 @@ public final class ApiClient {
                             return chain.proceed(request);
                         }
                     }
+                    request = request.newBuilder()
+                            .addHeader("Authorization", "Bearer " + Session.getJwt())
+                            .addHeader("Content-Type", "application/json")
+                            .addHeader("Accept", "application/json")
+                            .build();
                 }
-                Request request = chain.request();
-                request = request.newBuilder()
-                        .addHeader("Authorization", "Bearer " + Session.getJwt())
-                        .addHeader("Content-Type", "application/json")
-                        .addHeader("Accept", "application/json")
-                        .build();
                 return chain.proceed(request);
             }
         };
