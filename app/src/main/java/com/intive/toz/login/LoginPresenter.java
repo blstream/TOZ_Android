@@ -23,7 +23,6 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
      */
     void validateUser(final String login, final String password) {
         getView().hideErrorViews();
-        getView().showProgress();
         if (login.isEmpty()) {
             getView().emptyLoginViewError();
         } else if (!validator.validateLogin(login)) {
@@ -40,7 +39,6 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
             loginObj.setPassword(password);
             validateFromServer(loginObj);
         }
-        getView().hideProgress();
     }
 
     /**
@@ -51,36 +49,45 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
     private void validateFromServer(final Login loginObj) {
         DataLoader dataLoader = new DataLoader();
 
+        getView().hideAllViews();
+        getView().showProgress();
         dataLoader.fetchResponseLogin(new DataProvider.ResponseLoginCallback<User>() {
             @Override
             public void onSuccess(final User response) {
                 if (isViewAttached()) {
                     Session.logIn(response.getJwt(), response.getUserId(), response.getRoles().get(0));
-
+                    getView().hideProgress();
                     getView().onLoginSuccessful();
-
                 }
             }
 
             @Override
             public void onError(final Throwable e) {
                 if (isViewAttached()) {
+                    getView().showAllViews();
+                    getView().hideProgress();
                     getView().showError();
                 }
             }
 
             @Override
             public void onErrorCode(final int code) {
+                getView().showAllViews();
+                getView().hideProgress();
                 getView().showErrorGeneral(code);
             }
 
             @Override
             public void onErrorPassword() {
+                getView().showAllViews();
+                getView().hideProgress();
                 getView().showPasswordError();
             }
 
             @Override
             public void onErrorLogin() {
+                getView().showAllViews();
+                getView().hideProgress();
                 getView().showLoginError();
             }
         }, loginObj);
