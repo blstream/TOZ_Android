@@ -55,7 +55,7 @@ class LoginPresenter extends MvpBasePresenter<LoginView> {
             @Override
             public void onSuccess(final User response) {
                 if (isViewAttached()) {
-                    Session.logIn(response.getJwt(), response.getUserId(), response.getRoles().get(0));
+                    Session.logIn(response.getJwt(), response.getUserId(), response.getRoles().get(0), response.getExpirationDateSeconds());
 
                     getView().onLoginSuccessful();
 

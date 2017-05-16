@@ -1,7 +1,13 @@
 package com.intive.toz.network;
 
+import android.util.Log;
+
 import com.intive.toz.TozApplication;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
 import com.intive.toz.login.Session;
+import com.intive.toz.login.model.Login;
+import com.intive.toz.login.model.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,9 +18,11 @@ import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 
 /**
  * Base url connection.
@@ -103,6 +111,17 @@ public final class ApiClient {
             public Response intercept(final Chain chain) throws IOException {
                 Request request = chain.request();
                 if (Session.isLogged()) {
+                    long time = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+
+                    if (time < Session.getExpirationDate()) {
+                        Login login = new Login();
+                        login.setEmail("VOLUNTEER_user2.email@gmail.com");
+                        login.setPassword("VOLUNTEER_name_0");
+                        request = request.newBuilder()
+                                .url(API_URL)
+                                .build();
+                    }
+
                     request = request.newBuilder()
                             .addHeader("Authorization", "Bearer " + Session.getJwt())
                             .addHeader("Content-Type", "application/json")
@@ -113,7 +132,6 @@ public final class ApiClient {
             }
         };
     }
-
 
     /**
      * @return pets Api

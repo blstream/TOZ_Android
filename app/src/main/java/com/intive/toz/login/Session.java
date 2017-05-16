@@ -41,11 +41,12 @@ public final class Session {
      * @param userId the user id
      * @param role   the role
      */
-    public static void logIn(final String jwt, final String userId, final String role) {
+    public static void logIn(final String jwt, final String userId, final String role, long tokenExpirationDate) {
         editor.putBoolean("loggedState", true);
         editor.putString("jwt", jwt);
         editor.putString("userId", userId);
         editor.putString("role", role);
+        editor.putLong("expirationDate", tokenExpirationDate);
         editor.commit();
     }
 
@@ -58,6 +59,7 @@ public final class Session {
         editor.putString("scope", "");
         editor.putString("userId", "");
         editor.putString("role", "");
+        editor.putLong("expirationDate", 0);
         editor.commit();
     }
 
@@ -86,5 +88,9 @@ public final class Session {
      */
     public static String getRole() {
         return preferences.getString("role", "");
+    }
+
+    public static Long getExpirationDate() {
+        return preferences.getLong("expirationDate", 0);
     }
 }
