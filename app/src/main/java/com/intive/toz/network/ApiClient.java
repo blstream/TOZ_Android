@@ -2,27 +2,33 @@ package com.intive.toz.network;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.intive.toz.TozApplication;
-import com.intive.toz.data.DataLoader;
-import com.intive.toz.data.DataProvider;
 import com.intive.toz.login.Session;
-import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
+
+import static org.awaitility.Awaitility.await;
 
 /**
  * Base url connection.
@@ -34,8 +40,10 @@ public final class ApiClient {
     private static final String CACHE_DIRECTORY = "cache";
     private static final int BUFFER_SIZE = 10485760;
     private static final int MAX_STALE = 7;
+    private static final int MAX_DELAY = 3;
 
-    static final String API_URL = "https://intense-badlands-80645.herokuapp.com";
+    private static final String API_URL = "https://intense-badlands-80645.herokuapp.com";
+    private static Boolean flag = false;
 
     private ApiClient() {
     }
@@ -109,26 +117,76 @@ public final class ApiClient {
         return new Interceptor() {
             @Override
             public Response intercept(final Chain chain) throws IOException {
-                Request request = chain.request();
+                Log.d("TAG", Session.getJwt());
                 if (Session.isLogged()) {
-                    long time = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
-
+                    final long time = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
                     if (time < Session.getExpirationDate()) {
-                        Login login = new Login();
-                        login.setEmail("VOLUNTEER_user2.email@gmail.com");
-                        login.setPassword("VOLUNTEER_name_0");
-                        request = request.newBuilder()
-                                .url(API_URL)
-                                .build();
-                    }
+                        Request refresh = refreshTokenRequestBuilder();
+                        OkHttpClient client = new OkHttpClient();
+                        client.newCall(refresh).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(final Call call, final IOException e) {
+                            }
 
-                    request = request.newBuilder()
-                            .addHeader("Authorization", "Bearer " + Session.getJwt())
-                            .addHeader("Content-Type", "application/json")
-                            .addHeader("Accept", "application/json")
-                            .build();
+                            @Override
+                            public void onResponse(final Call call, final Response response) throws IOException {
+                                Gson gson = new Gson();
+                                User user = gson.fromJson(response.body().charStream(), User.class);
+                                Session.logIn(user.getJwt(), user.getUserId(), user.getRoles().get(0), user.getExpirationDateSeconds());
+                                flag = true;
+                            }
+                        });
+
+                        await().atMost(MAX_DELAY, TimeUnit.SECONDS).until(flag());
+                        if (flag) {
+                            Log.d("TAG1", Session.getJwt());
+                            Request request = chain.request();
+                            request = request.newBuilder()
+                                    .addHeader("Authorization", "Bearer " + Session.getJwt())
+                                    .addHeader("Content-Type", "application/json")
+                                    .addHeader("Accept", "application/json")
+                                    .build();
+                            return chain.proceed(request);
+                        }
+                    }
                 }
+                Log.d("TAG2", Session.getJwt());
+                Request request = chain.request();
+                request = request.newBuilder()
+                        .addHeader("Authorization", "Bearer " + Session.getJwt())
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Accept", "application/json")
+                        .build();
                 return chain.proceed(request);
+            }
+        };
+    }
+
+    private static Request refreshTokenRequestBuilder() {
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put("email", "VOLUNTEER_user2.email@gmail.com");
+            json.put("password", "VOLUNTEER_name_2");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+
+        return new Request.Builder()
+                .url(API_URL + "/tokens/acquire")
+                .method("POST", requestBody)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .post(requestBody)
+                .build();
+    }
+
+    private static Callable<Boolean> flag() {
+        return new Callable<Boolean>() {
+            public Boolean call() throws Exception {
+                return flag;
             }
         };
     }

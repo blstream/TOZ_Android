@@ -37,11 +37,12 @@ public final class Session {
     /**
      * Set session log in.
      *
-     * @param jwt    to keep token in preferences.
-     * @param userId the user id
-     * @param role   the role
+     * @param jwt                 to keep token in preferences.
+     * @param userId              the user id
+     * @param role                the role
+     * @param tokenExpirationDate the token expiration date
      */
-    public static void logIn(final String jwt, final String userId, final String role, long tokenExpirationDate) {
+    public static void logIn(final String jwt, final String userId, final String role, final long tokenExpirationDate) {
         editor.putBoolean("loggedState", true);
         editor.putString("jwt", jwt);
         editor.putString("userId", userId);
@@ -90,6 +91,11 @@ public final class Session {
         return preferences.getString("role", "");
     }
 
+    /**
+     * Gets expiration date.
+     *
+     * @return the expiration date
+     */
     public static Long getExpirationDate() {
         return preferences.getLong("expirationDate", 0);
     }
