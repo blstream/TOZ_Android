@@ -1,6 +1,7 @@
 package com.intive.toz.petslist.view;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.ProgressBar;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.intive.toz.add_pet.view.AddPetActivity;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
 import com.intive.toz.petslist.presenter.PetsListPresenter;
@@ -22,20 +24,30 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- *  Fragment containing list of pets with image and short description of each pet.
+ * Fragment containing list of pets with image and short description of each pet.
  */
 public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, List<Pet>,
         PetsListView, PetsListPresenter> implements PetsListView, SwipeRefreshLayout.OnRefreshListener  {
 
+    /**
+     * The Pets recycler view.
+     */
     @BindView(R.id.contentView)
     RecyclerView petsRecyclerView;
 
+    /**
+     * The Progress.
+     */
     @BindView(R.id.loadingView)
     ProgressBar progress;
 
+    /**
+     * The Swipe refresh layout.
+     */
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -125,5 +137,14 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
         super.onDestroyView();
         petsAdapter = null;
         unbinder.unbind();
+    }
+
+    /**
+     * On add pet click.
+     */
+    @OnClick(R.id.add_fab)
+    public void onAddPetClick() {
+        Intent intent = new Intent(getContext(), AddPetActivity.class);
+        startActivity(intent);
     }
 }

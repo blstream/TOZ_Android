@@ -16,7 +16,6 @@
             android:name=".login.LoginActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,13 +34,15 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".account.ChangePasswordActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/title_activity_change_password"/>
+            android:label="@string/title_activity_change_password"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".volunteerForm.VolunteerFormActivity"
-            android:theme="@style/AppTheme"
             android:label="@string/title_activity_volunteer_form"
-            />
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".add_pet.view.AddPetActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
