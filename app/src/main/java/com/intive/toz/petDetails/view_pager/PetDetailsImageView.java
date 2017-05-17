@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails.page_view_images;
+package com.intive.toz.petDetails.view_pager;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.petslist.model.Pet;
@@ -14,6 +14,8 @@ interface PetDetailsImageView extends MvpView {
      * @param pet pet object
      */
     void showPetDetails(final Pet pet);
+
+    void setPetInAdapter(Pet pet);
 
     /**
      * Show progress bar.

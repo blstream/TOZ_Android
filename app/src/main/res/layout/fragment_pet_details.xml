@@ -154,6 +154,7 @@
                 android:textColor="@color/black" />
 
             <Button
+                android:id="@+id/btn_help"
                 android:layout_marginTop="@dimen/separator_margin_bottom_top"
                 android:layout_below="@id/description_pet_details"
                 android:layout_width="match_parent"

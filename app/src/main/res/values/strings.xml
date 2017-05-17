@@ -88,4 +88,7 @@
     <string name="wrong_password_error">Niepoprawne hasło</string>
     <string name="too_long_password_error">Hasło powinno zawierać max 35 znaków</string>
     <string name="successful_password_change">Hasło zostało zmienione pomyślnie.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

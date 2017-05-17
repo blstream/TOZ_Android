@@ -1,22 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.intive.toz.petDetails.page_view_images.PetImagesFragment">
+    android:gravity="center" >
 
     <ImageView
-        android:id="@+id/iv_pet_images"
+        android:id="@+id/iv_pet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="220dp" />
 
     <TextView
         android:id="@+id/tv_nr_page"
+        android:text="chuj"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
-
         android:gravity="center"
         android:textColor="@color/whiteText"
         android:background="#80000000"/>
-
 </RelativeLayout>

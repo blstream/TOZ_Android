@@ -1,18 +1,12 @@
 package com.intive.toz.petDetails;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
 
 import com.intive.toz.R;
 import com.intive.toz.petDetails.details_fragment.PetDetailsFragment;
-import com.intive.toz.petDetails.page_view_images.SwipeAdapter;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.intive.toz.petDetails.view_pager.PetImgFragment;
 
 /**
  *Activity containing fragment with pet details object.
@@ -21,44 +15,17 @@ import butterknife.ButterKnife;
 
 public class PetDetailsActivity extends AppCompatActivity {
 
-    @BindView(R.id.view_pager_images_gallery)
-    ViewPager viewPager;
-
-    @BindView(R.id.right_nav)
-    ImageButton imageButtonRight;
-
-    @BindView(R.id.left_nav)
-    ImageButton imageButtonLeft;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_details);
 
-        ButterKnife.bind(this);
-
         String message = getIntent().getStringExtra("petKey");
         PetDetailsFragment petDetailsFragment = (PetDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.detail_pets_fragment);
         petDetailsFragment.setPetID(message);
 
-        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
-        swipeAdapter.setPetId(message);
-
-        viewPager.setAdapter(swipeAdapter);
-
-        imageButtonRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-            }
-        });
-
-        imageButtonLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
-            }
-        });
+        PetImgFragment petImgFragment = (PetImgFragment) getSupportFragmentManager().findFragmentById(R.id.detail_pets_images);
+        petImgFragment.setPetID(message);
 
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         if (ab != null) {

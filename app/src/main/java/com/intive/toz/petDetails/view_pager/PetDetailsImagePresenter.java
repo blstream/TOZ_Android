@@ -1,9 +1,9 @@
-package com.intive.toz.petDetails.page_view_images;
+package com.intive.toz.petDetails.view_pager;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
+import com.intive.toz.petslist.model.Pet;
 
 /**
  * Presenter for Pet Details.
@@ -25,6 +25,7 @@ class PetDetailsImagePresenter extends MvpBasePresenter<PetDetailsImageView> {
                 if (isViewAttached()) {
                     getView().hideProgress();
                     getView().showPetDetails(pet);
+                    getView().setPetInAdapter(pet);
                 }
             }
 

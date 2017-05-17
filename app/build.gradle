@@ -85,11 +85,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.auth0.android:jwtdecode:1.1.1'
 }

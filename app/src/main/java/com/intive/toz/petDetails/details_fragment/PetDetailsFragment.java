@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -41,8 +43,17 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @BindView(R.id.progress_bar_pet_details)
     ProgressBar progressBar;
 
+    @BindView(R.id.btn_help)
+    Button btnHelp;
+
     private String id;
     private Unbinder unbinder;
+
+    Pet pet;
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
 
     /**
      *  pet constructor.
@@ -89,6 +100,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         dateTv.setText(petCreatedDate);
         sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
+        setPet(pet);
     }
 
     @Override
@@ -110,5 +122,10 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     public void onStart() {
         super.onStart();
         presenter.loadPetsDetails(id);
+    }
+
+    @OnClick(R.id.btn_help)
+    public void onHelpClicked() {
+
     }
 }
