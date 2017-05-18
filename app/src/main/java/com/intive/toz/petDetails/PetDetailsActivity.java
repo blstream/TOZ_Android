@@ -71,6 +71,7 @@ public class PetDetailsActivity extends AppCompatActivity {
             colorButton = R.color.greyDark;
             setColorButton(colorButton);
             scrollToDownByTreeLayout();
+            flagIsAlreadyScrooling = false;
         } else {
             getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             fragmentHelpVisible = false;
@@ -87,7 +88,6 @@ public class PetDetailsActivity extends AppCompatActivity {
                     handler.post(r);
                     flagIsAlreadyScrooling = !flagIsAlreadyScrooling;
                 }
-
             }
         });
     }
@@ -116,7 +116,6 @@ public class PetDetailsActivity extends AppCompatActivity {
             handler.post(this);
             scrollView.scrollTo(0, scrollView.getBottom());
             handler.removeCallbacks(this);
-            flagIsAlreadyScrooling = false;
         }
     };
 }
