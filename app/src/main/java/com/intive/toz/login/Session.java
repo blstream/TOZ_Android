@@ -87,4 +87,18 @@ public final class Session {
     public static String getRole() {
         return preferences.getString("role", "");
     }
+
+    /**
+     * The enum Types.
+     */
+    public enum TYPES {
+        /**
+         * Volunteer types.
+         */
+        VOLUNTEER,
+        /**
+         * Toz types.
+         */
+        TOZ
+    }
 }

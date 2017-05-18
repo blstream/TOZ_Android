@@ -70,7 +70,7 @@
             <property name="max" value="150" />
         </module>
         <module name="ParameterNumber">
-            <property name="max" value="4" />
+            <property name="max" value="5" />
         </module>
 
         <!-- Checks for whitespace                               -->
