@@ -2,10 +2,14 @@ package com.intive.toz.petDetails;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 
 import com.intive.toz.R;
 import com.intive.toz.petDetails.details_fragment.PetDetailsFragment;
@@ -17,8 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- *Activity containing fragment with pet details object.
- *
+ * Activity containing fragment with pet details object.
  **/
 
 public class PetDetailsActivity extends AppCompatActivity {
@@ -26,6 +29,10 @@ public class PetDetailsActivity extends AppCompatActivity {
     @BindView(R.id.btn_help)
     Button B1;
     boolean fragmentHelpVisible = false;
+    int colorButton;
+    Handler handler;
+    @BindView(R.id.sv_pet_details)
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -38,6 +45,8 @@ public class PetDetailsActivity extends AppCompatActivity {
 
         PetImgFragment petImgFragment = (PetImgFragment) getSupportFragmentManager().findFragmentById(R.id.detail_pets_images);
         petImgFragment.setPetID(message);
+
+        handler = new Handler();
 
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -58,9 +67,23 @@ public class PetDetailsActivity extends AppCompatActivity {
             fragmentTransaction.add(R.id.fragment_container, hello, "HELLO");
             fragmentTransaction.commit();
             fragmentHelpVisible = true;
+            colorButton = R.color.greyDark;
+            setColorButton(colorButton);
+
+            handler.post(r);
         } else {
             getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             fragmentHelpVisible = false;
+            colorButton = R.color.colorAccent;
+            setColorButton(colorButton);
+        }
+    }
+
+    public void setColorButton(int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            B1.setBackgroundColor(getColor(color));
+        } else {
+            B1.setBackgroundColor(getResources().getColor(color));
         }
     }
 
@@ -73,4 +96,12 @@ public class PetDetailsActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
+
+    final Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            handler.postDelayed(this, 1000);
+            scrollView.fullScroll(View.FOCUS_DOWN);
+        }
+    };
 }
