@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ScrollView;
 
@@ -69,14 +70,22 @@ public class PetDetailsActivity extends AppCompatActivity {
             fragmentHelpVisible = true;
             colorButton = R.color.greyDark;
             setColorButton(colorButton);
-
-            handler.post(r);
+            scrollToDownByTreeLayout();
         } else {
             getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
             fragmentHelpVisible = false;
             colorButton = R.color.colorAccent;
             setColorButton(colorButton);
         }
+    }
+
+    public void scrollToDownByTreeLayout() {
+        scrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                handler.post(r);
+            }
+        });
     }
 
     public void setColorButton(int color) {
@@ -100,8 +109,9 @@ public class PetDetailsActivity extends AppCompatActivity {
     final Runnable r = new Runnable() {
         @Override
         public void run() {
-            handler.postDelayed(this, 1000);
+            handler.post(this);
             scrollView.fullScroll(View.FOCUS_DOWN);
+            handler.removeCallbacks(this);
         }
     };
 }
