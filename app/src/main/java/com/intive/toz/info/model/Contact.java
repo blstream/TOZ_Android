@@ -49,4 +49,5 @@ public class Contact implements Serializable {
     public String getWebsite() {
         return website;
     }
+
 }
