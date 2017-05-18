@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.esafirm.imagepicker.features.ImagePicker;
@@ -21,15 +21,19 @@ import com.esafirm.imagepicker.model.Image;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.R;
 import com.intive.toz.add_pet.AddPetMvp;
+import com.intive.toz.add_pet.model.GalleryItem;
 import com.intive.toz.add_pet.model.PetSettings;
 import com.intive.toz.add_pet.presenter.AddPetPresenter;
 import com.intive.toz.petslist.model.Pet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
+import butterknife.OnItemLongClick;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 /**
@@ -37,7 +41,22 @@ import fr.ganfra.materialspinner.MaterialSpinner;
  */
 public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presenter> implements AddPetMvp.View {
 
+    /**
+     * The constant REQUEST_CODE_PICKER.
+     */
     public static final int REQUEST_CODE_PICKER = 1;
+    /**
+     * The constant REQUEST_CODE_REMOVE.
+     */
+    public static final int REQUEST_CODE_REMOVE = 2;
+    /**
+     * The constant POSITION_EXTRA.
+     */
+    public static final String POSITION_EXTRA = "position";
+
+    public static final int COLS_NUM = 5;
+
+    public static final int IMAGES_COUNT = 10;
 
     /**
      * The Gender spinner.
@@ -69,15 +88,23 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
     @BindView(R.id.description_et)
     TextInputEditText descriptionEt;
 
+    /**
+     * The Add images btn.
+     */
     @BindView(R.id.add_images)
-    ImageView imageView;
+    View addImagesBtn;
 
+    /**
+     * The Grid view.
+     */
     @BindView(R.id.images_grid_view)
     GridView gridView;
 
     private Menu menu;
-    private List<Image> images;
+    private ArrayList<Image> images;
+    private List<GalleryItem> items;
     private GalleryAdapter adapter;
+    private boolean hasButton = false;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -89,12 +116,9 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        setupDropLists();
+        setUpDropLists();
+        setUpGridView();
         editTextsListeners();
-
-        adapter = new GalleryAdapter(this);
-
-        gridView.setAdapter(adapter);
     }
 
     @Override
@@ -223,25 +247,85 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
         Toast.makeText(this, getString(R.string.default_error), Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * On add images click.
+     */
     @OnClick(R.id.add_images)
     public void onAddImagesClick() {
         ImagePicker.create(this)
-                .limit(10)
+                .limit(IMAGES_COUNT)
                 .showCamera(true)
+                .origin(images)
                 .start(REQUEST_CODE_PICKER);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_PICKER && resultCode == RESULT_OK && data != null) {
-            images = data.getParcelableArrayListExtra(ImagePicker.EXTRA_SELECTED_IMAGES);
-            adapter.setImages(images);
-            adapter.notifyDataSetChanged();
-            imageView.setVisibility(View.GONE);
+    /**
+     * On item click.
+     *
+     * @param position the position
+     */
+    @OnItemClick(R.id.images_grid_view)
+    public void onItemClick(final int position) {
+        GalleryItem item = (GalleryItem) adapter.getItem(position);
+        if (item.isButton()) {
+            ImagePicker.create(this)
+                    .limit(IMAGES_COUNT)
+                    .showCamera(true)
+                    .origin(images)
+                    .start(REQUEST_CODE_PICKER);
+        } else {
+            Intent intent = new Intent(this, FullScreenImageActivity.class);
+            intent.putExtra(ImagePicker.EXTRA_SELECTED_IMAGES, item.getImage());
+            intent.putExtra(POSITION_EXTRA, position);
+            startActivityForResult(intent, REQUEST_CODE_REMOVE);
         }
     }
 
-    private void setupDropLists() {
+    /**
+     * On item long click boolean.
+     *
+     * @param position the position
+     * @return the boolean
+     */
+    @OnItemLongClick(R.id.images_grid_view)
+    public boolean onItemLongClick(final int position) {
+        GalleryItem item = (GalleryItem) adapter.getItem(position);
+        if (!item.isButton()) {
+            removeImage(position);
+        }
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        if (requestCode == REQUEST_CODE_PICKER && resultCode == RESULT_OK && data != null) {
+            images = data.getParcelableArrayListExtra(ImagePicker.EXTRA_SELECTED_IMAGES);
+
+            items = new ArrayList<>();
+            hasButton = false;
+
+            for (Image i : images) {
+                GalleryItem item = new GalleryItem(i, false);
+                items.add(item);
+            }
+
+            if (items.size() < IMAGES_COUNT) {
+                GalleryItem item = new GalleryItem(null, true);
+                hasButton = true;
+                items.add(0, item);
+            }
+
+            adapter.setImages(items);
+            gridView.setAdapter(adapter);
+            addImagesBtn.setVisibility(View.GONE);
+
+        } else if (requestCode == REQUEST_CODE_REMOVE && resultCode == RESULT_OK && data != null) {
+            int position = data.getIntExtra(POSITION_EXTRA, 0);
+            removeImage(position);
+        }
+    }
+
+    private void setUpDropLists() {
         String[] gender = {PetSettings.GENDER.MALE.toString(), PetSettings.GENDER.FEMALE.toString()};
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, gender);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -251,6 +335,30 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, type);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(typeAdapter);
+    }
+
+    private void setUpGridView() {
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int size = dm.widthPixels / COLS_NUM;
+        images = new ArrayList<>();
+        items = new ArrayList<>();
+        adapter = new GalleryAdapter(this, size);
+        gridView.setAdapter(adapter);
+    }
+
+    private void removeImage(final int position) {
+        items.remove(position);
+        if (hasButton) {
+            images.remove(position - 1);
+        } else {
+            images.remove(position);
+            GalleryItem item = new GalleryItem(null, true);
+            hasButton = true;
+            items.add(0, item);
+        }
+        adapter.setImages(items);
+        gridView.setAdapter(adapter);
     }
 
     private void onSaveClick() {

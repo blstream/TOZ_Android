@@ -98,4 +98,6 @@
     <string name="gender">Płeć</string>
     <string name="save">Zapisz</string>
     <string name="add_success_message">Zwierzę zostało dodane</string>
+    <string name="add_image">Dodaj zdjęcie</string>
+    <string name="remove_image">Usuń zdj.</string>
 </resources>

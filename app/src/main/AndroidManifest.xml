@@ -43,6 +43,9 @@
         <activity
             android:name=".add_pet.view.AddPetActivity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".add_pet.view.FullScreenImageActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
