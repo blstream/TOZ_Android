@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -34,6 +33,7 @@ public class PetDetailsActivity extends AppCompatActivity {
     Handler handler;
     @BindView(R.id.sv_pet_details)
     ScrollView scrollView;
+    boolean flagIsAlreadyScrooling = false;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -83,7 +83,11 @@ public class PetDetailsActivity extends AppCompatActivity {
         scrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                handler.post(r);
+                if (flagIsAlreadyScrooling == false) {
+                    handler.post(r);
+                    flagIsAlreadyScrooling = !flagIsAlreadyScrooling;
+                }
+
             }
         });
     }
@@ -110,8 +114,9 @@ public class PetDetailsActivity extends AppCompatActivity {
         @Override
         public void run() {
             handler.post(this);
-            scrollView.fullScroll(View.FOCUS_DOWN);
+            scrollView.scrollTo(0, scrollView.getBottom());
             handler.removeCallbacks(this);
+            flagIsAlreadyScrooling = false;
         }
     };
 }
