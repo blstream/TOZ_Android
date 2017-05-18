@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.intive.toz.petDetails.financial_button.FinancialInfoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_text_help"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Tekst w tym miejscu pojawi się po naciśnięciu
+         przycisku z pomocą. Co tu będzie napisane nie wiem, ale coś będzie."
+            android:textAlignment="center" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/tv_nr_acc_help"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="63 1020 4795 0000 9402 0103 5419"
+            android:textStyle="bold"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+</FrameLayout>
