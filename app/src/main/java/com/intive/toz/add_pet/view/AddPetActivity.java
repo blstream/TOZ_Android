@@ -1,5 +1,6 @@
 package com.intive.toz.add_pet.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -11,8 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.esafirm.imagepicker.features.ImagePicker;
+import com.esafirm.imagepicker.model.Image;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.R;
 import com.intive.toz.add_pet.AddPetMvp;
@@ -20,14 +25,19 @@ import com.intive.toz.add_pet.model.PetSettings;
 import com.intive.toz.add_pet.presenter.AddPetPresenter;
 import com.intive.toz.petslist.model.Pet;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 /**
  * The type Add pet activity.
  */
 public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presenter> implements AddPetMvp.View {
+
+    public static final int REQUEST_CODE_PICKER = 1;
 
     /**
      * The Gender spinner.
@@ -59,7 +69,15 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
     @BindView(R.id.description_et)
     TextInputEditText descriptionEt;
 
+    @BindView(R.id.add_images)
+    ImageView imageView;
+
+    @BindView(R.id.images_grid_view)
+    GridView gridView;
+
     private Menu menu;
+    private List<Image> images;
+    private GalleryAdapter adapter;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -73,6 +91,10 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
 
         setupDropLists();
         editTextsListeners();
+
+        adapter = new GalleryAdapter(this);
+
+        gridView.setAdapter(adapter);
     }
 
     @Override
@@ -199,6 +221,24 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
     @Override
     public void onError() {
         Toast.makeText(this, getString(R.string.default_error), Toast.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.add_images)
+    public void onAddImagesClick() {
+        ImagePicker.create(this)
+                .limit(10)
+                .showCamera(true)
+                .start(REQUEST_CODE_PICKER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PICKER && resultCode == RESULT_OK && data != null) {
+            images = data.getParcelableArrayListExtra(ImagePicker.EXTRA_SELECTED_IMAGES);
+            adapter.setImages(images);
+            adapter.notifyDataSetChanged();
+            imageView.setVisibility(View.GONE);
+        }
     }
 
     private void setupDropLists() {
