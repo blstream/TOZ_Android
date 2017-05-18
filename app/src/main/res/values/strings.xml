@@ -86,4 +86,7 @@
     <string name="wrong_password_error">Niepoprawne hasło</string>
     <string name="too_long_password_error">Hasło powinno zawierać max 35 znaków</string>
     <string name="successful_password_change">Hasło zostało zmienione pomyślnie.</string>
+
+    <!--financial-->
+    <string name="name_button_back_financial">Wesprzyj TOZ finansowo</string>
 </resources>

@@ -12,9 +12,9 @@ public class Contact implements Serializable {
     @SerializedName("email")
     private String email;
     @SerializedName("phone")
-    private int phone;
+    private String phone;
     @SerializedName("fax")
-    private int fax;
+    private String fax;
     @SerializedName("website")
     private String website;
 
@@ -30,7 +30,7 @@ public class Contact implements Serializable {
      * getter fax, part object Info.
      * @return fax.
      */
-    public int getFax() {
+    public String getFax() {
         return fax;
     }
 
@@ -38,7 +38,7 @@ public class Contact implements Serializable {
      * getter phone, part object Info.
      * @return phone.
      */
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -49,6 +49,4 @@ public class Contact implements Serializable {
     public String getWebsite() {
         return website;
     }
-
-    //t
 }

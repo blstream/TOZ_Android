@@ -22,4 +22,9 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <!--financial support-->
+    <dimen name="organization_info_text">15dp</dimen>
+    <dimen name="account_nr_text">20dp</dimen>
+    <dimen name="space_between_section">20dp</dimen>
 </resources>

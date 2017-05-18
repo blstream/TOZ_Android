@@ -33,7 +33,7 @@ public interface PetsApi {
      * @return /pets.json.
      */
 
-    @GET("/pets")
+    @GET("api/pets")
     Call<List<Pet>> getGalleryPetsListCall();
 
     /**
@@ -65,7 +65,7 @@ public interface PetsApi {
      *
      * @return /financial.json
      */
-    @GET("/organization/Info")
+    @GET("api/organization/info")
     Call<Info> getFinancialInfo();
 
     /**

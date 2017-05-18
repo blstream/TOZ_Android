@@ -27,6 +27,8 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
 
     @BindView(R.id.tv_account_number)
     TextView accountNumber;
+    @BindView(R.id.tv_desc)
+    TextView tvDesc;
     @BindView(R.id.tv_name)
     TextView name;
     @BindView(R.id.tv_city_code)
@@ -60,11 +62,17 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
      * @param financialResponse financial response from server.
      */
     public void setFinancialData(final Info financialResponse) {
+
+        // tmp desc
+        String desc = "Można pomóc wpłacając darowniznę na konto Szczecinskiego Towarzystwa" +
+                "nad Zwierzętami albo przekazując dary rzeczowe - szczegóły poniżej:";
+
+        tvDesc.setText(desc);
         accountNumber.setText(financialResponse.getBankAccount().getNumber());
         name.setText(financialResponse.getName());
         cityCode.setText(financialResponse.getAddress().getPostCode()
                          + " " + financialResponse.getAddress().getCity());
-        street.setText("ul. " + financialResponse.getAddress().getStreet());
+        street.setText(financialResponse.getAddress().getStreet());
 
     }
 
