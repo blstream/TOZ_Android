@@ -89,6 +89,7 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
             case R.id.action_save:
                 onSaveClick();
                 break;
