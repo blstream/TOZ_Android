@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.intive.toz.petDetails.financial_button.FinancialInfoFragment">
+    tools:context="com.intive.toz.petDetails.help_pet.PetHelpFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

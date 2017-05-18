@@ -13,7 +13,7 @@ import android.widget.ScrollView;
 
 import com.intive.toz.R;
 import com.intive.toz.petDetails.details_fragment.PetDetailsFragment;
-import com.intive.toz.petDetails.financial_button.FinancialInfoFragment;
+import com.intive.toz.petDetails.help_pet.PetHelpFragment;
 import com.intive.toz.petDetails.view_pager.PetImgFragment;
 
 import butterknife.BindView;
@@ -64,7 +64,7 @@ public class PetDetailsActivity extends AppCompatActivity {
         if (fragmentHelpVisible == false) {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            FinancialInfoFragment hello = new FinancialInfoFragment();
+            PetHelpFragment hello = new PetHelpFragment();
             fragmentTransaction.add(R.id.fragment_container, hello, "HELLO");
             fragmentTransaction.commit();
             fragmentHelpVisible = true;

@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails.financial_button;
+package com.intive.toz.petDetails.help_pet;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,12 +12,12 @@ import com.intive.toz.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FinancialInfoFragment.OnFragmentInteractionListener} interface
+ * {@link PetHelpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FinancialInfoFragment#newInstance} factory method to
+ * Use the {@link PetHelpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FinancialInfoFragment extends Fragment {
+public class PetHelpFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class FinancialInfoFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FinancialInfoFragment() {
+    public PetHelpFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class FinancialInfoFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FinancialInfoFragment.
+     * @return A new instance of fragment PetHelpFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FinancialInfoFragment newInstance(String param1, String param2) {
-        FinancialInfoFragment fragment = new FinancialInfoFragment();
+    public static PetHelpFragment newInstance(String param1, String param2) {
+        PetHelpFragment fragment = new PetHelpFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
