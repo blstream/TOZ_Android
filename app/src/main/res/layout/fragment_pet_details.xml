@@ -153,14 +153,15 @@
                 android:layout_below="@id/separator3"
                 android:textColor="@color/black" />
 
-            <ProgressBar
-                android:id="@+id/progress_bar_pet_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_pet_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
 
     </RelativeLayout>
 </FrameLayout>

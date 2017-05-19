@@ -7,6 +7,7 @@ import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petDetails.model.Help;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
@@ -76,6 +77,14 @@ public interface PetsApi {
      */
     @GET("api/organization/info")
     Call<Info> getFinancialInfo();
+
+    /**
+     * Call to how to donate data.
+     *
+     * @return /howtodonate.json
+     */
+    @GET("api/organization/howtodonate")
+    Call<Help> getDonateInfo();
 
     /**
      * Get one object of detailed news by Id.

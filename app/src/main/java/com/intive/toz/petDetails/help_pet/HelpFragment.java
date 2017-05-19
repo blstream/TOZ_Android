@@ -1,23 +1,35 @@
 package com.intive.toz.petDetails.help_pet;
 
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
+import com.intive.toz.info.model.Info;
+import com.intive.toz.network.ApiClient;
+import com.intive.toz.network.PetsApi;
+import com.intive.toz.petDetails.model.Help;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PetHelpFragment.OnFragmentInteractionListener} interface
+ * {@link HelpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link PetHelpFragment#newInstance} factory method to
+ * Use the {@link HelpFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PetHelpFragment extends Fragment {
+public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp.Presenter>
+        implements HelpPetMvp.HelpPetView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,8 +41,24 @@ public class PetHelpFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public PetHelpFragment() {
+    public PetsApi service;
+
+    @BindView(R.id.progress_bar_pet_help)
+    ProgressBar progressBar;
+
+    @BindView(R.id.tv_text_help)
+    TextView tvHowHelp;
+
+    @BindView(R.id.tv_nr_acc_help)
+    TextView tvBankAcc;
+
+    public HelpFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public PetHelpPresenter createPresenter() {
+        return new PetHelpPresenter();
     }
 
     /**
@@ -39,11 +67,11 @@ public class PetHelpFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PetHelpFragment.
+     * @return A new instance of fragment HelpFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PetHelpFragment newInstance(String param1, String param2) {
-        PetHelpFragment fragment = new PetHelpFragment();
+    public static HelpFragment newInstance(String param1, String param2) {
+        HelpFragment fragment = new HelpFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +92,20 @@ public class PetHelpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_financial_info, container, false);
+        return inflater.inflate(R.layout.fragment_help_pet, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        service = ApiClient.getPetsApiService();
+
+        ButterKnife.bind(this, view);
+
+        presenter.loadFinancialData(service);
+
+        presenter.loadHowToDonateData(service);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,6 +132,34 @@ public class PetHelpFragment extends Fragment {
         mListener = null;
     }
 
+
+    @Override
+    public void setFinancialData(Info financial) {
+
+        tvBankAcc.setText(financial.getBankAccount().getNumber());
+    }
+
+    @Override
+    public void setDonateInfo(Help donate) {
+
+        tvHowHelp.setText(donate.getHowToHelpDescription());
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void showError(Throwable e) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -105,4 +174,5 @@ public class PetHelpFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

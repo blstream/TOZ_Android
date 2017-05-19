@@ -1,10 +1,11 @@
 package com.intive.toz.petDetails;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
@@ -13,7 +14,7 @@ import android.widget.ScrollView;
 
 import com.intive.toz.R;
 import com.intive.toz.petDetails.details_fragment.PetDetailsFragment;
-import com.intive.toz.petDetails.help_pet.PetHelpFragment;
+import com.intive.toz.petDetails.help_pet.HelpFragment;
 import com.intive.toz.petDetails.view_pager.PetImgFragment;
 
 import butterknife.BindView;
@@ -35,16 +36,20 @@ public class PetDetailsActivity extends AppCompatActivity {
     ScrollView scrollView;
     boolean flagIsAlreadyScrooling = false;
 
+    FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_details);
 
+        fragmentManager = getSupportFragmentManager();
+
         String message = getIntent().getStringExtra("petKey");
-        PetDetailsFragment petDetailsFragment = (PetDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.detail_pets_fragment);
+        PetDetailsFragment petDetailsFragment = (PetDetailsFragment) fragmentManager.findFragmentById(R.id.detail_pets_fragment);
         petDetailsFragment.setPetID(message);
 
-        PetImgFragment petImgFragment = (PetImgFragment) getSupportFragmentManager().findFragmentById(R.id.detail_pets_images);
+        PetImgFragment petImgFragment = (PetImgFragment) fragmentManager.findFragmentById(R.id.detail_pets_images);
         petImgFragment.setPetID(message);
 
         handler = new Handler();
@@ -60,12 +65,11 @@ public class PetDetailsActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_help)
-    public void onLoginButtonClick() {
+    public void onHelpButtonClick() {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (fragmentHelpVisible == false) {
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            PetHelpFragment hello = new PetHelpFragment();
-            fragmentTransaction.add(R.id.fragment_container, hello, "HELLO");
+            HelpFragment fragmentHelp = new HelpFragment();
+            fragmentTransaction.add(R.id.fragment_container, fragmentHelp, "help");
             fragmentTransaction.commit();
             fragmentHelpVisible = true;
             colorButton = R.color.greyDark;
@@ -73,7 +77,9 @@ public class PetDetailsActivity extends AppCompatActivity {
             scrollToDownByTreeLayout();
             flagIsAlreadyScrooling = false;
         } else {
-            getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+            Fragment fragmentHelp = fragmentManager.findFragmentById(R.id.fragment_container);
+            fragmentTransaction.remove(fragmentHelp);
+            fragmentTransaction.commit();
             fragmentHelpVisible = false;
             colorButton = R.color.colorAccent;
             setColorButton(colorButton);

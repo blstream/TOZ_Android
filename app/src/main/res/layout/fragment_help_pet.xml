@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.intive.toz.petDetails.help_pet.PetHelpFragment">
+    tools:context="com.intive.toz.petDetails.help_pet.HelpFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,9 +21,16 @@
             android:id="@+id/tv_nr_acc_help"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="63 1020 4795 0000 9402 0103 5419"
             android:textStyle="bold"
             android:textAlignment="center" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_pet_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 
 </FrameLayout>
