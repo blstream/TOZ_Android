@@ -363,7 +363,7 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
             pet.setType(PetSettings.TYPES.DOG.name());
         }
 
-        presenter.addPet(pet);
+        presenter.addPet(pet, images);
     }
 
     private void openImagePicker() {
