@@ -40,18 +40,10 @@ import fr.ganfra.materialspinner.MaterialSpinner;
  * The type Add pet activity.
  */
 public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presenter> implements AddPetMvp.View {
-
-    /**
-     * The constant REQUEST_CODE_PICKER.
-     */
     public static final int REQUEST_CODE_PICKER = 1;
-    /**
-     * The constant REQUEST_CODE_REMOVE.
-     */
+
     public static final int REQUEST_CODE_REMOVE = 2;
-    /**
-     * The constant POSITION_EXTRA.
-     */
+
     public static final String POSITION_EXTRA = "position";
 
     public static final int COLS_NUM = 5;
@@ -252,11 +244,7 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
      */
     @OnClick(R.id.add_images)
     public void onAddImagesClick() {
-        ImagePicker.create(this)
-                .limit(IMAGES_COUNT)
-                .showCamera(true)
-                .origin(images)
-                .start(REQUEST_CODE_PICKER);
+        openImagePicker();
     }
 
     /**
@@ -268,11 +256,7 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
     public void onItemClick(final int position) {
         GalleryItem item = (GalleryItem) adapter.getItem(position);
         if (item.isButton()) {
-            ImagePicker.create(this)
-                    .limit(IMAGES_COUNT)
-                    .showCamera(true)
-                    .origin(images)
-                    .start(REQUEST_CODE_PICKER);
+            openImagePicker();
         } else {
             Intent intent = new Intent(this, FullScreenImageActivity.class);
             intent.putExtra(ImagePicker.EXTRA_SELECTED_IMAGES, item.getImage());
@@ -380,5 +364,14 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
         }
 
         presenter.addPet(pet);
+    }
+
+    private void openImagePicker() {
+        ImagePicker.create(this)
+                .limit(IMAGES_COUNT)
+                .theme(R.style.ImagePicker)
+                .showCamera(false)
+                .origin(images)
+                .start(REQUEST_CODE_PICKER);
     }
 }
