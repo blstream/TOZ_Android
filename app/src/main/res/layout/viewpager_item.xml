@@ -7,11 +7,11 @@
     <ImageView
         android:id="@+id/iv_pet"
         android:layout_width="match_parent"
-        android:layout_height="220dp" />
+        android:layout_height="220dp"
+        android:src="@drawable/dog"/>
 
     <TextView
         android:id="@+id/tv_nr_page"
-        android:text="chuj"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"

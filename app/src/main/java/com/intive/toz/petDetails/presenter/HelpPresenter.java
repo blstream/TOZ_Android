@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails.help_pet;
+package com.intive.toz.petDetails.presenter;
 
 import android.util.Log;
 
@@ -6,6 +6,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.petDetails.model.Help;
+import com.intive.toz.petDetails.view.HelpPetMvp;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,9 +15,13 @@ import retrofit2.Response;
 /**
  * Presenter for Pet Help fragment.
  */
+public class HelpPresenter extends MvpBasePresenter<HelpPetMvp.HelpPetView> implements HelpPetMvp.Presenter {
 
-class PetHelpPresenter extends MvpBasePresenter<HelpPetMvp.HelpPetView> implements HelpPetMvp.Presenter{
-
+    /**
+     * load financial data from server.
+     *
+     * @param financialService service.
+     */
     public void loadFinancialData(final PetsApi financialService) {
         getView().showProgress();
         Call<Info> call = financialService.getFinancialInfo();
@@ -40,7 +45,7 @@ class PetHelpPresenter extends MvpBasePresenter<HelpPetMvp.HelpPetView> implemen
     }
 
     @Override
-    public void loadHowToDonateData(PetsApi donateService) {
+    public void loadHowToDonateData(final PetsApi donateService) {
         getView().showProgress();
         Call<Help> call = donateService.getDonateInfo();
         call.enqueue(new Callback<Help>() {

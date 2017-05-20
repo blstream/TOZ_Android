@@ -1,7 +1,6 @@
-package com.intive.toz.petDetails.view_pager;
+package com.intive.toz.petDetails.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -12,17 +11,22 @@ import android.widget.ImageButton;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
+import com.intive.toz.petDetails.presenter.PetImgPresenter;
+import com.intive.toz.petDetails.view_pager.PetImgViewPagerAdapter;
 import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class PetImgFragment extends MvpFragment<PetDetailsImageView, PetDetailsImagePresenter>
-        implements PetDetailsImageView {
+/**
+ * Fragment to display PageView with images.
+ */
+public class PetImgFragment extends MvpFragment<PetImgView, PetImgPresenter>
+        implements PetImgView {
 
-    ViewPagerAdapter adapter;
-    String id;
+    private PetImgViewPagerAdapter adapter;
+    private String id;
 
     private Unbinder unbinder;
 
@@ -35,29 +39,39 @@ public class PetImgFragment extends MvpFragment<PetDetailsImageView, PetDetailsI
     @BindView(R.id.left_nav)
     ImageButton imageButtonLeft;
 
-    private OnFragmentInteractionListener mListener;
-
+    /**
+     * empty constructor.
+     */
     public PetImgFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * create Presenter to fragment with ViewPager.
+     *
+     * @return PetImgPresenter.
+     */
     @Override
-    public PetDetailsImagePresenter createPresenter() {
-        return new PetDetailsImagePresenter();
+    public PetImgPresenter createPresenter() {
+        return new PetImgPresenter();
     }
 
+    /**
+     * Method to send pet id from activity.
+     * @param id pet.
+     */
     public void setPetID(final String id) {
         this.id = id;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_pet_img, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         unbinder = ButterKnife.bind(this, view);
 
         imageButtonRight.setOnClickListener(new View.OnClickListener() {
@@ -77,41 +91,15 @@ public class PetImgFragment extends MvpFragment<PetDetailsImageView, PetDetailsI
         super.onViewCreated(view, savedInstanceState);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
+    /**
+     * Send Pet to Adapter.
+     *
+     * @param pet object which contain url images.
+     */
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void showPetDetails(final Pet pet) {
-//        nameTv.setText(pet.getName());
-    }
-
-    @Override
-    public void setPetInAdapter(Pet pet) {
+    public void setPetInAdapter(final Pet pet) {
         Context context = getActivity().getApplicationContext();
-        adapter = new ViewPagerAdapter(context, pet);
-
-        adapter.setPet(pet);
+        adapter = new PetImgViewPagerAdapter(context, pet);
         viewPager.setAdapter(adapter);
     }
 
@@ -126,13 +114,8 @@ public class PetImgFragment extends MvpFragment<PetDetailsImageView, PetDetailsI
     }
 
     @Override
-    public void showError(Throwable e) {
+    public void showError(final Throwable e) {
 
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 
     @Override

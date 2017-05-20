@@ -1,4 +1,4 @@
-package com.intive.toz.petDetails;
+package com.intive.toz.petDetails.view;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -13,13 +13,12 @@ import android.widget.Button;
 import android.widget.ScrollView;
 
 import com.intive.toz.R;
-import com.intive.toz.petDetails.details_fragment.PetDetailsFragment;
-import com.intive.toz.petDetails.help_pet.HelpFragment;
-import com.intive.toz.petDetails.view_pager.PetImgFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.intive.toz.R.id.sv_pet_details;
 
 /**
  * Activity containing fragment with pet details object.
@@ -28,11 +27,11 @@ import butterknife.OnClick;
 public class PetDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_help)
-    Button B1;
+    Button buttonDonate;
     boolean fragmentHelpVisible = false;
     int colorButton;
     Handler handler;
-    @BindView(R.id.sv_pet_details)
+    @BindView(sv_pet_details)
     ScrollView scrollView;
     boolean flagIsAlreadyScrooling = false;
 
@@ -64,33 +63,40 @@ public class PetDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    /**
+     * Button to create/delete fragment donate information.
+     */
     @OnClick(R.id.btn_help)
     public void onHelpButtonClick() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (fragmentHelpVisible == false) {
+        if (!fragmentHelpVisible) {
             HelpFragment fragmentHelp = new HelpFragment();
             fragmentTransaction.add(R.id.fragment_container, fragmentHelp, "help");
             fragmentTransaction.commit();
-            fragmentHelpVisible = true;
-            colorButton = R.color.greyDark;
-            setColorButton(colorButton);
             scrollToDownByTreeLayout();
+            fragmentHelpVisible = true;
+            colorButton = R.drawable.button_orange;
+            setColorButton(colorButton);
             flagIsAlreadyScrooling = false;
         } else {
             Fragment fragmentHelp = fragmentManager.findFragmentById(R.id.fragment_container);
             fragmentTransaction.remove(fragmentHelp);
             fragmentTransaction.commit();
             fragmentHelpVisible = false;
-            colorButton = R.color.colorAccent;
+            colorButton = R.drawable.button_grey;
             setColorButton(colorButton);
         }
     }
 
+    /**
+     * method to scroll down after added new fragment.
+     * it's better checking entire size ScrollView
+     */
     public void scrollToDownByTreeLayout() {
         scrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if (flagIsAlreadyScrooling == false) {
+                if (!flagIsAlreadyScrooling) {
                     handler.post(r);
                     flagIsAlreadyScrooling = !flagIsAlreadyScrooling;
                 }
@@ -98,11 +104,17 @@ public class PetDetailsActivity extends AppCompatActivity {
         });
     }
 
-    public void setColorButton(int color) {
+    /**
+     * method to change color button.
+     * getDrawable require api > 21
+     *
+     * @param color custom button from @drawable.
+     */
+    public void setColorButton(final int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            B1.setBackgroundColor(getColor(color));
+            buttonDonate.setBackground(getDrawable(color));
         } else {
-            B1.setBackgroundColor(getResources().getColor(color));
+            buttonDonate.setBackground(getResources().getDrawable(color));
         }
     }
 

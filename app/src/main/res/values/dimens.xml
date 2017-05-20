@@ -21,4 +21,8 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <!--fragment help.-->
+    <dimen name="space_between_segment">10dp</dimen>
+    <dimen name="acc_nr_text_size">20dp</dimen>
 </resources>

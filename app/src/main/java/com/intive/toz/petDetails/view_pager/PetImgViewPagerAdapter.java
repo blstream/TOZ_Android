@@ -16,7 +16,10 @@ import com.intive.toz.petslist.model.Pet;
 
 import java.util.Arrays;
 
-public class ViewPagerAdapter extends PagerAdapter {
+/**
+ * Class adapter to show images.
+ */
+public class PetImgViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater inflater;
@@ -25,30 +28,33 @@ public class ViewPagerAdapter extends PagerAdapter {
     private TextView tvImgNr;
     private ImageView imgPet;
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
-    public ViewPagerAdapter(Context context, Pet pet) {
+    /**
+     * counstructor adapter.
+     *
+     * @param context from fragment.
+     * @param pet object contain url.
+     */
+    public PetImgViewPagerAdapter(final Context context, final Pet pet) {
         this.context = context;
         this.pet = pet;
 
+        // tmp for testing
         imgPre = new String[]{
-                ApiClient.API_URL + "/" + pet.getImageUrl(),
-                "http://kloppex.ru/kart/18/staryy_kot_prev.jpg",
-                "http://www.gstatic.com/webp/gallery/1.jpg",
-                "http://www.gstatic.com/webp/gallery/2.jpg",
-                "http://www.gstatic.com/webp/gallery/4.jpg",
-                "http://www.gstatic.com/webp/gallery/5.jpg",
-                "http://www.gstatic.com/webp/gallery/3.jpg",
-                "http://www.gstatic.com/webp/gallery/2.jpg",
-                "http://www.gstatic.com/webp/gallery/1.jpg",
-                ApiClient.API_URL + "/" + pet.getImageUrl()
+            ApiClient.API_URL + "/" + pet.getImageUrl(),
+            "http://kloppex.ru/kart/18/staryy_kot_prev.jpg",
+            "http://www.gstatic.com/webp/gallery/1.jpg",
+            "http://www.gstatic.com/webp/gallery/2.jpg",
+            "http://www.gstatic.com/webp/gallery/4.jpg",
+            "http://www.gstatic.com/webp/gallery/5.jpg",
+            "http://www.gstatic.com/webp/gallery/3.jpg",
+            "http://www.gstatic.com/webp/gallery/2.jpg",
+            "http://www.gstatic.com/webp/gallery/1.jpg",
+            ApiClient.API_URL + "/" + pet.getImageUrl()
         };
 
-        int min = 1;
-        int max = 10;
-        int random = min + (int)(Math.random() * ((max - min) + 1));
+        final int min = 1;
+        final int max = 10;
+        int random = min + (int) (Math.random() * ((max - min) + 1));
         img = Arrays.copyOfRange(imgPre, 0, random);
     }
 
@@ -58,12 +64,12 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(final View view, final Object object) {
         return view == object;
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(final ViewGroup container, final int position) {
 
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -77,11 +83,19 @@ public class ViewPagerAdapter extends PagerAdapter {
             int shiftArrayNrToDisplay = 1;
             tvImgNr.setText(position + shiftArrayNrToDisplay + " / " + img.length);
 
+            int imgSex;
+
+            if (pet.getType().contains("DOG")) {
+                imgSex = R.drawable.dog;
+            } else {
+                imgSex = R.drawable.cat;
+            }
+
             Glide.with(context)
                     .load(img[position])
                     .centerCrop()
-                    .placeholder(R.drawable.ic_pets_black_error48dp)
-                    .error(R.color.greyLight)
+                    .placeholder(imgSex)
+                    .error(imgSex)
                     .into(imgPet);
         }
 
@@ -91,7 +105,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(final ViewGroup container, final int position, final Object object) {
         container.removeView((RelativeLayout) object);
     }
 }

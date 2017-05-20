@@ -1,8 +1,7 @@
-package com.intive.toz.petDetails.details_fragment;
+package com.intive.toz.petDetails.view;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
+import com.intive.toz.petDetails.presenter.PetDetailsPresenter;
 import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment to show details about Pet.
  */
 public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPresenter>
         implements PetDetailsView {
@@ -43,12 +43,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     private String id;
     private Unbinder unbinder;
-
-    Pet pet;
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
 
     /**
      *  pet constructor.
@@ -95,7 +89,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         dateTv.setText(petCreatedDate);
         sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
-        setPet(pet);
     }
 
     @Override
@@ -118,6 +111,4 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         super.onStart();
         presenter.loadPetsDetails(id);
     }
-
-
 }
