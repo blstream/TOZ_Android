@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:background="@drawable/week_view_background"
             android:numColumns="7" />
 
         <TextView
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="rano" />
+            android:text="@string/morning" />
 
         <GridView
             android:id="@+id/morning_buttons_view"
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="popołudniu" />
+            android:text="@string/afternoon" />
 
         <GridView
             android:id="@+id/afternoon_buttons_view"
@@ -49,7 +50,7 @@
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:colorBackground">
+        android:background="@color/windowBackground">
 
         <ProgressBar
             android:layout_width="wrap_content"

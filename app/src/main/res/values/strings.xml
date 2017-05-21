@@ -2,6 +2,10 @@
     <string name="error_msg">Wystąpił błąd! Spróbuj ponownie.</string>
     <string name="connection_problem">Brak dostępu do internetu.</string>
 
+    <!--main_menu-->
+    <string name="log_in">Zaloguj się</string>
+    <string name="log_out">Wyloguj się</string>
+
     <!--news list-->
     <string name="addition_date">Data dodania:&#160;</string>
     <string name="latest_news">Ostatnio dodane</string>
@@ -49,6 +53,8 @@
     <string name="user_calendar_button_name">JA</string>
     <string name="reservation_done">Termin został pomyślnie zapisany</string>
     <string name="reservation_removed">Termin został pomyślnie usunięty</string>
+    <string name="afternoon">popołudnie</string>
+    <string name="morning">rano</string>
 
     <!--pet galerry details-->
     <string name="pet_detail_name">Imię</string>

@@ -78,7 +78,7 @@ public class ButtonsAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
 
-        textView.setStrokeColor(R.color.black);
+        textView.setStrokeColor(R.color.inactive_arrow_color);
         textView.setStrokeWidth(1);
         textView.setSolidColor(R.color.free);
         textView.setText("  ");
@@ -96,16 +96,20 @@ public class ButtonsAdapter extends BaseAdapter {
             if (r.getDate().equals(currentDate)) {
                 if (isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(0).getPeriodStart())) {
                     textView.setSolidColor(R.color.busy);
+                    textView.setStrokeColor(R.color.busy);
                     textView.setText(getInitials(r.getOwnerName()));
                     if (r.getOwnerId().equals(Session.getUserId())) {
                         textView.setSolidColor(R.color.my);
+                        textView.setStrokeColor(R.color.my);
                         textView.setText(R.string.user_calendar_button_name);
                     }
                 } else if (!isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(1).getPeriodStart())) {
                     textView.setSolidColor(R.color.busy);
+                    textView.setStrokeColor(R.color.busy);
                     textView.setText(getInitials(r.getOwnerName()));
                     if (r.getOwnerId().equals(Session.getUserId())) {
                         textView.setSolidColor(R.color.my);
+                        textView.setStrokeColor(R.color.my);
                         textView.setText(R.string.user_calendar_button_name);
                     }
                 }

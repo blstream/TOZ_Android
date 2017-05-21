@@ -59,4 +59,14 @@ interface LoginView extends MvpView {
      * show failure request login to server.
      */
     void showError();
+
+    /**
+     * show all views except progressbar.
+     */
+    void showAllViews();
+
+    /**
+     * hide all views except progressbar.
+     */
+    void hideAllViews();
 }
