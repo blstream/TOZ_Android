@@ -34,6 +34,13 @@ public interface AddPetMvp {
          * On error.
          */
         void onError();
+
+        /**
+         * Show progress bar.
+         *
+         * @param visibility the visibility
+         */
+        void showProgressBar(int visibility);
     }
 
     /**
@@ -63,7 +70,7 @@ public interface AddPetMvp {
         /**
          * Upload images.
          *
-         * @param id       the id
+         * @param id the id
          */
         void uploadImages(String id);
     }

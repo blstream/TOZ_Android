@@ -90,6 +90,8 @@ dependencies {
     compile 'com.github.bartosz-kozajda:android-image-picker:1.5.5'
 
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile "io.reactivex.rxjava2:rxjava:2.1.0"
+    compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
     compile 'com.auth0.android:jwtdecode:1.1.1'
     compile 'org.awaitility:awaitility:3.0.0'
     compile 'com.orhanobut:hawk:2.0.1'

@@ -92,6 +92,9 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
     @BindView(R.id.images_grid_view)
     GridView gridView;
 
+    @BindView(R.id.progress_bar)
+    View progressBar;
+
     private Menu menu;
     private ArrayList<Image> images;
     private List<GalleryItem> items;
@@ -239,6 +242,11 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
         Toast.makeText(this, getString(R.string.default_error), Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void showProgressBar(final int visibility) {
+        progressBar.setVisibility(visibility);
+    }
+
     /**
      * On add images click.
      */
@@ -341,8 +349,14 @@ public class AddPetActivity extends MvpActivity<AddPetMvp.View, AddPetMvp.Presen
             hasButton = true;
             items.add(0, item);
         }
-        adapter.setImages(items);
-        gridView.setAdapter(adapter);
+
+        if (items.size() == 1) {
+            addImagesBtn.setVisibility(View.VISIBLE);
+            items = new ArrayList<>();
+        } else {
+            adapter.setImages(items);
+            gridView.setAdapter(adapter);
+        }
     }
 
     private void onSaveClick() {
