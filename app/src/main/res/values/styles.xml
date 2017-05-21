@@ -17,6 +17,12 @@
         <item name="android:windowBackground">@color/windowBackground</item>
     </style>
 
+    <style name="ImagePicker" parent="ef_BaseTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="TextAppearance.TextInputLayout.Color" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/hintColorEditText</item>
         <item name="android:textSize">14sp</item>

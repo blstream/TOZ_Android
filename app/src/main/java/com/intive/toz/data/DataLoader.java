@@ -15,6 +15,7 @@ import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -242,6 +243,25 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<Pet> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void uploadImage(final ResponseCallback<ResponseBody> listener, final String id, final MultipartBody.Part file) {
+        api.uploadImage(id, file).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(final Call<ResponseBody> call, final Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<ResponseBody> call, final Throwable t) {
                 listener.onError(t);
             }
         });
