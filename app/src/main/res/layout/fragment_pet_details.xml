@@ -27,7 +27,7 @@
                     android:id="@+id/name_pet_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -154,6 +154,7 @@
                 android:textColor="@color/black" />
 
         </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progress_bar_pet_details"
             android:layout_width="wrap_content"

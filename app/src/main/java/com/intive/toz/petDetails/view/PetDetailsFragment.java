@@ -1,6 +1,7 @@
 package com.intive.toz.petDetails.view;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,18 @@ import butterknife.Unbinder;
 public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPresenter>
         implements PetDetailsView {
 
+    /**
+     * interface to pass data through activity.
+     */
+    public interface DataPassListener {
+
+        /**
+         * Method to pass pet data.
+         * @param data Pet data.
+         */
+        void passData(final Pet data);
+    }
+
     @BindView(R.id.name_pet_details)
     TextView nameTv;
 
@@ -43,6 +56,8 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     private String id;
     private Unbinder unbinder;
+
+    DataPassListener mCallback;
 
     /**
      *  pet constructor.
@@ -67,7 +82,10 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_pet_details, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_pet_details, container, false);
+
+        return view;
     }
 
     @Override
@@ -92,6 +110,11 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     }
 
     @Override
+    public void sendPetToFragmentImg(final Pet pet) {
+        mCallback.passData(pet);
+    }
+
+    @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -110,5 +133,16 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     public void onStart() {
         super.onStart();
         presenter.loadPetsDetails(id);
+    }
+
+    @Override
+    public void onAttach(final Activity activity) {
+        super.onAttach(activity);
+        try {
+            mCallback = (DataPassListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement DataPassListener");
+        }
     }
 }

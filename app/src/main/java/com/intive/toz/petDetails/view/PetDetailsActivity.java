@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 
 import com.intive.toz.R;
+import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,15 +25,17 @@ import static com.intive.toz.R.id.sv_pet_details;
  * Activity containing fragment with pet details object.
  **/
 
-public class PetDetailsActivity extends AppCompatActivity {
+public class PetDetailsActivity extends AppCompatActivity implements PetDetailsFragment.DataPassListener {
 
     @BindView(R.id.btn_help)
     Button buttonDonate;
+
+    @BindView(sv_pet_details)
+    ScrollView scrollView;
+
     boolean fragmentHelpVisible = false;
     int colorButton;
     Handler handler;
-    @BindView(sv_pet_details)
-    ScrollView scrollView;
     boolean flagIsAlreadyScrooling = false;
 
     FragmentManager fragmentManager;
@@ -47,9 +50,6 @@ public class PetDetailsActivity extends AppCompatActivity {
         String message = getIntent().getStringExtra("petKey");
         PetDetailsFragment petDetailsFragment = (PetDetailsFragment) fragmentManager.findFragmentById(R.id.detail_pets_fragment);
         petDetailsFragment.setPetID(message);
-
-        PetImgFragment petImgFragment = (PetImgFragment) fragmentManager.findFragmentById(R.id.detail_pets_images);
-        petImgFragment.setPetID(message);
 
         handler = new Handler();
 
@@ -136,4 +136,23 @@ public class PetDetailsActivity extends AppCompatActivity {
             handler.removeCallbacks(this);
         }
     };
+
+    /**
+     * Pass data from fragment details to fragment img.
+     *
+     * @param pet object from fragment details.
+     */
+    @Override
+    public void passData(final Pet pet) {
+
+        PetImgFragment petImgFragment = new PetImgFragment();
+
+        Bundle args = new Bundle();
+        args.putSerializable("pet", pet);
+
+        petImgFragment.setArguments(args);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container_img, petImgFragment, "help");
+        fragmentTransaction.commit();
+    }
 }

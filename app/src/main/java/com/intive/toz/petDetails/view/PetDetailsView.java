@@ -18,6 +18,13 @@ public interface PetDetailsView extends MvpView {
     void showPetDetails(final Pet pet, String petCreatedDate);
 
     /**
+     * Send Pet data from fragment through activity to img fragment.
+     *
+     * @param pet data.
+     */
+    void sendPetToFragmentImg(final Pet pet);
+
+    /**
      * Show progress bar.
      */
     void showProgress();

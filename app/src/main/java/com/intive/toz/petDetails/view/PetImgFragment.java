@@ -26,7 +26,6 @@ public class PetImgFragment extends MvpFragment<PetImgView, PetImgPresenter>
         implements PetImgView {
 
     private PetImgViewPagerAdapter adapter;
-    private String id;
 
     private Unbinder unbinder;
 
@@ -38,6 +37,8 @@ public class PetImgFragment extends MvpFragment<PetImgView, PetImgPresenter>
 
     @BindView(R.id.left_nav)
     ImageButton imageButtonLeft;
+
+    static final String DATA_RECEIVE = "data_receive";
 
     /**
      * empty constructor.
@@ -54,14 +55,6 @@ public class PetImgFragment extends MvpFragment<PetImgView, PetImgPresenter>
     @Override
     public PetImgPresenter createPresenter() {
         return new PetImgPresenter();
-    }
-
-    /**
-     * Method to send pet id from activity.
-     * @param id pet.
-     */
-    public void setPetID(final String id) {
-        this.id = id;
     }
 
     @Override
@@ -120,7 +113,8 @@ public class PetImgFragment extends MvpFragment<PetImgView, PetImgPresenter>
 
     @Override
     public void onStart() {
-        presenter.loadPetsDetails(id);
         super.onStart();
+        Pet pet = (Pet) getArguments().getSerializable("pet");
+        presenter.loadPetData(pet);
     }
 }

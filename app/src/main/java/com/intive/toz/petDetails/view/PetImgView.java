@@ -4,7 +4,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.petslist.model.Pet;
 
 /**
- *  pets list interface used to communicate with pets list fragment and presenter.
+ *  Pet interface used to communicate with fragment and presenter.
  */
 
 public interface PetImgView extends MvpView {

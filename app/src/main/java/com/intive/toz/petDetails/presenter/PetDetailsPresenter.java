@@ -29,6 +29,7 @@ public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
                 if (isViewAttached()) {
                     getView().hideProgress();
                     getView().showPetDetails(pet, dateFormatter.convertToDate(pet.getCreated()));
+                    getView().sendPetToFragmentImg(pet);
                 }
             }
 
