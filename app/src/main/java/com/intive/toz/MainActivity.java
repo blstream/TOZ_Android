@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
@@ -47,6 +48,9 @@ public class MainActivity
     @BindView(R.id.tabs)
     TabLayout tabLayout;
 
+    @BindView(R.id.financial_btn)
+    RelativeLayout financialBtn;
+
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
@@ -66,6 +70,25 @@ public class MainActivity
         networkStateReceiver = new NetworkStateReceiver();
         networkStateReceiver.addListener(this);
         getPresenter().loadNavigationTabs();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(final TabLayout.Tab tab) {
+                String tabTitle = (String) tab.getText();
+                if (tabTitle.equals(getString(R.string.navigation_tab_news)) || tabTitle.equals(getString(R.string.navigation_tab_gallery))) {
+                    financialBtn.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(final TabLayout.Tab tab) {
+                financialBtn.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onTabReselected(final TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
@@ -110,7 +133,6 @@ public class MainActivity
         for (Tab t : tabs) {
             adapter.addFragment(t.getTabFragment(), getResources().getString(t.getTabTitle()));
         }
-
         viewPager.setAdapter(adapter);
 
         for (int i = 0; i < tabs.size(); i++) {
