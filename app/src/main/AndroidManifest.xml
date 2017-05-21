@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/MainTheme.Base">
         <activity
-            android:name=".login.LoginActivity"
-            android:theme="@style/AppTheme"
+            android:name=".MainActivity"
+            android:theme="@style/MainTheme.Base"
             android:windowSoftInputMode="adjustResize">
 
             <intent-filter>

@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+import com.intive.toz.add_pet.view.AddPetActivity;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
@@ -56,6 +58,9 @@ public class MainActivity
     @BindView(R.id.root_view)
     View rootView;
 
+    @BindView(R.id.add_fab)
+    FloatingActionButton addFab;
+
     private ViewPagerAdapter adapter;
     private NetworkStateReceiver networkStateReceiver;
     private Snackbar snackbar;
@@ -69,6 +74,7 @@ public class MainActivity
         networkStateReceiver = new NetworkStateReceiver();
         networkStateReceiver.addListener(this);
         getPresenter().loadNavigationTabs();
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(final TabLayout.Tab tab) {
@@ -76,11 +82,18 @@ public class MainActivity
                 if (tabTitle.equals(getString(R.string.navigation_tab_news)) || tabTitle.equals(getString(R.string.navigation_tab_gallery))) {
                     financialBtn.setVisibility(View.VISIBLE);
                 }
+
+                if (Session.isLogged()
+                        && Session.getRole().equals(Session.TYPES.TOZ.name())
+                        && tabTitle.equals(getString(R.string.navigation_tab_gallery))) {
+                    addFab.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onTabUnselected(final TabLayout.Tab tab) {
                 financialBtn.setVisibility(View.INVISIBLE);
+                addFab.setVisibility(View.GONE);
             }
 
             @Override
@@ -190,5 +203,14 @@ public class MainActivity
             menu.findItem(R.id.menu_log_out).setVisible(false);
         }
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    /**
+     * On add pet click.
+     */
+    @OnClick(R.id.add_fab)
+    public void onAddPetClick() {
+        Intent intent = new Intent(this, AddPetActivity.class);
+        startActivity(intent);
     }
 }

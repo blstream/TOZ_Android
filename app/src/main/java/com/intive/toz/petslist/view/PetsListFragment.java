@@ -1,9 +1,7 @@
 package com.intive.toz.petslist.view;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,10 +13,8 @@ import android.widget.ProgressBar;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
-import com.intive.toz.add_pet.view.AddPetActivity;
-import com.intive.toz.login.Session;
-import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
+import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.petslist.presenter.PetsListPresenter;
 
 import java.util.ArrayList;
@@ -26,7 +22,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -52,12 +47,6 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
      */
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
-
-    /**
-     * The Add fab.
-     */
-    @BindView(R.id.add_fab)
-    FloatingActionButton addFab;
 
     private Unbinder unbinder;
     private PetsAdapter petsAdapter;
@@ -95,18 +84,11 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
         swipeRefreshLayout.setOnRefreshListener(this);
-        initFab();
         initPetsList();
         loadData(false);
     }
 
-    private void initFab() {
-        if (Session.isLogged() && Session.getRole().equals(Session.TYPES.TOZ.name())) {
-            addFab.setVisibility(View.VISIBLE);
-        } else {
-            addFab.setVisibility(View.INVISIBLE);
-        }
-    }
+
 
     private void initPetsList() {
         petsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -153,14 +135,5 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
         super.onDestroyView();
         petsAdapter = null;
         unbinder.unbind();
-    }
-
-    /**
-     * On add pet click.
-     */
-    @OnClick(R.id.add_fab)
-    public void onAddPetClick() {
-        Intent intent = new Intent(getContext(), AddPetActivity.class);
-        startActivity(intent);
     }
 }
