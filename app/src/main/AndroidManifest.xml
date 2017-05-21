@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/MainTheme.Base">
         <activity
-            android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:theme="@style/MainTheme.Base"
+            android:windowSoftInputMode="adjustResize">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,13 +39,15 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".account.ChangePasswordActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/title_activity_change_password"/>
+            android:label="@string/title_activity_change_password"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".volunteerForm.VolunteerFormActivity"
-            android:theme="@style/AppTheme"
             android:label="@string/title_activity_volunteer_form"
-            />
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".add_pet.view.AddPetActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

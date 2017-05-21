@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:textColor="@color/greyDark"
+        android:layout_marginBottom="10dp"
         android:layout_marginEnd="@dimen/image_nr_margin_bottom"
-        android:layout_marginBottom="10dp" />
+        android:textColor="@color/greyDark" />
 
 </RelativeLayout>

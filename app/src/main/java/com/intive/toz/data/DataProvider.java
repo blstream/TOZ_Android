@@ -91,10 +91,19 @@ public interface DataProvider {
 
     /**
      * Making request to server to change password.
-     * @param listener listener
+     *
+     * @param listener     listener
      * @param userPassword objects containing old and new password
      */
     void requestPasswordChange(ResponseChangePasswordCallback<ResponseMessage> listener, UserPassword userPassword);
+
+    /**
+     * Add pet.
+     *
+     * @param listener the listener
+     * @param pet      the pet
+     */
+    void addPet(ResponseCallback<Pet> listener, Pet pet);
 
     /**
      * The interface On data received listener.
@@ -157,6 +166,7 @@ public interface DataProvider {
 
     /**
      * Interface for changing password listener.
+     *
      * @param <T> the type parameter
      */
     interface ResponseChangePasswordCallback<T> {
@@ -176,12 +186,12 @@ public interface DataProvider {
 
         /**
          * on either wrong old password or new and old password being equal.
-         *
          */
         void onWrongPassword();
 
         /**
          * Response with error code, e.g. 404 not found/
+         *
          * @param errorCode error code
          */
         void onErrorCode(int errorCode);

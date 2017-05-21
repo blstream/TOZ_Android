@@ -90,4 +90,16 @@
     <string name="wrong_password_error">Niepoprawne hasło</string>
     <string name="too_long_password_error">Hasło powinno zawierać max 35 znaków</string>
     <string name="successful_password_change">Hasło zostało zmienione pomyślnie.</string>
+
+    <!--add pet-->
+    <string name="add_pet_title">Dodaj zwierzę</string>
+    <string name="name">Imię</string>
+    <string name="address">Adres</string>
+    <string name="choose_type">Wybierz typ</string>
+    <string name="choose_gender">Wybierz płeć</string>
+    <string name="description">Opis</string>
+    <string name="type">Typ</string>
+    <string name="gender">Płeć</string>
+    <string name="save">Zapisz</string>
+    <string name="add_success_message">Zwierzę zostało dodane</string>
 </resources>

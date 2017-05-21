@@ -135,4 +135,18 @@ public final class Session {
     public static String getEmail() {
         return Hawk.get(EMAIL_KEY);
     }
+
+    /**
+     * The enum Types.
+     */
+    public enum TYPES {
+        /**
+         * Volunteer types.
+         */
+        VOLUNTEER,
+        /**
+         * Toz types.
+         */
+        TOZ
+    }
 }
