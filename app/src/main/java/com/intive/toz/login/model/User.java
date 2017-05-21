@@ -27,6 +27,9 @@ public class User {
     @SerializedName("jwt")
     @Expose
     private String jwt;
+    @SerializedName("expirationDateSeconds")
+    @Expose
+    private Long expirationDateSeconds;
 
     /**
      * Gets user id.
@@ -80,5 +83,23 @@ public class User {
      */
     public String getJwt() {
         return jwt;
+    }
+
+    /**
+     * Gets expiration date seconds.
+     *
+     * @return the expiration date seconds
+     */
+    public Long getExpirationDateSeconds() {
+        return expirationDateSeconds;
+    }
+
+    /**
+     * Sets expiration date seconds.
+     *
+     * @param expirationDateSeconds the expiration date seconds
+     */
+    public void setExpirationDateSeconds(final Long expirationDateSeconds) {
+        this.expirationDateSeconds = expirationDateSeconds;
     }
 }
