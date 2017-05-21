@@ -11,6 +11,7 @@
 
     <TextView
         android:layout_marginTop="@dimen/space_between_section"
+        android:layout_centerHorizontal="true"
         android:id="@+id/tv_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
