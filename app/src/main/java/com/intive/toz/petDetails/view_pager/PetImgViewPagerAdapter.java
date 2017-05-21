@@ -11,20 +11,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
-import com.intive.toz.network.ApiClient;
 import com.intive.toz.petslist.model.Pet;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class adapter to show images.
  */
 public class PetImgViewPagerAdapter extends PagerAdapter {
 
+    public static final String IMAGES_BASE_URL = "http://dev.patronage2017.intive-projects.com/";
+
     private Context context;
     private LayoutInflater inflater;
     private Pet pet;
-    private String[] img, imgPre;
+    private List img = new ArrayList();
     private TextView tvImgNr;
     private ImageView imgPet;
 
@@ -38,29 +40,13 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
         this.context = context;
         this.pet = pet;
 
-        // tmp for testing
-        imgPre = new String[]{
-            ApiClient.API_URL + "/" + pet.getImageUrl(),
-            "http://kloppex.ru/kart/18/staryy_kot_prev.jpg",
-            "http://www.gstatic.com/webp/gallery/1.jpg",
-            "http://www.gstatic.com/webp/gallery/2.jpg",
-            "http://www.gstatic.com/webp/gallery/4.jpg",
-            "http://www.gstatic.com/webp/gallery/5.jpg",
-            "http://www.gstatic.com/webp/gallery/3.jpg",
-            "http://www.gstatic.com/webp/gallery/2.jpg",
-            "http://www.gstatic.com/webp/gallery/1.jpg",
-            ApiClient.API_URL + "/" + pet.getImageUrl()
-        };
-
-        final int min = 1;
-        final int max = 10;
-        int random = min + (int) (Math.random() * ((max - min) + 1));
-        img = Arrays.copyOfRange(imgPre, 0, random);
+        String image = IMAGES_BASE_URL + pet.getImageUrl();
+        img.add(image);
     }
 
     @Override
     public int getCount() {
-        return img.length;
+        return img.size();
     }
 
     @Override
@@ -81,7 +67,7 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
 
         if (pet != null) {
             int shiftArrayNrToDisplay = 1;
-            tvImgNr.setText(position + shiftArrayNrToDisplay + " / " + img.length);
+            tvImgNr.setText(position + shiftArrayNrToDisplay + " / " + img.size());
 
             int imgSex;
 
@@ -92,7 +78,7 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
             }
 
             Glide.with(context)
-                    .load(img[position])
+                    .load(img.get(position))
                     .centerCrop()
                     .placeholder(imgSex)
                     .error(imgSex)

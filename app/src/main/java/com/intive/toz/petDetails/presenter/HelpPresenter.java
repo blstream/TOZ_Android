@@ -1,7 +1,5 @@
 package com.intive.toz.petDetails.presenter;
 
-import android.util.Log;
-
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.PetsApi;
@@ -28,7 +26,6 @@ public class HelpPresenter extends MvpBasePresenter<HelpPetMvp.HelpPetView> impl
         call.enqueue(new Callback<Info>() {
             @Override
             public void onResponse(final Call<Info> call, final Response<Info> response) {
-                Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
                     getView().setFinancialData(response.body());
                     getView().hideProgress();
@@ -39,7 +36,6 @@ public class HelpPresenter extends MvpBasePresenter<HelpPetMvp.HelpPetView> impl
             public void onFailure(final Call<Info> call, final Throwable t) {
                 getView().hideProgress();
                 getView().showError(t);
-                Log.e("RESPONSE", "onFailure: ");
             }
         });
     }
@@ -51,7 +47,6 @@ public class HelpPresenter extends MvpBasePresenter<HelpPetMvp.HelpPetView> impl
         call.enqueue(new Callback<Help>() {
             @Override
             public void onResponse(final Call<Help> call, final Response<Help> response) {
-                Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
                     getView().setDonateInfo(response.body());
                     getView().hideProgress();
@@ -62,7 +57,6 @@ public class HelpPresenter extends MvpBasePresenter<HelpPetMvp.HelpPetView> impl
             public void onFailure(final Call<Help> call, final Throwable t) {
                 getView().hideProgress();
                 getView().showError(t);
-                Log.e("RESPONSE", "onFailure: ");
             }
         });
     }

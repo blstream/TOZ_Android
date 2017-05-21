@@ -34,7 +34,7 @@ public interface PetsApi {
      * @return /pets.json.
      */
 
-    @GET("api/pets")
+    @GET("pets")
     Call<List<Pet>> getGalleryPetsListCall();
 
     /**
@@ -43,17 +43,8 @@ public interface PetsApi {
      * @param id pet id
      * @return pet details
      */
-    @GET("api/pets/{id}")
+    @GET("pets/{id}")
     Call<Pet> getPetDetailsCall(@Path("id") String id);
-
-    /**
-     * Get pet.
-     *
-     * @param id pet id
-     * @return pet details
-     */
-    @GET("api/pets/{id}")
-    Call<Pet> getPetDetailsImgCall(@Path("id") String id);
 
     /**
      * Gets only released news (for volunteers and guests.
@@ -75,7 +66,7 @@ public interface PetsApi {
      *
      * @return /financial.json
      */
-    @GET("api/organization/info")
+    @GET("organization/info")
     Call<Info> getFinancialInfo();
 
     /**
@@ -83,7 +74,7 @@ public interface PetsApi {
      *
      * @return /howtodonate.json
      */
-    @GET("api/organization/howtodonate")
+    @GET("organization/howtodonate")
     Call<Help> getDonateInfo();
 
     /**
@@ -101,7 +92,7 @@ public interface PetsApi {
      * @param loginObj contain login and password.
      * @return response body from server in JSON format.
      */
-    @POST("api/tokens/acquire")
+    @POST("tokens/acquire")
     Call<User> login(@Body Login loginObj);
 
     /**
