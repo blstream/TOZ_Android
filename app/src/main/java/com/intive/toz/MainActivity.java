@@ -11,7 +11,11 @@ import android.support.design.widget.TabLayout;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
@@ -19,6 +23,7 @@ import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
 import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
 import com.intive.toz.info.view.FinancialActivity;
+import com.intive.toz.login.LoginActivity;
 import com.intive.toz.login.Session;
 import com.intive.toz.network.NetworkStateReceiver;
 
@@ -42,6 +47,9 @@ public class MainActivity
     @BindView(R.id.tabs)
     TabLayout tabLayout;
 
+    @BindView(R.id.financial_btn)
+    RelativeLayout financialBtn;
+
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
@@ -61,6 +69,25 @@ public class MainActivity
         networkStateReceiver = new NetworkStateReceiver();
         networkStateReceiver.addListener(this);
         getPresenter().loadNavigationTabs();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(final TabLayout.Tab tab) {
+                String tabTitle = (String) tab.getText();
+                if (tabTitle.equals(getString(R.string.navigation_tab_news)) || tabTitle.equals(getString(R.string.navigation_tab_gallery))) {
+                    financialBtn.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(final TabLayout.Tab tab) {
+                financialBtn.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onTabReselected(final TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
@@ -84,8 +111,6 @@ public class MainActivity
     public void showFinance(final View view) {
         Intent i = new Intent(this, FinancialActivity.class);
         startActivity(i);
-        initViews();
-        getPresenter().loadNavigationTabs();
     }
 
     @NonNull
@@ -107,7 +132,6 @@ public class MainActivity
         for (Tab t : tabs) {
             adapter.addFragment(t.getTabFragment(), getResources().getString(t.getTabTitle()));
         }
-
         viewPager.setAdapter(adapter);
 
         for (int i = 0; i < tabs.size(); i++) {
@@ -129,7 +153,42 @@ public class MainActivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
 
-        Session.logOut();
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_log_in:
+                Intent logIn = new Intent(this, LoginActivity.class);
+                startActivity(logIn);
+                return true;
+            case R.id.menu_log_out:
+                Session.logOut();
+                Intent logOut = new Intent(this, MainActivity.class);
+                logOut.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(logOut);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(final Menu menu) {
+        if (Session.isLogged()) {
+            menu.findItem(R.id.menu_log_in).setVisible(false);
+            menu.findItem(R.id.menu_log_out).setVisible(true);
+        } else {
+            menu.findItem(R.id.menu_log_in).setVisible(true);
+            menu.findItem(R.id.menu_log_out).setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 }
