@@ -52,7 +52,7 @@ public interface PetsApi {
      * @param type type of news (e.g. RELEASED)
      * @return the released news
      */
-    @GET("/news")
+    @GET("news")
     Call<List<News>> getReleasedNews(@Query("type") String type);
 
     /**
@@ -60,7 +60,7 @@ public interface PetsApi {
      *
      * @return all news
      */
-    @GET("/news")
+    @GET("news")
     Call<List<News>> getAllNews();
 
     /**
@@ -85,7 +85,7 @@ public interface PetsApi {
      * @param id id
      * @return /news/{id} json
      */
-    @GET("/news/{id}")
+    @GET("news/{id}")
     Call<News> getDetailNews(@Path("id") String id);
 
     /**
@@ -104,7 +104,7 @@ public interface PetsApi {
      * @param to   the to
      * @return the schedule
      */
-    @GET("/schedule")
+    @GET("schedule")
     Call<Schedule> getSchedule(@Query("from") String from, @Query("to") String to);
 
     /**
@@ -113,7 +113,7 @@ public interface PetsApi {
      * @param reserve the reserve
      * @return the call
      */
-    @POST("/schedule")
+    @POST("schedule")
     Call<Reservation> reservation(@Body Reserve reserve);
 
     /**
@@ -122,7 +122,7 @@ public interface PetsApi {
      * @param id the id
      * @return the call
      */
-    @DELETE("/schedule/{id}")
+    @DELETE("schedule/{id}")
     Call<ResponseBody> removeReservation(@Path("id") String id);
 
     /**
@@ -140,7 +140,7 @@ public interface PetsApi {
      * @param pet the pet
      * @return the call
      */
-    @POST("/pets")
+    @POST("pets")
     Call<Pet> addPet(@Body Pet pet);
 }
 
