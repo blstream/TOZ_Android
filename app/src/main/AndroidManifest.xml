@@ -13,10 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/MainTheme.Base">
         <activity
-            android:name=".login.LoginActivity"
-            android:theme="@style/AppTheme"
+            android:name=".MainActivity"
+            android:theme="@style/MainTheme.Base"
             android:windowSoftInputMode="adjustResize">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,24 +23,30 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".login.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity
             android:name=".info.view.FinancialActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".petDetails.PetDetailsActivity"
+            android:name=".petDetails.view.PetDetailsActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".news_detail.view.NewsDetailActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity" />
         <activity
             android:name=".account.ChangePasswordActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/title_activity_change_password"/>
+            android:label="@string/title_activity_change_password"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".volunteerForm.VolunteerFormActivity"
-            android:theme="@style/AppTheme"
             android:label="@string/title_activity_volunteer_form"
-            />
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".add_pet.view.AddPetActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

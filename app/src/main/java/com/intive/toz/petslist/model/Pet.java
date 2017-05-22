@@ -17,6 +17,8 @@ public class Pet implements Serializable {
     private long lastModified;
 
     /**
+     * Gets created.
+     *
      * @return created date Pet.
      */
     public long getCreated() {
@@ -24,6 +26,8 @@ public class Pet implements Serializable {
     }
 
     /**
+     * Gets image url.
+     *
      * @return imgUrl of Pet.
      */
     public String getImageUrl() {
@@ -33,6 +37,8 @@ public class Pet implements Serializable {
     private String imageUrl;
 
     /**
+     * Gets name.
+     *
      * @return name of Pet.
      */
     public String getName() {
@@ -40,6 +46,8 @@ public class Pet implements Serializable {
     }
 
     /**
+     * Gets type.
+     *
      * @return type of Pet.
      */
     public String getType() {
@@ -47,6 +55,8 @@ public class Pet implements Serializable {
     }
 
     /**
+     * Gets description.
+     *
      * @return description of Pet.
      */
     public String getDescription() {
@@ -54,6 +64,8 @@ public class Pet implements Serializable {
     }
 
     /**
+     * Gets address.
+     *
      * @return Address of Pet.
      */
     public String getAddress() {
@@ -61,6 +73,8 @@ public class Pet implements Serializable {
     }
 
     /**
+     * Gets id.
+     *
      * @return id of Pet.
      */
     public String getId() {
@@ -68,10 +82,56 @@ public class Pet implements Serializable {
     }
 
     /**
+     * Gets sex.
+     *
      * @return sex of Pet.
      */
     public String getSex() {
         return sex;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets type.
+     *
+     * @param type the type
+     */
+    public void setType(final String type) {
+        this.type = type;
+    }
+
+    /**
+     * Sets sex.
+     *
+     * @param sex the sex
+     */
+    public void setSex(final String sex) {
+        this.sex = sex;
+    }
+
+    /**
+     * Sets description.
+     *
+     * @param description the description
+     */
+    public void setDescription(final String description) {
+        this.description = description;
+    }
+
+    /**
+     * Sets address.
+     *
+     * @param address the address
+     */
+    public void setAddress(final String address) {
+        this.address = address;
+    }
 }

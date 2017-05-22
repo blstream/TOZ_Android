@@ -1,19 +1,20 @@
-package com.intive.toz.petDetails.page_view_images;
+package com.intive.toz.petDetails.view;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.petslist.model.Pet;
 
 /**
- *  pets list interface used to communicate with pets list fragment and presenter.
+ *  Pet interface used to communicate with fragment and presenter.
  */
 
-interface PetDetailsImageView extends MvpView {
+public interface PetImgView extends MvpView {
 
     /**
-     * Show pet details.
-     * @param pet pet object
+     * Send Pet data to adapter.
+     *
+     * @param pet object which contain url images.
      */
-    void showPetDetails(final Pet pet);
+    void setPetInAdapter(Pet pet);
 
     /**
      * Show progress bar.

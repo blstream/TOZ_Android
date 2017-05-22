@@ -1,28 +1,40 @@
-package com.intive.toz.petDetails.details_fragment;
+package com.intive.toz.petDetails.view;
 
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
-import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
+import com.intive.toz.petDetails.presenter.PetDetailsPresenter;
+import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment to show details about Pet.
  */
 public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPresenter>
         implements PetDetailsView {
+
+    /**
+     * interface to pass data through activity.
+     */
+    public interface DataPassListener {
+
+        /**
+         * Method to pass pet data.
+         * @param data Pet data.
+         */
+        void passData(final Pet data);
+    }
 
     @BindView(R.id.name_pet_details)
     TextView nameTv;
@@ -36,9 +48,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @BindView(R.id.date_pet_details)
     TextView dateTv;
 
-    @BindView(R.id.iv_pet_type)
-    ImageView typeIv;
-
     @BindView(R.id.description_pet_details)
     TextView descriptionTv;
 
@@ -47,6 +56,8 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     private String id;
     private Unbinder unbinder;
+
+    DataPassListener mCallback;
 
     /**
      *  pet constructor.
@@ -71,7 +82,10 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_pet_details, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_pet_details, container, false);
+
+        return view;
     }
 
     @Override
@@ -93,14 +107,11 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         dateTv.setText(petCreatedDate);
         sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
+    }
 
-        if (pet.getType().contains("DOG")) {
-            typeIv.setImageResource(R.drawable.ic_pets_black_eror48dp);
-        } else if (pet.getType().contains("CAT")) {
-            typeIv.setImageResource(R.drawable.ic_cat);
-        } else {
-            typeIv.setImageResource(R.drawable.ic_pets_black_eror48dp);
-        }
+    @Override
+    public void sendPetToFragmentImg(final Pet pet) {
+        mCallback.passData(pet);
     }
 
     @Override
@@ -110,7 +121,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -122,5 +133,16 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     public void onStart() {
         super.onStart();
         presenter.loadPetsDetails(id);
+    }
+
+    @Override
+    public void onAttach(final Activity activity) {
+        super.onAttach(activity);
+        try {
+            mCallback = (DataPassListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement DataPassListener");
+        }
     }
 }

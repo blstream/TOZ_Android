@@ -227,4 +227,23 @@ public class DataLoader implements DataProvider {
             }
         });
     }
+
+    @Override
+    public void addPet(final ResponseCallback<Pet> listener, final Pet pet) {
+        api.addPet(pet).enqueue(new Callback<Pet>() {
+            @Override
+            public void onResponse(final Call<Pet> call, final Response<Pet> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Pet> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
 }

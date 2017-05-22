@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_pet_img"
+    tools:context="com.intive.toz.petDetails.view.PetImgFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="202dp" />
+        <ImageButton
+            android:id="@+id/left_nav"
+            android:layout_width="@dimen/arrow_size"
+            android:layout_height="@dimen/arrow_size"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="@dimen/arrow_margin_left_right"
+            android:src="@drawable/arrow_left_nav"
+            android:background="#00000000"/>
+
+        <ImageButton
+            android:id="@+id/right_nav"
+            android:layout_width="@dimen/arrow_size"
+            android:layout_height="@dimen/arrow_size"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="@dimen/arrow_margin_left_right"
+            android:src="@drawable/arrow_right_nav"
+            android:background="#00000000" />
+    </FrameLayout>
+
+</RelativeLayout>
