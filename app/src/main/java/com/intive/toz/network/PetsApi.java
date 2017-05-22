@@ -154,7 +154,7 @@ public interface PetsApi {
      * @return the call
      */
     @Multipart
-    @POST("/pets/{id}/images")
+    @POST("pets/{id}/images")
     Call<ResponseBody> uploadImage(@Path("id") String id,
                                    @Part MultipartBody.Part file);
 }
