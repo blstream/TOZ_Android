@@ -65,14 +65,6 @@ public interface PetsApi {
     Call<List<News>> getAllNews();
 
     /**
-     * Call to how to donate data.
-     *
-     * @return /howtodonate.json
-     */
-    @GET("organization/howtodonate")
-    Call<Help> getDonateInfo();
-
-    /**
      * Call to financial data.
      *
      * @return /financial.json
