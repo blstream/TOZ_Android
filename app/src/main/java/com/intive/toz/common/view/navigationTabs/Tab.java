@@ -18,7 +18,7 @@ public class Tab {
      * @param tabIcon     the tab icon
      * @param tabFragment the tab fragment
      */
-    public Tab(final int tabTitle, final int tabIcon, final Fragment tabFragment) {
+    Tab(final int tabTitle, final int tabIcon, final Fragment tabFragment) {
         this.tabTitle = tabTitle;
         this.tabIcon = tabIcon;
         this.tabFragment = tabFragment;

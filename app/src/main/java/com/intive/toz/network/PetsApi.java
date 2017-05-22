@@ -48,6 +48,7 @@ public interface PetsApi {
 
     /**
      * Gets only released news (for volunteers and guests.
+     *
      * @param type type of news (e.g. RELEASED)
      * @return the released news
      */
@@ -56,6 +57,7 @@ public interface PetsApi {
 
     /**
      * Gets all news (released, unreleased, archived) (applicable for admins and superadmins).
+     *
      * @return all news
      */
     @GET("/news")
@@ -125,11 +127,21 @@ public interface PetsApi {
 
     /**
      * Make request to change password.
+     *
      * @param userPassword contains old and new password.
      * @return response body from server (successful change or errors).
      */
     @POST("users/passwords")
     Call<ResponseMessage> changePassword(@Body UserPassword userPassword);
+
+    /**
+     * Add pet call.
+     *
+     * @param pet the pet
+     * @return the call
+     */
+    @POST("/pets")
+    Call<Pet> addPet(@Body Pet pet);
 }
 
 

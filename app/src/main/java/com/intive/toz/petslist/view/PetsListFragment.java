@@ -13,8 +13,8 @@ import android.widget.ProgressBar;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
-import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
+import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.petslist.presenter.PetsListPresenter;
 
 import java.util.ArrayList;
@@ -25,17 +25,26 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- *  Fragment containing list of pets with image and short description of each pet.
+ * Fragment containing list of pets with image and short description of each pet.
  */
 public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, List<Pet>,
-        PetsListView, PetsListPresenter> implements PetsListView, SwipeRefreshLayout.OnRefreshListener  {
+        PetsListView, PetsListPresenter> implements PetsListView, SwipeRefreshLayout.OnRefreshListener {
 
+    /**
+     * The Pets recycler view.
+     */
     @BindView(R.id.contentView)
     RecyclerView petsRecyclerView;
 
+    /**
+     * The Progress.
+     */
     @BindView(R.id.loadingView)
     ProgressBar progress;
 
+    /**
+     * The Swipe refresh layout.
+     */
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -44,7 +53,6 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
     private List<Pet> petsList = new ArrayList<>();
 
     /**
-     *
      * @return presenter
      */
     public PetsListPresenter createPresenter() {
@@ -79,6 +87,8 @@ public class PetsListFragment extends MvpLceViewStateFragment<SwipeRefreshLayout
         initPetsList();
         loadData(false);
     }
+
+
 
     private void initPetsList() {
         petsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
