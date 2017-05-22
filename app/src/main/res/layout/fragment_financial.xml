@@ -10,7 +10,7 @@
         android:background="@color/greyDark" />
 
     <TextView
-        android:layout_marginTop="@dimen/space_between_section"
+        android:layout_marginTop="@dimen/space_between_section_financial"
         android:layout_centerHorizontal="true"
         android:id="@+id/tv_desc"
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:layout_below="@id/tv_desc"
-        android:layout_marginTop="@dimen/space_between_section"
+        android:layout_marginTop="@dimen/space_between_section_financial"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
@@ -53,7 +53,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:layout_marginTop="@dimen/space_between_section"
+            android:layout_marginTop="@dimen/space_between_section_financial"
             android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/account_nr_text"

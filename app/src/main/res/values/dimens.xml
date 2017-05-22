@@ -26,5 +26,5 @@
     <!--financial support-->
     <dimen name="organization_info_text">15dp</dimen>
     <dimen name="account_nr_text">20dp</dimen>
-    <dimen name="space_between_section">20dp</dimen>
+    <dimen name="space_between_section_financial">20dp</dimen>
 </resources>
