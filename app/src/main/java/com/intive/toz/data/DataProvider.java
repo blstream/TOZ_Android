@@ -12,6 +12,7 @@ import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 
 /**
@@ -104,6 +105,15 @@ public interface DataProvider {
      * @param pet      the pet
      */
     void addPet(ResponseCallback<Pet> listener, Pet pet);
+
+    /**
+     * Upload image.
+     *
+     * @param listener the listener
+     * @param id       the id
+     * @param file     the file
+     */
+    void uploadImage(ResponseCallback<ResponseBody> listener, String id, MultipartBody.Part file);
 
     /**
      * The interface On data received listener.

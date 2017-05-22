@@ -151,8 +151,6 @@ public final class ApiClient {
                     }
                     request = request.newBuilder()
                             .addHeader("Authorization", "Bearer " + Session.getJwt())
-                            .addHeader("Content-Type", "application/json")
-                            .addHeader("Accept", "application/json")
                             .build();
                 }
                 return chain.proceed(request);
