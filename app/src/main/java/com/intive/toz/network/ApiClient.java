@@ -33,14 +33,13 @@ import static org.awaitility.Awaitility.await;
  */
 public final class ApiClient {
 
-    //    private static final String API_URL = "http://dev.patronage2017.intive-projects.com";
+    public static final String API_URL = "http://dev.patronage2017.intive-projects.com/api/";
     private static final String CACHE_CONTROL = "Cache-Control";
     private static final String CACHE_DIRECTORY = "cache";
     private static final int BUFFER_SIZE = 10485760;
     private static final int MAX_STALE = 7;
     private static final int MAX_DELAY = 3;
 
-    private static final String API_URL = "https://intense-badlands-80645.herokuapp.com";
     private static Boolean flag = false;
 
     private ApiClient() {

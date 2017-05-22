@@ -16,7 +16,6 @@
             android:name=".MainActivity"
             android:theme="@style/MainTheme.Base"
             android:windowSoftInputMode="adjustResize">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +31,7 @@
             android:name=".info.view.FinancialActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".petDetails.PetDetailsActivity"
+            android:name=".petDetails.view.PetDetailsActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".news_detail.view.NewsDetailActivity"

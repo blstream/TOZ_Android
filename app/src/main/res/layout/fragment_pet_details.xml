@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.intive.toz.petDetails.details_fragment.PetDetailsFragment">
+    tools:context="com.intive.toz.petDetails.view.PetDetailsFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,31 +17,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/icon_left_right_margin"
-                android:layout_marginRight="@dimen/icon_left_right_margin"
-                android:src="@drawable/ic_pets_black_eror48dp" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/distance_left_right_text"
-                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/name_pet_details"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/pet_detail_name"
-                    android:textColor="@color/greyLight" />
+                    android:textColor="@color/greyDark" />
             </LinearLayout>
 
         </LinearLayout>
@@ -62,58 +54,42 @@
             android:layout_below="@id/separator1"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/icon_left_right_margin"
-                android:layout_marginRight="@dimen/icon_left_right_margin"
-                android:id="@+id/iv_pet_type" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/distance_left_right_text"
-                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/type_pet_details"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/pet_detail_type"
-                    android:textColor="@color/greyLight" />
+                    android:textColor="@color/greyDark" />
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/icon_left_right_margin"
-                android:layout_marginRight="@dimen/icon_left_right_margin"
-                android:src="@drawable/ic_pets_black_eror48dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/distance_left_right_text"
-                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/sex_pet_details"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/pet_detail_sex"
-                    android:textColor="@color/greyLight" />
+                    android:textColor="@color/greyDark" />
             </LinearLayout>
 
         </LinearLayout>
@@ -134,31 +110,23 @@
             android:layout_below="@+id/separator2"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/icon_left_right_margin"
-                android:layout_marginRight="@dimen/icon_left_right_margin"
-                android:src="@drawable/ic_pets_black_eror48dp" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/distance_left_right_text"
-                android:layout_marginRight="@dimen/distance_left_right_text"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/date_pet_details"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/pet_detail_date_add"
-                    android:textColor="@color/greyLight" />
+                    android:textColor="@color/greyDark" />
             </LinearLayout>
 
         </LinearLayout>
@@ -176,22 +144,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/separator3"
-            android:layout_marginLeft="@dimen/layout_margin_left">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/description_pet_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/separator3" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/separator3"
+                android:textColor="@color/black" />
 
-            <ProgressBar
-                android:id="@+id/progress_bar_pet_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_pet_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
 
     </RelativeLayout>
 </FrameLayout>
