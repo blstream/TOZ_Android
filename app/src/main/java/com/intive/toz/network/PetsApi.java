@@ -3,7 +3,6 @@ package com.intive.toz.network;
 
 import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
-import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
@@ -60,14 +59,6 @@ public interface PetsApi {
      */
     @GET("/news")
     Call<List<News>> getAllNews();
-
-    /**
-     * Call to how to donate data.
-     *
-     * @return /howtodonate.json
-     */
-    @GET("organization/howtodonate")
-    Call<Help> getDonateInfo();
 
     /**
      * Call to financial data.
