@@ -17,7 +17,7 @@ public class Info implements Serializable {
     @SerializedName("contact")
     private Contact contact;
     @SerializedName("address")
-    private Address adres;
+    private Address address;
 
     /**
      * getter name institution.
@@ -32,7 +32,7 @@ public class Info implements Serializable {
      * @return Address object.
      */
     public Address getAddress() {
-        return adres;
+        return address;
     }
 
     /**

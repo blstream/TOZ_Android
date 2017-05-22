@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.intive.toz.petslist.view.PetsListFragment">
 
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/contentView"
@@ -32,11 +32,10 @@
         android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_pets_black_error48dp"
-        android:drawablePadding="@dimen/activity_vertical_margin"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        />
+        android:layout_centerVertical="true"
+        android:drawablePadding="@dimen/activity_vertical_margin"
+        android:drawableTop="@drawable/ic_pets_black_error48dp"
+        android:padding="16dp" />
 
 </RelativeLayout>

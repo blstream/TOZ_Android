@@ -1,20 +1,28 @@
-package com.intive.toz.petDetails.details_fragment;
+package com.intive.toz.petDetails.view;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.petslist.model.Pet;
 
 /**
- *  pets list interface used to communicate with pets list fragment and presenter.
+ * pets list interface used to communicate with pets list fragment and presenter.
  */
 
-interface PetDetailsView extends MvpView {
+public interface PetDetailsView extends MvpView {
 
     /**
      * Show pet details.
-     * @param pet pet object
+     *
+     * @param pet            pet object
      * @param petCreatedDate pet created date
      */
     void showPetDetails(final Pet pet, String petCreatedDate);
+
+    /**
+     * Send Pet data from fragment through activity to img fragment.
+     *
+     * @param pet data.
+     */
+    void sendPetToFragmentImg(final Pet pet);
 
     /**
      * Show progress bar.
@@ -28,6 +36,7 @@ interface PetDetailsView extends MvpView {
 
     /**
      * Show error message.
+     *
      * @param e error
      */
     void showError(Throwable e);
