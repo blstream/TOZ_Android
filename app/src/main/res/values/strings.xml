@@ -110,5 +110,6 @@
 
     <string name="add_image">Dodaj zdjęcie</string>
     <string name="remove_image">Usuń zdj.</string>
+    <string name="forgot_password">RESETUJ HASŁO</string>
 
 </resources>

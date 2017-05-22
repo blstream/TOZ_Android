@@ -51,14 +51,8 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @BindView(R.id.button_login)
     Button loginButton;
 
-    @BindView(R.id.button_test_acc)
-    Button testAccLoginButton;
-
     @BindView(R.id.progress_bar_login)
     ProgressBar progressBar;
-
-    @BindView(R.id.button_form_info)
-    Button formInfo;
 
     private Snackbar snackbar;
 
@@ -145,25 +139,6 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
-
-    /**
-     * Start form information activity.
-     */
-    @OnClick(R.id.button_form_info)
-    public void onFormInfoActivity() {
-        Intent intent = new Intent(this, VolunteerFormActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Temporary button to fast testing corrected input data.
-     */
-    @OnClick(R.id.button_test_acc)
-    public void onTestAccLoginButtonClicked() {
-        usernameInput.setText("VOLUNTEER_user0.email@gmail.com"); // for test
-        passwordInput.setText("VOLUNTEER_name_0"); // for test
-    }
-
 
     /**
      *  Snackbar to show forbidden and other error code in successfull response.
