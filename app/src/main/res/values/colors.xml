@@ -23,4 +23,6 @@
     <color name="week_text_color">#3E8B55</color>
     <color name="inactive_arrow_color">#9E9E9E</color>
 
+    <color name="ef_colorAccent" >@color/colorAccent</color>
+
 </resources>
