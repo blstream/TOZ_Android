@@ -4,7 +4,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.PetsApi;
-import com.intive.toz.petDetails.model.Help;
+import com.intive.toz.info.model.Help;
 
 /**
  * pet help interface used to communicate with help fragment and presenter.

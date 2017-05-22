@@ -22,6 +22,11 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <!--financial support-->
+    <dimen name="organization_info_text">15dp</dimen>
+    <dimen name="account_nr_text">20dp</dimen>
+    <dimen name="space_between_section_financial">20dp</dimen>
+
     <!--fragment help.-->
     <dimen name="space_between_segment">10dp</dimen>
     <dimen name="acc_nr_text_size">20dp</dimen>

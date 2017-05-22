@@ -3,7 +3,7 @@ package com.intive.toz.petDetails.presenter;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.PetsApi;
-import com.intive.toz.petDetails.model.Help;
+import com.intive.toz.info.model.Help;
 import com.intive.toz.petDetails.view.HelpPetMvp;
 
 import retrofit2.Call;

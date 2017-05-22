@@ -2,16 +2,18 @@ package com.intive.toz.info.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
+import com.intive.toz.common.view.calendar.SnackbarFactory;
 import com.intive.toz.info.FinancialMvp;
+import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.info.presenter.FinancialPresenter;
 import com.intive.toz.network.ApiClient;
@@ -27,6 +29,8 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
 
     @BindView(R.id.tv_account_number)
     TextView accountNumber;
+    @BindView(R.id.tv_desc)
+    TextView tvDesc;
     @BindView(R.id.tv_name)
     TextView name;
     @BindView(R.id.tv_city_code)
@@ -35,6 +39,8 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
     TextView street;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+
+    private Snackbar snackbar;
 
     public PetsApi financialService;
 
@@ -53,6 +59,7 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
         ButterKnife.bind(this, view);
 
         presenter.loadFinancialData(financialService);
+        presenter.loadHowToDonateData(financialService);
     }
 
     /**
@@ -64,23 +71,28 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
         name.setText(financialResponse.getName());
         cityCode.setText(financialResponse.getAddress().getPostCode()
                          + " " + financialResponse.getAddress().getCity());
-        street.setText("ul. " + financialResponse.getAddress().getStreet());
-
+        street.setText(financialResponse.getAddress().getStreet());
     }
 
     @Override
-    public void showProgres() {
+    public void setDonateInfo(final Help donateResponse) {
+        tvDesc.setText(donateResponse.getHowToHelpDescription());
+    }
+
+    @Override
+    public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void hideProgres() {
+    public void hideProgress() {
         progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void showError() {
-        Toast.makeText(getActivity(), R.string.financial_info_load_error, Toast.LENGTH_LONG).show();
+        snackbar = SnackbarFactory.getSnackbar(getActivity(), getString(R.string.financial_info_load_error));
+        snackbar.show();
     }
 
     @Override

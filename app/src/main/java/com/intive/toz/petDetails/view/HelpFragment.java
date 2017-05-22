@@ -13,7 +13,7 @@ import com.intive.toz.R;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
-import com.intive.toz.petDetails.model.Help;
+import com.intive.toz.info.model.Help;
 import com.intive.toz.petDetails.presenter.HelpPresenter;
 
 import butterknife.BindView;
