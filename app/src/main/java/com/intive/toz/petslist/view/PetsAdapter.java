@@ -10,9 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.petDetails.view.PetDetailsActivity;
+import com.intive.toz.petslist.model.Pet;
 
 import java.util.List;
 
@@ -63,11 +64,13 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         holder.title.setText(petsList.get(position).getName());
         holder.type.setText(petsList.get(position).getType());
 
+        String type = petsList.get(position).getType();
+        int whichType = type.contains("DOG") ? R.drawable.dog : R.drawable.cat;
+
         Glide.with(context)
-                .load(petsList.get(position).getImageUrl())
-                .centerCrop()
-                .placeholder(R.color.colorAccent)
-                .error(R.color.colorPrimaryDark)
+                .load(ApiClient.IMAGES_BASE_URL + petsList.get(position).getImageUrl())
+                .placeholder(whichType)
+                .error(whichType)
                 .into(holder.img);
     }
 

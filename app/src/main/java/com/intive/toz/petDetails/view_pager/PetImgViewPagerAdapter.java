@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.petslist.model.Pet;
 
 import java.util.ArrayList;
@@ -20,8 +21,6 @@ import java.util.List;
  * Class adapter to show images.
  */
 public class PetImgViewPagerAdapter extends PagerAdapter {
-
-    public static final String IMAGES_BASE_URL = "http://dev.patronage2017.intive-projects.com/";
 
     private Context context;
     private LayoutInflater inflater;
@@ -40,7 +39,7 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
         this.context = context;
         this.pet = pet;
 
-        String image = IMAGES_BASE_URL + pet.getImageUrl();
+        String image = ApiClient.IMAGES_BASE_URL + pet.getImageUrl();
         img.add(image);
     }
 

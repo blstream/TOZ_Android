@@ -34,6 +34,7 @@ import static org.awaitility.Awaitility.await;
 public final class ApiClient {
 
     public static final String API_URL = "http://dev.patronage2017.intive-projects.com/api/";
+    public static final String IMAGES_BASE_URL = "http://dev.patronage2017.intive-projects.com/";
     private static final String CACHE_CONTROL = "Cache-Control";
     private static final String CACHE_DIRECTORY = "cache";
     private static final int BUFFER_SIZE = 10485760;
