@@ -26,8 +26,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".info.view.FinancialActivity"
             android:theme="@style/AppTheme" />
@@ -50,6 +49,10 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".add_pet.view.FullScreenImageActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".reset_password.view.ResetPasswordActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>
 
