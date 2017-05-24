@@ -22,10 +22,8 @@
             android:layout_margin="10dp"
             android:hint="@string/form_user_name"
             android:inputType="text"
-            android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="25sp" />
+            android:textColorHint="@color/colorPrimary" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -39,10 +37,8 @@
             android:layout_margin="10dp"
             android:hint="@string/form_user_surname"
             android:inputType="text"
-            android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="25sp" />
+            android:textColorHint="@color/colorPrimary" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -56,10 +52,8 @@
             android:layout_margin="10dp"
             android:hint="@string/form_user_phone_number"
             android:inputType="phone"
-            android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="25sp" />
+            android:textColorHint="@color/colorPrimary" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -73,10 +67,8 @@
             android:layout_margin="10dp"
             android:hint="@string/form_user_email"
             android:inputType="textEmailAddress"
-            android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="25sp" />
+            android:textColorHint="@color/colorPrimary" />
     </android.support.design.widget.TextInputLayout>
 
 

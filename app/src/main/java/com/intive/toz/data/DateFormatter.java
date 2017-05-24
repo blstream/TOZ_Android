@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
  */
 
 public class DateFormatter {
-    private DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    private DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
     private Calendar calendar = Calendar.getInstance();
     private static final int MINUS_SIX_MONTHS = -6;
 

@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
+import com.intive.toz.data.DateFormatter;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.news.model.News;
 import com.intive.toz.news_detail.view.NewsDetailActivity;
 
@@ -70,16 +72,24 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof NewsViewHolder) {
-            NewsViewHolder h = (NewsViewHolder) holder;
+            final NewsViewHolder h = (NewsViewHolder) holder;
             h.titleTv.setText(newsList.get(position).getTitle());
             h.contentsTv.setText(newsList.get(position).getContents());
+            DateFormatter dateFormatter = new DateFormatter();
+            h.dateTv.setText(dateFormatter.convertToDate(newsList.get(position).getCreated()));
             Context context = h.newsIv.getContext();
-            Glide.with(context)
-                    .load(newsList.get(position).getPhotoUrl())
-                    .centerCrop()
-                    .placeholder(R.color.colorAccent)
-                    .error(R.color.colorPrimary)
-                    .into(h.newsIv);
+            String url = newsList.get(position).getPhotoUrl();
+            h.newsIv.setVisibility(View.GONE);
+            if (url != null && !url.isEmpty()) {
+                h.newsIv.setVisibility(View.VISIBLE);
+                Glide.with(context)
+                        .load(ApiClient.API_DOMAIN + newsList.get(position).getPhotoUrl())
+                        .centerCrop()
+                        .placeholder(R.color.colorPrimary)
+                        .error(R.color.colorPrimary)
+                        .into(h.newsIv);
+            }
+
         }
     }
 
@@ -112,6 +122,12 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
          */
         @BindView(R.id.title_tv)
         TextView titleTv;
+
+        /**
+         * The Date tv.
+         */
+        @BindView(R.id.date_tv)
+        TextView dateTv;
 
         /**
          * The Description tv.

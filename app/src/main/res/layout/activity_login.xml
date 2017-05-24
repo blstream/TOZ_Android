@@ -69,6 +69,8 @@
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textColor="@color/whiteText"
                     android:text="@string/button_login_msg"/>
 
                 <Button
@@ -76,6 +78,8 @@
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textColor="@color/whiteText"
                     android:text="@string/form_button_reporting_to_volunteer"/>
 
                 <Button
@@ -83,6 +87,8 @@
                     android:textAllCaps="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textColor="@color/whiteText"
                     android:text="szybkie dane test konta"/>
 
             </LinearLayout>
