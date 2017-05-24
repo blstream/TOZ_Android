@@ -3,7 +3,7 @@ package com.intive.toz.data;
 import com.intive.toz.info.model.Info;
 
 /**
- * Created by Krzysiek on 2017-05-25.
+ * To return correct string when apartment or house number are missing.
  */
 
 public class AddressChecker {
@@ -18,7 +18,7 @@ public class AddressChecker {
      */
     public String getCorrectAddress(final Info financial) {
 
-        if(financial.getAddress().getHouseNumber().isEmpty()) {
+        if (financial.getAddress().getHouseNumber().isEmpty()) {
             address = "" + financial.getAddress().getApartmentNumber();
         } else if (financial.getAddress().getApartmentNumber() == 0) {
             address = "" + financial.getAddress().getHouseNumber();
