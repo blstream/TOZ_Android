@@ -16,7 +16,8 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/MainTheme.Base"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,30 +26,38 @@
         </activity>
         <activity
             android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".info.view.FinancialActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".petDetails.view.PetDetailsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".news_detail.view.NewsDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".account.ChangePasswordActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_change_password"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".volunteerForm.VolunteerFormActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_volunteer_form"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".add_pet.view.AddPetActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".add_pet.view.FullScreenImageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".reset_password.view.ResetPasswordActivity"
