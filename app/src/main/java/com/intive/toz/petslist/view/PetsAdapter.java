@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
 import com.intive.toz.petDetails.view.PetDetailsActivity;
@@ -65,7 +66,7 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         if (petsList.get(position).getType().equals("DOG")) {
             holder.type.setText(context.getString(R.string.pet_type_dog));
             Glide.with(context)
-                    .load(petsList.get(position).getImageUrl())
+                    .load(ApiClient.API_DOMAIN + petsList.get(position).getImageUrl())
                     .centerCrop()
                     .placeholder(R.drawable.ic_default_avatar_dog)
                     .error(R.drawable.ic_default_avatar_dog)
@@ -73,7 +74,7 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         } else {
             holder.type.setText(context.getString(R.string.pet_type_cat));
             Glide.with(context)
-                    .load(petsList.get(position).getImageUrl())
+                    .load(ApiClient.API_DOMAIN + petsList.get(position).getImageUrl())
                     .centerCrop()
                     .placeholder(R.drawable.ic_default_avatar_cat)
                     .error(R.drawable.ic_default_avatar_cat)
