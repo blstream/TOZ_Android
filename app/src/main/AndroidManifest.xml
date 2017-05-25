@@ -63,6 +63,11 @@
             android:name=".reset_password.view.ResetPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+            />
+        <activity
+            android:name=".kindOfHelp.KindOfHelpActivity"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>
