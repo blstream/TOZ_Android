@@ -3,23 +3,28 @@ package com.intive.toz.network;
 
 import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
+import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -33,7 +38,7 @@ public interface PetsApi {
      * @return /pets.json.
      */
 
-    @GET("/pets")
+    @GET("pets")
     Call<List<Pet>> getGalleryPetsListCall();
 
     /**
@@ -42,22 +47,24 @@ public interface PetsApi {
      * @param id pet id
      * @return pet details
      */
-    @GET("/pets/{id}")
+    @GET("pets/{id}")
     Call<Pet> getPetDetailsCall(@Path("id") String id);
 
     /**
      * Gets only released news (for volunteers and guests.
+     *
      * @param type type of news (e.g. RELEASED)
      * @return the released news
      */
-    @GET("/news")
+    @GET("news")
     Call<List<News>> getReleasedNews(@Query("type") String type);
 
     /**
      * Gets all news (released, unreleased, archived) (applicable for admins and superadmins).
+     *
      * @return all news
      */
-    @GET("/news")
+    @GET("news")
     Call<List<News>> getAllNews();
 
     /**
@@ -65,8 +72,16 @@ public interface PetsApi {
      *
      * @return /financial.json
      */
-    @GET("/organization/Info")
+    @GET("organization/info")
     Call<Info> getFinancialInfo();
+
+    /**
+     * Call to how to donate data.
+     *
+     * @return /howtodonate.json
+     */
+    @GET("organization/howtodonate")
+    Call<Help> getDonateInfo();
 
     /**
      * Get one object of detailed news by Id.
@@ -74,7 +89,7 @@ public interface PetsApi {
      * @param id id
      * @return /news/{id} json
      */
-    @GET("/news/{id}")
+    @GET("news/{id}")
     Call<News> getDetailNews(@Path("id") String id);
 
     /**
@@ -83,7 +98,7 @@ public interface PetsApi {
      * @param loginObj contain login and password.
      * @return response body from server in JSON format.
      */
-    @POST("/tokens/acquire")
+    @POST("tokens/acquire")
     Call<User> login(@Body Login loginObj);
 
     /**
@@ -93,7 +108,7 @@ public interface PetsApi {
      * @param to   the to
      * @return the schedule
      */
-    @GET("/schedule")
+    @GET("schedule")
     Call<Schedule> getSchedule(@Query("from") String from, @Query("to") String to);
 
     /**
@@ -102,7 +117,7 @@ public interface PetsApi {
      * @param reserve the reserve
      * @return the call
      */
-    @POST("/schedule")
+    @POST("schedule")
     Call<Reservation> reservation(@Body Reserve reserve);
 
     /**
@@ -111,16 +126,47 @@ public interface PetsApi {
      * @param id the id
      * @return the call
      */
-    @DELETE("/schedule/{id}")
+    @DELETE("schedule/{id}")
     Call<ResponseBody> removeReservation(@Path("id") String id);
 
     /**
      * Make request to change password.
+     *
      * @param userPassword contains old and new password.
      * @return response body from server (successful change or errors).
      */
     @POST("users/passwords")
     Call<ResponseMessage> changePassword(@Body UserPassword userPassword);
+
+    /**
+     * Add pet call.
+     *
+     * @param pet the pet
+     * @return the call
+     */
+    @POST("pets")
+    Call<Pet> addPet(@Body Pet pet);
+
+    /**
+     * Upload image call.
+     *
+     * @param id   the id
+     * @param file the file
+     * @return the call
+     */
+    @Multipart
+    @POST("pets/{id}/images")
+    Call<ResponseBody> uploadImage(@Path("id") String id,
+                                   @Part MultipartBody.Part file);
+
+    /**
+     * Reset password call.
+     *
+     * @param email the email
+     * @return the call
+     */
+    @POST("users/passwords/reset/send")
+    Call<ResponseBody> resetPassword(@Body Email email);
 }
 
 

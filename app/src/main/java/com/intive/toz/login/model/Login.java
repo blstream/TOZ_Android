@@ -14,6 +14,7 @@ public class Login {
 
     /**
      * set email taking from input screen.
+     *
      * @param email email
      */
     public void setEmail(final String email) {
@@ -22,9 +23,28 @@ public class Login {
 
     /**
      * set password taking from input screen.
+     *
      * @param password password
      */
     public void setPassword(final String password) {
         this.password = password;
+    }
+
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
     }
 }

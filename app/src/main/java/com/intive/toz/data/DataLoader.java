@@ -9,12 +9,14 @@ import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -223,6 +225,63 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<ResponseMessage> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void addPet(final ResponseCallback<Pet> listener, final Pet pet) {
+        api.addPet(pet).enqueue(new Callback<Pet>() {
+            @Override
+            public void onResponse(final Call<Pet> call, final Response<Pet> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Pet> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void uploadImage(final ResponseCallback<ResponseBody> listener, final String id, final MultipartBody.Part file) {
+        api.uploadImage(id, file).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(final Call<ResponseBody> call, final Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<ResponseBody> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void resetPassword(final ResponseCallback<ResponseBody> listener, final Email email) {
+        api.resetPassword(email).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(final Call<ResponseBody> call, final Response<ResponseBody> response) {
+                if  (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<ResponseBody> call, final Throwable t) {
                 listener.onError(t);
             }
         });

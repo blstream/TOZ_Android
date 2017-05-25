@@ -13,7 +13,7 @@
     <color name="greyLight">#CFCFD0</color>
     <color name="greyDark">#7C7A7B</color>
     <color name="black">#000000</color>
-    
+
     <!--date buttons colors-->
     <color name="free">#FFFFFF</color>
     <color name="busy">#4CD374</color>
@@ -22,5 +22,7 @@
     <color name="week_background">#9EE7B4</color>
     <color name="week_text_color">#3E8B55</color>
     <color name="inactive_arrow_color">#9E9E9E</color>
+
+    <color name="ef_colorAccent" >@color/colorAccent</color>
 
 </resources>

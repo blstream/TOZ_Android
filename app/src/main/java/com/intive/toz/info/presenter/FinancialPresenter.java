@@ -1,9 +1,8 @@
 package com.intive.toz.info.presenter;
 
-import android.util.Log;
-
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.info.FinancialMvp;
+import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.PetsApi;
 
@@ -21,23 +20,42 @@ public class FinancialPresenter extends MvpBasePresenter<FinancialMvp.FinancialV
      * @param financialService initialized in fragment.
      */
     public void loadFinancialData(final PetsApi financialService) {
-        getView().showProgres();
+        getView().showProgress();
         Call<Info> call = financialService.getFinancialInfo();
         call.enqueue(new Callback<Info>() {
             @Override
             public void onResponse(final Call<Info> call, final Response<Info> response) {
-                Log.i("RESPONSE", "onResponse: ");
                 if (response.isSuccessful()) {
                     getView().setFinancialData(response.body());
-                    getView().hideProgres();
+                    getView().hideProgress();
                 }
             }
 
             @Override
             public void onFailure(final Call<Info> call, final Throwable t) {
-                getView().hideProgres();
+                getView().hideProgress();
                 getView().showError();
-                Log.e("RESPONSE", "onFailure: ");
+            }
+        });
+    }
+
+    @Override
+    public void loadHowToDonateData(final PetsApi donateService) {
+        getView().showProgress();
+        Call<Help> call = donateService.getDonateInfo();
+        call.enqueue(new Callback<Help>() {
+            @Override
+            public void onResponse(final Call<Help> call, final Response<Help> response) {
+                if (response.isSuccessful()) {
+                    getView().setDonateInfo(response.body());
+                    getView().hideProgress();
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Help> call, final Throwable t) {
+                getView().hideProgress();
+                getView().showError();
             }
         });
     }

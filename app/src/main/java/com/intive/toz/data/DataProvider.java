@@ -6,12 +6,14 @@ import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 
 /**
@@ -91,10 +93,36 @@ public interface DataProvider {
 
     /**
      * Making request to server to change password.
-     * @param listener listener
+     *
+     * @param listener     listener
      * @param userPassword objects containing old and new password
      */
     void requestPasswordChange(ResponseChangePasswordCallback<ResponseMessage> listener, UserPassword userPassword);
+
+    /**
+     * Add pet.
+     *
+     * @param listener the listener
+     * @param pet      the pet
+     */
+    void addPet(ResponseCallback<Pet> listener, Pet pet);
+
+    /**
+     * Upload image.
+     *
+     * @param listener the listener
+     * @param id       the id
+     * @param file     the file
+     */
+    void uploadImage(ResponseCallback<ResponseBody> listener, String id, MultipartBody.Part file);
+
+    /**
+     * Reset password.
+     *
+     * @param listener the listener
+     * @param email    the email
+     */
+    void resetPassword(ResponseCallback<ResponseBody> listener, Email email);
 
     /**
      * The interface On data received listener.
@@ -157,6 +185,7 @@ public interface DataProvider {
 
     /**
      * Interface for changing password listener.
+     *
      * @param <T> the type parameter
      */
     interface ResponseChangePasswordCallback<T> {
@@ -176,12 +205,12 @@ public interface DataProvider {
 
         /**
          * on either wrong old password or new and old password being equal.
-         *
          */
         void onWrongPassword();
 
         /**
          * Response with error code, e.g. 404 not found/
+         *
          * @param errorCode error code
          */
         void onErrorCode(int errorCode);

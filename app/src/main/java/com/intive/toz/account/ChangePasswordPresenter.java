@@ -5,6 +5,7 @@ import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
+import com.intive.toz.login.Session;
 
 
 /**
@@ -31,6 +32,7 @@ public class ChangePasswordPresenter extends MvpBasePresenter<ChangePasswordMVP.
                 @Override
                 public void onSuccess(final ResponseMessage response) {
                     getView().showSuccessfulPasswordChange();
+                    Session.storeCredentials(Session.getEmail(), newPassword);
                 }
 
                 @Override

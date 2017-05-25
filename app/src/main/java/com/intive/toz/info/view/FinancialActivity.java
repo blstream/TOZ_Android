@@ -17,6 +17,11 @@ public class FinancialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_financial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(R.string.name_button_back_financial);
+        }
     }
 
     @Override

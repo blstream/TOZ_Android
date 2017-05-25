@@ -61,6 +61,8 @@
     <string name="pet_detail_type">Typ</string>
     <string name="pet_detail_sex">Płeć</string>
     <string name="pet_detail_date_add">Data dodania</string>
+    <string name="pet_detail_action_bar_title">Galeria</string>
+    <string name="pet_detail_button">Pomóż temu zwierzakowi</string>
 
     <!--form for volunteer-->
     <string name="title_activity_volunteer_form">Zgłoszenie</string>
@@ -90,6 +92,30 @@
     <string name="wrong_password_error">Niepoprawne hasło</string>
     <string name="too_long_password_error">Hasło powinno zawierać max 35 znaków</string>
     <string name="successful_password_change">Hasło zostało zmienione pomyślnie.</string>
+
+    <!--financial-->
+    <string name="name_button_back_financial">Wesprzyj TOZ finansowo</string>
+
+    <!--add pet-->
+    <string name="add_pet_title">Dodaj zwierzę</string>
+    <string name="name">Imię</string>
+    <string name="address">Adres</string>
+    <string name="choose_type">Wybierz typ</string>
+    <string name="choose_gender">Wybierz płeć</string>
+    <string name="description">Opis</string>
+    <string name="type">Typ</string>
+    <string name="gender">Płeć</string>
+    <string name="save">Zapisz</string>
+    <string name="add_success_message">Zwierzę zostało dodane</string>
+    <string name="add_image">Dodaj zdjęcie</string>
+    <string name="remove_image">Usuń zdj.</string>
+
+    <!--password reset-->
+    <string name="forgot_password">RESETUJ HASŁO</string>
+    <string name="reset_password_message">W celu zresetowania hasła podaj swój login (adres e-mail):</string>
+    <string name="cancel">Anuluj</string>
+    <string name="reset_password">Resetuj hasło</string>
+    <string name="on_reset_success">Wiadomość email została wysłana</string>
 
     <!--kind of help-->
     <string name="charity_payment">Wesprzyj TOZ finansowo</string>
