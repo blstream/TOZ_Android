@@ -15,8 +15,6 @@ import android.widget.ProgressBar;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.MainActivity;
 import com.intive.toz.R;
-
-import com.intive.toz.volunteerForm.view.VolunteerFormActivity;
 import com.intive.toz.common.view.calendar.SnackbarFactory;
 import com.intive.toz.reset_password.view.ResetPasswordActivity;
 
