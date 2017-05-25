@@ -12,6 +12,7 @@ import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
+import com.intive.toz.volunteerForm.model.Proposal;
 
 import java.util.List;
 
@@ -157,6 +158,15 @@ public interface PetsApi {
     @POST("pets/{id}/images")
     Call<ResponseBody> uploadImage(@Path("id") String id,
                                    @Part MultipartBody.Part file);
+
+    /**
+     * Proposal call.
+     *
+     * @param proposal the proposal
+     * @return the call
+     */
+    @POST("proposals")
+    Call<ResponseBody> proposal(@Body Proposal proposal);
 }
 
 

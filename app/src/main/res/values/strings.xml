@@ -78,6 +78,8 @@
     <string name="form_button_reporting_to_volunteer">Zgłoszenie na wolonatariusza</string>
     <string name="form_error_empty_field">Pole wymagane</string>
     <string name="form_error_incorrect_data">Niepoprawne dane</string>
+    <string name="form_error_conflict">Twoje zgłoszenie jest rozpatrywane</string>
+    <string name="form_success_massage">Zgłoszenie zostało wysłane</string>
 
     <!--account-->
     <string name="title_activity_change_password">Zmiana hasła</string>

@@ -1,19 +1,23 @@
-package com.intive.toz.volunteerForm;
+package com.intive.toz.volunteerForm.presenter;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
+import com.intive.toz.volunteerForm.ValidateVolunteerForm;
+import com.intive.toz.volunteerForm.VolunteerFormMvp;
+import com.intive.toz.volunteerForm.model.Proposal;
 
 
 /**
  * Presenter Form class.
  */
-class VolunteerFormPresenter extends MvpBasePresenter<VolunteerFormMvp.FormView> implements VolunteerFormMvp.Presenter {
+public class VolunteerFormPresenter extends MvpBasePresenter<VolunteerFormMvp.FormView> implements VolunteerFormMvp.Presenter {
 
     private ValidateVolunteerForm validateForm = new ValidateVolunteerForm();
 
     @Override
     public boolean validate(final String name, final String surname, final String phone, final String email) {
         boolean isCorrect = true;
-
 
         if (!validateForm.name(name)) {
             isCorrect = false;
@@ -50,27 +54,30 @@ class VolunteerFormPresenter extends MvpBasePresenter<VolunteerFormMvp.FormView>
             }
 
         }
-
         return isCorrect;
-
-
     }
 
-    /**
-     * Send data function.
-     *
-     * @param userData  is user data
-     * @param volunteer is volunteer state
-     */
+
     @Override
-    public void sendData(final String[] userData, final boolean volunteer) {
+    public void sendData(final Proposal proposal) {
+        final DataLoader dataLoader = new DataLoader();
+        dataLoader.proposal(new DataProvider.ResponseCallback<Integer>() {
+            @Override
+            public void onSuccess(final Integer response) {
+                if (response >= DataLoader.SUCCESS_CODE_START && response < DataLoader.SUCCESS_CODE_END) {
+                    getView().onSuccess();
+                } else if (response == DataLoader.ERROR_CODE_CONFLICT) {
+                    getView().onConflict();
+                } else {
+                    getView().onError();
+                }
+            }
 
-
-        //TODO send data form
-       /* Send:
-        name, surname, phone, email, volunteer state, unique Id, date of form*/
-
-        getView().showSaveInfo();
+            @Override
+            public void onError(final Throwable e) {
+                getView().onError();
+            }
+        }, proposal);
     }
 
 

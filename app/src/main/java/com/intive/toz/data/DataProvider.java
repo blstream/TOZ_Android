@@ -9,6 +9,7 @@ import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
+import com.intive.toz.volunteerForm.model.Proposal;
 
 import java.util.List;
 
@@ -114,6 +115,14 @@ public interface DataProvider {
      * @param file     the file
      */
     void uploadImage(ResponseCallback<ResponseBody> listener, String id, MultipartBody.Part file);
+
+    /**
+     * Proposal.
+     *
+     * @param listener the listener
+     * @param proposal the proposal
+     */
+    void proposal(ResponseCallback<Integer> listener, Proposal proposal);
 
     /**
      * The interface On data received listener.
