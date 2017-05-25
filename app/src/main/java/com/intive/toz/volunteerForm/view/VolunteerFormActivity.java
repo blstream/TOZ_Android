@@ -3,8 +3,11 @@ package com.intive.toz.volunteerForm.view;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
-import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
@@ -17,7 +20,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Form Activity class.
@@ -36,6 +38,9 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
     @BindView(R.id.phoneNumber)
     TextInputEditText phoneNumber;
 
+    @BindView(R.id.description)
+    TextView descriptionTv;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +48,7 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        phoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        presenter.setDescriptionText();
     }
 
     @NonNull
@@ -52,12 +57,18 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
         return new VolunteerFormPresenter();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.add_pet_menu, menu);
+        return true;
+    }
+
 
     /**
      * Validate form  when send button clicked.
      */
-    @OnClick(R.id.send)
-    public void tryToSend() {
+    public void onSaveClick() {
         Proposal proposal = new Proposal();
         proposal.setEmail(email.getText().toString());
         proposal.setName(name.getText().toString());
@@ -73,12 +84,15 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
         }
     }
 
-    /**
-     * Cancel when cancel button clicked.
-     */
-    @OnClick(R.id.cancel)
-    public void cancel() {
-        finish();
+    @Override
+    public void onDescriptionSuccess(final String description) {
+        descriptionTv.setVisibility(View.VISIBLE);
+        descriptionTv.setText(description);
+    }
+
+    @Override
+    public void onDescriptionError() {
+        descriptionTv.setVisibility(View.GONE);
     }
 
     @Override
@@ -139,6 +153,9 @@ public class VolunteerFormActivity extends MvpActivity<VolunteerFormMvp.FormView
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.action_save:
+                onSaveClick();
                 break;
             default:
                 break;

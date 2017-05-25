@@ -13,6 +13,7 @@ import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
+import com.intive.toz.volunteerForm.model.BecomeVolunteerInfo;
 import com.intive.toz.volunteerForm.model.Proposal;
 
 import java.util.List;
@@ -177,6 +178,14 @@ public interface PetsApi {
      */
     @POST("proposals")
     Call<ResponseBody> proposal(@Body Proposal proposal);
+
+    /**
+     * Become volunteer call.
+     *
+     * @return the call
+     */
+    @GET("organization/becomevolunteer")
+    Call<BecomeVolunteerInfo> becomeVolunteer();
 }
 
 

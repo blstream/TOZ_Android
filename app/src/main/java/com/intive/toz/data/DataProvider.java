@@ -10,6 +10,7 @@ import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
+import com.intive.toz.volunteerForm.model.BecomeVolunteerInfo;
 import com.intive.toz.volunteerForm.model.Proposal;
 
 import java.util.List;
@@ -132,6 +133,13 @@ public interface DataProvider {
      * @param proposal the proposal
      */
     void proposal(ResponseCallback<Integer> listener, Proposal proposal);
+
+    /**
+     * Become volunteer.
+     *
+     * @param listener the listener
+     */
+    void becomeVolunteer(ResponseCallback<BecomeVolunteerInfo> listener);
 
     /**
      * The interface On data received listener.

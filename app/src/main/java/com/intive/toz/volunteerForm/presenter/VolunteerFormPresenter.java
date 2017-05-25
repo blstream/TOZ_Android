@@ -5,6 +5,7 @@ import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 import com.intive.toz.volunteerForm.ValidateVolunteerForm;
 import com.intive.toz.volunteerForm.VolunteerFormMvp;
+import com.intive.toz.volunteerForm.model.BecomeVolunteerInfo;
 import com.intive.toz.volunteerForm.model.Proposal;
 
 
@@ -78,6 +79,22 @@ public class VolunteerFormPresenter extends MvpBasePresenter<VolunteerFormMvp.Fo
                 getView().onError();
             }
         }, proposal);
+    }
+
+    @Override
+    public void setDescriptionText() {
+        final DataLoader dataLoader = new DataLoader();
+        dataLoader.becomeVolunteer(new DataProvider.ResponseCallback<BecomeVolunteerInfo>() {
+            @Override
+            public void onSuccess(final BecomeVolunteerInfo response) {
+                getView().onDescriptionSuccess(response.getHowToHelpDescription());
+            }
+
+            @Override
+            public void onError(final Throwable e) {
+                getView().onDescriptionError();
+            }
+        });
     }
 
 

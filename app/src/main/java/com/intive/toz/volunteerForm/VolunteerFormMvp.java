@@ -32,6 +32,11 @@ public interface VolunteerFormMvp {
          * @param proposal the proposal
          */
         void sendData(Proposal proposal);
+
+        /**
+         * Sets description text.
+         */
+        void setDescriptionText();
     }
 
     /**
@@ -84,9 +89,14 @@ public interface VolunteerFormMvp {
         void onConflict();
 
         /**
-         * calncel form.
+         * On descripion success.
          */
-        void cancel();
+        void onDescriptionSuccess(String description);
+
+        /**
+         * On descripion error.
+         */
+        void onDescriptionError();
     }
 
 }
