@@ -107,8 +107,13 @@
     <string name="gender">Płeć</string>
     <string name="save">Zapisz</string>
     <string name="add_success_message">Zwierzę zostało dodane</string>
-
     <string name="add_image">Dodaj zdjęcie</string>
     <string name="remove_image">Usuń zdj.</string>
 
+    <!--password reset-->
+    <string name="forgot_password">RESETUJ HASŁO</string>
+    <string name="reset_password_message">W celu zresetowania hasła podaj swój login (adres e-mail):</string>
+    <string name="cancel">Anuluj</string>
+    <string name="reset_password">Resetuj hasło</string>
+    <string name="on_reset_success">Wiadomość email została wysłana</string>
 </resources>
