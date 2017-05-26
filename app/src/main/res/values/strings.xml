@@ -118,4 +118,8 @@
     <string name="cancel">Anuluj</string>
     <string name="reset_password">Resetuj hasło</string>
     <string name="on_reset_success">Wiadomość email została wysłana</string>
+
+    <!--kind of help-->
+    <string name="charity_payment">Wesprzyj TOZ finansowo</string>
+    <string name="volunteer">Zostań wolontariuszem TOZ</string>
 </resources>
