@@ -120,4 +120,10 @@
     <!--kind of help-->
     <string name="charity_payment">Wesprzyj TOZ finansowo</string>
     <string name="volunteer">Zostań wolontariuszem TOZ</string>
+    <string name="pet_sex_male">Samiec</string>
+    <string name="pet_sex_female">Samica</string>
+    <string name="dog_type">Pies</string>
+    <string name="cat_type">Kot</string>
+    <string name="dog_tag">DOG</string>
+    <string name="male_tag">MALE</string>
 </resources>
