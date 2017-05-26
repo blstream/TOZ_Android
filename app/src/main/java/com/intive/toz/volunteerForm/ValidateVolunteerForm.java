@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * Class for Validate form.
  */
-class ValidateVolunteerForm {
+public class ValidateVolunteerForm {
     private Pattern pattern;
     private Matcher matcher;
     private static final String NAME_PATTERN = "^[ [a-zA-Z][żźćńółęąśŻŹĆĄŚĘŁÓŃ]?]{1,35}$";
@@ -19,7 +19,7 @@ class ValidateVolunteerForm {
     /**
      * Class constructor.
      */
-    ValidateVolunteerForm() {
+    public ValidateVolunteerForm() {
     }
 
     /**
@@ -40,7 +40,7 @@ class ValidateVolunteerForm {
      * @param email is email
      * @return state of validate
      */
-    boolean email(final String email) {
+    public boolean email(final String email) {
         if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             pattern = Pattern.compile(EMAIL_PATTERN_FIRST_CHARACTER);
             matcher = pattern.matcher(email.substring(0, 1));
@@ -56,7 +56,7 @@ class ValidateVolunteerForm {
      * @param phoneNumber is number
      * @return state of validate
      */
-    boolean phoneNumber(final String phoneNumber) {
+    public boolean phoneNumber(final String phoneNumber) {
         String number = phoneNumber.replaceAll("\\s", "");
         pattern = Pattern.compile(PHONE_PATTERN);
         matcher = pattern.matcher(number);
