@@ -104,6 +104,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     @Override
     public void showPetDetails(final Pet pet, final String petCreatedDate) {
+
         if (pet.getSex().equals(getString(R.string.male_tag))) {
             sexTv.setText(R.string.pet_sex_male);
         } else {
