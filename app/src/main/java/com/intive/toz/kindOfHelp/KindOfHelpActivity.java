@@ -12,7 +12,7 @@ import com.intive.toz.info.view.FinancialActivity;
 import com.intive.toz.kindOfHelp.model.KindOfHelp;
 import com.intive.toz.kindOfHelp.presenter.KindOfHelpPresenter;
 import com.intive.toz.kindOfHelp.view.KindOfHelpView;
-import com.intive.toz.volunteerForm.VolunteerFormActivity;
+import com.intive.toz.volunteerForm.view.VolunteerFormActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
