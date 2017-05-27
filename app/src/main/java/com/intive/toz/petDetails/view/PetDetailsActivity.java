@@ -37,7 +37,7 @@ public class PetDetailsActivity extends AppCompatActivity implements PetDetailsF
     int colorButton;
     Handler handler;
     boolean flagIsAlreadyScrooling = false;
-
+    Pet pet;
     FragmentManager fragmentManager;
 
     @Override
@@ -69,6 +69,11 @@ public class PetDetailsActivity extends AppCompatActivity implements PetDetailsF
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (!fragmentHelpVisible) {
             HelpFragment fragmentHelp = new HelpFragment();
+
+            Bundle args = new Bundle();
+            args.putSerializable("pet", pet);
+            fragmentHelp.setArguments(args);
+
             fragmentTransaction.add(R.id.fragment_container, fragmentHelp, "help");
             fragmentTransaction.commit();
             scrollToDownByTreeLayout();
@@ -142,6 +147,7 @@ public class PetDetailsActivity extends AppCompatActivity implements PetDetailsF
      */
     @Override
     public void passData(final Pet pet) {
+        this.pet = pet;
 
         PetImgFragment petImgFragment = new PetImgFragment();
 

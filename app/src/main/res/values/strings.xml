@@ -97,6 +97,7 @@
 
     <!--financial-->
     <string name="name_button_back_financial">Wesprzyj TOZ finansowo</string>
+    <string name="title_support_for">Tytuł przelewu: Pomoc dla</string>
 
     <!--add pet-->
     <string name="add_pet_title">Dodaj zwierzę</string>

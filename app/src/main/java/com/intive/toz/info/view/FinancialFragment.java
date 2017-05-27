@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
 import com.intive.toz.common.view.calendar.SnackbarFactory;
+import com.intive.toz.data.AddressChecker;
 import com.intive.toz.data.IBANFormatter;
 import com.intive.toz.info.FinancialMvp;
 import com.intive.toz.info.model.Help;
@@ -44,6 +45,7 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
 
     public PetsApi financialService;
 
+    AddressChecker addressChecker;
     IBANFormatter ibanFormatter;
 
     @Override
@@ -57,6 +59,7 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
         super.onViewCreated(view, savedInstanceState);
 
         financialService = ApiClient.getPetsApiService();
+        addressChecker = new AddressChecker();
         ibanFormatter = new IBANFormatter();
 
         ButterKnife.bind(this, view);
@@ -74,7 +77,7 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
         name.setText(financialResponse.getName());
         cityCode.setText(financialResponse.getAddress().getPostCode()
                          + " " + financialResponse.getAddress().getCity());
-        street.setText(financialResponse.getAddress().getStreet());
+        street.setText(financialResponse.getAddress().getStreet() + " " + addressChecker.getCorrectAddress(financialResponse));
     }
 
     @Override
