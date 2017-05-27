@@ -17,7 +17,7 @@ public class KindOfHelpPresenter extends MvpBasePresenter<KindOfHelpView> {
      *
      */
     public void loadKindOfHelp() {
-        KindOfHelp kindOfHelp = new KindOfHelp(R.drawable.charity_payment, R.drawable.volunteer);
+        KindOfHelp kindOfHelp = new KindOfHelp(R.drawable.ic_card_giftcard_white_48dp, R.drawable.ic_person_add_white_48dp);
         getView().showKindOfHelp(kindOfHelp);
     }
 }

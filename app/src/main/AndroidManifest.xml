@@ -47,7 +47,7 @@
             android:label="@string/title_activity_change_password"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".volunteerForm.VolunteerFormActivity"
+            android:name=".volunteerForm.view.VolunteerFormActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_volunteer_form"
             android:theme="@style/AppTheme" />

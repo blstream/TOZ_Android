@@ -65,7 +65,7 @@
     <string name="pet_detail_button">Pomóż temu zwierzakowi</string>
 
     <!--form for volunteer-->
-    <string name="title_activity_volunteer_form">Zgłoszenie</string>
+    <string name="title_activity_volunteer_form">Formularz zgłoszeniowy</string>
     <string name="action_settings">Settings</string>
     <string name="form_user_name">Imię</string>
     <string name="form_user_surname">Nazwisko</string>
@@ -78,6 +78,8 @@
     <string name="form_button_reporting_to_volunteer">Zgłoszenie na wolonatariusza</string>
     <string name="form_error_empty_field">Pole wymagane</string>
     <string name="form_error_incorrect_data">Niepoprawne dane</string>
+    <string name="form_error_conflict">Twoje zgłoszenie jest rozpatrywane</string>
+    <string name="form_success_massage">Zgłoszenie zostało wysłane</string>
 
     <!--account-->
     <string name="title_activity_change_password">Zmiana hasła</string>
@@ -95,6 +97,7 @@
 
     <!--financial-->
     <string name="name_button_back_financial">Wesprzyj TOZ finansowo</string>
+    <string name="title_support_for">Tytuł przelewu: Pomoc dla</string>
 
     <!--add pet-->
     <string name="add_pet_title">Dodaj zwierzę</string>
