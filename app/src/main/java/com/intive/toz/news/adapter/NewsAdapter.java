@@ -89,7 +89,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         .error(R.color.colorPrimary)
                         .into(h.newsIv);
             }
-
         }
     }
 
