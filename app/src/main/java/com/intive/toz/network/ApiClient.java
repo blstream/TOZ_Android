@@ -58,6 +58,7 @@ public final class ApiClient {
         return new OkHttpClient.Builder()
                 .addInterceptor(provideOfflineCacheInterceptor())
                 .addInterceptor(provideAuthorizationInterceptor())
+                .addInterceptor(provideLoggingInterceptor())
                 .addNetworkInterceptor(provideCacheInterceptor())
                 .cache(provideCache())
                 .build();

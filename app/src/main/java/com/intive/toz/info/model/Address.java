@@ -20,7 +20,7 @@ public class Address implements Serializable {
     @SerializedName("houseNumber")
     private String houseNumber;
     @SerializedName("apartmentNumber")
-    private int apartmentNumber;
+    private String apartmentNumber;
 
     /**
      * getter Address, part object Info.
@@ -34,7 +34,7 @@ public class Address implements Serializable {
      * getter nr apartment, part object Info.
      * @return apartment.
      */
-    public int getApartmentNumber() {
+    public String getApartmentNumber() {
         return apartmentNumber;
     }
 

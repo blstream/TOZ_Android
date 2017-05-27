@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
@@ -40,7 +39,7 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
     @BindView(R.id.tv_street)
     TextView street;
     @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
+    View progressBar;
 
     private Snackbar snackbar;
 

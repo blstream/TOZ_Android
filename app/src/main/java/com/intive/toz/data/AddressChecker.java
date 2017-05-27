@@ -20,7 +20,7 @@ public class AddressChecker {
 
         if (financial.getAddress().getHouseNumber().isEmpty()) {
             address = "" + financial.getAddress().getApartmentNumber();
-        } else if (financial.getAddress().getApartmentNumber() == 0) {
+        } else if (financial.getAddress().getApartmentNumber().isEmpty()) {
             address = "" + financial.getAddress().getHouseNumber();
         } else {
             address = financial.getAddress().getApartmentNumber() + "/" + financial.getAddress().getHouseNumber();
