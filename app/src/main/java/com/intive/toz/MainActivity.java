@@ -24,7 +24,7 @@ import com.intive.toz.common.view.navigationTabs.NavigationTabsPresenter;
 import com.intive.toz.common.view.navigationTabs.NavigationTabsView;
 import com.intive.toz.common.view.navigationTabs.Tab;
 import com.intive.toz.common.view.navigationTabs.ViewPagerAdapter;
-import com.intive.toz.info.view.FinancialActivity;
+import com.intive.toz.kindOfHelp.KindOfHelpActivity;
 import com.intive.toz.login.LoginActivity;
 import com.intive.toz.login.Session;
 import com.intive.toz.network.NetworkStateReceiver;
@@ -122,7 +122,7 @@ public class MainActivity
      */
     @OnClick(R.id.financial_btn)
     public void showFinance(final View view) {
-        Intent i = new Intent(this, FinancialActivity.class);
+        Intent i = new Intent(this, KindOfHelpActivity.class);
         startActivity(i);
     }
 

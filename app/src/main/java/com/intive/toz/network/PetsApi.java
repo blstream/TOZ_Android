@@ -3,15 +3,18 @@ package com.intive.toz.network;
 
 import com.intive.toz.account.model.ResponseMessage;
 import com.intive.toz.account.model.UserPassword;
+import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
-import com.intive.toz.info.model.Help;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
+import com.intive.toz.volunteerForm.model.BecomeVolunteerInfo;
+import com.intive.toz.volunteerForm.model.Proposal;
 
 import java.util.List;
 
@@ -157,6 +160,32 @@ public interface PetsApi {
     @POST("pets/{id}/images")
     Call<ResponseBody> uploadImage(@Path("id") String id,
                                    @Part MultipartBody.Part file);
+
+    /**
+     * Reset password call.
+     *
+     * @param email the email
+     * @return the call
+     */
+    @POST("users/passwords/reset/send")
+    Call<ResponseBody> resetPassword(@Body Email email);
+
+    /**
+     * Proposal call.
+     *
+     * @param proposal the proposal
+     * @return the call
+     */
+    @POST("proposals")
+    Call<ResponseBody> proposal(@Body Proposal proposal);
+
+    /**
+     * Become volunteer call.
+     *
+     * @return the call
+     */
+    @GET("organization/becomevolunteer")
+    Call<BecomeVolunteerInfo> becomeVolunteer();
 }
 
 

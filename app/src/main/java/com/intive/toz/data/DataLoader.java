@@ -9,9 +9,12 @@ import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
+import com.intive.toz.volunteerForm.model.BecomeVolunteerInfo;
+import com.intive.toz.volunteerForm.model.Proposal;
 
 import java.util.List;
 
@@ -26,6 +29,19 @@ import retrofit2.Response;
  */
 public class DataLoader implements DataProvider {
     private final PetsApi api = ApiClient.getPetsApiService();
+
+    /**
+     * The constant ERROR_CODE_CONFLICT.
+     */
+    public static final int ERROR_CODE_CONFLICT = 409;
+    /**
+     * The constant SUCCESS_CODE_START.
+     */
+    public static final int SUCCESS_CODE_START = 200;
+    /**
+     * The constant SUCCESS_CODE_END.
+     */
+    public static final int SUCCESS_CODE_END = 300;
 
     private static final int ERROR_CODE_VALIDATION = 400;
     private static final int ERROR_CODE_WRONG_PASSWORD = 400;
@@ -262,6 +278,59 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<ResponseBody> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void resetPassword(final ResponseCallback<ResponseBody> listener, final Email email) {
+        api.resetPassword(email).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(final Call<ResponseBody> call, final Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<ResponseBody> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void proposal(final ResponseCallback<Integer> listener, final Proposal proposal) {
+        api.proposal(proposal).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(final Call<ResponseBody> call, final Response<ResponseBody> response) {
+                listener.onSuccess(response.code());
+            }
+
+            @Override
+            public void onFailure(final Call<ResponseBody> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void becomeVolunteer(final ResponseCallback<BecomeVolunteerInfo> listener) {
+        api.becomeVolunteer().enqueue(new Callback<BecomeVolunteerInfo>() {
+            @Override
+            public void onResponse(final Call<BecomeVolunteerInfo> call, final Response<BecomeVolunteerInfo> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<BecomeVolunteerInfo> call, final Throwable t) {
                 listener.onError(t);
             }
         });

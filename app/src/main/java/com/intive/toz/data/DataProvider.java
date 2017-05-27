@@ -6,9 +6,12 @@ import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
 import com.intive.toz.petslist.model.Pet;
+import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
 import com.intive.toz.schedule.model.Reserve;
 import com.intive.toz.schedule.model.Schedule;
+import com.intive.toz.volunteerForm.model.BecomeVolunteerInfo;
+import com.intive.toz.volunteerForm.model.Proposal;
 
 import java.util.List;
 
@@ -114,6 +117,29 @@ public interface DataProvider {
      * @param file     the file
      */
     void uploadImage(ResponseCallback<ResponseBody> listener, String id, MultipartBody.Part file);
+
+    /**
+     * Reset password.
+     *
+     * @param listener the listener
+     * @param email    the email
+     */
+    void resetPassword(ResponseCallback<ResponseBody> listener, Email email);
+
+    /**
+     * Proposal.
+     *
+     * @param listener the listener
+     * @param proposal the proposal
+     */
+    void proposal(ResponseCallback<Integer> listener, Proposal proposal);
+
+    /**
+     * Become volunteer.
+     *
+     * @param listener the listener
+     */
+    void becomeVolunteer(ResponseCallback<BecomeVolunteerInfo> listener);
 
     /**
      * The interface On data received listener.

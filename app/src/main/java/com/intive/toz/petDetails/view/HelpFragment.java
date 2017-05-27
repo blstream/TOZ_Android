@@ -12,6 +12,7 @@ import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
 import com.intive.toz.data.AddressChecker;
 import com.intive.toz.info.model.Help;
+import com.intive.toz.data.IBANFormatter;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
@@ -53,6 +54,7 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
     TextView tvStreet;
 
     AddressChecker addressChecker;
+    IBANFormatter ibanFormatter;
 
     /**
      * empty constructor.
@@ -77,6 +79,7 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
         super.onViewCreated(view, savedInstanceState);
 
         service = ApiClient.getPetsApiService();
+        ibanFormatter = new IBANFormatter();
 
         addressChecker = new AddressChecker();
 
@@ -90,7 +93,8 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
     @Override
     public void setFinancialData(final Info financial) {
         tvOrgName.setText(financial.getName());
-        tvBankAcc.setText(financial.getBankAccount().getNumber());
+        tvBankAcc.setText(ibanFormatter.toIBAM(financial.getBankAccount().getNumber()));
+        tvStreet.setText(financial.getAddress().getStreet());
         tvCity.setText(financial.getAddress().getPostCode() + " " + financial.getAddress().getCity());
         tvStreet.setText(financial.getAddress().getStreet() + " " + addressChecker.getCorrectAddress(financial));
     }

@@ -2,12 +2,13 @@ package com.intive.toz.volunteerForm;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.intive.toz.volunteerForm.model.Proposal;
 
 
 /**
  * Interface for Form MVP.
  */
-interface VolunteerFormMvp {
+public interface VolunteerFormMvp {
 
     /**
      * Interface for presenter.
@@ -27,10 +28,15 @@ interface VolunteerFormMvp {
 
         /**
          * Send data.
-         * @param userData is user data
-         * @param volunteer is volunteer state
+         *
+         * @param proposal the proposal
          */
-        void sendData(String[] userData, boolean volunteer);
+        void sendData(Proposal proposal);
+
+        /**
+         * Sets description text.
+         */
+        void setDescriptionText();
     }
 
     /**
@@ -70,12 +76,27 @@ interface VolunteerFormMvp {
         /**
          * show saved info.
          */
-        void showSaveInfo();
+        void onSuccess();
 
         /**
-         * calncel form.
+         * On error.
          */
-        void cancel();
+        void onError();
+
+        /**
+         * On conflict.
+         */
+        void onConflict();
+
+        /**
+         * On descripion success.
+         */
+        void onDescriptionSuccess(String description);
+
+        /**
+         * On descripion error.
+         */
+        void onDescriptionError();
     }
 
 }

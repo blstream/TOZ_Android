@@ -1,15 +1,12 @@
 package com.intive.toz.login;
 
 import android.content.Intent;
-
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
-
 import android.os.Bundle;
-
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,10 +15,8 @@ import android.widget.ProgressBar;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.intive.toz.MainActivity;
 import com.intive.toz.R;
-
-import com.intive.toz.volunteerForm.VolunteerFormActivity;
 import com.intive.toz.common.view.calendar.SnackbarFactory;
-
+import com.intive.toz.reset_password.view.ResetPasswordActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,32 +28,47 @@ import butterknife.OnClick;
 public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implements LoginView {
 
 
+    /**
+     * The Username input layout.
+     */
     @BindView(R.id.input_username_layout)
     TextInputLayout usernameInputLayout;
 
+    /**
+     * The Password input layout.
+     */
     @BindView(R.id.input_password_layout)
     TextInputLayout passwordInputLayout;
 
+    /**
+     * The Username input.
+     */
     @BindView(R.id.input_username)
     TextInputEditText usernameInput;
 
+    /**
+     * The Password input.
+     */
     @BindView(R.id.input_password)
     TextInputEditText passwordInput;
 
+    /**
+     * The Layout login.
+     */
     @BindView(R.id.layout_login)
     LinearLayout layoutLogin;
 
+    /**
+     * The Login button.
+     */
     @BindView(R.id.button_login)
     Button loginButton;
 
-    @BindView(R.id.button_test_acc)
-    Button testAccLoginButton;
-
+    /**
+     * The Progress bar.
+     */
     @BindView(R.id.progress_bar_login)
     ProgressBar progressBar;
-
-    @BindView(R.id.button_form_info)
-    Button formInfo;
 
     private Snackbar snackbar;
 
@@ -75,10 +85,12 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         if (Session.isLogged()) {
             onLoginSuccessful();
         }
-        setContentView(R.layout.activity_login);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         ButterKnife.bind(this);
     }
 
@@ -147,25 +159,6 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     }
 
     /**
-     * Start form information activity.
-     */
-    @OnClick(R.id.button_form_info)
-    public void onFormInfoActivity() {
-        Intent intent = new Intent(this, VolunteerFormActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Temporary button to fast testing corrected input data.
-     */
-    @OnClick(R.id.button_test_acc)
-    public void onTestAccLoginButtonClicked() {
-        usernameInput.setText("VOLUNTEER_user0.email@gmail.com"); // for test
-        passwordInput.setText("VOLUNTEER_name_0"); // for test
-    }
-
-
-    /**
      *  Snackbar to show forbidden and other error code in successfull response.
      */
     @Override
@@ -182,5 +175,26 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     public void showError() {
         snackbar = SnackbarFactory.getSnackbar(this, getString(R.string.auth_error_response));
         snackbar.show();
+    }
+
+    /**
+     * On reset password click.
+     */
+    @OnClick(R.id.forgot_password)
+    public void onResetPasswordClick() {
+        Intent intent = new Intent(this, ResetPasswordActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }
