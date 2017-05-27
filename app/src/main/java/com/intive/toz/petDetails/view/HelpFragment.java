@@ -10,11 +10,14 @@ import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
+import com.intive.toz.data.AddressChecker;
+import com.intive.toz.info.model.Help;
+import com.intive.toz.data.IBANFormatter;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
-import com.intive.toz.info.model.Help;
 import com.intive.toz.petDetails.presenter.HelpPresenter;
+import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +29,8 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
         implements HelpPetMvp.HelpPetView {
 
     public PetsApi service;
+
+    Pet pet;
 
     @BindView(R.id.progress_bar_pet_help)
     ProgressBar progressBar;
@@ -47,6 +52,9 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
 
     @BindView(R.id.tv_street_help)
     TextView tvStreet;
+
+    AddressChecker addressChecker;
+    IBANFormatter ibanFormatter;
 
     /**
      * empty constructor.
@@ -71,6 +79,9 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
         super.onViewCreated(view, savedInstanceState);
 
         service = ApiClient.getPetsApiService();
+        ibanFormatter = new IBANFormatter();
+
+        addressChecker = new AddressChecker();
 
         ButterKnife.bind(this, view);
 
@@ -82,15 +93,16 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
     @Override
     public void setFinancialData(final Info financial) {
         tvOrgName.setText(financial.getName());
-        tvBankAcc.setText(financial.getBankAccount().getNumber());
+        tvBankAcc.setText(ibanFormatter.toIBAM(financial.getBankAccount().getNumber()));
         tvStreet.setText(financial.getAddress().getStreet());
         tvCity.setText(financial.getAddress().getPostCode() + " " + financial.getAddress().getCity());
+        tvStreet.setText(financial.getAddress().getStreet() + " " + addressChecker.getCorrectAddress(financial));
     }
 
     @Override
     public void setDonateInfo(final Help donate) {
         tvHowHelp.setText(donate.getHowToHelpDescription());
-        tvTransferTitle.setText("Tytuł przelewu");
+        tvTransferTitle.setText(getString(R.string.title_support_for) + " " + pet.getName());
     }
 
     @Override
@@ -108,4 +120,10 @@ public class HelpFragment extends MvpFragment<HelpPetMvp.HelpPetView, HelpPetMvp
         e.printStackTrace();
     }
 
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        pet = (Pet) getArguments().getSerializable("pet");
+    }
 }

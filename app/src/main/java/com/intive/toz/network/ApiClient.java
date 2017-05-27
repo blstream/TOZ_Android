@@ -23,6 +23,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -58,6 +59,7 @@ public final class ApiClient {
         return new OkHttpClient.Builder()
                 .addInterceptor(provideOfflineCacheInterceptor())
                 .addInterceptor(provideAuthorizationInterceptor())
+                .addInterceptor(provideLoggingInterceptor())
                 .addNetworkInterceptor(provideCacheInterceptor())
                 .cache(provideCache())
                 .build();
@@ -157,6 +159,12 @@ public final class ApiClient {
                 return chain.proceed(request);
             }
         };
+    }
+
+    private static HttpLoggingInterceptor provideLoggingInterceptor() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return interceptor;
     }
 
     private static Request refreshTokenRequestBuilder() {
