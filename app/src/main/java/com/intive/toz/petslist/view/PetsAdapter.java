@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.R;
 import com.intive.toz.petDetails.view.PetDetailsActivity;
@@ -61,14 +62,24 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Context context = holder.img.getContext();
         holder.title.setText(petsList.get(position).getName());
-        holder.type.setText(petsList.get(position).getType());
 
-        Glide.with(context)
-                .load(petsList.get(position).getImageUrl())
-                .centerCrop()
-                .placeholder(R.color.colorAccent)
-                .error(R.color.colorPrimaryDark)
-                .into(holder.img);
+        if (petsList.get(position).getType().equals("DOG")) {
+            holder.type.setText(context.getString(R.string.pet_type_dog));
+            Glide.with(context)
+                    .load(ApiClient.API_DOMAIN + petsList.get(position).getImageUrl())
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_default_avatar_dog)
+                    .error(R.drawable.ic_default_avatar_dog)
+                    .into(holder.img);
+        } else {
+            holder.type.setText(context.getString(R.string.pet_type_cat));
+            Glide.with(context)
+                    .load(ApiClient.API_DOMAIN + petsList.get(position).getImageUrl())
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_default_avatar_cat)
+                    .error(R.drawable.ic_default_avatar_cat)
+                    .into(holder.img);
+        }
     }
 
 

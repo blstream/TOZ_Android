@@ -1,50 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/news_iv"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerVertical="true"
-        android:layout_margin="@dimen/view_small_margin" />
+    <TextView
+        android:id="@+id/date_tv"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="@dimen/view_small_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/arrow_iv"
+    <TextView
+        android:id="@+id/title_tv"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="@dimen/view_small_margin"
-        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+        android:textSize="@dimen/title_text" />
 
-    <LinearLayout
+    <ImageView
+        android:layout_marginTop="@dimen/view_small_margin"
+        android:id="@+id/news_iv"
+        android:layout_width="match_parent"
+        android:layout_height="202dp" />
+
+    <TextView
+        android:layout_marginTop="@dimen/view_small_margin"
+        android:id="@+id/contents_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_margin="@dimen/view_small_margin"
-        android:layout_toEndOf="@id/news_iv"
-        android:layout_toLeftOf="@id/arrow_iv"
-        android:layout_toRightOf="@id/news_iv"
-        android:layout_toStartOf="@id/arrow_iv"
-        android:orientation="vertical">
+        android:textColor="@color/black"
+        android:ellipsize="end"
+        android:maxLines="2" />
 
-        <TextView
-            android:id="@+id/title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold" />
+    <View
+        android:id="@+id/separator"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/view_small_margin"
+        android:background="@color/greyMedium" />
 
-        <TextView
-            android:id="@+id/contents_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:textSize="@dimen/list_small_text" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

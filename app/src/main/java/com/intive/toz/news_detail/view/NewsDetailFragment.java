@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.news.model.News;
 import com.intive.toz.news_detail.presenter.NewsDetailPresenter;
 
@@ -64,11 +65,16 @@ public class NewsDetailFragment extends MvpFragment<NewsDetailView, NewsDetailPr
         title.setText(news.getTitle());
         description.setText(news.getContents());
         date.setText(creationDate);
-        Glide.with(getActivity())
-                .load(news.getPhotoUrl())
-                .placeholder(R.color.colorAccent)
-                .error(R.color.colorPrimaryDark)
-                .into(image);
+        image.setVisibility(View.GONE);
+        if (news.getPhotoUrl() != null && !news.getPhotoUrl().isEmpty()) {
+            image.setVisibility(View.VISIBLE);
+            Glide.with(getActivity())
+                    .load(ApiClient.API_DOMAIN + news.getPhotoUrl())
+                    .placeholder(R.drawable.ic_default_photo_dog)
+                    .error(R.drawable.ic_default_photo_dog)
+                    .into(image);
+        }
+
     }
 
     @Override

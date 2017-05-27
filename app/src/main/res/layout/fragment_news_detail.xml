@@ -1,54 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/title_detail_news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="@dimen/medium_text"
-        android:layout_margin="@dimen/view_small_margin"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:id="@+id/detail_news_iv"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="@dimen/view_small_margin"
-        android:layout_below="@+id/title_detail_news"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/detail_news_description_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/view_small_margin"
-        android:textSize="@dimen/list_small_text"
-        android:layout_below="@+id/detail_news_iv"/>
+        <ImageView
+            android:layout_alignParentTop="true"
+            android:id="@+id/detail_news_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/detail_news_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/list_small_text"
-        android:layout_margin="@dimen/view_small_margin"
-        android:layout_below="@+id/detail_news_description_tv"/>
+        <LinearLayout
+            android:layout_below="@+id/detail_news_iv"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone" />
+            <TextView
+                android:layout_marginTop="@dimen/separator_margin_top"
+                android:id="@+id/detail_news_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/title_detail_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_detail_text" />
+
+            <TextView
+                android:layout_marginTop="@dimen/separator_margin_top"
+                android:id="@+id/detail_news_description_tv"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/support_this_action"
+                android:layout_marginTop="@dimen/separator_margin_top"
+                android:textColor="@color/whiteText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_orange"
+                android:shadowRadius="@android:integer/config_longAnimTime"
+                android:text="@string/support_this_action" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
 </ScrollView>

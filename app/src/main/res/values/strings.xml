@@ -9,6 +9,7 @@
     <!--news list-->
     <string name="addition_date">Data dodania:&#160;</string>
     <string name="latest_news">Ostatnio dodane</string>
+    <string name="support_this_action">Wspomóż tę akcję</string>
 
     <!--tabs-->
     <string name="navigation_tab_news">NEWSY</string>
@@ -63,6 +64,8 @@
     <string name="pet_detail_date_add">Data dodania</string>
     <string name="pet_detail_action_bar_title">Galeria</string>
     <string name="pet_detail_button">Pomóż temu zwierzakowi</string>
+    <string name="pet_type_dog">Pies</string>
+    <string name="pet_type_cat">Kot</string>
 
     <!--form for volunteer-->
     <string name="title_activity_volunteer_form">Formularz zgłoszeniowy</string>
