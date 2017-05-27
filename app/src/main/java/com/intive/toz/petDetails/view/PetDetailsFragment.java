@@ -31,6 +31,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
         /**
          * Method to pass pet data.
+         *
          * @param data Pet data.
          */
         void passData(final Pet data);
@@ -60,7 +61,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     DataPassListener mCallback;
 
     /**
-     *  pet constructor.
+     * pet constructor.
      */
     public PetDetailsFragment() {
         // Required empty public constructor
@@ -68,6 +69,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     /**
      * set pet id from activity to fragment.
+     *
      * @param id pet id
      */
     public void setPetID(final String id) {
@@ -102,6 +104,17 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     @Override
     public void showPetDetails(final Pet pet, final String petCreatedDate) {
+
+        if (pet.getSex().equals(getString(R.string.male_tag))) {
+            sexTv.setText(R.string.pet_sex_male);
+        } else {
+            sexTv.setText(R.string.pet_sex_female);
+        }
+        if (pet.getType().equals(getString(R.string.dog_tag))) {
+            typeTv.setText(R.string.dog_type);
+        } else {
+            typeTv.setText(R.string.cat_type);
+        }
         nameTv.setText(pet.getName());
         typeTv.setText(pet.getType());
         dateTv.setText(petCreatedDate);

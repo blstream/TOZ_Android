@@ -31,4 +31,5 @@
     <!--fragment help.-->
     <dimen name="space_between_segment">10dp</dimen>
     <dimen name="acc_nr_text_size">20dp</dimen>
+    <dimen name="separator_margin_type">100dp</dimen>
 </resources>
