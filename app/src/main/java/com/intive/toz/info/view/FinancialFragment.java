@@ -60,7 +60,6 @@ public class FinancialFragment extends MvpFragment<FinancialMvp.FinancialView, F
         super.onViewCreated(view, savedInstanceState);
 
         financialService = ApiClient.getPetsApiService();
-      
         addressChecker = new AddressChecker();
         ibanFormatter = new IBANFormatter();
 
