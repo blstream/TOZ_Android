@@ -1,18 +1,37 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container_change_password"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.intive.toz.account.AccountFragment"
-    android:id="@+id/fragment_container_change_password">
+    android:orientation="vertical"
+    tools:context="com.intive.toz.account.AccountFragment">
 
-    <Button
+    <LinearLayout
         android:id="@+id/change_password_btn"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/whiteText"
-        android:text="@string/change_password" />
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_security_white_24dp"
+            android:tint="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="8dp"
+            android:text="@string/change_password"
+            android:textSize="@dimen/big_text" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/greyLight"/>
+
+</LinearLayout>
