@@ -71,10 +71,12 @@ public class WeekPresenter extends MvpBasePresenter<WeekMvp.ButtonsView>
 
         switch (result) {
             case 1:
-                getView().showDialog(DialogFactory.infoDialog(reservation.getOwnerName()));
+                getView().showDialog(DialogFactory.infoDialog(reservation.getOwnerName()
+                        + " " + reservation.getOwnerSurname()));
                 break;
             case 2:
-                getView().showDialog(DialogFactory.deleteDialog(reservation.getOwnerName(), reservation.getId(), this));
+                getView().showDialog(DialogFactory.deleteDialog(reservation.getOwnerName()
+                        + " " + reservation.getOwnerSurname(), reservation.getId(), this));
                 break;
             default:
                 if (day.after(new Date()) || day.equals(new Date())) {

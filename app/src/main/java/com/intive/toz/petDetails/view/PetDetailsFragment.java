@@ -116,9 +116,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
             typeTv.setText(R.string.cat_type);
         }
         nameTv.setText(pet.getName());
-        typeTv.setText(pet.getType());
         dateTv.setText(petCreatedDate);
-        sexTv.setText(pet.getSex());
         descriptionTv.setText(pet.getDescription());
     }
 

@@ -8,11 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.intive.toz.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -21,9 +19,6 @@ import butterknife.Unbinder;
  *  Fragment displaying options in tab 'account'.
  */
 public class AccountFragment extends Fragment {
-
-    @BindView(R.id.change_password_btn)
-    Button changePassword;
 
     private Unbinder unbinder;
 
@@ -46,6 +41,12 @@ public class AccountFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable final Bundle savedInstance) {
         super.onViewCreated(view, savedInstance);
         unbinder = ButterKnife.bind(this, view);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
 

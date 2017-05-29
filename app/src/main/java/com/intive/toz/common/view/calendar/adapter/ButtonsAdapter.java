@@ -17,8 +17,6 @@ import com.intive.toz.schedule.model.Schedule;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -97,7 +95,7 @@ public class ButtonsAdapter extends BaseAdapter {
                 if (isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(0).getPeriodStart())) {
                     textView.setSolidColor(R.color.busy);
                     textView.setStrokeColor(R.color.busy);
-                    textView.setText(getInitials(r.getOwnerName()));
+                    textView.setText(getInitials(r.getOwnerName(), r.getOwnerSurname()));
                     if (r.getOwnerId().equals(Session.getUserId())) {
                         textView.setSolidColor(R.color.my);
                         textView.setStrokeColor(R.color.my);
@@ -106,7 +104,7 @@ public class ButtonsAdapter extends BaseAdapter {
                 } else if (!isMorning && r.getStartTime().equals(configs.get(position).getPeriods().get(1).getPeriodStart())) {
                     textView.setSolidColor(R.color.busy);
                     textView.setStrokeColor(R.color.busy);
-                    textView.setText(getInitials(r.getOwnerName()));
+                    textView.setText(getInitials(r.getOwnerName(), r.getOwnerSurname()));
                     if (r.getOwnerId().equals(Session.getUserId())) {
                         textView.setSolidColor(R.color.my);
                         textView.setStrokeColor(R.color.my);
@@ -119,13 +117,16 @@ public class ButtonsAdapter extends BaseAdapter {
         return view;
     }
 
-    private String getInitials(final String name) {
-        Pattern p = Pattern.compile("((^| )[A-Za-z])");
-        Matcher m = p.matcher(name);
+    private String getInitials(final String name, final String surname) {
         String initials = "";
-        while (m.find()) {
-            initials += m.group().trim();
+        if (!name.isEmpty()) {
+            initials += String.valueOf(name.charAt(0));
         }
+
+        if (!surname.isEmpty()) {
+            initials += String.valueOf(surname.charAt(0));
+        }
+        initials = initials.toUpperCase();
         return initials;
     }
 
