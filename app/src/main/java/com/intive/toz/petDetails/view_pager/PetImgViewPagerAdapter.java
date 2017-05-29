@@ -11,22 +11,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.intive.toz.R;
+import com.intive.toz.network.ApiClient;
 import com.intive.toz.petslist.model.Pet;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class adapter to show images.
  */
 public class PetImgViewPagerAdapter extends PagerAdapter {
 
-    public static final String IMAGES_BASE_URL = "http://dev.patronage2017.intive-projects.com/";
-
     private Context context;
     private LayoutInflater inflater;
     private Pet pet;
-    private List img = new ArrayList();
     private TextView tvImgNr;
     private ImageView imgPet;
 
@@ -34,19 +29,16 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
      * counstructor adapter.
      *
      * @param context from fragment.
-     * @param pet object contain url.
+     * @param pet     object contain url.
      */
     public PetImgViewPagerAdapter(final Context context, final Pet pet) {
         this.context = context;
         this.pet = pet;
-
-        String image = IMAGES_BASE_URL + pet.getImageUrl();
-        img.add(image);
     }
 
     @Override
     public int getCount() {
-        return img.size();
+        return pet.getGallery() == null ? 0 : pet.getGallery().size();
     }
 
     @Override
@@ -65,9 +57,9 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
         tvImgNr = (TextView) itemView.findViewById(R.id.tv_nr_page);
         imgPet = (ImageView) itemView.findViewById(R.id.iv_pet);
 
-        if (pet != null) {
+        if (pet.getGallery() != null) {
             int shiftArrayNrToDisplay = 1;
-            tvImgNr.setText(position + shiftArrayNrToDisplay + " / " + img.size());
+            tvImgNr.setText(position + shiftArrayNrToDisplay + " / " + pet.getGallery().size());
 
             int imgSex;
 
@@ -78,7 +70,7 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
             }
 
             Glide.with(context)
-                    .load(img.get(position))
+                    .load(ApiClient.API_DOMAIN + pet.getGallery().get(position).getFileUrl())
                     .centerCrop()
                     .placeholder(imgSex)
                     .error(imgSex)

@@ -1,20 +1,46 @@
 package com.intive.toz.petslist.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Pet model class.
  */
 public class Pet implements Serializable {
 
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("type")
+    @Expose
     private String type;
+    @SerializedName("sex")
+    @Expose
     private String sex;
+    @SerializedName("description")
+    @Expose
     private String description;
+    @SerializedName("address")
+    @Expose
     private String address;
-    private long created;
-    private long lastModified;
+    @SerializedName("created")
+    @Expose
+    private Long created;
+    @SerializedName("lastModified")
+    @Expose
+    private Long lastModified;
+    @SerializedName("imageUrl")
+    @Expose
+    private String imageUrl;
+    @SerializedName("gallery")
+    @Expose
+    private List<Image> gallery = null;
 
     /**
      * Gets created.
@@ -33,8 +59,6 @@ public class Pet implements Serializable {
     public String getImageUrl() {
         return imageUrl;
     }
-
-    private String imageUrl;
 
     /**
      * Gets name.
@@ -133,5 +157,23 @@ public class Pet implements Serializable {
      */
     public void setAddress(final String address) {
         this.address = address;
+    }
+
+    /**
+     * Gets gallery.
+     *
+     * @return the gallery
+     */
+    public List<Image> getGallery() {
+        return gallery;
+    }
+
+    /**
+     * Sets gallery.
+     *
+     * @param gallery the gallery
+     */
+    public void setGallery(List<Image> gallery) {
+        this.gallery = gallery;
     }
 }
