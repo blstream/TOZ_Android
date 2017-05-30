@@ -70,7 +70,7 @@ public class NewsDetailFragment extends MvpFragment<NewsDetailView, NewsDetailPr
             image.setVisibility(View.VISIBLE);
             Glide.with(getActivity())
                     .load(ApiClient.API_DOMAIN + news.getPhotoUrl())
-                    .placeholder(R.drawable.ic_default_photo_dog)
+                    .centerCrop()
                     .error(R.drawable.ic_default_photo_dog)
                     .into(image);
         }
@@ -91,9 +91,4 @@ public class NewsDetailFragment extends MvpFragment<NewsDetailView, NewsDetailPr
     public void showError(final Throwable e) {
         e.printStackTrace();
     }
-
-
-
-
-
 }

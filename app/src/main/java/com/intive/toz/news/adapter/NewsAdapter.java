@@ -85,8 +85,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 Glide.with(context)
                         .load(ApiClient.API_DOMAIN + newsList.get(position).getPhotoUrl())
                         .centerCrop()
-                        .placeholder(R.color.colorPrimary)
-                        .error(R.color.colorPrimary)
+                        .error(R.drawable.ic_default_photo_dog)
                         .into(h.newsIv);
             }
         }
@@ -153,7 +152,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public void onClick(final View v) {
-            //FIXME: Fix when SingleNewsActivty will be implemented correctly
             int position = getAdapterPosition();
             String id = newsList.get(position).getId();
             Intent i = new Intent(v.getContext(), NewsDetailActivity.class);

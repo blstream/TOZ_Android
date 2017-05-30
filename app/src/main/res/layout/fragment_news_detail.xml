@@ -11,7 +11,7 @@
             android:layout_alignParentTop="true"
             android:id="@+id/detail_news_iv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="200dp"/>
 
         <LinearLayout
             android:layout_below="@+id/detail_news_iv"
