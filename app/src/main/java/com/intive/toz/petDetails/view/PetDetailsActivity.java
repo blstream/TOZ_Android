@@ -53,8 +53,7 @@ public class PetDetailsActivity extends AppCompatActivity implements PetDetailsF
 
         handler = new Handler();
 
-        android.support.v7.app.ActionBar ab = getSupportActionBar();
-        ab.setTitle(R.string.pet_detail_action_bar_title);
+        getSupportActionBar().setTitle(R.string.pet_detail_action_bar_title);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

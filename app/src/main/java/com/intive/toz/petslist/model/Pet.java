@@ -173,7 +173,7 @@ public class Pet implements Serializable {
      *
      * @param gallery the gallery
      */
-    public void setGallery(List<Image> gallery) {
+    public void setGallery(final List<Image> gallery) {
         this.gallery = gallery;
     }
 }

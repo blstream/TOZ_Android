@@ -3,6 +3,7 @@ package com.intive.toz.petDetails.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     /**
      * interface to pass data through activity.
      */
-    public interface DataPassListener {
+    interface DataPassListener {
 
         /**
          * Method to pass pet data.
@@ -64,7 +65,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
      * pet constructor.
      */
     public PetDetailsFragment() {
-        // Required empty public constructor
     }
 
     /**
@@ -76,6 +76,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         this.id = id;
     }
 
+    @NonNull
     @Override
     public PetDetailsPresenter createPresenter() {
         return new PetDetailsPresenter();
@@ -85,9 +86,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_pet_details, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_pet_details, container, false);
     }
 
     @Override

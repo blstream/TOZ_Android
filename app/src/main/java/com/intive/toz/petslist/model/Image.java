@@ -3,10 +3,12 @@ package com.intive.toz.petslist.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * The type Image.
  */
-public class Image {
+public class Image implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;
@@ -34,7 +36,7 @@ public class Image {
      *
      * @param id the id
      */
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 
@@ -52,7 +54,7 @@ public class Image {
      *
      * @param createDate the create date
      */
-    public void setCreateDate(Long createDate) {
+    public void setCreateDate(final Long createDate) {
         this.createDate = createDate;
     }
 
@@ -70,7 +72,7 @@ public class Image {
      *
      * @param path the path
      */
-    public void setPath(String path) {
+    public void setPath(final String path) {
         this.path = path;
     }
 
@@ -88,7 +90,7 @@ public class Image {
      *
      * @param fileUrl the file url
      */
-    public void setFileUrl(String fileUrl) {
+    public void setFileUrl(final String fileUrl) {
         this.fileUrl = fileUrl;
     }
 }
