@@ -1,10 +1,10 @@
 package com.intive.toz.petDetails.view;
 
-
-import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,7 @@ import com.intive.toz.data.IBANFormatter;
 import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.petDetails.presenter.PetDetailsPresenter;
+import com.intive.toz.petDetails.view_pager.PetImgViewPagerAdapter;
 import com.intive.toz.petslist.model.Pet;
 
 import butterknife.BindView;
@@ -32,18 +33,6 @@ import butterknife.Unbinder;
 public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPresenter>
         implements PetDetailsView {
 
-    /**
-     * interface to pass data through activity.
-     */
-    interface DataPassListener {
-
-        /**
-         * Method to pass pet data.
-         *
-         * @param data Pet data.
-         */
-        void passData(final Pet data);
-    }
 
     @BindView(R.id.name_pet_details)
     TextView nameTv;
@@ -90,13 +79,15 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @BindView(R.id.help_fragment_container)
     View helpContainer;
 
+    @BindView(R.id.pager)
+    ViewPager viewPager;
+
     private AddressChecker addressChecker;
     private IBANFormatter ibanFormatter;
     private String id;
     private Unbinder unbinder;
     private Pet pet;
-
-    DataPassListener mCallback;
+    private PetImgViewPagerAdapter adapter;
 
     /**
      * pet constructor.
@@ -141,6 +132,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @Override
     public void showPetDetails(final Pet pet, final String petCreatedDate) {
         this.pet = pet;
+        setPetInAdapter(pet);
         if (pet.getSex().equals(getString(R.string.male_tag))) {
             sexTv.setText(R.string.pet_sex_male);
         } else {
@@ -154,11 +146,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         nameTv.setText(pet.getName());
         dateTv.setText(petCreatedDate);
         descriptionTv.setText(pet.getDescription());
-    }
-
-    @Override
-    public void sendPetToFragmentImg(final Pet pet) {
-        mCallback.passData(pet);
     }
 
     @Override
@@ -183,17 +170,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     }
 
     @Override
-    public void onAttach(final Activity activity) {
-        super.onAttach(activity);
-        try {
-            mCallback = (DataPassListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement DataPassListener");
-        }
-    }
-
-    @Override
     public void setFinancialData(final Info financial) {
         tvOrgName.setText(financial.getName());
         tvBankAcc.setText(ibanFormatter.toIBAM(financial.getBankAccount().getNumber()));
@@ -206,6 +182,18 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     public void setDonateInfo(final Help donate) {
         tvHowHelp.setText(donate.getHowToHelpDescription());
         tvTransferTitle.setText(getString(R.string.title_support_for) + " " + pet.getName());
+    }
+
+    /**
+     * Send Pet to Adapter.
+     *
+     * @param pet object which contain url images.
+     */
+    @Override
+    public void setPetInAdapter(final Pet pet) {
+        Context context = getActivity().getApplicationContext();
+        adapter = new PetImgViewPagerAdapter(context, pet);
+        viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -235,6 +223,22 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
             presenter.loadFinancialData();
             presenter.loadHowToDonateData();
         }
+    }
+
+    /**
+     * On left click.
+     */
+    @OnClick(R.id.left_nav)
+    public void onLeftClick() {
+        viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
+    }
+
+    /**
+     * On right click.
+     */
+    @OnClick(R.id.right_nav)
+    public void onRightClick() {
+        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
     }
 
     /**
