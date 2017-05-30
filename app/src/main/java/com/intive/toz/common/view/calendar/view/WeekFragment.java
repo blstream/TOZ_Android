@@ -218,7 +218,7 @@ public class WeekFragment extends MvpFragment<WeekMvp.ButtonsView, WeekMvp.Prese
 
         gridViewMorning.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public boolean onTouch(final View v, final MotionEvent event) {
                 return event.getAction() == MotionEvent.ACTION_MOVE;
             }
         });
