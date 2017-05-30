@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
@@ -81,6 +82,9 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
 
     @BindView(R.id.pager)
     ViewPager viewPager;
+
+    @BindView(R.id.detail_scroll_view)
+    ScrollView scrollView;
 
     private AddressChecker addressChecker;
     private IBANFormatter ibanFormatter;
@@ -176,6 +180,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         tvStreet.setText(financial.getAddress().getStreet());
         tvCity.setText(financial.getAddress().getPostCode() + " " + financial.getAddress().getCity());
         tvStreet.setText(financial.getAddress().getStreet() + " " + addressChecker.getCorrectAddress(financial));
+        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     @Override
