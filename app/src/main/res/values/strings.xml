@@ -66,7 +66,7 @@
     <string name="pet_detail_button">Pomóż temu zwierzakowi</string>
     <string name="pet_type_dog">Pies</string>
     <string name="pet_type_cat">Kot</string>
-    <string name="no_images">0 / 0</string>
+    <string name="no_images">Brak zdjęć</string>
 
     <!--form for volunteer-->
     <string name="title_activity_volunteer_form">Formularz zgłoszeniowy</string>

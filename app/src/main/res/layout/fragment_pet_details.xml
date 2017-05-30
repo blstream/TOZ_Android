@@ -1,172 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context="com.intive.toz.petDetails.view.PetDetailsFragment">
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/name_row"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/name_pet_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/pet_detail_name"
-                    android:textColor="@color/greyDark" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/separator1"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_below="@+id/name_row"
-            android:layout_marginBottom="@dimen/separator_margin_bottom_top"
-            android:layout_marginTop="@dimen/separator_margin_bottom_top"
-            android:background="@color/greyLight" />
-
-        <LinearLayout
-            android:id="@+id/type_sex_row"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/separator1"
-            android:weightSum="3"
-            android:orientation="horizontal">
+            android:padding="@dimen/activity_horizontal_margin">
 
             <LinearLayout
+                android:id="@+id/name_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/type_pet_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/pet_detail_type"
-                    android:textColor="@color/greyText" />
+                    <TextView
+                        android:id="@+id/name_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/pet_detail_name"
+                        android:textColor="@color/greyDark" />
+                </LinearLayout>
+
             </LinearLayout>
+
+            <View
+                android:id="@+id/separator1"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_below="@+id/name_row"
+                android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+                android:layout_marginTop="@dimen/separator_margin_bottom_top"
+                android:background="@color/greyLight" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/type_sex_row"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="2"
-                android:layout_marginLeft="@dimen/distance_left_right_text"
-                android:layout_marginRight="@dimen/distance_left_right_text"
-                android:orientation="vertical">
+                android:layout_below="@id/separator1"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                <TextView
-                    android:id="@+id/sex_pet_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/pet_detail_sex"
-                    android:textColor="@color/greyText" />
+                    <TextView
+                        android:id="@+id/type_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/pet_detail_type"
+                        android:textColor="@color/greyText" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/distance_left_right_text"
+                    android:layout_marginRight="@dimen/distance_left_right_text"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sex_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/pet_detail_sex"
+                        android:textColor="@color/greyText" />
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
-
-        <View
-            android:id="@+id/separator2"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_below="@+id/type_sex_row"
-            android:layout_marginBottom="@dimen/separator_margin_bottom_top"
-            android:layout_marginTop="@dimen/separator_margin_bottom_top"
-            android:background="@color/greyLight" />
-
-        <LinearLayout
-            android:id="@+id/date_row"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/separator2"
-            android:orientation="horizontal">
+            <View
+                android:id="@+id/separator2"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_below="@+id/type_sex_row"
+                android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+                android:layout_marginTop="@dimen/separator_margin_bottom_top"
+                android:background="@color/greyLight" />
 
             <LinearLayout
+                android:id="@+id/date_row"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
+                android:layout_below="@+id/separator2"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/date_pet_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/black" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/pet_detail_date_add"
-                    android:textColor="@color/greyDark" />
+                    <TextView
+                        android:id="@+id/date_pet_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/pet_detail_date_add"
+                        android:textColor="@color/greyDark" />
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
+            <View
+                android:id="@+id/separator3"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_below="@+id/date_row"
+                android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+                android:layout_marginTop="@dimen/separator_margin_bottom_top"
+                android:background="@color/greyLight" />
 
-        <View
-            android:id="@+id/separator3"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_below="@+id/date_row"
-            android:layout_marginBottom="@dimen/separator_margin_bottom_top"
-            android:layout_marginTop="@dimen/separator_margin_bottom_top"
-            android:background="@color/greyLight" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/separator3"
-            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/description_pet_details"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/separator3"
                 android:textColor="@color/black" />
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/btn_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description_pet_details"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_orange"
+                android:shadowRadius="@android:integer/config_longAnimTime"
+                android:text="@string/pet_detail_button"
+                android:textColor="@color/whiteText" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar_pet_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone" />
+            <FrameLayout
+                android:id="@+id/help_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_help"
+                android:visibility="gone">
 
-    </RelativeLayout>
-</FrameLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_text_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/tv_transfer_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/space_between_segment"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/tv_org_name_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_city_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_street_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/space_between_segment"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_nr_acc_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/space_between_segment"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/acc_nr_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_pet_help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar_pet_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </FrameLayout>
+</ScrollView>

@@ -1,6 +1,8 @@
 package com.intive.toz.petDetails.view;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.intive.toz.info.model.Help;
+import com.intive.toz.info.model.Info;
 import com.intive.toz.petslist.model.Pet;
 
 /**
@@ -40,4 +42,28 @@ public interface PetDetailsView extends MvpView {
      * @param e error
      */
     void showError(Throwable e);
+
+    /**
+     * first part financial information how to donate particular pet.
+     *
+     * @param financial information from organizaton/info.
+     */
+    void setFinancialData(Info financial);
+
+    /**
+     * second part information how to donate particular pet.
+     *
+     * @param donate information have been included while create pet in form from database.
+     */
+    void setDonateInfo(Help donate);
+
+    /**
+     * Show progress bar.
+     */
+    void showProgressHelp();
+
+    /**
+     * Hide progress bar.
+     */
+    void hideProgressHelp();
 }
