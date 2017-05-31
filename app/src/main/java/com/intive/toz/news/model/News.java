@@ -21,7 +21,7 @@ public class News implements Serializable {
     @SerializedName("type")
     @Expose
     private String type;
-    @SerializedName("photoUrl")
+    @SerializedName("imageUrl")
     @Expose
     private String photoUrl;
     @SerializedName("created")
