@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.model.Image;
 import com.intive.toz.R;
+import com.intive.toz.petDetails.view_pager.PetImgViewPagerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +32,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
     ImageView imageView;
 
     private int position;
+    private boolean showMenu = true;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -44,10 +46,19 @@ public class FullScreenImageActivity extends AppCompatActivity {
 
         Image image = getIntent().getParcelableExtra(ImagePicker.EXTRA_SELECTED_IMAGES);
         position = getIntent().getIntExtra(AddPetActivity.POSITION_EXTRA, 0);
-        Glide.with(this)
-                .load(image.getPath())
-                .fitCenter()
-                .into(imageView);
+        if (image == null) {
+            showMenu = false;
+            String url = getIntent().getStringExtra(PetImgViewPagerAdapter.IMG_URL);
+            Glide.with(this)
+                    .load(url)
+                    .fitCenter()
+                    .into(imageView);
+        } else {
+            Glide.with(this)
+                    .load(image.getPath())
+                    .fitCenter()
+                    .into(imageView);
+        }
     }
 
     private void onRemoveImage() {
@@ -59,8 +70,10 @@ public class FullScreenImageActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.remove_image_menu, menu);
+        if (showMenu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.remove_image_menu, menu);
+        }
         return true;
     }
 

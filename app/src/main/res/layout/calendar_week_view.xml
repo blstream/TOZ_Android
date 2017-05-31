@@ -12,8 +12,8 @@
             android:id="@+id/week_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:background="@drawable/week_view_background"
+            android:gravity="center"
             android:numColumns="7" />
 
         <TextView
@@ -27,6 +27,7 @@
             android:id="@+id/morning_buttons_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scrollbars="none"
             android:gravity="center"
             android:numColumns="7" />
 
@@ -41,6 +42,7 @@
             android:id="@+id/afternoon_buttons_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scrollbars="none"
             android:gravity="center"
             android:numColumns="7" />
 

@@ -1,6 +1,8 @@
 package com.intive.toz.petDetails.view;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.intive.toz.info.model.Help;
+import com.intive.toz.info.model.Info;
 import com.intive.toz.petslist.model.Pet;
 
 /**
@@ -18,13 +20,6 @@ public interface PetDetailsView extends MvpView {
     void showPetDetails(final Pet pet, String petCreatedDate);
 
     /**
-     * Send Pet data from fragment through activity to img fragment.
-     *
-     * @param pet data.
-     */
-    void sendPetToFragmentImg(final Pet pet);
-
-    /**
      * Show progress bar.
      */
     void showProgress();
@@ -40,4 +35,35 @@ public interface PetDetailsView extends MvpView {
      * @param e error
      */
     void showError(Throwable e);
+
+    /**
+     * first part financial information how to donate particular pet.
+     *
+     * @param financial information from organizaton/info.
+     */
+    void setFinancialData(Info financial);
+
+    /**
+     * second part information how to donate particular pet.
+     *
+     * @param donate information have been included while create pet in form from database.
+     */
+    void setDonateInfo(Help donate);
+
+    /**
+     * Send Pet data to adapter.
+     *
+     * @param pet object which contain url images.
+     */
+    void setPetInAdapter(Pet pet);
+
+    /**
+     * Show progress bar.
+     */
+    void showProgressHelp();
+
+    /**
+     * Hide progress bar.
+     */
+    void hideProgressHelp();
 }
