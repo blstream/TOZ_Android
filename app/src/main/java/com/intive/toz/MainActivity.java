@@ -70,6 +70,8 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.drawable.toolbar_logo);
         initViews();
         networkStateReceiver = new NetworkStateReceiver();
         networkStateReceiver.addListener(this);
