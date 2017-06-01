@@ -96,31 +96,41 @@ public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
         });
     }
 
-    public void loadComments(String id) {
+    /**
+     * Load comments.
+     *
+     * @param id the id
+     */
+    public void loadComments(final String id) {
         DataLoader dataLoader = new DataLoader();
         dataLoader.petComments(new DataProvider.ResponseCallback<List<Comment>>() {
             @Override
-            public void onSuccess(List<Comment> response) {
+            public void onSuccess(final List<Comment> response) {
                 getView().showComments(response);
             }
 
             @Override
-            public void onError(Throwable e) {
+            public void onError(final Throwable e) {
 
             }
         }, id, "ACTIVE");
     }
 
+    /**
+     * Add comment.
+     *
+     * @param comment the comment
+     */
     public void addComment(final Comment comment) {
         DataLoader dataLoader = new DataLoader();
         dataLoader.addComment(new DataProvider.ResponseCallback<Comment>() {
             @Override
-            public void onSuccess(Comment response) {
+            public void onSuccess(final Comment response) {
                 getView().onAddCommentSuccess();
             }
 
             @Override
-            public void onError(Throwable e) {
+            public void onError(final Throwable e) {
                 getView().onAddCommentError();
             }
         }, comment);

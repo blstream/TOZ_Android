@@ -231,7 +231,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     }
 
     @Override
-    public void showComments(List<Comment> comments) {
+    public void showComments(final List<Comment> comments) {
         CommentsAdapter adapter = new CommentsAdapter();
 
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -294,6 +294,9 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
     }
 
+    /**
+     * On add comment click.
+     */
     @OnClick(R.id.add_comment)
     public void onAddCommentClick() {
         Comment comment = new Comment();

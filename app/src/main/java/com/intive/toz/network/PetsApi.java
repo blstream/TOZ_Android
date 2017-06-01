@@ -188,9 +188,22 @@ public interface PetsApi {
     @GET("organization/becomevolunteer")
     Call<BecomeVolunteerInfo> becomeVolunteer();
 
+    /**
+     * Gets pet comments.
+     *
+     * @param id    the id
+     * @param state the state
+     * @return the pet comments
+     */
     @GET("comments")
     Call<List<Comment>> getPetComments(@Query("petUuid") String id, @Query("state") String state);
 
+    /**
+     * Add comment call.
+     *
+     * @param comment the comment
+     * @return the call
+     */
     @POST("comments")
     Call<Comment> addComment(@Body Comment comment);
 }

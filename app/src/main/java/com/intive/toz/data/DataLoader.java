@@ -338,7 +338,7 @@ public class DataLoader implements DataProvider {
     }
 
     @Override
-    public void petComments(final ResponseCallback<List<Comment>> listener, String id, String state) {
+    public void petComments(final ResponseCallback<List<Comment>> listener, final String id, final String state) {
         api.getPetComments(id, state).enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(final Call<List<Comment>> call, final Response<List<Comment>> response) {

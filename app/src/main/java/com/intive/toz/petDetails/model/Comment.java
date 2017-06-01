@@ -80,11 +80,21 @@ public class Comment {
         return created;
     }
 
-    public void setContents(String contents) {
+    /**
+     * Sets contents.
+     *
+     * @param contents the contents
+     */
+    public void setContents(final String contents) {
         this.contents = contents;
     }
 
-    public void setPetUuid(String petUuid) {
+    /**
+     * Sets pet uuid.
+     *
+     * @param petUuid the pet uuid
+     */
+    public void setPetUuid(final String petUuid) {
         this.petUuid = petUuid;
     }
 }
