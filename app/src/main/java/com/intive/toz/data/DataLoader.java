@@ -8,6 +8,7 @@ import com.intive.toz.login.model.User;
 import com.intive.toz.network.ApiClient;
 import com.intive.toz.network.PetsApi;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
@@ -331,6 +332,44 @@ public class DataLoader implements DataProvider {
 
             @Override
             public void onFailure(final Call<BecomeVolunteerInfo> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void petComments(final ResponseCallback<List<Comment>> listener, String id, String state) {
+        api.getPetComments(id, state).enqueue(new Callback<List<Comment>>() {
+            @Override
+            public void onResponse(final Call<List<Comment>> call, final Response<List<Comment>> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<List<Comment>> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
+
+    @Override
+    public void addComment(final ResponseCallback<Comment> listener, final Comment comment) {
+        api.addComment(comment).enqueue(new Callback<Comment>() {
+            @Override
+            public void onResponse(final Call<Comment> call, final Response<Comment> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(comment);
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Comment> call, final Throwable t) {
                 listener.onError(t);
             }
         });

@@ -4,14 +4,20 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 import com.intive.toz.R;
@@ -19,9 +25,12 @@ import com.intive.toz.data.AddressChecker;
 import com.intive.toz.data.IBANFormatter;
 import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
+import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petDetails.presenter.PetDetailsPresenter;
 import com.intive.toz.petDetails.view_pager.PetImgViewPagerAdapter;
 import com.intive.toz.petslist.model.Pet;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,7 +93,16 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     ViewPager viewPager;
 
     @BindView(R.id.detail_scroll_view)
-    ScrollView scrollView;
+    NestedScrollView scrollView;
+
+    @BindView(R.id.comments_recycler_view)
+    RecyclerView commentsRecyclerView;
+
+    @BindView(R.id.add_comment_et)
+    TextInputEditText addCommentEt;
+
+    @BindView(R.id.add_comment_view)
+    View addCommentView;
 
     private AddressChecker addressChecker;
     private IBANFormatter ibanFormatter;
@@ -128,6 +146,12 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        presenter.loadPetsDetails(id);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -137,6 +161,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     public void showPetDetails(final Pet pet, final String petCreatedDate) {
         this.pet = pet;
         setPetInAdapter(pet);
+        presenter.loadComments(pet.getId());
         if (pet.getSex().equals(getString(R.string.male_tag))) {
             sexTv.setText(R.string.pet_sex_male);
         } else {
@@ -165,12 +190,6 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @Override
     public void showError(final Throwable e) {
         e.printStackTrace();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.loadPetsDetails(id);
     }
 
     @Override
@@ -211,6 +230,35 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         progressBarHelp.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    public void showComments(List<Comment> comments) {
+        CommentsAdapter adapter = new CommentsAdapter();
+
+        commentsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        commentsRecyclerView.setAdapter(adapter);
+
+        adapter.setComments(comments);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAddCommentSuccess() {
+        addCommentEt.clearFocus();
+        InputMethodManager inputManager = (InputMethodManager)
+                getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+
+        addCommentEt.setText(null);
+        presenter.loadComments(pet.getId());
+    }
+
+    @Override
+    public void onAddCommentError() {
+        Toast.makeText(getContext(), R.string.default_error, Toast.LENGTH_SHORT).show();
+    }
+
     /**
      * Button to create/delete fragment donate information.
      */
@@ -244,6 +292,15 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @OnClick(R.id.right_nav)
     public void onRightClick() {
         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+    }
+
+    @OnClick(R.id.add_comment)
+    public void onAddCommentClick() {
+        Comment comment = new Comment();
+        comment.setContents(addCommentEt.getText().toString());
+        comment.setPetUuid(pet.getId());
+
+        presenter.addComment(comment);
     }
 
     /**

@@ -7,8 +7,11 @@ import com.intive.toz.data.DateFormatter;
 import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
 import com.intive.toz.network.ApiClient;
+import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petDetails.view.PetDetailsView;
 import com.intive.toz.petslist.model.Pet;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,5 +94,35 @@ public class PetDetailsPresenter extends MvpBasePresenter<PetDetailsView> {
                 getView().hideProgressHelp();
             }
         });
+    }
+
+    public void loadComments(String id) {
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.petComments(new DataProvider.ResponseCallback<List<Comment>>() {
+            @Override
+            public void onSuccess(List<Comment> response) {
+                getView().showComments(response);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        }, id, "ACTIVE");
+    }
+
+    public void addComment(final Comment comment) {
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.addComment(new DataProvider.ResponseCallback<Comment>() {
+            @Override
+            public void onSuccess(Comment response) {
+                getView().onAddCommentSuccess();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getView().onAddCommentError();
+            }
+        }, comment);
     }
 }

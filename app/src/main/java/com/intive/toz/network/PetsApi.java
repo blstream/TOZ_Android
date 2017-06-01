@@ -8,6 +8,7 @@ import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
@@ -186,6 +187,12 @@ public interface PetsApi {
      */
     @GET("organization/becomevolunteer")
     Call<BecomeVolunteerInfo> becomeVolunteer();
+
+    @GET("comments")
+    Call<List<Comment>> getPetComments(@Query("petUuid") String id, @Query("state") String state);
+
+    @POST("comments")
+    Call<Comment> addComment(@Body Comment comment);
 }
 
 

@@ -3,12 +3,14 @@ package com.intive.toz.petDetails.view;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
+import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petslist.model.Pet;
+
+import java.util.List;
 
 /**
  * pets list interface used to communicate with pets list fragment and presenter.
  */
-
 public interface PetDetailsView extends MvpView {
 
     /**
@@ -66,4 +68,21 @@ public interface PetDetailsView extends MvpView {
      * Hide progress bar.
      */
     void hideProgressHelp();
+
+    /**
+     * Show comments.
+     *
+     * @param comments the comments
+     */
+    void showComments(List<Comment> comments);
+
+    /**
+     * On add comment success.
+     */
+    void onAddCommentSuccess();
+
+    /**
+     * On add comment error.
+     */
+    void onAddCommentError();
 }

@@ -5,6 +5,7 @@ import com.intive.toz.account.model.UserPassword;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
@@ -140,6 +141,23 @@ public interface DataProvider {
      * @param listener the listener
      */
     void becomeVolunteer(ResponseCallback<BecomeVolunteerInfo> listener);
+
+    /**
+     * Pet comments.
+     *
+     * @param listener the listener
+     * @param id       the id
+     * @param state    the state
+     */
+    void petComments(ResponseCallback<List<Comment>> listener, String id, String state);
+
+    /**
+     * Add comment.
+     *
+     * @param listener the listener
+     * @param comment  the comment
+     */
+    void addComment(ResponseCallback<Comment> listener, Comment comment);
 
     /**
      * The interface On data received listener.

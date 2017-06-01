@@ -133,4 +133,7 @@
     <string name="cat_type">Kot</string>
     <string name="dog_tag">DOG</string>
     <string name="male_tag">MALE</string>
+    <string name="comments">Komentarze:</string>
+    <string name="add_comment">Dodaj komentarz</string>
+    <string name="add">DODAJ</string>
 </resources>
