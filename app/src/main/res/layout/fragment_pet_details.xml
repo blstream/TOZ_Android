@@ -275,61 +275,71 @@
                     android:layout_marginTop="@dimen/separator_margin_bottom_top"
                     android:background="@color/greyLight" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/comments"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <FrameLayout
-                    android:id="@+id/add_comment_view"
+                <LinearLayout
+                    android:id="@+id/comments_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true">
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/add_comment_et"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/add_comment"
-                            android:paddingEnd="58dp"
-                            android:paddingRight="58dp" />
-
-                    </android.support.design.widget.TextInputLayout>
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/add_comment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:text="@string/add"
-                        android:textColor="@color/colorPrimary"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/comments"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/add_comment_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginBottom="@dimen/separator_margin_bottom_top"
-                    android:layout_marginTop="@dimen/separator_margin_bottom_top"
-                    android:background="@color/greyLight" />
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/comments_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/add_comment_et"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/add_comment"
+                                android:paddingEnd="58dp"
+                                android:paddingRight="58dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/add_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/add"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+                        android:layout_marginTop="@dimen/separator_margin_bottom_top"
+                        android:background="@color/greyLight" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/comments_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                </LinearLayout>
+
 
                 <ProgressBar
                     android:id="@+id/progress_bar_pet_details"

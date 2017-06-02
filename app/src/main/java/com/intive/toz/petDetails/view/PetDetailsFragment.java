@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +24,7 @@ import com.intive.toz.data.AddressChecker;
 import com.intive.toz.data.IBANFormatter;
 import com.intive.toz.info.model.Help;
 import com.intive.toz.info.model.Info;
+import com.intive.toz.login.Session;
 import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petDetails.presenter.PetDetailsPresenter;
 import com.intive.toz.petDetails.view_pager.PetImgViewPagerAdapter;
@@ -104,6 +104,12 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     @BindView(R.id.add_comment_view)
     View addCommentView;
 
+    @BindView(R.id.comments_view)
+    View commentsView;
+
+    @BindView(R.id.separator4)
+    View helpSeparator;
+
     private AddressChecker addressChecker;
     private IBANFormatter ibanFormatter;
     private String id;
@@ -161,7 +167,10 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
     public void showPetDetails(final Pet pet, final String petCreatedDate) {
         this.pet = pet;
         setPetInAdapter(pet);
-        presenter.loadComments(pet.getId());
+        if (Session.isLogged()) {
+            presenter.loadComments(pet.getId());
+            commentsView.setVisibility(View.VISIBLE);
+        }
         if (pet.getSex().equals(getString(R.string.male_tag))) {
             sexTv.setText(R.string.pet_sex_male);
         } else {
@@ -199,7 +208,7 @@ public class PetDetailsFragment extends MvpFragment<PetDetailsView, PetDetailsPr
         tvStreet.setText(financial.getAddress().getStreet());
         tvCity.setText(financial.getAddress().getPostCode() + " " + financial.getAddress().getCity());
         tvStreet.setText(financial.getAddress().getStreet() + " " + addressChecker.getCorrectAddress(financial));
-        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+        scrollView.smoothScrollTo(0, helpSeparator.getBottom());
     }
 
     @Override
