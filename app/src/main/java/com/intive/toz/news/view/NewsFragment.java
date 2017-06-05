@@ -14,11 +14,14 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.intive.toz.R;
+import com.intive.toz.login.Session;
 import com.intive.toz.news.NewsMvp;
 import com.intive.toz.news.adapter.NewsAdapter;
 import com.intive.toz.news.model.News;
 import com.intive.toz.news.presenter.NewsPresenter;
+import com.intive.toz.petDetails.model.Comment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -104,12 +107,20 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     @Override
     public void setData(final List<News> data) {
         adapter.setNewsList(data);
+        if (adapter.getComments() == null) {
+            adapter.setComments(new ArrayList<Comment>());
+        }
         adapter.notifyDataSetChanged();
     }
+
+
 
     @Override
     public void loadData(final boolean pullToRefresh) {
         presenter.loadNews(pullToRefresh);
+        if (Session.isLogged()) {
+            presenter.loadComments();
+        }
     }
 
     @Override
@@ -128,5 +139,11 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     public LceViewState<List<News>, NewsMvp.View> createViewState() {
         setRetainInstance(true);
         return new RetainingLceViewState<>();
+    }
+
+    @Override
+    public void setComments(List<Comment> comments) {
+        adapter.setComments(comments);
+        adapter.notifyDataSetChanged();
     }
 }

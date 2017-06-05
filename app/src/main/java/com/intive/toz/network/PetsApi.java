@@ -198,6 +198,9 @@ public interface PetsApi {
     @GET("comments")
     Call<List<Comment>> getPetComments(@Query("petUuid") String id, @Query("state") String state);
 
+    @GET("comments")
+    Call<List<Comment>> getAllComments(@Query("isShortened") Boolean id, @Query("state") String state);
+
     /**
      * Add comment call.
      *

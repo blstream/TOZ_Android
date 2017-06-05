@@ -1,11 +1,14 @@
 package com.intive.toz.news.presenter;
 
+import android.util.Log;
+
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
 import com.intive.toz.data.DateFormatter;
 import com.intive.toz.news.NewsMvp;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petDetails.model.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +45,30 @@ public class NewsPresenter extends MvpBasePresenter<NewsMvp.View> implements New
                 if (isViewAttached()) {
                     getView().showError(e, false);
                 }
+            }
+        });
+    }
+
+    /**
+     * Load comments.
+     *
+     */
+    @Override
+    public void loadComments() {
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.allComments(new DataProvider.ResponseCallback<List<Comment>>() {
+            @Override
+            public void onSuccess(final List<Comment> response) {
+                if (response.size() > 5) {
+                    getView().setComments(response.subList(0, 5));
+                } else {
+                    getView().setComments(response);
+                }
+            }
+
+            @Override
+            public void onError(final Throwable e) {
+
             }
         });
     }
