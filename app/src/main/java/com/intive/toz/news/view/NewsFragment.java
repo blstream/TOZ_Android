@@ -142,7 +142,7 @@ public class NewsFragment extends MvpLceViewStateFragment<SwipeRefreshLayout, Li
     }
 
     @Override
-    public void setComments(List<Comment> comments) {
+    public void setComments(final List<Comment> comments) {
         adapter.setComments(comments);
         adapter.notifyDataSetChanged();
     }

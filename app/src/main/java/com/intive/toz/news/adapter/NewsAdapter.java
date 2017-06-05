@@ -27,10 +27,11 @@ import butterknife.ButterKnife;
  */
 public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_COMMENT_HEADER = 0;
+    private static final int TYPE_NEWS_HEADER = 3;
     private static final int TYPE_ITEM = 1;
     private static final int TYPE_COMMENT = 2;
-    private static int HEADERS_COUNT;
+    private static int headersCount;
 
     private List<News> newsList;
     private List<Comment> comments;
@@ -82,7 +83,13 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
 
-        if (viewType == TYPE_HEADER) {
+        if (viewType == TYPE_COMMENT_HEADER) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.comments_header, parent, false);
+            return new CommentsHeaderViewHolder(view);
+        }
+
+        if (viewType == TYPE_NEWS_HEADER) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.news_header, parent, false);
             return new NewsHeaderViewHolder(view);
@@ -103,7 +110,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int p) {
         if (holder instanceof NewsViewHolder) {
             final NewsViewHolder h = (NewsViewHolder) holder;
-            final int position = p - (comments.size() + HEADERS_COUNT);
+            final int position = p - (comments.size() + headersCount);
 
             h.titleTv.setText(newsList.get(position).getTitle());
             h.contentsTv.setText(newsList.get(position).getContents());
@@ -134,17 +141,17 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         if (newsList == null && comments == null) {
-            HEADERS_COUNT = 0;
+            headersCount = 0;
             return 0;
         } else if (newsList == null) {
-            HEADERS_COUNT = 1;
-            return comments.size() + HEADERS_COUNT;
+            headersCount = 1;
+            return comments.size() + headersCount;
         } else if (comments == null || comments.size() == 0) {
-            HEADERS_COUNT = 1;
-            return newsList.size() + HEADERS_COUNT;
+            headersCount = 1;
+            return newsList.size() + headersCount;
         } else {
-            HEADERS_COUNT = 2;
-            return newsList.size() + comments.size() + HEADERS_COUNT;
+            headersCount = 2;
+            return newsList.size() + comments.size() + headersCount;
         }
     }
 
@@ -154,15 +161,30 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return TYPE_COMMENT;
         }
 
-        if (isPositionHeader(position)) {
-            return TYPE_HEADER;
+        if (isPositionCommentsHeader(position)) {
+            return TYPE_COMMENT_HEADER;
+        }
+
+        if (isPositionNewsHeader(position)) {
+            return TYPE_NEWS_HEADER;
         }
 
         return TYPE_ITEM;
     }
 
-    private boolean isPositionHeader(final int position) {
-        return position == 0 || position == comments.size() + 1;
+    private boolean isPositionCommentsHeader(final int position) {
+        return position == 0 && comments.size() != 0;
+    }
+
+    private boolean isPositionNewsHeader(final int position) {
+        if (comments.size() != 0 && position == comments.size() + 1) {
+            return true;
+        } else if (comments.size() == 0 && position == 0) {
+            return true;
+        } else if (newsList.size() == 0) {
+            return false;
+        }
+        return false;
     }
 
     private boolean isPositionComment(final int position) {
@@ -211,7 +233,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public void onClick(final View v) {
-            int position = getAdapterPosition() - (comments.size() + HEADERS_COUNT);
+            int position = getAdapterPosition() - (comments.size() + headersCount);
             String id = newsList.get(position).getId();
             Intent i = new Intent(v.getContext(), NewsDetailActivity.class);
             i.putExtra(NewsDetailActivity.ID, id);
@@ -230,6 +252,19 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
          * @param itemView the item view
          */
         private NewsHeaderViewHolder(final View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+
+    final class CommentsHeaderViewHolder extends RecyclerView.ViewHolder {
+
+        /**
+         * Instantiates a new News header view holder.
+         *
+         * @param itemView the item view
+         */
+        private CommentsHeaderViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

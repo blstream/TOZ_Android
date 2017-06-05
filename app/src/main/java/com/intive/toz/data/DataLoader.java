@@ -379,7 +379,7 @@ public class DataLoader implements DataProvider {
     public void allComments(final ResponseCallback<List<Comment>> listener) {
         api.getAllComments(true, "ACTIVE").enqueue(new Callback<List<Comment>>() {
             @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+            public void onResponse(final Call<List<Comment>> call, final Response<List<Comment>> response) {
                 if (response.isSuccessful()) {
                     listener.onSuccess(response.body());
                 } else {

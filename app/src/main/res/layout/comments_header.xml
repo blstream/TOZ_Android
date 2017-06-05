@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp">
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="@dimen/activity_horizontal_margin">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/latest_news"
+        android:text="@string/newest_comments"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/title_detail_text"
         android:textStyle="bold" />

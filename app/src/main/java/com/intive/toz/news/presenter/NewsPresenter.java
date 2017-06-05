@@ -1,7 +1,5 @@
 package com.intive.toz.news.presenter;
 
-import android.util.Log;
-
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.intive.toz.data.DataLoader;
 import com.intive.toz.data.DataProvider;
@@ -18,6 +16,7 @@ import java.util.List;
  */
 public class NewsPresenter extends MvpBasePresenter<NewsMvp.View> implements NewsMvp.Presenter {
 
+    private static final int COMMENTS_COUNT = 5;
     private DateFormatter dateFormatter = new DateFormatter();
 
     /**
@@ -59,8 +58,8 @@ public class NewsPresenter extends MvpBasePresenter<NewsMvp.View> implements New
         dataLoader.allComments(new DataProvider.ResponseCallback<List<Comment>>() {
             @Override
             public void onSuccess(final List<Comment> response) {
-                if (response.size() > 5) {
-                    getView().setComments(response.subList(0, 5));
+                if (response.size() > COMMENTS_COUNT) {
+                    getView().setComments(response.subList(0, COMMENTS_COUNT));
                 } else {
                     getView().setComments(response);
                 }
