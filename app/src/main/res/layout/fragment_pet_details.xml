@@ -307,6 +307,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/add_comment"
+                                android:maxLength="500"
                                 android:paddingEnd="58dp"
                                 android:paddingRight="58dp" />
 

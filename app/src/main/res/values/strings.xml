@@ -71,6 +71,8 @@
     <string name="comments">Komentarze:</string>
     <string name="add_comment">Dodaj komentarz</string>
     <string name="add">DODAJ</string>
+    <string name="edit">EDYTUJ</string>
+    <string name="edit_comment">Edytuj komentarz</string>
 
     <!--form for volunteer-->
     <string name="title_activity_volunteer_form">Formularz zgłoszeniowy</string>
