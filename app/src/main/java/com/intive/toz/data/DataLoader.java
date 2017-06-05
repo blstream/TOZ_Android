@@ -393,4 +393,23 @@ public class DataLoader implements DataProvider {
             }
         });
     }
+
+    @Override
+    public void editComment(final ResponseCallback<Comment> listener, final Comment comment) {
+        api.editComment(comment.getId(), comment).enqueue(new Callback<Comment>() {
+            @Override
+            public void onResponse(final Call<Comment> call, final Response<Comment> response) {
+                if (response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                } else {
+                    listener.onError(new Throwable());
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<Comment> call, final Throwable t) {
+                listener.onError(t);
+            }
+        });
+    }
 }

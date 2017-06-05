@@ -167,6 +167,14 @@ public interface DataProvider {
     void allComments(ResponseCallback<List<Comment>> listener);
 
     /**
+     * Edit comment.
+     *
+     * @param listener the listener
+     * @param comment  the comment
+     */
+    void editComment(ResponseCallback<Comment> listener, Comment comment);
+
+    /**
      * The interface On data received listener.
      *
      * @param <T> the type parameter

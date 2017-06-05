@@ -1,13 +1,18 @@
 package com.intive.toz.petDetails.view;
 
+import android.content.Context;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.intive.toz.R;
+import com.intive.toz.data.DataLoader;
+import com.intive.toz.data.DataProvider;
 import com.intive.toz.data.DateFormatter;
 import com.intive.toz.login.Session;
 import com.intive.toz.petDetails.model.Comment;
@@ -124,13 +129,39 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
             ButterKnife.bind(this, itemView);
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(final View v) {
                     addCommentView.setVisibility(View.VISIBLE);
                     addCommentEt.setText(content.getText());
                 }
             });
 
+            addCommentBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    Comment c = comments.get(getAdapterPosition());
+                    c.setContents(addCommentEt.getText().toString());
+                    new DataLoader().editComment(new DataProvider.ResponseCallback<Comment>() {
+                        @Override
+                        public void onSuccess(final Comment response) {
+                            content.setText(response.getContents());
+                            addCommentView.setVisibility(View.GONE);
+                            addCommentEt.clearFocus();
+                            InputMethodManager inputManager = (InputMethodManager)
+                                    v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
+                            inputManager.hideSoftInputFromWindow(v.getWindowToken(),
+                                    InputMethodManager.HIDE_NOT_ALWAYS);
+
+                            addCommentEt.setText(null);
+                        }
+
+                        @Override
+                        public void onError(final Throwable e) {
+                            Toast.makeText(v.getContext(), R.string.default_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }, c);
+                }
+            });
         }
     }
 }
