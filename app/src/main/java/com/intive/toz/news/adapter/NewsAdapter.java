@@ -16,6 +16,7 @@ import com.intive.toz.network.ApiClient;
 import com.intive.toz.news.model.News;
 import com.intive.toz.news_detail.view.NewsDetailActivity;
 import com.intive.toz.petDetails.model.Comment;
+import com.intive.toz.petDetails.view.PetDetailsActivity;
 
 import java.util.List;
 
@@ -271,7 +272,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    final class CommentsViewHolder extends RecyclerView.ViewHolder {
+    final class CommentsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         /**
          * The Author.
@@ -299,6 +300,17 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         CommentsViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(final View v) {
+            int position = getAdapterPosition() - 1;
+
+            String pet = comments.get(position).getPetUuid();
+            Intent intent = new Intent(itemView.getContext(), PetDetailsActivity.class);
+            intent.putExtra("petKey", pet);
+            itemView.getContext().startActivity(intent);
         }
     }
 }
