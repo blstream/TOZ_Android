@@ -25,6 +25,12 @@ public class Comment {
     @SerializedName("created")
     @Expose
     private Long created;
+    @SerializedName("authorName")
+    @Expose
+    private String authorName;
+    @SerializedName("authorSurname")
+    @Expose
+    private String authorSurname;
 
     /**
      * Gets id.
@@ -96,5 +102,41 @@ public class Comment {
      */
     public void setPetUuid(final String petUuid) {
         this.petUuid = petUuid;
+    }
+
+    /**
+     * Gets author name.
+     *
+     * @return the author name
+     */
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    /**
+     * Sets author name.
+     *
+     * @param authorName the author name
+     */
+    public void setAuthorName(final String authorName) {
+        this.authorName = authorName;
+    }
+
+    /**
+     * Gets author surname.
+     *
+     * @return the author surname
+     */
+    public String getAuthorSurname() {
+        return authorSurname;
+    }
+
+    /**
+     * Sets author surname.
+     *
+     * @param authorSurname the author surname
+     */
+    public void setAuthorSurname(final String authorSurname) {
+        this.authorSurname = authorSurname;
     }
 }

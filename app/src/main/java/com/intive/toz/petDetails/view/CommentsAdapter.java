@@ -47,7 +47,8 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
 
     @Override
     public void onBindViewHolder(final CommentsViewHolder holder, final int position) {
-        holder.author.setText("Adam Kowalski");
+        String author = comments.get(position).getAuthorName() + " " + comments.get(position).getAuthorSurname();
+        holder.author.setText(author);
         holder.content.setText(comments.get(position).getContents());
         String date = "| " + formatter.convertToDate(comments.get(position).getCreated());
         holder.date.setText(date);

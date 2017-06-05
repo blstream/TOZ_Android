@@ -131,7 +131,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (holder instanceof CommentsViewHolder) {
             final CommentsViewHolder h = (CommentsViewHolder) holder;
             final int position = p - 1;
-            h.author.setText("Adam Kowalski");
+            String author = comments.get(position).getAuthorName() + " " + comments.get(position).getAuthorSurname();
+            h.author.setText(author);
             h.content.setText(comments.get(position).getContents());
             String date = "| " + formatter.convertToDate(comments.get(position).getCreated());
             h.date.setText(date);
