@@ -8,6 +8,7 @@ import com.intive.toz.info.model.Info;
 import com.intive.toz.login.model.Login;
 import com.intive.toz.login.model.User;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petDetails.model.Comment;
 import com.intive.toz.petslist.model.Pet;
 import com.intive.toz.reset_password.model.Email;
 import com.intive.toz.schedule.model.Reservation;
@@ -26,6 +27,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -186,6 +188,45 @@ public interface PetsApi {
      */
     @GET("organization/becomevolunteer")
     Call<BecomeVolunteerInfo> becomeVolunteer();
+
+    /**
+     * Gets pet comments.
+     *
+     * @param id    the id
+     * @param state the state
+     * @return the pet comments
+     */
+    @GET("comments")
+    Call<List<Comment>> getPetComments(@Query("petUuid") String id, @Query("state") String state);
+
+    /**
+     * Gets all comments.
+     *
+     * @param id    the id
+     * @param state the state
+     * @return the all comments
+     */
+    @GET("comments")
+    Call<List<Comment>> getAllComments(@Query("isShortened") Boolean id, @Query("state") String state);
+
+    /**
+     * Add comment call.
+     *
+     * @param comment the comment
+     * @return the call
+     */
+    @POST("comments")
+    Call<Comment> addComment(@Body Comment comment);
+
+    /**
+     * Edit comment call.
+     *
+     * @param id      the id
+     * @param comment the comment
+     * @return the call
+     */
+    @PUT("comments/{id}")
+    Call<Comment> editComment(@Path("id") String id, @Body Comment comment);
 }
 
 

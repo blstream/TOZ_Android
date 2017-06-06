@@ -6,6 +6,7 @@ import com.intive.toz.data.DataProvider;
 import com.intive.toz.data.DateFormatter;
 import com.intive.toz.news.NewsMvp;
 import com.intive.toz.news.model.News;
+import com.intive.toz.petDetails.model.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public class NewsPresenter extends MvpBasePresenter<NewsMvp.View> implements NewsMvp.Presenter {
 
+    private static final int COMMENTS_COUNT = 5;
     private DateFormatter dateFormatter = new DateFormatter();
 
     /**
@@ -42,6 +44,30 @@ public class NewsPresenter extends MvpBasePresenter<NewsMvp.View> implements New
                 if (isViewAttached()) {
                     getView().showError(e, false);
                 }
+            }
+        });
+    }
+
+    /**
+     * Load comments.
+     *
+     */
+    @Override
+    public void loadComments() {
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.allComments(new DataProvider.ResponseCallback<List<Comment>>() {
+            @Override
+            public void onSuccess(final List<Comment> response) {
+                if (response.size() > COMMENTS_COUNT) {
+                    getView().setComments(response.subList(0, COMMENTS_COUNT));
+                } else {
+                    getView().setComments(response);
+                }
+            }
+
+            @Override
+            public void onError(final Throwable e) {
+
             }
         });
     }

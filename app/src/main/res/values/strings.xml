@@ -8,8 +8,9 @@
 
     <!--news list-->
     <string name="addition_date">Data dodania:&#160;</string>
-    <string name="latest_news">Ostatnio dodane</string>
+    <string name="latest_news">Aktualności:</string>
     <string name="support_this_action">Wspomóż tę akcję</string>
+    <string name="newest_comments">Najnowsze komentarze:</string>
 
     <!--tabs-->
     <string name="navigation_tab_news">NEWSY</string>
@@ -67,6 +68,11 @@
     <string name="pet_type_dog">Pies</string>
     <string name="pet_type_cat">Kot</string>
     <string name="no_images">Brak zdjęć</string>
+    <string name="comments">Komentarze:</string>
+    <string name="add_comment">Dodaj komentarz</string>
+    <string name="add">DODAJ</string>
+    <string name="edit">EDYTUJ</string>
+    <string name="edit_comment">Edytuj komentarz</string>
 
     <!--form for volunteer-->
     <string name="title_activity_volunteer_form">Formularz zgłoszeniowy</string>
@@ -133,4 +139,5 @@
     <string name="cat_type">Kot</string>
     <string name="dog_tag">DOG</string>
     <string name="male_tag">MALE</string>
+
 </resources>

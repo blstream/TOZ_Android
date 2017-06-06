@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/detail_scroll_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,9 +44,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <LinearLayout
@@ -80,7 +81,6 @@
                     android:id="@+id/separator1"
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_below="@+id/name_row"
                     android:layout_marginBottom="@dimen/separator_margin_bottom_top"
                     android:layout_marginTop="@dimen/separator_margin_bottom_top"
                     android:background="@color/greyLight" />
@@ -89,7 +89,6 @@
                     android:id="@+id/type_sex_row"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/separator1"
                     android:orientation="horizontal"
                     android:weightSum="3">
 
@@ -141,7 +140,6 @@
                     android:id="@+id/separator2"
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_below="@+id/type_sex_row"
                     android:layout_marginBottom="@dimen/separator_margin_bottom_top"
                     android:layout_marginTop="@dimen/separator_margin_bottom_top"
                     android:background="@color/greyLight" />
@@ -150,7 +148,6 @@
                     android:id="@+id/date_row"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/separator2"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -178,24 +175,20 @@
                     android:id="@+id/separator3"
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_below="@+id/date_row"
                     android:layout_marginBottom="@dimen/separator_margin_bottom_top"
                     android:layout_marginTop="@dimen/separator_margin_bottom_top"
                     android:background="@color/greyLight" />
-
 
                 <TextView
                     android:id="@+id/description_pet_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/separator3"
                     android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/btn_help"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/description_pet_details"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
@@ -209,7 +202,6 @@
                     android:id="@+id/help_fragment_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/btn_help"
                     android:visibility="gone">
 
                     <LinearLayout
@@ -275,15 +267,89 @@
 
                 </FrameLayout>
 
+                <View
+                    android:id="@+id/separator4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+                    android:layout_marginTop="@dimen/separator_margin_bottom_top"
+                    android:background="@color/greyLight" />
+
+                <LinearLayout
+                    android:id="@+id/comments_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/comments"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <FrameLayout
+                        android:id="@+id/add_comment_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/add_comment_et"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/add_comment"
+                                android:maxLength="500"
+                                android:paddingEnd="58dp"
+                                android:paddingRight="58dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/add_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/add"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="@dimen/separator_margin_bottom_top"
+                        android:layout_marginTop="@dimen/separator_margin_bottom_top"
+                        android:background="@color/greyLight" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/comments_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                </LinearLayout>
+
+
                 <ProgressBar
                     android:id="@+id/progress_bar_pet_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
                     android:visibility="gone" />
 
-            </RelativeLayout>
+            </LinearLayout>
         </FrameLayout>
     </LinearLayout>
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>
