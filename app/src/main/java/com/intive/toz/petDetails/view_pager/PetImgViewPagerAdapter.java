@@ -77,6 +77,7 @@ public class PetImgViewPagerAdapter extends PagerAdapter {
                 @Override
                 public void onClick(final View v) {
                     Intent intent = new Intent(context, FullScreenImageActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(IMG_URL, url);
                     context.startActivity(intent);
                 }
